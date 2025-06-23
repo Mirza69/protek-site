@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementing Zero Trust Architecture | ProtekCyber Consultants</title>
+    <meta name="description" content="A comprehensive guide to adopting zero trust principles across your enterprise network and cloud infrastructure">
+    
+    <!-- Same CSS as other pages -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-dark: #0A192F;
+            --primary-medium: #19376D;
+            --secondary-green: #04D939;
+            --accent-purple: #A459D1;
+            --neutral-dark: #0F172A;
+            --neutral-light: #F8FAFC;
+        }
+        #mobile-menu{
+            background-color: var(--primary-dark)!important;
+            padding-top: 60px;
+        }
+        @media screen and (max-width: 768px) {
+        #desktopmenu {
+        display: none; /* Show the desktop menu for mobile screens */
+            }
+          }  
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--neutral-dark);
+            color: var(--neutral-light);
+        }
+        .space-x-8>:not([hidden])~:not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(2rem * var(--tw-space-x-reverse));
+    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+        
+        .bg-primary-dark {
+            background-color: var(--primary-dark);
+        }
+        
+        .bg-primary-medium {
+            background-color: var(--primary-medium);
+        }
+        
+        .bg-neutral-dark {
+            background-color: var(--neutral-dark);
+        }
+        
+        .text-secondary-green {
+            color: var(--secondary-green);
+        }
+        
+        .text-accent-purple {
+            color: var(--accent-purple);
+        }
+        
+        .border-secondary-green {
+            border-color: var(--secondary-green);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .cyber-btn {
+            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
+            color: var(--neutral-dark);
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(4, 217, 57, 0.5);
+        }
+        
+        .cyber-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+        
+        .cyber-btn:hover:before {
+            left: 100%;
+        }
+        
+        .card {
+            background-color: rgba(25, 55, 109, 0.2);
+            border: 1px solid var(--primary-medium);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(4, 217, 57, 0.1);
+        }
+
+        /* Add this to your CSS */
+.hover\:shadow-glow:hover {
+  box-shadow: 0 0 15px rgba(4, 217, 57, 0.7); /* Green glow */
+  background-color: var(--secondary-green); /* Solid green bg */
+  color: var(--neutral-dark); /* Dark text */
+  border-color: var(--secondary-green); /* Green border */
+}
+        
+        /* Additional styles for zero trust page */
+        .principle-card {
+            margin-bottom: 3rem;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .checklist-icon {
+            flex-shrink: 0;
+            margin-right: 1rem;
+            color: var(--secondary-green);
+        }
+        
+        .checklist-content {
+            flex-grow: 1;
+        }
+        
+        .implementation-phase {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .implementation-phase::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--secondary-green), var(--accent-purple));
+            border-radius: 2px;
+        }
+        
+        .phase-number {
+            position: absolute;
+            left: -12px;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: var(--secondary-green);
+            color: var(--neutral-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .benefit-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--primary-medium);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!--NAVBAR-->
+    <header class="bg-neutral-dark text-neutral-light shadow-md fixed w-full top-0 z-50">
+    <div class="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
+    
+    <!-- Logo -->
+    <a href="/index.html" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+
+    <!-- Hamburger (Mobile) -->
+    <button id="nav-toggle" class="md:hidden text-2xl focus:outline-none">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row md:items-center md:gap-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-neutral-dark px-4 md:px-0 py-4 md:py-0">
+
+      <a href="/index.html" class="hover:text-secondary-green">Home</a>
+
+      <!-- Services -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/index.html#services" class="hover:text-secondary-green md:mr-1">Services</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Services Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/soc" class="block px-4 py-2 hover:bg-neutral-light/10">SOC as a Service</a>
+          <a href="/penetration" class="block px-4 py-2 hover:bg-neutral-light/10">Penetration Testing</a>
+          <a href="/incident" class="block px-4 py-2 hover:bg-neutral-light/10">Incident Response</a>
+          <a href="/cloud-sec" class="block px-4 py-2 hover:bg-neutral-light/10">Cloud Security</a>
+          <a href="/data-protect" class="block px-4 py-2 hover:bg-neutral-light/10">Data Protection</a>
+        </div>
+      </div>
+
+      <!-- Insights -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/index.html#insights" class="hover:text-secondary-green md:mr-1">Insights</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Insights Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/knowledge-base" class="block px-4 py-2 hover:bg-neutral-light/10">Knowledge Base</a>
+          <a href="/threat-intelligence" class="block px-4 py-2 hover:bg-neutral-light/10">Threat Intelligence</a>
+          <a href="/security-guides" class="block px-4 py-2 hover:bg-neutral-light/10">Security Guides</a>
+          <a href="/webinars" class="block px-4 py-2 hover:bg-neutral-light/10">Webinars</a>
+          <a href="/case-studies" class="block px-4 py-2 hover:bg-neutral-light/10">Case Studies</a>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/company" class="hover:text-secondary-green md:mr-1">Company</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Company Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/about-us" class="block px-4 py-2 hover:bg-neutral-light/10">About Us</a>
+          <a href="/our-team" class="block px-4 py-2 hover:bg-neutral-light/10">Our Team</a>
+          <a href="/careers" class="block px-4 py-2 hover:bg-neutral-light/10">Careers</a>
+          <a href="/news" class="block px-4 py-2 hover:bg-neutral-light/10">News</a>
+          <a href="/termsofservice" class="block px-4 py-2 hover:bg-neutral-light/10">Terms of Service</a>
+        </div>
+      </div>
+
+      <a href="/#contact" class="hover:text-secondary-green">Contact Us</a>
+
+      <!-- CTA Button -->
+      <div class="mt-4 md:mt-0 md:ml-4">
+        <a href="/#contact" class="cyber-btn block text-center">Speak to an Expert</a>
+      </div>
+
+    </nav>
+  </div>
+</header>
+
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-20 px-4 md:px-8 lg:px-16 bg-primary-dark">
+        <!-- Hero Section -->
+        <section class="container mx-auto mb-20">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                    Implementing <span class="gradient-text">Zero Trust Architecture</span>
+                </h1>
+                <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto mb-8">
+                    A comprehensive guide to adopting zero trust principles across your enterprise network and cloud infrastructure to enhance security in today's perimeter-less world.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#core-principles" class="cyber-btn text-center">
+                        Learn Core Principles
+                    </a>
+                    <a href="/#contact" 
+                       class="border border-white text-white font-bold px-6 py-3 rounded-md transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-glow hover:bg-secondary-green hover:text-neutral-dark">
+                        Get Zero Trust Assessment
+                    </a> 
+                </div>
+            </div>
+        </section>
+
+        <!-- Zero Trust Stats -->
+        <section class="container mx-auto mb-20">
+            <div class="card p-8">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-secondary-green mb-2">94%</div>
+                        <p class="text-neutral-light/80">of enterprises have begun Zero Trust initiatives</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-accent-purple mb-2">60%</div>
+                        <p class="text-neutral-light/80">reduction in security breaches after implementation</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-secondary-green mb-2">3.5x</div>
+                        <p class="text-neutral-light/80">faster detection of lateral movement attempts</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Principles -->
+        <section id="core-principles" class="container mx-auto mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Core <span class="gradient-text">Zero Trust Principles</span>
+                </h2>
+                <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                    Zero Trust is built on these fundamental principles that redefine traditional network security.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Principle 1 -->
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-question-circle text-secondary-green text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Never Trust, Always Verify</h3>
+                    </div>
+                    <p class="text-neutral-light/70 mb-4">
+                        Eliminate implicit trust in any entity, whether inside or outside the network perimeter. Every access request must be fully authenticated, authorized, and encrypted before granting access.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Continuous authentication throughout sessions</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Context-aware access decisions (device, location, behavior)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Micro-segmentation to limit lateral movement</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Principle 2 -->
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-user-lock text-secondary-green text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Least Privilege Access</h3>
+                    </div>
+                    <p class="text-neutral-light/70 mb-4">
+                        Grant users and devices only the minimum access required to perform their functions. Access is granted just-in-time and just-enough, with continuous evaluation of trustworthiness.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Role-based and attribute-based access controls</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Time-bound access privileges</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Automated privilege escalation/de-escalation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Principle 3 -->
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-shield-alt text-secondary-green text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Assume Breach</h3>
+                    </div>
+                    <p class="text-neutral-light/70 mb-4">
+                        Operate with the assumption that your environment has already been compromised. Implement controls that minimize blast radius and prevent lateral movement of threats.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Micro-perimeters around sensitive data and systems</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Continuous monitoring and anomaly detection</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Automated response to suspicious activity</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Principle 4 -->
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-network-wired text-secondary-green text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Network Agnostic Security</h3>
+                    </div>
+                    <p class="text-neutral-light/70 mb-4">
+                        Security policies follow users, devices, and workloads regardless of their location. The same protections apply whether resources are on-premises, in the cloud, or hybrid.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Identity-based rather than network-based policies</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Encryption for all communications</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Consistent security across multi-cloud environments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementation Framework -->
+        <section class="container mx-auto mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Zero Trust <span class="gradient-text">Implementation Framework</span>
+                </h2>
+                <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                    Our phased approach to implementing Zero Trust across your organization.
+                </p>
+            </div>
+
+            <div class="card p-8">
+                <!-- Phase 1 -->
+                <div class="implementation-phase">
+                    <div class="phase-number">1</div>
+                    <h3 class="text-2xl font-bold mb-4">Identify Protect Surface</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold mb-2">Key Activities:</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Map critical data, assets, applications, and services (DAAS)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Understand workflows and communication patterns</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Classify data by sensitivity and regulatory requirements</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Deliverables:</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                    <span>DAAS inventory with sensitivity classification</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                    <span>Workflow diagrams showing data flows</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                    <span>Initial risk assessment</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phase 2 -->
+                <div class="implementation-phase">
+                    <div class="phase-number">2</div>
+                    <h3 class="text-2xl font-bold mb-4">Map Transaction Flows</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold mb-2">Key Activities:</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Document how traffic moves across your environment</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Identify dependencies between systems and services</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Establish baseline for normal communication patterns</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Deliverables:</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                    <span>Comprehensive network flow diagrams</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                    <span>Dependency mapping between systems</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                    <span>Communication pattern baselines</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phase 3 -->
+                <div class="implementation-phase">
+                    <div class="phase-number">3</div>
+                    <h3 class="text-2xl font-bold mb-4">Architect Zero Trust Network</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold mb-2">Key Activities:</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Design micro-perimeters around protect surfaces</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Implement identity-aware proxy architecture</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Deploy software-defined perimeters</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Deliverables:</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                    <span>Zero Trust network architecture design</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                    <span>Implementation roadmap</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                    <span>Pilot environment setup</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phase 4 -->
+                <div class="implementation-phase">
+                    <div class="phase-number">4</div>
+                    <h3 class="text-2xl font-bold mb-4">Create Zero Trust Policies</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold mb-2">Key Activities:</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Define granular access policies based on roles and attributes</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Establish continuous trust assessment criteria</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Configure policy enforcement points</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Deliverables:</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                    <span>RBAC/ABAC policy framework</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                    <span>Trust scoring models</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                    <span>Policy enforcement configuration</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phase 5 -->
+                <div class="implementation-phase">
+                    <div class="phase-number">5</div>
+                    <h3 class="text-2xl font-bold mb-4">Monitor and Maintain</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold mb-2">Key Activities:</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Implement continuous monitoring and analytics</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Establish feedback loops for policy refinement</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Conduct regular Zero Trust maturity assessments</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Deliverables:</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                    <span>Monitoring and alerting configuration</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                    <span>Policy review and update process</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                    <span>Maturity assessment framework</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Components -->
+        <section class="container mx-auto mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Key <span class="gradient-text">Zero Trust Components</span>
+                </h2>
+                <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                    These critical technologies and processes form the foundation of a Zero Trust architecture.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Component 1 -->
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-user-tag text-secondary-green text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Identity and Access Management</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Multi-factor authentication (MFA) for all users</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Privileged access management (PAM)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Continuous authentication and authorization</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Identity governance and administration</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Component 2 -->
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-network-wired text-secondary-green text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Network Segmentation</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Software-defined micro-segmentation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>East-west traffic controls</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Identity-aware proxies</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Encrypted communications (TLS, IPsec)</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Component 3 -->
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-laptop-code text-secondary-green text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Endpoint Security</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Device health and compliance verification</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Next-gen EDR/XDR solutions</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Application allowlisting</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Behavioral analytics</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Component 4 -->
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-cloud text-secondary-green text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Cloud Security</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Cloud access security brokers (CASB)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Secure access service edge (SASE)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Cloud workload protection</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>API security controls</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Component 5 -->
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-chart-line text-secondary-green text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Visibility & Analytics</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>SIEM with behavioral analytics</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>User and entity behavior analytics (UEBA)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Centralized logging and monitoring</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Automated response orchestration</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Component 6 -->
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-cogs text-secondary-green text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Automation & Orchestration</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Policy enforcement automation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Security orchestration (SOAR)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Dynamic policy adjustments</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Automated threat response</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits -->
+        <section class="container mx-auto mb-20">
+            <div class="card p-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                        Zero Trust <span class="gradient-text">Business Benefits</span>
+                    </h2>
+                    <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                        Adopting Zero Trust architecture delivers measurable security and operational advantages.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-20 h-20 rounded-full bg-secondary-green/20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-shield-alt text-secondary-green text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Enhanced Security</h3>
+                        <p class="text-neutral-light/70">
+                            60-80% reduction in security incidents by eliminating implicit trust and containing breaches
+                        </p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 rounded-full bg-secondary-green/20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-pound-sign text-secondary-green text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Cost Savings</h3>
+                        <p class="text-neutral-light/70">
+                            30-50% lower operational costs through simplified security architecture and automation
+                        </p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 rounded-full bg-secondary-green/20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-cloud text-secondary-green text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Cloud Enablement</h3>
+                        <p class="text-neutral-light/70">
+                            Consistent security posture across hybrid and multi-cloud environments
+                        </p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 rounded-full bg-secondary-green/20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-tasks text-secondary-green text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Compliance</h3>
+                        <p class="text-neutral-light/70">
+                            Simplified compliance with GDPR, NIS2, and other regulations through granular access controls
+                        </p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 rounded-full bg-secondary-green/20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user-tie text-secondary-green text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">User Experience</h3>
+                        <p class="text-neutral-light/70">
+                            Secure access from anywhere without VPNs, with adaptive authentication
+                        </p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 rounded-full bg-secondary-green/20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-chart-line text-secondary-green text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Visibility</h3>
+                        <p class="text-neutral-light/70">
+                            Comprehensive monitoring of all access attempts and data flows
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <div class="inline-flex flex-wrap justify-center gap-3">
+                        <span class="benefit-tag">Reduced attack surface</span>
+                        <span class="benefit-tag">Faster breach detection</span>
+                        <span class="benefit-tag">Limited lateral movement</span>
+                        <span class="benefit-tag">Secure digital transformation</span>
+                        <span class="benefit-tag">Future-proof architecture</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="container mx-auto">
+            <div class="card p-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Implement Zero Trust?</h2>
+                <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto mb-8">
+                    Our Zero Trust specialists can assess your current state and develop a tailored implementation roadmap for your organization.
+                </p>
+                <a href="/#contact" class="cyber-btn inline-block">
+                    Get Zero Trust Consultation
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 md:px-8 lg:px-16 bg-neutral-dark border-t border-primary-medium">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <a href="/index.html" style="display: inline-block; padding-bottom: 20px;" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+                    
+                    <p class="text-neutral-light/70 mb-6">
+                        Expert-led cyber security consultancy tailored to your business needs, compliance goals, and growth strategy.
+                    </p>
+                    
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Services</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/soc" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                SOC as a Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/penetration" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Penetration Testing
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/incident" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Incident Response
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/cloud-sec" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Cloud Security
+                            </a>
+                        </li>
+                        <li>
+                            <a href="data-protect" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Data Protection
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Company</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/about-us" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/our-team " class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Our Team
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/careers" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Careers
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/news" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                News
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/termsofservice" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Terms of Service
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Resources</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/knowledge-base" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Knowledge Base
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/threat-intelligence" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Threat Intelligence
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/security-guides" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Security Guides
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/webinars" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Webinars
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/case-studies" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Case Studies
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-primary-medium text-center">
+                <p class="text-neutral-light/70">
+                    &copy; 2025 ProtekCyber Consultants. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            document.getElementById('nav-menu').classList.toggle('hidden');
+        });
+
+        // Toggle dropdowns individually
+        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const dropdown = this.nextElementSibling;
+                dropdown.classList.toggle('hidden');
+
+                // Close other open dropdowns
+                document.querySelectorAll('.dropdown').forEach(d => {
+                    if (d !== dropdown) d.classList.add('hidden');
+                });
+            });
+        });
+
+        // Close all dropdowns when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.group')) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.classList.add('hidden');
+                });
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                
+                header.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

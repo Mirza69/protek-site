@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Response Planning Guide | ProtekCyber Consultants</title>
+    <meta name="description" content="Comprehensive guide to developing an effective incident response plan to minimize the impact of security breaches and maintain business continuity">
+    
+    <!-- Same CSS as other pages -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-dark: #0A192F;
+            --primary-medium: #19376D;
+            --secondary-green: #04D939;
+            --accent-purple: #A459D1;
+            --neutral-dark: #0F172A;
+            --neutral-light: #F8FAFC;
+        }
+        #mobile-menu{
+            background-color: var(--primary-dark)!important;
+            padding-top: 60px;
+        }
+        @media screen and (max-width: 768px) {
+        #desktopmenu {
+        display: none; /* Show the desktop menu for mobile screens */
+            }
+          }  
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--neutral-dark);
+            color: var(--neutral-light);
+        }
+        .space-x-8>:not([hidden])~:not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(2rem * var(--tw-space-x-reverse));
+    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+        
+        .bg-primary-dark {
+            background-color: var(--primary-dark);
+        }
+        
+        .bg-primary-medium {
+            background-color: var(--primary-medium);
+        }
+        
+        .bg-neutral-dark {
+            background-color: var(--neutral-dark);
+        }
+        
+        .text-secondary-green {
+            color: var(--secondary-green);
+        }
+        
+        .text-accent-purple {
+            color: var(--accent-purple);
+        }
+        
+        .border-secondary-green {
+            border-color: var(--secondary-green);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .cyber-btn {
+            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
+            color: var(--neutral-dark);
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(4, 217, 57, 0.5);
+        }
+        
+        .cyber-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+        
+        .cyber-btn:hover:before {
+            left: 100%;
+        }
+        
+        .card {
+            background-color: rgba(25, 55, 109, 0.2);
+            border: 1px solid var(--primary-medium);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(4, 217, 57, 0.1);
+        }
+
+        /* Add this to your CSS */
+.hover\:shadow-glow:hover {
+  box-shadow: 0 0 15px rgba(4, 217, 57, 0.7); /* Green glow */
+  background-color: var(--secondary-green); /* Solid green bg */
+  color: var(--neutral-dark); /* Dark text */
+  border-color: var(--secondary-green); /* Green border */
+}
+
+        /* Additional styles for incident response page */
+        .phase-item {
+            margin-bottom: 3rem;
+        }
+        
+        .phase-header {
+            border-left: 4px solid var(--accent-purple);
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .checklist-icon {
+            flex-shrink: 0;
+            margin-right: 1rem;
+            color: var(--secondary-green);
+        }
+        
+        .step-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--primary-medium);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--secondary-green);
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 1.5rem;
+            width: 2px;
+            height: calc(100% - 1rem);
+            background-color: var(--primary-medium);
+        }
+        
+        .process-step {
+            display: flex;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background-color: rgba(25, 55, 109, 0.3);
+            border-radius: 0.5rem;
+        }
+        
+        .step-number {
+            flex-shrink: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: var(--secondary-green);
+            color: var(--neutral-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1.5rem;
+        }
+        
+        .step-content {
+            flex-grow: 1;
+        }
+        
+        .team-role {
+            margin-bottom: 1.5rem;
+        }
+        
+        .role-title {
+            font-weight: bold;
+            color: var(--secondary-green);
+            margin-bottom: 0.5rem;
+        }
+        .process-step {
+    display: flex;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background-color: rgba(25, 55, 109, 0.3);
+    border-radius: 0.5rem;
+    height: 160px; /* Fixed height for all steps */
+    overflow: hidden; /* Ensure content doesn't overflow */
+}
+
+.step-number {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: var(--secondary-green);
+    color: var(--neutral-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 1.5rem;
+}
+
+.step-content {
+    flex-grow: 1;
+    overflow: auto; /* Add scroll if content exceeds fixed height */
+}
+    </style>
+</head>
+<body>
+
+    <!--NAVBAR-->
+    <header class="bg-neutral-dark text-neutral-light shadow-md fixed w-full top-0 z-50">
+    <div class="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
+    
+    <!-- Logo -->
+    <a href="/index.html" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+
+    <!-- Hamburger (Mobile) -->
+    <button id="nav-toggle" class="md:hidden text-2xl focus:outline-none">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row md:items-center md:gap-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-neutral-dark px-4 md:px-0 py-4 md:py-0">
+
+      <a href="/index.html" class="hover:text-secondary-green">Home</a>
+
+      <!-- Services -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/index.html#services" class="hover:text-secondary-green md:mr-1">Services</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Services Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/soc" class="block px-4 py-2 hover:bg-neutral-light/10">SOC as a Service</a>
+          <a href="/penetration" class="block px-4 py-2 hover:bg-neutral-light/10">Penetration Testing</a>
+          <a href="/incident" class="block px-4 py-2 hover:bg-neutral-light/10">Incident Response</a>
+          <a href="/cloud-sec" class="block px-4 py-2 hover:bg-neutral-light/10">Cloud Security</a>
+          <a href="/data-protect" class="block px-4 py-2 hover:bg-neutral-light/10">Data Protection</a>
+        </div>
+      </div>
+
+      <!-- Insights -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/index.html#insights" class="hover:text-secondary-green md:mr-1">Insights</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Insights Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/knowledge-base" class="block px-4 py-2 hover:bg-neutral-light/10">Knowledge Base</a>
+          <a href="/threat-intelligence" class="block px-4 py-2 hover:bg-neutral-light/10">Threat Intelligence</a>
+          <a href="/security-guides" class="block px-4 py-2 hover:bg-neutral-light/10">Security Guides</a>
+          <a href="/webinars" class="block px-4 py-2 hover:bg-neutral-light/10">Webinars</a>
+          <a href="/case-studies" class="block px-4 py-2 hover:bg-neutral-light/10">Case Studies</a>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/company" class="hover:text-secondary-green md:mr-1">Company</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Company Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/about-us" class="block px-4 py-2 hover:bg-neutral-light/10">About Us</a>
+          <a href="/our-team" class="block px-4 py-2 hover:bg-neutral-light/10">Our Team</a>
+          <a href="/careers" class="block px-4 py-2 hover:bg-neutral-light/10">Careers</a>
+          <a href="/news" class="block px-4 py-2 hover:bg-neutral-light/10">News</a>
+          <a href="/termsofservice" class="block px-4 py-2 hover:bg-neutral-light/10">Terms of Service</a>
+        </div>
+      </div>
+
+      <a href="/#contact" class="hover:text-secondary-green">Contact Us</a>
+
+      <!-- CTA Button -->
+      <div class="mt-4 md:mt-0 md:ml-4">
+        <a href="/#contact" class="cyber-btn block text-center">Speak to an Expert</a>
+      </div>
+
+    </nav>
+  </div>
+</header>
+
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-20 px-4 md:px-8 lg:px-16 bg-primary-dark">
+        <!-- Hero Section -->
+        <section class="container mx-auto mb-20">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                    Incident Response <span class="gradient-text">Planning Guide</span>
+                </h1>
+                <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto mb-8">
+                    Develop a robust incident response strategy to minimize the impact of security breaches and maintain business continuity during cyber attacks.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#response-phases" class="cyber-btn text-center">
+                        Explore Response Phases
+                    </a>
+                    <a href="/#contact" 
+                       class="border border-white text-white font-bold px-6 py-3 rounded-md transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-glow hover:bg-secondary-green hover:text-neutral-dark">
+                        Get IR Consultation
+                    </a> 
+                </div>
+            </div>
+        </section>
+
+        <!-- Incident Stats -->
+        <section class="container mx-auto mb-20">
+            <div class="card p-8">
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-secondary-green mb-2">287 days</div>
+                        <p class="text-neutral-light/80">Average time to identify a breach</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-accent-purple mb-2">80%</div>
+                        <p class="text-neutral-light/80">Of organizations lack an IR plan</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-secondary-green mb-2">60%</div>
+                        <p class="text-neutral-light/80">Lower costs with an IR plan</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-accent-purple mb-2">3.5x</div>
+                        <p class="text-neutral-light/80">Faster recovery with preparation</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Incident Response -->
+        <section class="container mx-auto mb-20">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <div class="card h-full p-6">
+                        <h2 class="text-3xl font-bold mb-4">Why Incident Response Planning Matters</h2>
+                        <div class="space-y-4 text-neutral-light/80">
+                            <p>Cyber incidents are inevitable in today's threat landscape. An effective incident response (IR) plan ensures your organization can quickly detect, contain, and recover from security breaches while minimizing damage and downtime.</p>
+                            <p>Without proper preparation, organizations face prolonged outages, regulatory penalties, reputational damage, and significant financial losses. The average cost of a data breach now exceeds $4.45 million globally.</p>
+                            <p>This guide walks you through the essential components of a comprehensive incident response strategy, from team formation to post-incident analysis.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="card h-full p-6">
+                        <div class="mb-4 overflow-hidden rounded-lg">
+                            <img src="/images/incident-response-team.jpg" alt="Incident Response Team" class="w-full h-auto">
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Key Benefits of an IR Plan</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                <span>Reduced downtime and business disruption</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                <span>Lower financial impact from breaches</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                <span>Compliance with regulatory requirements</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                <span>Preserved customer trust and reputation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                                <span>Improved security posture over time</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Incident Response Phases -->
+        <section id="response-phases" class="container mx-auto mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Incident Response <span class="gradient-text">Lifecycle</span>
+                </h2>
+                <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                    A structured approach to handling security incidents based on NIST guidelines
+                </p>
+            </div>
+
+            <div class="card p-8">
+                <!-- Phase 1 -->
+                <div class="phase-item">
+                    <div class="phase-header">
+                        <h3 class="text-2xl font-bold">1. Preparation</h3>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-neutral-light/70 mb-4">
+                                The foundation of effective incident response. This phase involves developing policies, assembling teams, acquiring tools, and establishing communication plans before incidents occur.
+                            </p>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">IR Policy Development</h4>
+                                    <p class="text-neutral-light/70 text-sm">Document roles, responsibilities, and procedures</p>
+                                </div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Team Formation</h4>
+                                    <p class="text-neutral-light/70 text-sm">Identify and train cross-functional response team</p>
+                                </div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Tool Acquisition</h4>
+                                    <p class="text-neutral-light/70 text-sm">Implement monitoring, detection, and analysis tools</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Communication Plan</h4>
+                                    <p class="text-neutral-light/70 text-sm">Establish internal/external notification procedures</p>
+                                </div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Documentation</h4>
+                                    <p class="text-neutral-light/70 text-sm">Create incident tracking and reporting templates</p>
+                                </div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Testing</h4>
+                                    <p class="text-neutral-light/70 text-sm">Conduct tabletop exercises and simulations</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phase 2 -->
+                <div class="phase-item">
+                    <div class="phase-header">
+                        <h3 class="text-2xl font-bold">2. Detection & Analysis</h3>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-neutral-light/70 mb-4">
+                                Identifying potential security incidents through monitoring systems, user reports, or external notifications and determining their scope and impact.
+                            </p>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Alert Triage</h4>
+                                    <p class="text-neutral-light/70 text-sm">Evaluate and prioritize security alerts</p>
+                                </div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Incident Validation</h4>
+                                    <p class="text-neutral-light/70 text-sm">Confirm real incidents vs. false positives</p>
+                                </div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Impact Assessment</h4>
+                                    <p class="text-neutral-light/70 text-sm">Determine affected systems and data</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Evidence Collection</h4>
+                                    <p class="text-neutral-light/70 text-sm">Preserve logs, memory, and disk artifacts</p>
+                                </div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Initial Containment</h4>
+                                    <p class="text-neutral-light/70 text-sm">Implement short-term containment measures</p>
+                                </div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Notification</h4>
+                                    <p class="text-neutral-light/70 text-sm">Alert stakeholders and management</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phase 3 -->
+                <div class="phase-item">
+                    <div class="phase-header">
+                        <h3 class="text-2xl font-bold">3. Containment, Eradication & Recovery</h3>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-neutral-light/70 mb-4">
+                                Limiting the damage, removing threats from the environment, and restoring systems to normal operations while preserving evidence.
+                            </p>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Long-term Containment</h4>
+                                    <p class="text-neutral-light/70 text-sm">Implement sustainable controls</p>
+                                </div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Threat Eradication</h4>
+                                    <p class="text-neutral-light/70 text-sm">Remove malware and attacker access</p>
+                                </div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">System Recovery</h4>
+                                    <p class="text-neutral-light/70 text-sm">Restore systems from clean backups</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Vulnerability Remediation</h4>
+                                    <p class="text-neutral-light/70 text-sm">Patch exploited vulnerabilities</p>
+                                </div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Monitoring</h4>
+                                    <p class="text-neutral-light/70 text-sm">Watch for recurring threats</p>
+                                </div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Communication</h4>
+                                    <p class="text-neutral-light/70 text-sm">Update stakeholders on progress</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phase 4 -->
+                <div class="phase-item">
+                    <div class="phase-header">
+                        <h3 class="text-2xl font-bold">4. Post-Incident Activity</h3>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-neutral-light/70 mb-4">
+                                Learning from incidents to improve security posture and prevent recurrence, including documentation, analysis, and process improvement.
+                            </p>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Lessons Learned</h4>
+                                    <p class="text-neutral-light/70 text-sm">Conduct post-mortem analysis</p>
+                                </div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Incident Documentation</h4>
+                                    <p class="text-neutral-light/70 text-sm">Complete detailed incident report</p>
+                                </div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Evidence Retention</h4>
+                                    <p class="text-neutral-light/70 text-sm">Preserve artifacts for legal needs</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Plan Updates</h4>
+                                    <p class="text-neutral-light/70 text-sm">Refine IR policies and procedures</p>
+                                </div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Training</h4>
+                                    <p class="text-neutral-light/70 text-sm">Address knowledge gaps</p>
+                                </div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-icon">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Follow-up Testing</h4>
+                                    <p class="text-neutral-light/70 text-sm">Validate remediation effectiveness</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IR Team Structure -->
+        <section class="container mx-auto mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Incident Response <span class="gradient-text">Team Structure</span>
+                </h2>
+                <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                    Key roles and responsibilities for effective incident handling
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-bold mb-4 text-center">Core Response Team</h3>
+                    <div class="text-center mb-4">
+                        <div class="w-20 h-20 rounded-full bg-secondary-green/20 flex items-center justify-center mx-auto">
+                            <i class="fas fa-users text-secondary-green text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="team-role">
+                        <div class="role-title">Incident Manager</div>
+                        <p class="text-neutral-light/70 text-sm">Leads response efforts and coordinates team activities</p>
+                    </div>
+                    <div class="team-role">
+                        <div class="role-title">Security Analysts</div>
+                        <p class="text-neutral-light/70 text-sm">Investigate and analyze security incidents</p>
+                    </div>
+                    <div class="team-role">
+                        <div class="role-title">Forensics Specialists</div>
+                        <p class="text-neutral-light/70 text-sm">Collect and preserve digital evidence</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="text-xl font-bold mb-4 text-center">Extended Team</h3>
+                    <div class="text-center mb-4">
+                        <div class="w-20 h-20 rounded-full bg-secondary-green/20 flex items-center justify-center mx-auto">
+                            <i class="fas fa-user-friends text-secondary-green text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="team-role">
+                        <div class="role-title">IT Operations</div>
+                        <p class="text-neutral-light/70 text-sm">Implement technical containment measures</p>
+                    </div>
+                    <div class="team-role">
+                        <div class="role-title">Legal Counsel</div>
+                        <p class="text-neutral-light/70 text-sm">Advise on regulatory and liability issues</p>
+                    </div>
+                    <div class="team-role">
+                        <div class="role-title">PR/Communications</div>
+                        <p class="text-neutral-light/70 text-sm">Manage external messaging and notifications</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="text-xl font-bold mb-4 text-center">Leadership</h3>
+                    <div class="text-center mb-4">
+                        <div class="w-20 h-20 rounded-full bg-secondary-green/20 flex items-center justify-center mx-auto">
+                            <i class="fas fa-user-tie text-secondary-green text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="team-role">
+                        <div class="role-title">CISO</div>
+                        <p class="text-neutral-light/70 text-sm">Provides strategic direction and resources</p>
+                    </div>
+                    <div class="team-role">
+                        <div class="role-title">Executive Sponsor</div>
+                        <p class="text-neutral-light/70 text-sm">Approves critical decisions and funding</p>
+                    </div>
+                    <div class="team-role">
+                        <div class="role-title">Department Heads</div>
+                        <p class="text-neutral-light/70 text-sm">Represent business unit interests</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IR Plan Development -->
+<section class="container mx-auto mb-20">
+    <div class="card p-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                Building Your <span class="gradient-text">Incident Response Plan</span>
+            </h2>
+            <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                Key components to include in your documentation
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <div>
+                <div class="process-step h-40"> <!-- Added fixed height -->
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="text-xl font-bold mb-2">Policy Statement</h3>
+                        <p class="text-neutral-light/70">
+                            Define the purpose, scope, and objectives of your IR plan, including compliance requirements and management approval.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="process-step h-40"> <!-- Added fixed height -->
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="text-xl font-bold mb-2">Team Roles</h3>
+                        <p class="text-neutral-light/70">
+                            Document responsibilities for each team member with contact information and escalation paths.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="process-step h-40"> <!-- Added fixed height -->
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="text-xl font-bold mb-2">Incident Classification</h3>
+                        <p class="text-neutral-light/70">
+                            Create severity levels with criteria for categorizing incidents based on impact and urgency.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <div class="process-step h-40"> <!-- Added fixed height -->
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="text-xl font-bold mb-2">Response Procedures</h3>
+                        <p class="text-neutral-light/70">
+                            Step-by-step instructions for detecting, analyzing, containing, eradicating, and recovering from incidents.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="process-step h-40"> <!-- Added fixed height -->
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3 class="text-xl font-bold mb-2">Communication Plan</h3>
+                        <p class="text-neutral-light/70">
+                            Notification requirements for internal teams, executives, customers, regulators, and law enforcement.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="process-step h-40"> <!-- Added fixed height -->
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3 class="text-xl font-bold mb-2">Testing & Maintenance</h3>
+                        <p class="text-neutral-light/70">
+                            Schedule for regular plan reviews, updates, and tabletop exercises to validate preparedness.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- CTA Section -->
+        <section class="container mx-auto">
+            <div class="card p-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Need Help Developing Your Incident Response Plan?</h2>
+                <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto mb-8">
+                    Our security experts can help you create a comprehensive, actionable incident response strategy tailored to your organization's needs.
+                </p>
+                <a href="/#contact" class="cyber-btn inline-block">
+                    Get Incident Response Consultation
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 md:px-8 lg:px-16 bg-neutral-dark border-t border-primary-medium">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <a href="/index.html" style="display: inline-block; padding-bottom: 20px;" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+                    
+                    <p class="text-neutral-light/70 mb-6">
+                        Expert-led cyber security consultancy tailored to your business needs, compliance goals, and growth strategy.
+                    </p>
+                    
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Services</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/soc" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                SOC as a Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/penetration" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Penetration Testing
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/incident" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Incident Response
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/cloud-sec" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Cloud Security
+                            </a>
+                        </li>
+                        <li>
+                            <a href="data-protect" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Data Protection
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Company</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/about-us" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/our-team " class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Our Team
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/careers" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Careers
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/news" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                News
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/termsofservice" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Terms of Service
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Resources</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/knowledge-base" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Knowledge Base
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/threat-intelligence" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Threat Intelligence
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/security-guides" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Security Guides
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/webinars" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Webinars
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/case-studies" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Case Studies
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-primary-medium text-center">
+                <p class="text-neutral-light/70">
+                    &copy; 2025 ProtekCyber Consultants. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            document.getElementById('nav-menu').classList.toggle('hidden');
+        });
+
+        // Toggle dropdowns individually
+        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const dropdown = this.nextElementSibling;
+                dropdown.classList.toggle('hidden');
+
+                // Close other open dropdowns
+                document.querySelectorAll('.dropdown').forEach(d => {
+                    if (d !== dropdown) d.classList.add('hidden');
+                });
+            });
+        });
+
+        // Close all dropdowns when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.group')) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.classList.add('hidden');
+                });
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Basics | ProtekCyber Consultants</title>
+    <meta name="description" content="Essential cybersecurity concepts and fundamentals for building a strong security foundation from ProtekCyber experts">
+    
+    <!-- Same CSS as other pages -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-dark: #0A192F;
+            --primary-medium: #19376D;
+            --secondary-green: #04D939;
+            --accent-purple: #A459D1;
+            --neutral-dark: #0F172A;
+            --neutral-light: #F8FAFC;
+        }
+        #mobile-menu{
+            background-color: var(--primary-dark)!important;
+            padding-top: 60px;
+        }
+        @media screen and (max-width: 768px) {
+        #desktopmenu {
+        display: none; /* Show the desktop menu for mobile screens */
+            }
+          }  
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--neutral-dark);
+            color: var(--neutral-light);
+        }
+        .space-x-8>:not([hidden])~:not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(2rem * var(--tw-space-x-reverse));
+    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+        
+        .bg-primary-dark {
+            background-color: var(--primary-dark);
+        }
+        
+        .bg-primary-medium {
+            background-color: var(--primary-medium);
+        }
+        
+        .bg-neutral-dark {
+            background-color: var(--neutral-dark);
+        }
+        
+        .text-secondary-green {
+            color: var(--secondary-green);
+        }
+        
+        .text-accent-purple {
+            color: var(--accent-purple);
+        }
+        
+        .border-secondary-green {
+            border-color: var(--secondary-green);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .cyber-btn {
+            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
+            color: var(--neutral-dark);
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(4, 217, 57, 0.5);
+        }
+        
+        .cyber-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+        
+        .cyber-btn:hover:before {
+            left: 100%;
+        }
+        
+        .card {
+            background-color: rgba(25, 55, 109, 0.2);
+            border: 1px solid var(--primary-medium);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(4, 217, 57, 0.1);
+        }
+
+        /* Add this to your CSS */
+.hover\:shadow-glow:hover {
+  box-shadow: 0 0 15px rgba(4, 217, 57, 0.7); /* Green glow */
+  background-color: var(--secondary-green); /* Solid green bg */
+  color: var(--neutral-dark); /* Dark text */
+  border-color: var(--secondary-green); /* Green border */
+}
+        
+        /* Additional styles for threat types page */
+        .threat-category {
+            margin-bottom: 3rem;
+        }
+        
+        .threat-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .threat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.8), rgba(25, 55, 109, 0.8));
+            z-index: 1;
+        }
+        
+        .threat-card-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .threat-severity {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .severity-critical {
+            background-color: #ef4444;
+            color: white;
+        }
+        
+        .severity-high {
+            background-color: #f59e0b;
+            color: var(--neutral-dark);
+        }
+        
+        .severity-medium {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .severity-low {
+            background-color: #10b981;
+            color: white;
+        }
+        
+        .threat-stat {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .threat-stat i {
+            margin-right: 0.5rem;
+            color: var(--secondary-green);
+        }
+        
+        .mitigation-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--primary-medium);
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0.25rem;
+            width: 2px;
+            height: 100%;
+            background-color: var(--primary-medium);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0.25rem;
+            left: -1.5rem;
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background-color: var(--secondary-green);
+        }
+        
+        .threat-evolution-stage {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-left: 3px solid var(--accent-purple);
+        }
+        /* Add the new hover effect class */
+        .hover\:shadow-glow:hover {
+            box-shadow: 0 0 15px rgba(4, 217, 57, 0.7);
+            background-color: var(--secondary-green);
+            color: var(--neutral-dark);
+            border-color: var(--secondary-green);
+        }
+    </style>
+</head>
+<body>
+
+    <!--NAVBAR-->
+    <header class="bg-neutral-dark text-neutral-light shadow-md fixed w-full top-0 z-50">
+    <div class="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
+    
+    <!-- Logo -->
+    <a href="/index.html" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+
+    <!-- Hamburger (Mobile) -->
+    <button id="nav-toggle" class="md:hidden text-2xl focus:outline-none">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row md:items-center md:gap-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-neutral-dark px-4 md:px-0 py-4 md:py-0">
+
+      <a href="/index.html" class="hover:text-secondary-green">Home</a>
+
+      <!-- Services -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/index.html#services" class="hover:text-secondary-green md:mr-1">Services</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Services Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/soc" class="block px-4 py-2 hover:bg-neutral-light/10">SOC as a Service</a>
+          <a href="/penetration" class="block px-4 py-2 hover:bg-neutral-light/10">Penetration Testing</a>
+          <a href="/incident" class="block px-4 py-2 hover:bg-neutral-light/10">Incident Response</a>
+          <a href="/cloud-sec" class="block px-4 py-2 hover:bg-neutral-light/10">Cloud Security</a>
+          <a href="/data-protect" class="block px-4 py-2 hover:bg-neutral-light/10">Data Protection</a>
+        </div>
+      </div>
+
+      <!-- Insights -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/index.html#insights" class="hover:text-secondary-green md:mr-1">Insights</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Insights Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/knowledge-base" class="block px-4 py-2 hover:bg-neutral-light/10">Knowledge Base</a>
+          <a href="/threat-intelligence" class="block px-4 py-2 hover:bg-neutral-light/10">Threat Intelligence</a>
+          <a href="/security-guides" class="block px-4 py-2 hover:bg-neutral-light/10">Security Guides</a>
+          <a href="/webinars" class="block px-4 py-2 hover:bg-neutral-light/10">Webinars</a>
+          <a href="/case-studies" class="block px-4 py-2 hover:bg-neutral-light/10">Case Studies</a>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/company" class="hover:text-secondary-green md:mr-1">Company</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Company Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/about-us" class="block px-4 py-2 hover:bg-neutral-light/10">About Us</a>
+          <a href="/our-team" class="block px-4 py-2 hover:bg-neutral-light/10">Our Team</a>
+          <a href="/careers" class="block px-4 py-2 hover:bg-neutral-light/10">Careers</a>
+          <a href="/news" class="block px-4 py-2 hover:bg-neutral-light/10">News</a>
+          <a href="/termsofservice" class="block px-4 py-2 hover:bg-neutral-light/10">Terms of Service</a>
+        </div>
+      </div>
+
+      <a href="/#contact" class="hover:text-secondary-green">Contact Us</a>
+
+      <!-- CTA Button -->
+      <div class="mt-4 md:mt-0 md:ml-4">
+        <a href="/#contact" class="cyber-btn block text-center">Speak to an Expert</a>
+      </div>
+
+    </nav>
+  </div>
+</header>
+
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-20 px-4 md:px-8 lg:px-16 bg-primary-dark">
+        <!-- Hero Section -->
+        <section class="container mx-auto mb-20">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                    Cybersecurity <span class="gradient-text">Fundamentals</span>
+                </h1>
+                <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto mb-8">
+                    Build a strong security foundation with these essential concepts every organization should know. Protect your business from common threats with expert guidance from ProtekCyber.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#core-concepts" class="cyber-btn text-center">
+                        Learn Core Concepts
+                    </a>
+                    
+<a href="/#contact" 
+               class="border border-white text-white font-bold px-6 py-3 rounded-md transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-glow hover:bg-secondary-green hover:text-neutral-dark">
+                Get Security Assessment
+            </a> 
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Stats -->
+        <section class="container mx-auto mb-20">
+            <div class="card p-8">
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-secondary-green mb-2">95%</div>
+                        <p class="text-neutral-light/80">of breaches stem from human error</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-accent-purple mb-2">60%</div>
+                        <p class="text-neutral-light/80">of SMBs fold within 6 months of a breach</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-secondary-green mb-2">10x</div>
+                        <p class="text-neutral-light/80">costlier to respond than prevent attacks</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-accent-purple mb-2">287</div>
+                        <p class="text-neutral-light/80">average days to detect a breach</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Concepts -->
+        <section id="core-concepts" class="container mx-auto mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Core <span class="gradient-text">Security Concepts</span>
+                </h2>
+                <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                    These fundamental principles form the foundation of all effective cybersecurity strategies.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- CIA Triad -->
+                <!-- Updated CIA Triad Card -->
+<div class="card">
+    <div class="flex items-center mb-4">
+        <div class="w-16 h-16 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+            <i class="fas fa-shield-alt text-secondary-green text-3xl"></i>
+        </div>
+        <h3 class="text-2xl font-bold">The CIA Triad</h3>
+    </div>
+    <div class="space-y-4">
+        <div class="flex items-start">
+            <div class="flex-shrink-0 mt-1">
+                <i class="fas fa-lock text-secondary-green text-xl mr-3"></i> <!-- New icon -->
+            </div>
+            <div class="ml-1"> <!-- Reduced margin since icon provides spacing -->
+                <h4 class="font-bold">Confidentiality</h4>
+                <p class="text-sm text-neutral-light/70">Ensuring only authorized access to information</p>
+            </div>
+        </div>
+        <div class="flex items-start">
+            <div class="flex-shrink-0 mt-1">
+                <i class="fas fa-check-circle text-secondary-green text-xl mr-3"></i> <!-- New icon -->
+            </div>
+            <div class="ml-1">
+                <h4 class="font-bold">Integrity</h4>
+                <p class="text-sm text-neutral-light/70">Maintaining accuracy and completeness of data</p>
+            </div>
+        </div>
+        <div class="flex items-start">
+            <div class="flex-shrink-0 mt-1">
+                <i class="fas fa-clock text-secondary-green text-xl mr-3"></i> <!-- New icon -->
+            </div>
+            <div class="ml-1">
+                <h4 class="font-bold">Availability</h4>
+                <p class="text-sm text-neutral-light/70">Ensuring systems/data are accessible when needed</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+                <!-- Defense in Depth -->
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-layer-group text-secondary-green text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Defense in Depth</h3>
+                    </div>
+                    <p class="text-neutral-light/70 mb-4">
+                        Multiple layers of security controls provide redundancy when one control fails. Think of it like a castle with walls, moats, and guards.
+                    </p>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Physical security (locks, cameras)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Network security (firewalls, segmentation)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>Endpoint protection (antivirus, EDR)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-green mt-1 mr-2"></i>
+                            <span>User awareness training</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Least Privilege -->
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-user-lock text-secondary-green text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Least Privilege</h3>
+                    </div>
+                    <p class="text-neutral-light/70 mb-4">
+                        Users and systems should have only the minimum access necessary to perform their functions. This limits potential damage from breaches or insider threats.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-user-tag text-secondary-green mr-3"></i>
+                            <span>Role-based access control (RBAC)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-clock text-secondary-green mr-3"></i>
+                            <span>Time-limited permissions</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-shield-alt text-secondary-green mr-3"></i>
+                            <span>Regular access reviews</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Essential Practices -->
+        <section class="container mx-auto mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Essential <span class="gradient-text">Security Practices</span>
+                </h2>
+                <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                    Implement these fundamental security measures to protect your organization.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Password Security -->
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-key text-3xl text-secondary-green mr-4"></i>
+                        <h3 class="text-2xl font-bold">Password & Authentication</h3>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-semibold mb-2">Best Practices:</h4>
+                        <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
+                            <li>Use password managers for strong, unique passwords</li>
+                            <li>Enable multi-factor authentication (MFA) everywhere</li>
+                            <li>Implement passwordless authentication where possible</li>
+                            <li>Regularly review and revoke unused credentials</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 bg-primary-medium/20 rounded-md">
+                        <h4 class="font-semibold mb-2">ProtekCyber Recommendation:</h4>
+                        <p class="text-sm text-neutral-light/70">Deploy enterprise password managers and require MFA for all business applications, especially email and financial systems.</p>
+                    </div>
+                </div>
+
+                <!-- Patch Management -->
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-download text-3xl text-secondary-green mr-4"></i>
+                        <h3 class="text-2xl font-bold">Patch Management</h3>
+                    </div>
+                    <p class="text-neutral-light/70 mb-4">
+                        Keeping software updated is the single most effective defense against known vulnerabilities.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="bg-primary-medium/10 p-3 rounded-md">
+                            <div class="text-sm font-semibold">Critical Patches</div>
+                            <div class="text-xs text-neutral-light/70">Apply within 72 hours</div>
+                        </div>
+                        <div class="bg-primary-medium/10 p-3 rounded-md">
+                            <div class="text-sm font-semibold">High Severity</div>
+                            <div class="text-xs text-neutral-light/70">Apply within 7 days</div>
+                        </div>
+                        <div class="bg-primary-medium/10 p-3 rounded-md">
+                            <div class="text-sm font-semibold">Moderate</div>
+                            <div class="text-xs text-neutral-light/70">Apply within 14 days</div>
+                        </div>
+                        <div class="bg-primary-medium/10 p-3 rounded-md">
+                            <div class="text-sm font-semibold">Low</div>
+                            <div class="text-xs text-neutral-light/70">Next scheduled update</div>
+                        </div>
+                    </div>
+                    <a href="#" class="text-secondary-green hover:underline font-semibold">
+                        Learn about our patch management service <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Backup Strategy -->
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-database text-3xl text-secondary-green mr-4"></i>
+                        <h3 class="text-2xl font-bold">Backup Strategy</h3>
+                    </div>
+                    <p class="text-neutral-light/70 mb-4">
+                        The 3-2-1 rule is the gold standard for data protection:
+                    </p>
+                    <div class="flex items-center mb-3">
+                        <div class="text-2xl font-bold text-secondary-green mr-3">3</div>
+                        <div class="flex-grow">
+                            <div class="font-semibold">Copies of data</div>
+                            <div class="text-sm text-neutral-light/70">Original + 2 backups</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <div class="text-2xl font-bold text-secondary-green mr-3">2</div>
+                        <div class="flex-grow">
+                            <div class="font-semibold">Different media types</div>
+                            <div class="text-sm text-neutral-light/70">e.g., Disk + Cloud</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <div class="text-2xl font-bold text-secondary-green mr-3">1</div>
+                        <div class="flex-grow">
+                            <div class="font-semibold">Offsite backup</div>
+                            <div class="text-sm text-neutral-light/70">Geographically separated</div>
+                        </div>
+                    </div>
+                    <div class="text-sm text-neutral-light/60">
+                        <i class="fas fa-exclamation-triangle text-yellow-400 mr-1"></i>
+                        Test restores quarterly to verify backup integrity
+                    </div>
+                </div>
+
+                <!-- Employee Training -->
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-users text-3xl text-secondary-green mr-4"></i>
+                        <h3 class="text-2xl font-bold">Security Awareness</h3>
+                    </div>
+                    <p class="text-neutral-light/70 mb-4">
+                        Your employees are your first line of defense. Regular training reduces human error that leads to 95% of breaches.
+                    </p>
+                    <div class="mb-4">
+                        <h4 class="font-semibold mb-2">Key Training Topics:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-primary-medium/20 rounded-full text-sm">Phishing Recognition</span>
+                            <span class="px-3 py-1 bg-primary-medium/20 rounded-full text-sm">Password Hygiene</span>
+                            <span class="px-3 py-1 bg-primary-medium/20 rounded-full text-sm">Social Engineering</span>
+                            <span class="px-3 py-1 bg-primary-medium/20 rounded-full text-sm">Incident Reporting</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center text-sm">
+                        <i class="fas fa-sync-alt text-secondary-green mr-2"></i>
+                        <span>Recommended: Quarterly training + monthly phishing simulations</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Framework -->
+        <section class="container mx-auto mb-20">
+            <div class="card p-8">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                            Security <span class="gradient-text">Frameworks</span>
+                        </h2>
+                        <p class="text-neutral-light/80 mb-6">
+                            Established frameworks provide structured approaches to building cybersecurity programs. We help you implement the right framework for your organization.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1 text-secondary-green">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="font-bold">NIST Cybersecurity Framework</h4>
+                                    <p class="text-sm text-neutral-light/70">Identify, Protect, Detect, Respond, Recover</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1 text-secondary-green">
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="font-bold">ISO 27001</h4>
+                                    <p class="text-sm text-neutral-light/70">International standard for information security</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1 text-secondary-green">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="font-bold">CIS Controls</h4>
+                                    <p class="text-sm text-neutral-light/70">20 critical security controls for defense</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-primary-medium/10 p-6 rounded-lg">
+                       
+<h4 class="text-xl font-bold mb-4 ">
+    <i class="fas fa-map-marked-alt text-secondary-green mr-2"></i> <!-- New icon -->
+    Framework Implementation Roadmap
+</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+                                    <span class="text-secondary-green">1</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold">Assessment</h5>
+                                    <p class="text-sm text-neutral-light/70">Current state evaluation</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+                                    <span class="text-secondary-green">2</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold">Gap Analysis</h5>
+                                    <p class="text-sm text-neutral-light/70">Identify weaknesses</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+                                    <span class="text-secondary-green">3</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold">Remediation Plan</h5>
+                                    <p class="text-sm text-neutral-light/70">Prioritized improvements</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+                                    <span class="text-secondary-green">4</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold">Implementation</h5>
+                                    <p class="text-sm text-neutral-light/70">Controls deployment</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-secondary-green/20 flex items-center justify-center mr-4">
+                                    <span class="text-secondary-green">5</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold">Continuous Monitoring</h5>
+                                    <p class="text-sm text-neutral-light/70">Ongoing improvement</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="hidden container mx-auto">
+            <div class="card p-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Strengthen Your Security Foundation?</h2>
+                <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto mb-8">
+                    Our experts can assess your current security posture and help implement these fundamentals tailored to your business.
+                </p>
+                <a href="/#contact" class="cyber-btn inline-block">
+                    Get Security Assessment
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 md:px-8 lg:px-16 bg-neutral-dark border-t border-primary-medium">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <a href="/index.html" style="display: inline-block; padding-bottom: 20px;" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+                    
+                    <p class="text-neutral-light/70 mb-6">
+                        Expert-led cyber security consultancy tailored to your business needs, compliance goals, and growth strategy.
+                    </p>
+                    
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Services</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/soc" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                SOC as a Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/penetration" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Penetration Testing
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/incident" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Incident Response
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/cloud-sec" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Cloud Security
+                            </a>
+                        </li>
+                        <li>
+                            <a href="data-protect" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Data Protection
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Company</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/about-us" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/our-team " class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Our Team
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/careers" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Careers
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/news" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                News
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/termsofservice" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Terms of Service
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Resources</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/knowledge-base" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Knowledge Base
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/security-guides" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Security Guides
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/threat-intelligence" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Threat Intelligence
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/webinars" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Webinars
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/case-studies" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Case Studies
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-primary-medium text-center">
+                <p class="text-neutral-light/70">
+                    &copy; 2025 ProtekCyber Consultants. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            document.getElementById('nav-menu').classList.toggle('hidden');
+        });
+
+        // Toggle dropdowns individually
+        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const dropdown = this.nextElementSibling;
+                dropdown.classList.toggle('hidden');
+
+                // Close other open dropdowns
+                document.querySelectorAll('.dropdown').forEach(d => {
+                    if (d !== dropdown) d.classList.add('hidden');
+                });
+            });
+        });
+
+        // Close all dropdowns when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.group')) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.classList.add('hidden');
+                });
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                
+                header.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

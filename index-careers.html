@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers at ProtekCyber</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #0A192F;
+            --primary-medium: #19376D;
+            --secondary-green: #04D939;
+            --accent-purple: #A459D1;
+            --neutral-dark: #0F172A;
+            --neutral-light: #F8FAFC;
+        }
+        #mobile-menu{
+            background-color: var(--primary-dark)!important;
+            padding-top: 60px;
+        }
+        @media screen and (max-width: 768px) {
+        #desktopmenu {
+        display: none; /* Show the desktop menu for mobile screens */
+            }
+          }  
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--neutral-dark);
+            color: var(--neutral-light);
+        }
+        .space-x-8>:not([hidden])~:not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(2rem * var(--tw-space-x-reverse));
+    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+        
+        .bg-primary-dark {
+            background-color: var(--primary-dark);
+        }
+        
+        .bg-primary-medium {
+            background-color: var(--primary-medium);
+        }
+        
+        .bg-neutral-dark {
+            background-color: var(--neutral-dark);
+        }
+        
+        .text-secondary-green {
+            color: var(--secondary-green);
+        }
+        
+        .text-accent-purple {
+            color: var(--accent-purple);
+        }
+        
+        .border-secondary-green {
+            border-color: var(--secondary-green);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .cyber-btn {
+            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
+            color: var(--neutral-dark);
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(4, 217, 57, 0.5);
+        }
+        
+        .cyber-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+        
+        .cyber-btn:hover:before {
+            left: 100%;
+        }
+        
+        .card {
+            background-color: rgba(25, 55, 109, 0.2);
+            border: 1px solid var(--primary-medium);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(4, 217, 57, 0.1);
+        }
+        
+        .matrix-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .matrix-bg:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background-image: url('images/matrix-bg.svg'); */
+            background-size: cover;
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .circuit-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .circuit-bg:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background-image: url('images/circuit-pattern.svg'); */
+            background-size: cover;
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+        
+        .text-pulse {
+            animation: textPulse 0.7s ease-in-out;
+        }
+        
+        @keyframes textPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); color: var(--secondary-green); }
+            100% { transform: scale(1); }
+        }
+        
+        .flipping {
+            transform: rotateY(90deg);
+            transition: transform 0.3s ease;
+        }
+        
+        .transformed-card, .service-card {
+            transition: transform 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .timeline-node {
+            position: relative;
+        }
+        
+        .timeline-marker {
+            position: relative;
+            z-index: 20;
+            margin: 0 auto;
+            width: 12px;
+            height: 12px;
+        }
+        
+        @media (min-width: 768px) {
+            .timeline-node:nth-child(odd) .timeline-marker {
+                transform: translateX(50%);
+            }
+            
+            .timeline-node:nth-child(even) .timeline-marker {
+                transform: translateX(-50%);
+            }
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.5s forwards;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .fade-out {
+            animation: fadeOut 0.5s forwards;
+        }
+        
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s forwards;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        #vulnerability-results {
+            display: none;
+        }
+        
+        .vulnerability-item {
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .vulnerability-item.high-risk {
+            border-left-color: #ef4444;
+        }
+        
+        .vulnerability-item.medium-risk {
+            border-left-color: #f59e0b;
+        }
+        
+        .vulnerability-item.low-risk {
+            border-left-color: #10b981;
+        }
+        
+        .security-alert {
+            animation: pulse 2s infinite;
+        }
+        
+        .countdown-timer {
+            font-family: 'Courier New', monospace;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #ef4444;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .breach-cost-counter {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+        
+        img {
+            /* Ensure all images have descriptive alt text! */
+        }
+        nav a, nav button {
+        font-size: 1rem;
+        }
+        .application-form input,
+        .application-form textarea,
+        .application-form select {
+            background-color: var(--primary-dark);
+            border: 1px solid var(--primary-medium);
+            color: var(--neutral-light);
+            transition: all 0.3s ease;
+        }
+        
+        .application-form input:focus,
+        .application-form textarea:focus,
+        .application-form select:focus {
+            border-color: var(--secondary-green);
+            box-shadow: 0 0 0 3px rgba(4, 217, 57, 0.2);
+            outline: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    
+<!--NAVBAR-->
+<header class="bg-neutral-dark text-neutral-light shadow-md fixed w-full top-0 z-50">
+  <div class="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
+    
+    <!-- Logo -->
+    <a href="/index.html" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+
+    <!-- Hamburger (Mobile) -->
+    <button id="nav-toggle" class="md:hidden text-2xl focus:outline-none">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row md:items-center md:gap-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-neutral-dark px-4 md:px-0 py-4 md:py-0">
+
+      <a href="/index.html" class="hover:text-secondary-green">Home</a>
+
+      <!-- Services -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/index.html#services" class="hover:text-secondary-green md:mr-1">Services</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Services Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/soc" class="block px-4 py-2 hover:bg-neutral-light/10">SOC as a Service</a>
+          <a href="/penetration" class="block px-4 py-2 hover:bg-neutral-light/10">Penetration Testing</a>
+          <a href="/incident" class="block px-4 py-2 hover:bg-neutral-light/10">Incident Response</a>
+          <a href="/cloud-sec" class="block px-4 py-2 hover:bg-neutral-light/10">Cloud Security</a>
+          <a href="/data-protect" class="block px-4 py-2 hover:bg-neutral-light/10">Data Protection</a>
+        </div>
+      </div>
+
+      <!-- Insights -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/index.html#insights" class="hover:text-secondary-green md:mr-1">Insights</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Insights Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/knowledge-base" class="block px-4 py-2 hover:bg-neutral-light/10">Knowledge Base</a>
+          <a href="/threat-intelligence" class="block px-4 py-2 hover:bg-neutral-light/10">Threat Intelligence</a>
+          <a href="/security-guides" class="block px-4 py-2 hover:bg-neutral-light/10">Security Guides</a>
+          <a href="/webinars" class="block px-4 py-2 hover:bg-neutral-light/10">Webinars</a>
+          <a href="/case-studies" class="block px-4 py-2 hover:bg-neutral-light/10">Case Studies</a>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/company" class="hover:text-secondary-green md:mr-1">Company</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Company Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/about-us" class="block px-4 py-2 hover:bg-neutral-light/10">About Us</a>
+          <a href="/our-team" class="block px-4 py-2 hover:bg-neutral-light/10">Our Team</a>
+          <a href="/careers" class="block px-4 py-2 hover:bg-neutral-light/10">Careers</a>
+          <a href="/news" class="block px-4 py-2 hover:bg-neutral-light/10">News</a>
+          <a href="/termsofservice" class="block px-4 py-2 hover:bg-neutral-light/10">Terms of Service</a>
+        </div>
+      </div>
+
+      <a href="/#contact" class="hover:text-secondary-green">Contact Us</a>
+
+      <!-- CTA Button -->
+      <div class="mt-4 md:mt-0 md:ml-4">
+        <a href="/#contact" class="cyber-btn block text-center">Speak to an Expert</a>
+      </div>
+
+    </nav>
+  </div>
+</header>
+
+   
+
+
+    
+<div style="height: 100vh; overflow: hidden;">
+  <iframe src="/careers-hero/index.html"
+          style="border: none; width: 100%; height: 100vh;"
+          scrolling="no"
+          allowfullscreen></iframe>
+</div>
+
+
+
+<!-- Open Positions Section -->
+<section id="open-positions" class="py-20 px-4 md:px-8 lg:px-16" style="background-color: #0a0e18;">
+    <div class="container mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                Current <span class="gradient-text">Openings</span>
+            </h2>
+            <p class="max-w-2xl mx-auto text-neutral-light/80">
+                Explore our current job openings and find the role that suits you best.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Job 1 -->
+            <div class="card bg-primary-medium/20 p-6 rounded-lg">
+                <h3 class="text-xl font-bold mb-3">Cybersecurity Analyst (Tier 1-3)</h3>
+                <p class="text-neutral-light/80 mb-6">
+                    Monitor and respond to security incidents, ensuring the safety of our clients' systems.
+                </p>
+                <a href="cybersecurity-analyst-job" class="text-secondary-green hover:text-accent-purple transition-colors duration-300">Apply Now</a>
+            </div>
+
+            <!-- Job 2 -->
+            <div class="card bg-primary-medium/20 p-6 rounded-lg">
+                <h3 class="text-xl font-bold mb-3">Penetration Tester</h3>
+                <p class="text-neutral-light/80 mb-6">
+                    Identify vulnerabilities and help strengthen our clients' security posture.
+                </p>
+                <a href="penetration-tester" class="text-secondary-green hover:text-accent-purple transition-colors duration-300">Apply Now</a>
+            </div>
+
+            <!-- Job 3 -->
+            <div class="card bg-primary-medium/20 p-6 rounded-lg">
+                <h3 class="text-xl font-bold mb-3">Cloud Security Engineer</h3>
+                <p class="text-neutral-light/80 mb-6">
+                    Design and implement secure cloud solutions for our clients.
+                </p>
+                <a href="cloud-sec" class="text-secondary-green hover:text-accent-purple transition-colors duration-300">Apply Now</a>
+            </div>
+
+            <!-- Job 4 -->
+            <div class="card bg-primary-medium/20 p-6 rounded-lg">
+                <h3 class="text-xl font-bold mb-3">Incident Response Consultant</h3>
+                <p class="text-neutral-light/80 mb-6">
+                    Lead investigations and coordinate response efforts to mitigate cyber attacks in real-time.
+                </p>
+                <a href="incident-response" class="text-secondary-green hover:text-accent-purple transition-colors duration-300">Apply Now</a>
+            </div>
+
+            <!-- Job 5 -->
+            <div class="card bg-primary-medium/20 p-6 rounded-lg">
+                <h3 class="text-xl font-bold mb-3">SOC Engineer</h3>
+                <p class="text-neutral-light/80 mb-6">
+                    Design and maintain security operations infrastructure to support real-time monitoring and alerting.
+                </p>
+                <a href="soc-engineer" class="text-secondary-green hover:text-accent-purple transition-colors duration-300">Apply Now</a>
+            </div>
+
+            <!-- Job 6 -->
+            <div class="card bg-primary-medium/20 p-6 rounded-lg">
+                <h3 class="text-xl font-bold mb-3">Compliance & Risk Consultant</h3>
+                <p class="text-neutral-light/80 mb-6">
+                    Advise clients on regulatory compliance, frameworks, and risk reduction strategies.
+                </p>
+                <a href="compliance-and-risk" class="text-secondary-green hover:text-accent-purple transition-colors duration-300">Apply Now</a>
+            </div>
+
+            <!-- Job 7 -->
+            <div class="card bg-primary-medium/20 p-6 rounded-lg">
+                <h3 class="text-xl font-bold mb-3">Business Development / Bid Writer</h3>
+                <p class="text-neutral-light/80 mb-6">
+                    Drive proposal development and contribute to strategic growth opportunities across sectors.
+                </p>
+                <a href="bid-writer" class="text-secondary-green hover:text-accent-purple transition-colors duration-300">Apply Now</a>
+            </div>
+
+            <!-- Job 8 -->
+            <div class="card bg-primary-medium/20 p-6 rounded-lg">
+                <h3 class="text-xl font-bold mb-3">Internship – Technical Track</h3>
+                <p class="text-neutral-light/80 mb-6">
+                    Hands-on learning in penetration testing, SOC analysis, or cloud security for aspiring cyber professionals.
+                </p>
+                <a href="internship-tech" class="text-secondary-green hover:text-accent-purple transition-colors duration-300">Apply Now</a>
+            </div>
+
+            <!-- Job 9 -->
+            <div class="card bg-primary-medium/20 p-6 rounded-lg">
+                <h3 class="text-xl font-bold mb-3">Internship – Commercial Track</h3>
+                <p class="text-neutral-light/80 mb-6">
+                    Gain experience in sales, client success, proposal writing, and business development within a cyber firm.
+                </p>
+                <a href="internship-commercial" class="text-secondary-green hover:text-accent-purple transition-colors duration-300">Apply Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Why Join Us Section -->
+    <section id="why-protek-cyber"class="py-20 px-4 md:px-8 lg:px-16" style="background-color: #0a0e18;">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                Why <span class="gradient-text">ProtekCyber?</span>
+            </h2>
+            <p class="max-w-2xl mx-auto text-neutral-light/80 mb-12">
+                At ProtekCyber, we value innovation, collaboration, and growth. Join us to make a difference in the world of cyber security.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card">
+                    <i class="fas fa-rocket text-secondary-green text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Career Growth</h3>
+                    <p class="text-neutral-light/80">
+                        We provide opportunities for continuous learning and professional development.
+                    </p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-users text-secondary-green text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Collaborative Culture</h3>
+                    <p class="text-neutral-light/80">
+                        Work with a team of passionate and talented individuals.
+                    </p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-shield-alt text-secondary-green text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Impactful Work</h3>
+                    <p class="text-neutral-light/80">
+                        Contribute to protecting businesses and individuals from cyber threats.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Employee Perks Section -->
+<section class="py-20 px-4 md:px-8 lg:px-16 bg-neutral-dark border-t border-neutral-light/10">
+  <div class="container mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+      What <span class="gradient-text">You’ll Get</span>
+    </h2>
+    <p class="max-w-2xl mx-auto text-neutral-light/80 mb-12">
+      Join a company that puts people first. Here are just a few of the benefits our team enjoys:
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+      
+      <div class="card">
+        <i class="fas fa-stethoscope text-secondary-green text-3xl mb-4"></i>
+        <h3 class="text-xl font-bold mb-2">Private Medical Insurance</h3>
+        <p class="text-neutral-light/80">Comprehensive healthcare coverage for you and your family.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-clock text-secondary-green text-3xl mb-4"></i>
+        <h3 class="text-xl font-bold mb-2">Flexible & Hybrid Working</h3>
+        <p class="text-neutral-light/80">Work-life balance with remote-friendly, flexible arrangements.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-certificate text-secondary-green text-3xl mb-4"></i>
+        <h3 class="text-xl font-bold mb-2">Paid Certifications</h3>
+        <p class="text-neutral-light/80">Get certified in CREST, SANS, ISC2, and more — on our dime.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-piggy-bank text-secondary-green text-3xl mb-4"></i>
+        <h3 class="text-xl font-bold mb-2">Bonus & Referral Scheme</h3>
+        <p class="text-neutral-light/80">Earn bonuses and referral rewards when you help grow the team.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-chart-line text-secondary-green text-3xl mb-4"></i>
+        <h3 class="text-xl font-bold mb-2">Career Progression</h3>
+        <p class="text-neutral-light/80">Clear pathways for promotion, mentorship, and leadership growth.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-heart text-secondary-green text-3xl mb-4"></i>
+        <h3 class="text-xl font-bold mb-2">Wellness & Mental Health</h3>
+        <p class="text-neutral-light/80">Access to resources and support for a healthy mind and body.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+     <!-- Application Form Section -->
+        <section id="apply" class="container mx-auto mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Apply <span class="gradient-text">Now</span>
+                </h2>
+                <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto">
+                    Ready to join our team? Fill out the application form below and we'll get in touch with you.
+                </p>
+            </div>
+            
+            <div class="card p-8 max-w-4xl mx-auto">
+                <form class="application-form space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">First Name</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Last Name</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-md">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Email</label>
+                        <input type="email" class="w-full px-4 py-3 rounded-md">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Phone Number</label>
+                        <input type="tel" class="w-full px-4 py-3 rounded-md">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Position</label>
+                        <select class="w-full px-4 py-3 rounded-md">
+                            <option value="cyber-security-analyst" selected>Cyber Security Analyst</option>
+                            <option value="penetration-tester">Penetration Tester</option>
+                            <option value="cloud-security-engineer">Cloud Security Engineer</option>
+                            <option value="incident-response">Incident Response Consultant</option>
+                            <option value="soc-engineer">SOC Engineer</option>
+                            <option value="compliance-and-risk">Compliance & Risk Consultant</option>
+                            <option value="bid-writer">Business Development / Bid Writer</option>
+                            <option value="internship-tech">Internship (Technical Track)</option>
+                            <option value="internship-commercial">Internship (Commercial Track)</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Cover Letter</label>
+                        <textarea class="w-full px-4 py-3 rounded-md" rows="5"></textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Resume/CV</label>
+                        <div class="flex items-center">
+                            <input type="file" class="w-full px-4 py-3 rounded-md">
+                        </div>
+                    </div>
+                    
+                    <div class="pt-4">
+                        <button type="submit" class="cyber-btn w-full">
+                            Submit Application
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+
+  <!-- Footer -->
+      <footer class="py-12 px-4 md:px-8 lg:px-16 bg-neutral-dark border-t border-primary-medium">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <a href="/index.html" style="display: inline-block; padding-bottom: 20px;" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+                    
+                    <p class="text-neutral-light/70 mb-6">
+                        Expert-led cyber security consultancy tailored to your business needs, compliance goals, and growth strategy.
+                    </p>
+                    
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Services</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/soc" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                SOC as a Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/penetration" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Penetration Testing
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/incident" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Incident Response
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/cloud-sec" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Cloud Security
+                            </a>
+                        </li>
+                        <li>
+                            <a href="data-protect" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Data Protection
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Company</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/about-us" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/our-team " class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Our Team
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/careers" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Careers
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/news" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                News
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/termsofservice" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Terms of Service
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Resources</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/knowledge-base" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Knowledge Base
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/security-guides" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Security Guides
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/threat-intelligence" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Threat Intelligence
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/webinars" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Webinars
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/case-studies" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Case Studies
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        <div class="pt-8 border-t border-primary-medium text-center">
+            <p class="text-neutral-light/70">
+                &copy; 2025 ProtekCyber Consultants. All rights reserved.
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script src="./enhanced-vulnerability-scanner_v2.js"></script>
+<script src="./security-outcomes-framework.js"></script>
+<script src="./roi-calculator.js"></script>
+<script src="./business-growth-testimonials.js"></script>
+<script>
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenuCloseButton = document.getElementById('mobile-menu-close-button');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+// Open the mobile menu
+mobileMenuButton.addEventListener('click', () => {
+mobileMenu.classList.remove('hidden'); // Show the menu
+mobileMenuButton.classList.add('hidden'); // Hide the mobile menu button
+mobileMenuCloseButton.classList.remove('hidden'); // Show the close button
+mobileMenuButton.setAttribute('aria-expanded', 'true');
+});
+
+// Close the mobile menu
+mobileMenuCloseButton.addEventListener('click', () => {
+mobileMenu.classList.add('hidden'); // Hide the menu
+mobileMenuButton.classList.remove('hidden'); // Show the mobile menu button again
+mobileMenuCloseButton.classList.add('hidden'); // Hide the close button
+mobileMenuButton.setAttribute('aria-expanded', 'false');
+});
+
+// Hide the menu when a link is clicked
+mobileMenuLinks.forEach(link => {
+link.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden'); // Hide the menu
+    mobileMenuButton.classList.remove('hidden'); // Show the mobile menu button again
+    mobileMenuCloseButton.classList.add('hidden'); // Hide the close button
+    mobileMenuButton.setAttribute('aria-expanded', 'false');
+});
+});
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if(targetElement){
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Current year for footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+</script>
+
+<!-- Schema.org Markup for Organization -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Organization",
+"name": "ProtekCyber Consultants",
+"url": "https://www.protekcyber.co.uk",
+"logo": "", // Add URL to logo image file here when available
+"contactPoint": {
+"@type": "ContactPoint",
+"telephone": "+44-20-7123-4567",
+"contactType": "Customer Service",
+"areaServed": "GB", // United Kingdom
+"availableLanguage": "en"
+},
+"address": {
+"@type": "PostalAddress",
+"streetAddress": "123 Cyber Street",
+"addressLocality": "London",
+"postalCode": "EC1V 9DL",
+"addressCountry": "GB"
+},
+"sameAs": [
+// Add URLs to social media profiles here (e.g., LinkedIn, Twitter)
+]
+}
+</script>
+
+<!-- Schema.org Markup for Service -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Service",
+"serviceType": "Cyber Security Services",
+"provider": {
+"@type": "Organization",
+"name": "ProtekCyber Consultants"
+},
+"areaServed": {
+"@type": "Country",
+"name": "United Kingdom"
+},
+"description": "Comprehensive cyber security consultancy and services for UK businesses, including penetration testing, managed security services (MSSP), cloud security strategy, incident response, and vulnerability management.",
+"name": "Cyber Security Consultancy UK"
+}
+</script>
+<script>
+  // Mobile menu toggle
+  document.getElementById('nav-toggle').addEventListener('click', function () {
+    document.getElementById('nav-menu').classList.toggle('hidden');
+  });
+
+  // Toggle dropdowns individually
+  document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      const dropdown = this.nextElementSibling;
+      dropdown.classList.toggle('hidden');
+
+      // Close other open dropdowns
+      document.querySelectorAll('.dropdown').forEach(d => {
+        if (d !== dropdown) d.classList.add('hidden');
+      });
+    });
+  });
+
+  // Close all dropdowns when clicking outside
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.group')) {
+      document.querySelectorAll('.dropdown').forEach(dropdown => {
+        dropdown.classList.add('hidden');
+      });
+    }
+  });
+</script>
+<script>
+  window.addEventListener('message', function(event) {
+    if (event.data === 'scroll-to-open-positions') {
+      document.getElementById('open-positions')?.scrollIntoView({ behavior: 'smooth' });
+    }
+    if (event.data === 'scroll-to-why-protek-cyber') {
+      document.getElementById('why-protek-cyber')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+</script>
+
+
+
+
+
+</body>
+</html>

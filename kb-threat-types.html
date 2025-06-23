@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threat Types | ProtekCyber Consultants</title>
+    <meta name="description" content="Detailed analysis of common and emerging cyber threats facing businesses today from ProtekCyber security experts">
+    
+    <!-- Same CSS as homepage -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Same style block from homepage -->
+    <style>
+        :root {
+            --primary-dark: #0A192F;
+            --primary-medium: #19376D;
+            --secondary-green: #04D939;
+            --accent-purple: #A459D1;
+            --neutral-dark: #0F172A;
+            --neutral-light: #F8FAFC;
+        }
+        #mobile-menu{
+            background-color: var(--primary-dark)!important;
+            padding-top: 60px;
+        }
+        @media screen and (max-width: 768px) {
+        #desktopmenu {
+        display: none; /* Show the desktop menu for mobile screens */
+            }
+          }  
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--neutral-dark);
+            color: var(--neutral-light);
+        }
+        .space-x-8>:not([hidden])~:not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(2rem * var(--tw-space-x-reverse));
+    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+        
+        .bg-primary-dark {
+            background-color: var(--primary-dark);
+        }
+        
+        .bg-primary-medium {
+            background-color: var(--primary-medium);
+        }
+        
+        .bg-neutral-dark {
+            background-color: var(--neutral-dark);
+        }
+        
+        .text-secondary-green {
+            color: var(--secondary-green);
+        }
+        
+        .text-accent-purple {
+            color: var(--accent-purple);
+        }
+        
+        .border-secondary-green {
+            border-color: var(--secondary-green);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .cyber-btn {
+            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
+            color: var(--neutral-dark);
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(4, 217, 57, 0.5);
+        }
+        
+        .cyber-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+        
+        .cyber-btn:hover:before {
+            left: 100%;
+        }
+        
+        .card {
+            background-color: rgba(25, 55, 109, 0.2);
+            border: 1px solid var(--primary-medium);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(4, 217, 57, 0.1);
+        }
+
+        /* Add this to your CSS */
+.hover\:shadow-glow:hover {
+  box-shadow: 0 0 15px rgba(4, 217, 57, 0.7); /* Green glow */
+  background-color: var(--secondary-green); /* Solid green bg */
+  color: var(--neutral-dark); /* Dark text */
+  border-color: var(--secondary-green); /* Green border */
+}
+        
+        /* Additional styles for threat types page */
+        .threat-category {
+            margin-bottom: 3rem;
+        }
+        
+        .threat-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .threat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.8), rgba(25, 55, 109, 0.8));
+            z-index: 1;
+        }
+        
+        .threat-card-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .threat-severity {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .severity-critical {
+            background-color: #ef4444;
+            color: white;
+        }
+        
+        .severity-high {
+            background-color: #f59e0b;
+            color: var(--neutral-dark);
+        }
+        
+        .severity-medium {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .severity-low {
+            background-color: #10b981;
+            color: white;
+        }
+        
+        .threat-stat {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .threat-stat i {
+            margin-right: 0.5rem;
+            color: var(--secondary-green);
+        }
+        
+        .mitigation-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--primary-medium);
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0.25rem;
+            width: 2px;
+            height: 100%;
+            background-color: var(--primary-medium);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0.25rem;
+            left: -1.5rem;
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background-color: var(--secondary-green);
+        }
+        
+        .threat-evolution-stage {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-left: 3px solid var(--accent-purple);
+        }
+    </style>
+</head>
+<body>
+
+    <!--NAVBAR-->
+<header class="bg-neutral-dark text-neutral-light shadow-md fixed w-full top-0 z-50">
+  <div class="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
+    
+    <!-- Logo -->
+    <a href="/index.html" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+
+    <!-- Hamburger (Mobile) -->
+    <button id="nav-toggle" class="md:hidden text-2xl focus:outline-none">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row md:items-center md:gap-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-neutral-dark px-4 md:px-0 py-4 md:py-0">
+
+      <a href="/index.html" class="hover:text-secondary-green">Home</a>
+
+      <!-- Services -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/index.html#services" class="hover:text-secondary-green md:mr-1">Services</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Services Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/soc" class="block px-4 py-2 hover:bg-neutral-light/10">SOC as a Service</a>
+          <a href="/penetration" class="block px-4 py-2 hover:bg-neutral-light/10">Penetration Testing</a>
+          <a href="/incident" class="block px-4 py-2 hover:bg-neutral-light/10">Incident Response</a>
+          <a href="/cloud-sec" class="block px-4 py-2 hover:bg-neutral-light/10">Cloud Security</a>
+          <a href="/data-protect" class="block px-4 py-2 hover:bg-neutral-light/10">Data Protection</a>
+        </div>
+      </div>
+
+      <!-- Insights -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/index.html#insights" class="hover:text-secondary-green md:mr-1">Insights</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Insights Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/knowledge-base" class="block px-4 py-2 hover:bg-neutral-light/10">Knowledge Base</a>
+          <a href="/threat-intelligence" class="block px-4 py-2 hover:bg-neutral-light/10">Threat Intelligence</a>
+          <a href="/security-guides" class="block px-4 py-2 hover:bg-neutral-light/10">Security Guides</a>
+          <a href="/webinars" class="block px-4 py-2 hover:bg-neutral-light/10">Webinars</a>
+          <a href="/case-studies" class="block px-4 py-2 hover:bg-neutral-light/10">Case Studies</a>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/company" class="hover:text-secondary-green md:mr-1">Company</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Company Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/about-us" class="block px-4 py-2 hover:bg-neutral-light/10">About Us</a>
+          <a href="/our-team" class="block px-4 py-2 hover:bg-neutral-light/10">Our Team</a>
+          <a href="/careers" class="block px-4 py-2 hover:bg-neutral-light/10">Careers</a>
+          <a href="/news" class="block px-4 py-2 hover:bg-neutral-light/10">News</a>
+          <a href="/termsofservice" class="block px-4 py-2 hover:bg-neutral-light/10">Terms of Service</a>
+        </div>
+      </div>
+
+      <a href="/#contact" class="hover:text-secondary-green">Contact Us</a>
+
+      <!-- CTA Button -->
+      <div class="mt-4 md:mt-0 md:ml-4">
+        <a href="/#contact" class="cyber-btn block text-center">Speak to an Expert</a>
+      </div>
+
+    </nav>
+  </div>
+</header>
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-20 px-4 md:px-8 lg:px-16 bg-primary-dark">
+        <!-- Hero Section -->
+<section class="container mx-auto mb-20">
+    <div class="text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            Cyber Threat <span class="gradient-text">Landscape</span>
+        </h1>
+        <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto mb-8">
+            Comprehensive analysis of current and emerging cyber threats targeting UK businesses. Our security experts continuously monitor the threat landscape to help you understand and defend against these risks.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+            <a href="#threat-categories" class="cyber-btn text-center">
+                Explore Threat Types
+            </a>
+            <a href="/#contact" 
+               class="border border-white text-white font-bold px-6 py-3 rounded-md transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-glow hover:bg-secondary-green hover:text-neutral-dark">
+                Get Threat Protection
+            </a> 
+        </div>
+    </div>
+</section>
+
+        <!-- Threat Overview -->
+        <section class="container mx-auto mb-20">
+            <div class="card p-8">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-secondary-green mb-2">73%</div>
+                        <p class="text-neutral-light/80">of UK businesses experienced a cyber attack in 2024</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-accent-purple mb-2">£4,200</div>
+                        <p class="text-neutral-light/80">Average cost per hour of downtime from ransomware</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-secondary-green mb-2">3.4M</div>
+                        <p class="text-neutral-light/80">New phishing sites created each month targeting UK users</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Threat Categories -->
+        <section id="threat-categories" class="container mx-auto mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Cyber Threat <span class="gradient-text">Categories</span>
+                </h2>
+                <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                    Our security experts have categorized the most prevalent threats facing UK businesses today by severity and attack vector.
+                </p>
+            </div>
+
+            <!-- Ransomware -->
+            <div class="threat-category mb-16">
+                <div class="grid md:grid-cols-2 gap-8 items-center mb-8">
+                    <div>
+                        <span class="threat-severity severity-critical">Critical Threat</span>
+                        <h3 class="text-2xl md:text-3xl font-bold mt-2 mb-4">Ransomware Attacks</h3>
+                        <p class="text-neutral-light/80 mb-4">
+                            Ransomware remains the most disruptive cyber threat to UK businesses, with attackers increasingly targeting critical infrastructure and supply chains. Modern ransomware strains now incorporate data theft and extortion tactics.
+                        </p>
+                        <div class="flex flex-wrap">
+                            <span class="mitigation-tag">Endpoint Protection</span>
+                            <span class="mitigation-tag">Backup Strategy</span>
+                            <span class="mitigation-tag">Email Filtering</span>
+                            <span class="mitigation-tag">Patch Management</span>
+                        </div>
+                    </div>
+                    <div class="threat-card rounded-lg overflow-hidden h-64 bg-cover bg-center" style="background-image: url('/images/ransomware-threat.jpg');">
+                        <div class="threat-card-content p-6 h-full flex flex-col justify-end">
+                            <h4 class="text-xl font-bold mb-2">Recent UK Attack Trends</h4>
+                            <ul class="text-sm space-y-1">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Double extortion tactics (encryption + data theft)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Targeting of cloud backups and recovery systems</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Ransomware-as-a-Service (RaaS) proliferation</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 mt-8">
+                    <div class="card">
+                        <h4 class="text-xl font-bold mb-4">Evolution of Ransomware</h4>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h5 class="font-bold mb-1">2017-2019: Widespread Encryption</h5>
+                                <p class="text-sm text-neutral-light/70">Simple encryption attacks with payment demands in cryptocurrency</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5 class="font-bold mb-1">2020-2021: Double Extortion</h5>
+                                <p class="text-sm text-neutral-light/70">Attackers began stealing data before encryption to pressure victims</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5 class="font-bold mb-1">2022-Present: Triple Extortion</h5>
+                                <p class="text-sm text-neutral-light/70">Added DDoS attacks and contacting customers/business partners</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4 class="text-xl font-bold mb-4">Notable UK Incidents</h4>
+                        <div class="space-y-4">
+                            <div class="threat-evolution-stage">
+                                <h5 class="font-bold">2024: NHS Supply Chain Attack</h5>
+                                <p class="text-sm">Disrupted medical equipment deliveries to 45 hospitals for 3 weeks</p>
+                            </div>
+                            <div class="threat-evolution-stage">
+                                <h5 class="font-bold">2023: Royal Mail Disruption</h5>
+                                <p class="text-sm">LockBit ransomware halted international shipments for 5 days</p>
+                            </div>
+                            <div class="threat-evolution-stage">
+                                <h5 class="font-bold">2022: South Staffordshire Water</h5>
+                                <p class="text-sm">Attackers gained SCADA access but were stopped before contamination</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phishing & Social Engineering -->
+            <div class="threat-category mb-16">
+                <div class="grid md:grid-cols-2 gap-8 items-center mb-8">
+                    <div class="order-2 md:order-1">
+                        <span class="threat-severity severity-high">High Threat</span>
+                        <h3 class="text-2xl md:text-3xl font-bold mt-2 mb-4">Phishing & Social Engineering</h3>
+                        <p class="text-neutral-light/80 mb-4">
+                            Phishing remains the most common initial attack vector, with increasingly sophisticated tactics targeting employees at all levels. Business Email Compromise (BEC) scams cost UK companies millions annually.
+                        </p>
+                        <div class="threat-stat">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>412% increase in QR code phishing in 2024</span>
+                        </div>
+                        <div class="threat-stat">
+                            <i class="fas fa-pound-sign"></i>
+                            <span>Average BEC loss: £45,000 per incident</span>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2 threat-card rounded-lg overflow-hidden h-64 bg-cover bg-center" style="background-image: url('/images/phishing-threat.jpg');">
+                        <div class="threat-card-content p-6 h-full flex flex-col justify-end">
+                            <h4 class="text-xl font-bold mb-2">Current Phishing Trends</h4>
+                            <ul class="text-sm space-y-1">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>AI-generated personalized phishing emails</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>QR code phishing ("quishing") bypassing email filters</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Voice phishing (vishing) targeting finance departments</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6 mt-8">
+                    <div class="card">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-envelope text-secondary-green mr-3"></i>
+                            <h4 class="text-lg font-bold">Email Phishing</h4>
+                        </div>
+                        <p class="text-sm text-neutral-light/70">Deceptive emails impersonating trusted entities to steal credentials or deliver malware</p>
+                    </div>
+                    <div class="card">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-phone-alt text-secondary-green mr-3"></i>
+                            <h4 class="text-lg font-bold">Vishing</h4>
+                        </div>
+                        <p class="text-sm text-neutral-light/70">Phone calls impersonating IT support or bank officials to extract sensitive information</p>
+                    </div>
+                    <div class="card">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-sms text-secondary-green mr-3"></i>
+                            <h4 class="text-lg font-bold">Smishing</h4>
+                        </div>
+                        <p class="text-sm text-neutral-light/70">Text messages with malicious links or requests for personal/financial information</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Supply Chain Attacks -->
+            <div class="threat-category mb-16">
+                <div class="grid md:grid-cols-2 gap-8 items-center mb-8">
+                    <div>
+                        <span class="threat-severity severity-high">High Threat</span>
+                        <h3 class="text-2xl md:text-3xl font-bold mt-2 mb-4">Supply Chain Compromises</h3>
+                        <p class="text-neutral-light/80 mb-4">
+                            Attackers increasingly target software vendors and service providers to gain access to multiple organizations through a single breach. These attacks can bypass traditional security controls by exploiting trusted relationships.
+                        </p>
+                        <div class="threat-stat">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>78% increase in supply chain attacks since 2022</span>
+                        </div>
+                        <div class="threat-stat">
+                            <i class="fas fa-clock"></i>
+                            <span>Average dwell time before detection: 287 days</span>
+                        </div>
+                    </div>
+                    <div class="threat-card rounded-lg overflow-hidden h-64 bg-cover bg-center" style="background-image: url('/images/supply-chain-threat.jpg');">
+                        <div class="threat-card-content p-6 h-full flex flex-col justify-end">
+                            <h4 class="text-xl font-bold mb-2">Recent UK Supply Chain Incidents</h4>
+                            <ul class="text-sm space-y-1">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>2024: Accounting software compromise affected 200+ SMEs</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>2023: Managed service provider breach led to ransomware across clients</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>2022: Third-party logistics provider attack disrupted retail inventory</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card mt-8">
+                    <h4 class="text-xl font-bold mb-4">Supply Chain Attack Vectors</h4>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div>
+                            <h5 class="font-bold mb-2">Software Updates</h5>
+                            <p class="text-sm text-neutral-light/70">Compromised software updates delivering malware to all users</p>
+                        </div>
+                        <div>
+                            <h5 class="font-bold mb-2">Cloud Services</h5>
+                            <p class="text-sm text-neutral-light/70">Breach of shared cloud infrastructure or SaaS providers</p>
+                        </div>
+                        <div>
+                            <h5 class="font-bold mb-2">Third-Party Access</h5>
+                            <p class="text-sm text-neutral-light/70">Exploiting vendor remote access or privileged accounts</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cloud Security Threats -->
+            <div class="threat-category mb-16">
+                <div class="grid md:grid-cols-2 gap-8 items-center mb-8">
+                    <div class="order-2 md:order-1">
+                        <span class="threat-severity severity-high">High Threat</span>
+                        <h3 class="text-2xl md:text-3xl font-bold mt-2 mb-4">Cloud Security Threats</h3>
+                        <p class="text-neutral-light/80 mb-4">
+                            As UK businesses accelerate cloud adoption, misconfigurations and identity management failures create new attack surfaces. Attackers exploit these weaknesses to access sensitive data and deploy malicious workloads.
+                        </p>
+                        <div class="threat-stat">
+                            <i class="fas fa-cloud"></i>
+                            <span>81% of organizations experienced a cloud security incident in 2024</span>
+                        </div>
+                        <div class="threat-stat">
+                            <i class="fas fa-lock-open"></i>
+                            <span>Overprivileged accounts present in 92% of cloud environments</span>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2 threat-card rounded-lg overflow-hidden h-64 bg-cover bg-center" style="background-image: url('/images/cloud-threat.jpg');">
+                        <div class="threat-card-content p-6 h-full flex flex-col justify-end">
+                            <h4 class="text-xl font-bold mb-2">Top Cloud Threats</h4>
+                            <ul class="text-sm space-y-1">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Misconfigured storage buckets exposing sensitive data</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Compromised credentials and API keys</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-right text-secondary-green mt-1 mr-2"></i>
+                                    <span>Malicious container images in cloud registries</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 mt-8">
+                    <div class="card">
+                        <h4 class="text-xl font-bold mb-4">AWS-Specific Threats</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-shield-alt text-secondary-green mt-1 mr-2"></i>
+                                <span>IAM privilege escalation vulnerabilities</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-shield-alt text-secondary-green mt-1 mr-2"></i>
+                                <span>Public EC2 instances with critical ports open</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-shield-alt text-secondary-green mt-1 mr-2"></i>
+                                <span>Unprotected S3 buckets containing sensitive data</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4 class="text-xl font-bold mb-4">Azure-Specific Threats</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-shield-alt text-secondary-green mt-1 mr-2"></i>
+                                <span>Overprivileged service principals</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-shield-alt text-secondary-green mt-1 mr-2"></i>
+                                <span>Unsecured storage accounts with anonymous access</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-shield-alt text-secondary-green mt-1 mr-2"></i>
+                                <span>Misconfigured conditional access policies</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emerging Threats -->
+            <div class="threat-category">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                        Emerging <span class="gradient-text">Threats</span>
+                    </h2>
+                    <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                        Our threat intelligence team monitors developing attack vectors that may impact UK businesses in the near future.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-accent-purple/20 flex items-center justify-center mr-4">
+                                <i class="fas fa-robot text-accent-purple text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">AI-Powered Attacks</h3>
+                        </div>
+                        <p class="text-neutral-light/70 mb-4">
+                            Attackers leveraging generative AI to create highly personalized phishing content, mimic voices for vishing, and automate target reconnaissance at scale.
+                        </p>
+                        <div class="text-sm text-neutral-light/60">
+                            <i class="fas fa-exclamation-triangle text-yellow-400 mr-1"></i>
+                            Expected to increase 300% by 2026
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-accent-purple/20 flex items-center justify-center mr-4">
+                                <i class="fas fa-satellite-dish text-accent-purple text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">5G Network Exploits</h3>
+                        </div>
+                        <p class="text-neutral-light/70 mb-4">
+                            As 5G adoption grows, vulnerabilities in network slicing, edge computing, and IoT device connectivity create new attack surfaces for threat actors.
+                        </p>
+                        <div class="text-sm text-neutral-light/60">
+                            <i class="fas fa-exclamation-triangle text-yellow-400 mr-1"></i>
+                            Critical infrastructure at particular risk
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-accent-purple/20 flex items-center justify-center mr-4">
+                                <i class="fas fa-question-circle text-accent-purple text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Quantum Computing Threats</h3>
+                        </div>
+                        <p class="text-neutral-light/70 mb-4">
+                            Future quantum computers may break current encryption standards. While not imminent, "harvest now, decrypt later" attacks are already a concern.
+                        </p>
+                        <div class="text-sm text-neutral-light/60">
+                            <i class="fas fa-exclamation-triangle text-yellow-400 mr-1"></i>
+                            Preparing for post-quantum cryptography
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Threat Protection CTA -->
+        <section class="hidden mx-auto mb-20">
+            <div class="card p-8 text-center bg-gradient-to-r from-primary-medium to-primary-dark">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Need Protection Against These Threats?</h2>
+                <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto mb-8">
+                    Our security experts can assess your vulnerabilities and implement defenses tailored to your specific risks.
+                </p>
+                <a href="/#contact" class="cyber-btn inline-block">
+                    Get Threat Protection
+                </a>
+            </div>
+        </section>
+
+        <!-- Threat Intelligence Feed -->
+        <section class="hidden mx-auto mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Latest <span class="gradient-text">Threat Intelligence</span>
+                </h2>
+                <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                    Recent threat advisories from our security operations center monitoring UK-specific attacks.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="threat-severity severity-critical">Alert</span>
+                        <span class="text-xs text-neutral-light/60">2 days ago</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">New Ransomware Strain Targeting UK Legal Firms</h3>
+                    <p class="text-neutral-light/70 mb-4">
+                        "BlackBinder" ransomware specifically targeting legal document management systems with double extortion tactics.
+                    </p>
+                    <a href="#" class="text-secondary-green hover:underline font-semibold">
+                        Read Advisory <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <div class="card">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="threat-severity severity-high">Warning</span>
+                        <span class="text-xs text-neutral-light/60">1 week ago</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Phishing Campaign Impersonating HMRC</h3>
+                    <p class="text-neutral-light/70 mb-4">
+                        New wave of tax-related phishing emails using compromised UK business accounts to appear legitimate.
+                    </p>
+                    <a href="#" class="text-secondary-green hover:underline font-semibold">
+                        Read Advisory <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <div class="card">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="threat-severity severity-medium">Advisory</span>
+                        <span class="text-xs text-neutral-light/60">2 weeks ago</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Critical Vulnerability in UK Payroll Software</h3>
+                    <p class="text-neutral-light/70 mb-4">
+                        Unpatched vulnerability in common payroll system allowing remote code execution.
+                    </p>
+                    <a href="#" class="text-secondary-green hover:underline font-semibold">
+                        Read Advisory <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="/threat-intelligence" class="cyber-btn">
+                    View All Threat Advisories
+                </a>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="hidden container mx-auto mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Threat Protection <span class="gradient-text">FAQs</span>
+                </h2>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="card p-6">
+                    <div class="accordion-item active">
+                        <div class="accordion-header">
+                            <h3 class="text-lg font-bold">How can I tell if my business is being targeted by these threats?</h3>
+                            <div class="accordion-icon">▼</div>
+                        </div>
+                        <div class="accordion-content mt-4 text-neutral-light/80">
+                            <p>Common indicators include unusual network activity, failed login attempts from unfamiliar locations, unexpected system behavior, and reports from employees about suspicious communications. Our threat detection services can monitor for these signs 24/7 and alert you to potential threats before they cause damage.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="text-lg font-bold">What's the most effective defense against ransomware?</h3>
+                            <div class="accordion-icon">▼</div>
+                        </div>
+                        <div class="accordion-content mt-4 text-neutral-light/80">
+                            <p>A multi-layered approach is essential: maintain offline backups, implement endpoint detection and response (EDR) solutions, restrict user permissions, keep systems patched, and conduct regular security awareness training. Our ransomware protection service combines all these elements with 24/7 monitoring.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="text-lg font-bold">How often should we reassess our threat landscape?</h3>
+                            <div class="accordion-icon">▼</div>
+                        </div>
+                        <div class="accordion-content mt-4 text-neutral-light/80">
+                            <p>We recommend quarterly threat assessments for most businesses, with monthly reviews for high-risk industries. The cyber threat landscape evolves rapidly, and our threat intelligence subscriptions provide continuous updates about new risks relevant to your sector.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="text-lg font-bold">Are SMEs really at risk or just large enterprises?</h3>
+                            <div class="accordion-icon">▼</div>
+                        </div>
+                        <div class="accordion-content mt-4 text-neutral-light/80">
+                            <p>SMEs are frequently targeted precisely because they often have weaker defenses than large enterprises. 60% of small businesses close within 6 months of a significant cyber attack. Our SME-focused security packages provide enterprise-grade protection at scales and prices appropriate for smaller organizations.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="text-lg font-bold">What should we do if we suspect we've been breached?</h3>
+                            <div class="accordion-icon">▼</div>
+                        </div>
+                        <div class="accordion-content mt-4 text-neutral-light/80">
+                            <p>Immediately contact our incident response team (available 24/7). Don't turn off affected systems (this destroys forensic evidence), but disconnect them from the network if safe to do so. Avoid interacting with attackers until consulting professionals. We'll guide you through containment, eradication, recovery, and reporting steps.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="container mx-auto">
+            <div class="card p-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Get Expert Threat Protection</h2>
+                <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto mb-8">
+                    Our security consultants can assess your specific risks and implement defenses tailored to your business needs and budget.
+                </p>
+                <a href="/#contact" class="cyber-btn inline-block">
+                    Speak to a Threat Specialist
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 md:px-8 lg:px-16 bg-neutral-dark border-t border-primary-medium">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <a href="/index.html" style="display: inline-block; padding-bottom: 20px;" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+                    
+                    <p class="text-neutral-light/70 mb-6">
+                        Expert-led cyber security consultancy tailored to your business needs, compliance goals, and growth strategy.
+                    </p>
+                    
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Services</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/soc" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                SOC as a Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/penetration" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Penetration Testing
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/incident" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Incident Response
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/cloud-sec" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Cloud Security
+                            </a>
+                        </li>
+                        <li>
+                            <a href="data-protect" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Data Protection
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Company</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/about-us" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/our-team " class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Our Team
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/careers" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Careers
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/news" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                News
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/termsofservice" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Terms of Service
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Resources</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/knowledge-base" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Knowledge Base
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/security-guides" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Security Guides
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/threat-intelligence" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Threat Intelligence
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/webinars" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Webinars
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/case-studies" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Case Studies
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-primary-medium text-center">
+                <p class="text-neutral-light/70">
+                    &copy; 2025 ProtekCyber Consultants. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            document.getElementById('nav-menu').classList.toggle('hidden');
+        });
+
+        // Toggle dropdowns individually
+        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const dropdown = this.nextElementSibling;
+                dropdown.classList.toggle('hidden');
+
+                // Close other open dropdowns
+                document.querySelectorAll('.dropdown').forEach(d => {
+                    if (d !== dropdown) d.classList.add('hidden');
+                });
+            });
+        });
+
+        // Close all dropdowns when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.group')) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.classList.add('hidden');
+                });
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                
+                header.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
