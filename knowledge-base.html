@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Base | ProtekCyber Consultants</title>
+    <meta name="description" content="Comprehensive cybersecurity knowledge base with expert insights, best practices, and resources from ProtekCyber Consultants">
+    
+    <!-- Same CSS as homepage -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Same style block from homepage -->
+    <style>
+        :root {
+            --primary-dark: #0A192F;
+            --primary-medium: #19376D;
+            --secondary-green: #04D939;
+            --accent-purple: #A459D1;
+            --neutral-dark: #0F172A;
+            --neutral-light: #F8FAFC;
+        }
+        #mobile-menu{
+            background-color: var(--primary-dark)!important;
+            padding-top: 60px;
+        }
+        @media screen and (max-width: 768px) {
+        #desktopmenu {
+        display: none; /* Show the desktop menu for mobile screens */
+            }
+          }  
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--neutral-dark);
+            color: var(--neutral-light);
+        }
+        .space-x-8>:not([hidden])~:not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(2rem * var(--tw-space-x-reverse));
+    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+        
+        .bg-primary-dark {
+            background-color: var(--primary-dark);
+        }
+        
+        .bg-primary-medium {
+            background-color: var(--primary-medium);
+        }
+        
+        .bg-neutral-dark {
+            background-color: var(--neutral-dark);
+        }
+        
+        .text-secondary-green {
+            color: var(--secondary-green);
+        }
+        
+        .text-accent-purple {
+            color: var(--accent-purple);
+        }
+        
+        .border-secondary-green {
+            border-color: var(--secondary-green);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .cyber-btn {
+            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
+            color: var(--neutral-dark);
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(4, 217, 57, 0.5);
+        }
+        
+        .cyber-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+        
+        .cyber-btn:hover:before {
+            left: 100%;
+        }
+        
+        .card {
+            background-color: rgba(25, 55, 109, 0.2);
+            border: 1px solid var(--primary-medium);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(4, 217, 57, 0.1);
+        }
+        
+        /* Additional styles for knowledge base page */
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            display: flex;
+        }
+        
+        .search-input {
+            flex-grow: 1;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--primary-medium);
+            border-radius: 0.375rem 0 0 0.375rem;
+            background-color: var(--primary-dark);
+            color: var(--neutral-light);
+        }
+        
+        .search-button {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
+            color: var(--neutral-dark);
+            border: none;
+            border-radius: 0 0.375rem 0.375rem 0;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .search-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(4, 217, 57, 0.5);
+    background: linear-gradient(90deg, var(--accent-purple), var(--secondary-green));
+}
+
+.search-button {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.search-button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.6s ease;
+}
+
+.search-button:hover:before {
+    left: 100%;
+}
+        
+        .accordion-item {
+            border-bottom: 1px solid var(--primary-medium);
+            margin-bottom: 1rem;
+        }
+        
+        .accordion-header {
+            padding: 1rem 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .accordion-content {
+            padding-bottom: 1rem;
+            display: none;
+        }
+        
+        .accordion-item.active .accordion-content {
+            display: block;
+        }
+        
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        
+        .topic-item {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            border-radius: 0.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .topic-item:hover, .topic-item.active {
+            background-color: var(--primary-medium);
+        }
+        
+        .topic-image img {
+            width: 100%;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .read-more {
+            color: var(--secondary-green);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .read-more span {
+            margin-left: 0.25rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .read-more:hover span {
+            transform: translateX(3px);
+        }
+    </style>
+</head>
+<body>
+
+    <!--NAVBAR-->
+<header class="bg-neutral-dark text-neutral-light shadow-md fixed w-full top-0 z-50">
+  <div class="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
+    
+    <!-- Logo -->
+    <a href="/index.html" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+
+    <!-- Hamburger (Mobile) -->
+    <button id="nav-toggle" class="md:hidden text-2xl focus:outline-none">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row md:items-center md:gap-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-neutral-dark px-4 md:px-0 py-4 md:py-0">
+
+      <a href="/index.html" class="hover:text-secondary-green">Home</a>
+
+      <!-- Services -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/index.html#services" class="hover:text-secondary-green md:mr-1">Services</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Services Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/soc" class="block px-4 py-2 hover:bg-neutral-light/10">SOC as a Service</a>
+          <a href="/penetration" class="block px-4 py-2 hover:bg-neutral-light/10">Penetration Testing</a>
+          <a href="/incident" class="block px-4 py-2 hover:bg-neutral-light/10">Incident Response</a>
+          <a href="/cloud-sec" class="block px-4 py-2 hover:bg-neutral-light/10">Cloud Security</a>
+          <a href="/data-protect" class="block px-4 py-2 hover:bg-neutral-light/10">Data Protection</a>
+        </div>
+      </div>
+
+      <!-- Insights -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/index.html#insights" class="hover:text-secondary-green md:mr-1">Insights</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Insights Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/knowledge-base" class="block px-4 py-2 hover:bg-neutral-light/10">Knowledge Base</a>
+          <a href="/threat-intelligence" class="block px-4 py-2 hover:bg-neutral-light/10">Threat Intelligence</a>
+          <a href="/security-guides" class="block px-4 py-2 hover:bg-neutral-light/10">Security Guides</a>
+          <a href="/webinars" class="block px-4 py-2 hover:bg-neutral-light/10">Webinars</a>
+          <a href="/case-studies" class="block px-4 py-2 hover:bg-neutral-light/10">Case Studies</a>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div class="relative group flex items-center justify-between w-full md:w-auto">
+        <a href="/company" class="hover:text-secondary-green md:mr-1">Company</a>
+        <button class="dropdown-toggle text-sm" aria-label="Toggle Company Dropdown">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+          <a href="/about-us" class="block px-4 py-2 hover:bg-neutral-light/10">About Us</a>
+          <a href="/our-team" class="block px-4 py-2 hover:bg-neutral-light/10">Our Team</a>
+          <a href="/careers" class="block px-4 py-2 hover:bg-neutral-light/10">Careers</a>
+          <a href="/news" class="block px-4 py-2 hover:bg-neutral-light/10">News</a>
+          <a href="/termsofservice" class="block px-4 py-2 hover:bg-neutral-light/10">Terms of Service</a>
+        </div>
+      </div>
+
+      <a href="/#contact" class="hover:text-secondary-green">Contact Us</a>
+
+      <!-- CTA Button -->
+      <div class="mt-4 md:mt-0 md:ml-4">
+        <a href="/#contact" class="cyber-btn block text-center">Speak to an Expert</a>
+      </div>
+
+    </nav>
+  </div>
+</header>
+
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-20 px-4 md:px-8 lg:px-16 bg-primary-dark">
+        <!-- Hero Section -->
+        <section class="container mx-auto mb-20">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                    Knowledge <span class="gradient-text">Base</span>
+                </h1>
+                <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto mb-8">
+                    Your comprehensive resource for cybersecurity insights, best practices, and expert guidance to help protect your business from evolving threats.
+                </p>
+                
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search for cybersecurity topics...">
+                    <button class="search-button">Search</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Navigation -->
+<section class="container mx-auto mb-20">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Explore by <span class="gradient-text">Category</span>
+        </h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="card text-center flex flex-col h-full">
+            <div class="flex justify-center mb-4">
+                <div class="w-16 h-16 rounded-full bg-secondary-green/20 flex items-center justify-center mx-auto">
+                    <i class="fas fa-shield-alt text-secondary-green text-4xl"></i>
+                </div>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Cybersecurity Basics</h3>
+            <p class="text-neutral-light/70 mb-4 flex-grow">
+                Essential concepts and fundamentals for building a strong security foundation.
+            </p>
+            <div class="mt-auto">
+                <a href="/knowledge-base/kb-cybersecurity-basics" class="text-secondary-green hover:underline font-semibold">
+                    Explore <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="card text-center flex flex-col h-full">
+            <div class="flex justify-center mb-4">
+                <div class="w-16 h-16 rounded-full bg-secondary-green/20 flex items-center justify-center mx-auto">
+                    <i class="fas fa-bug text-secondary-green text-4xl"></i>
+                </div>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Threat Types</h3>
+            <p class="text-neutral-light/70 mb-4 flex-grow">
+                Detailed analysis of common and emerging cyber threats facing businesses today.
+            </p>
+            <div class="mt-auto">
+                <a href="/knowlegde-base/kb-threat-types" class="text-secondary-green hover:underline font-semibold">
+                    Explore <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="card text-center flex flex-col h-full">
+            <div class="flex justify-center mb-4">
+                <div class="w-16 h-16 rounded-full bg-secondary-green/20 flex items-center justify-center mx-auto">
+                    <i class="fas fa-file-contract text-secondary-green text-4xl"></i>
+                </div>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Compliance & Regulations</h3>
+            <p class="text-neutral-light/70 mb-4 flex-grow">
+                Navigate complex regulatory requirements and compliance frameworks.
+            </p>
+            <div class="mt-auto">
+                <a href="/knowledge-base/kb-compliance-regulations" class="text-secondary-green hover:underline font-semibold">
+                    Explore <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="card text-center flex flex-col h-full">
+            <div class="flex justify-center mb-4">
+                <div class="w-16 h-16 rounded-full bg-secondary-green/20 flex items-center justify-center mx-auto">
+                    <i class="fas fa-tools text-secondary-green text-4xl"></i>
+                </div>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Security Tools</h3>
+            <p class="text-neutral-light/70 mb-4 flex-grow">
+                Reviews and guides for essential security tools and technologies.
+            </p>
+            <div class="mt-auto">
+                <a href="/knowledge-base/kb-security-tools" class="text-secondary-green hover:underline font-semibold">
+                    Explore <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Featured Articles -->
+        <section class="container mx-auto mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Featured <span class="gradient-text">Articles</span>
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card">
+                    <div class="mb-4 overflow-hidden rounded-lg">
+                        <img src="/images/Ransomware-Blog-Banner.webp" alt="Ransomware Protection" class="w-full h-auto">
+                    </div>
+                    <div class="px-2">
+                        <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-accent-purple/20 text-accent-purple mb-3">Threat Defense</span>
+                        <h3 class="text-xl font-bold mb-3">Ransomware Protection Strategies for 2025</h3>
+                        <p class="text-neutral-light/70 mb-4">
+                            Learn the latest techniques to defend your organization against sophisticated ransomware attacks targeting critical business data.
+                        </p>
+                        <a href="/knowledge-base/kb-ransomware-startegies2025" class="text-secondary-green hover:underline font-semibold">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="mb-4 overflow-hidden rounded-lg">
+                        <img src="/images/zero-trust-network.jpg" alt="Zero Trust Architecture" class="w-full h-auto">
+                    </div>
+                    <div class="px-2">
+                        <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-secondary-green/20 text-secondary-green mb-3">Best Practice</span>
+                        <h3 class="text-xl font-bold mb-3">Implementing Zero Trust Architecture</h3>
+                        <p class="text-neutral-light/70 mb-4">
+                            A comprehensive guide to adopting zero trust principles across your enterprise network and cloud infrastructure.
+                        </p>
+                        <a href="/knowledge-base/kb-zero-trust-architecture" class="text-secondary-green hover:underline font-semibold">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="mb-4 overflow-hidden rounded-lg">
+                        <img src="/images/SOC-company-header.webp" alt="SOC Operations" class="w-full h-auto">
+                    </div>
+                    <div class="px-2">
+                        <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-accent-purple/20 text-accent-purple mb-3">Service Spotlight</span>
+                        <h3 class="text-xl font-bold mb-3">SOC as a Service: What to Expect</h3>
+                        <p class="text-neutral-light/70 mb-4">
+                            Understand how a modern Security Operations Center functions and the benefits of outsourcing to security experts.
+                        </p>
+                        <a href="/knowledge-base/kb-what-to-expect-soc" class="text-secondary-green hover:underline font-semibold">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topic Explorer -->
+        <section class="container mx-auto mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Topic <span class="gradient-text">Explorer</span>
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-1">
+                    <div class="card p-4">
+                        <div class="topic-item active">Incident Response Planning</div>
+                        <div class="topic-item">Cloud Security Best Practices</div>
+                        <div class="topic-item">Threat Hunting Techniques</div>
+                        <div class="topic-item">Security Awareness Training</div>
+                        <div class="topic-item">Data Protection Strategies</div>
+                        <div class="topic-item">Vulnerability Management</div>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-3">
+                    <div class="card p-6">
+                        <h3 class="text-2xl font-bold mb-4">Incident Response Planning</h3>
+                        <div class="topic-image mb-6">
+                            <img src="/images/explore1.png" alt="Incident Response" class="rounded-lg">
+                        </div>
+                        <div class="space-y-4 text-neutral-light/80">
+                            <p>An effective incident response plan is critical for minimizing the impact of security breaches. This comprehensive guide covers the essential components of a robust incident response strategy, including team formation, communication protocols, containment procedures, and recovery processes.</p>
+                            <p>Learn how to develop documentation that guides your organization through the chaos of a security incident, ensuring a coordinated and efficient response that protects critical assets and maintains business continuity.</p>
+                        </div>
+                        <a href="/knowledge-base/kb-incident-response-planning" class="inline-block mt-6 text-secondary-green hover:underline font-semibold">
+                            Read Full Guide <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+<section class="container mx-auto mb-20">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Downloadable <span class="gradient-text">Resources</span>
+        </h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="card flex flex-col h-full">
+            <div class="text-center">
+                <div class="w-16 h-16 rounded-full bg-accent-purple/20 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-file-pdf text-accent-purple text-4xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-center">Cybersecurity Maturity Assessment Template</h3>
+            </div>
+            <p class="text-neutral-light/70 mb-4 flex-grow text-center">
+                Evaluate your organization's security posture with our comprehensive assessment framework.
+            </p>
+            <div class="mt-auto text-center">
+                <a href="#" class="cyber-btn w-full text-center block">
+                    Download
+                </a>
+            </div>
+        </div>
+        
+        <div class="card flex flex-col h-full">
+            <div class="text-center">
+                <div class="w-16 h-16 rounded-full bg-secondary-green/20 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-file-excel text-secondary-green text-4xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-center">Incident Response Checklist</h3>
+            </div>
+            <p class="text-neutral-light/70 mb-4 flex-grow text-center">
+                Step-by-step guide for responding to common security incidents and breaches.
+            </p>
+            <div class="mt-auto text-center">
+                <a href="#" class="cyber-btn w-full text-center block">
+                    Download
+                </a>
+            </div>
+        </div>
+        
+        <div class="card flex flex-col h-full">
+            <div class="text-center">
+                <div class="w-16 h-16 rounded-full bg-accent-purple/20 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-file-word text-accent-purple text-4xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-center">Security Policy Templates</h3>
+            </div>
+            <p class="text-neutral-light/70 mb-4 flex-grow text-center">
+                Customizable templates for essential security policies and procedures.
+            </p>
+            <div class="mt-auto text-center">
+                <a href="#" class="cyber-btn w-full text-center block">
+                    Download
+                </a>
+            </div>
+        </div>
+        
+        <div class="card flex flex-col h-full">
+            <div class="text-center">
+                <div class="w-16 h-16 rounded-full bg-secondary-green/20 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-file-powerpoint text-secondary-green text-4xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-center">Employee Security Awareness Training</h3>
+            </div>
+            <p class="text-neutral-light/70 mb-4 flex-grow text-center">
+                Ready-to-use training materials to educate your team on security best practices.
+            </p>
+            <div class="mt-auto text-center">
+                <a href="#" class="cyber-btn w-full text-center block">
+                    Download
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- FAQ Section -->
+        <section class="hidden container mx-auto mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Frequently Asked <span class="gradient-text">Questions</span>
+                </h2>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="card p-6">
+                    <div class="accordion-item active">
+                        <div class="accordion-header">
+                            <h3 class="text-lg font-bold">What is SOC as a Service and how does it benefit my business?</h3>
+                            <div class="accordion-icon">▼</div>
+                        </div>
+                        <div class="accordion-content mt-4 text-neutral-light/80">
+                            <p>SOC as a Service (Security Operations Center as a Service) provides 24/7 monitoring, threat detection, and incident response capabilities without the need to build and staff your own security operations center. This service benefits your business by providing enterprise-grade security expertise and technology at a predictable cost, reducing the time to detect and respond to threats, and allowing your internal IT team to focus on strategic initiatives rather than constant security monitoring.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="text-lg font-bold">How often should we conduct penetration testing?</h3>
+                            <div class="accordion-icon">▼</div>
+                        </div>
+                        <div class="accordion-content mt-4 text-neutral-light/80">
+                            <p>The frequency of penetration testing depends on several factors including your industry, regulatory requirements, and rate of change in your IT environment. Generally, we recommend conducting comprehensive penetration tests at least annually, with additional testing after significant infrastructure changes, major application updates, or when new regulations affect your security requirements. For organizations in highly regulated industries or those with sensitive data, quarterly or bi-annual testing may be more appropriate.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="text-lg font-bold">What compliance standards does ProtekCyber help with?</h3>
+                            <div class="accordion-icon">▼</div>
+                        </div>
+                        <div class="accordion-content mt-4 text-neutral-light/80">
+                            <p>ProtekCyber provides comprehensive support for numerous compliance standards including GDPR, HIPAA, PCI DSS, SOC 2, ISO 27001, NIST CSF, CCPA/CPRA, and industry-specific regulations. Our team of compliance experts works with your organization to understand your specific regulatory requirements, implement necessary controls, prepare for audits, and maintain ongoing compliance through continuous monitoring and regular assessments.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="text-lg font-bold">How quickly can you respond to a security incident?</h3>
+                            <div class="accordion-icon">▼</div>
+                        </div>
+                        <div class="accordion-content mt-4 text-neutral-light/80">
+                            <p>Our incident response capabilities operate 24/7/365, with critical alerts receiving response within 60 minutes. Our Service Level Agreement (SLA) defines different response times based on the severity of the incident: Critical incidents receive immediate attention with a 1-hour response time, High severity incidents within 2 hours, and Medium severity incidents within 3 hours. Our continuous monitoring ensures rapid detection, and our experienced incident response team follows established procedures to contain, eradicate, and recover from security incidents with minimal business disruption.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="text-lg font-bold">What makes ProtekCyber different from other cybersecurity providers?</h3>
+                            <div class="accordion-icon">▼</div>
+                        </div>
+                        <div class="accordion-content mt-4 text-neutral-light/80">
+                            <p>ProtekCyber differentiates itself through our comprehensive approach that combines advanced technology with human expertise. Unlike providers who offer point solutions, we deliver end-to-end security services tailored to your specific business needs. Our team includes certified security professionals with extensive experience across various industries, ensuring practical and effective security strategies. We maintain a 99.9% service availability, provide transparent reporting with actionable insights, and focus on building long-term partnerships rather than transactional relationships. Additionally, our flexible service models allow organizations of all sizes to access enterprise-grade security capabilities without excessive costs or complexity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="container mx-auto">
+            <div class="card p-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to strengthen your security posture?</h2>
+                <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto mb-8">
+                    Schedule a consultation with our security experts to discuss how our MDR service can help protect your business from evolving cyber threats.
+                </p>
+                <a href="/#contact" class="cyber-btn inline-block">
+                    Speak to an Expert
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Use the same footer from your homepage -->
+          <footer class="py-12 px-4 md:px-8 lg:px-16 bg-neutral-dark border-t border-primary-medium">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <a href="/index.html" style="display: inline-block; padding-bottom: 20px;" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+                    
+                    <p class="text-neutral-light/70 mb-6">
+                        Expert-led cyber security consultancy tailored to your business needs, compliance goals, and growth strategy.
+                    </p>
+                    
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Services</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/soc" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                SOC as a Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/penetration" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Penetration Testing
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/incident" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Incident Response
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/cloud-sec" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Cloud Security
+                            </a>
+                        </li>
+                        <li>
+                            <a href="data-protect" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Data Protection
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Company</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/about-us" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/our-team " class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Our Team
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/careers" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Careers
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/news" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                News
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/termsofservice" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Terms of Service
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="text-lg font-bold mb-6">Resources</div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="/knowledge-base" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Knowledge Base
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/security-guides" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Security Guides
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/threat-intelligence" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Threat Intelligence
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/webinars" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Webinars
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/case-studies" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                Case Studies
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        <div class="pt-8 border-t border-primary-medium text-center">
+            <p class="text-neutral-light/70">
+                &copy; 2025 ProtekCyber Consultants. All rights reserved.
+            </p>
+        </div>
+    </div>
+</footer>
+
+    <script>
+     // Mobile menu toggle
+  document.getElementById('nav-toggle').addEventListener('click', function () {
+    document.getElementById('nav-menu').classList.toggle('hidden');
+  });
+
+  // Toggle dropdowns individually
+  document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      const dropdown = this.nextElementSibling;
+      dropdown.classList.toggle('hidden');
+
+      // Close other open dropdowns
+      document.querySelectorAll('.dropdown').forEach(d => {
+        if (d !== dropdown) d.classList.add('hidden');
+      });
+    });
+  });
+
+  // Close all dropdowns when clicking outside
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.group')) {
+      document.querySelectorAll('.dropdown').forEach(dropdown => {
+        dropdown.classList.add('hidden');
+      });
+    }
+  });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if(targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Accordion functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            
+            header.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Topic explorer functionality - FIXED VERSION
+        const topicItems = document.querySelectorAll('.topic-item');
+        const topicContent = document.querySelector('.md\\:col-span-3 .card'); // Target the right-side card
+        
+        const topicData = [
+            {
+                title: 'Incident Response Planning',
+                content: `<h3 class="text-2xl font-bold mb-4">Incident Response Planning</h3>
+                <div class="topic-image mb-6">
+                    <img src="/images/explore1.png" alt="Incident Response" class="rounded-lg">
+                </div>
+                <div class="space-y-4 text-neutral-light/80">
+                    <p>An effective incident response plan is critical for minimizing the impact of security breaches. This comprehensive guide covers the essential components of a robust incident response strategy, including team formation, communication protocols, containment procedures, and recovery processes.</p>
+                    <p>Learn how to develop documentation that guides your organization through the chaos of a security incident, ensuring a coordinated and efficient response that protects critical assets and maintains business continuity.</p>
+                </div>
+                <a href="/knowledge-base/kb-incident-response-planning" class="inline-block mt-6 text-secondary-green hover:underline font-semibold">
+                    Read Full Guide <i class="fas fa-arrow-right ml-1"></i>
+                </a>`
+            },
+            {
+                title: 'Cloud Security Best Practices',
+                content: `<h3 class="text-2xl font-bold mb-4">Cloud Security Best Practices</h3>
+                <div class="topic-image mb-6">
+                    <img src="/images/explore2.webp" alt="Cloud Security" class="rounded-lg">
+                </div>
+                <div class="space-y-4 text-neutral-light/80">
+                    <p>As organizations continue to migrate infrastructure and applications to the cloud, securing these environments becomes increasingly complex. This guide explores essential cloud security best practices, including identity and access management, data protection, network security, and continuous monitoring.</p>
+                    <p>Discover how to implement a comprehensive cloud security strategy that addresses the shared responsibility model while maintaining compliance and protecting sensitive data across multi-cloud environments.</p>
+                </div>
+                <a href="/knowledge-base/kb-cloud-security-best-practices" class="inline-block mt-6 text-secondary-green hover:underline font-semibold">
+                    Read Full Guide <i class="fas fa-arrow-right ml-1"></i>
+                </a>`
+            },
+            {
+                title: 'Threat Hunting Techniques',
+                content: `<h3 class="text-2xl font-bold mb-4">Threat Hunting Techniques</h3>
+                <div class="topic-image mb-6">
+                    <img src="/images/explore3.webp" alt="Threat Hunting" class="rounded-lg">
+                </div>
+                <div class="space-y-4 text-neutral-light/80">
+                    <p>Proactive threat hunting has become essential for organizations seeking to identify threats that have evaded traditional security controls. This guide introduces advanced threat hunting methodologies, tools, and techniques used by security professionals to uncover hidden adversaries within your network.</p>
+                    <p>Learn how to develop hypothesis-driven hunting approaches, leverage threat intelligence, and implement automation to enhance your security team's ability to detect sophisticated threats before they cause damage.</p>
+                </div>
+                <a href="/knowledge-base/kb-threat-hunting-techniques" class="inline-block mt-6 text-secondary-green hover:underline font-semibold">
+                    Read Full Guide <i class="fas fa-arrow-right ml-1"></i>
+                </a>`
+            },
+            {
+                title: 'Security Awareness Training',
+                content: `<h3 class="text-2xl font-bold mb-4">Security Awareness Training</h3>
+                <div class="topic-image mb-6">
+                    <img src="/images/explore4.webp" alt="Security Awareness" class="rounded-lg">
+                </div>
+                <div class="space-y-4 text-neutral-light/80">
+                    <p>Human error remains one of the leading causes of security breaches. This comprehensive guide outlines how to develop and implement an effective security awareness program that transforms employees from security vulnerabilities into your first line of defense.</p>
+                    <p>Explore proven training methodologies, simulation exercises, measurement techniques, and ongoing reinforcement strategies that create a security-conscious culture throughout your organization.</p>
+                </div>
+                <a href="/knowledge-base/kb-security-awareness-training" class="inline-block mt-6 text-secondary-green hover:underline font-semibold">
+                    Read Full Guide <i class="fas fa-arrow-right ml-1"></i>
+                </a>`
+            },
+            {
+                title: 'Data Protection Strategies',
+                content: `<h3 class="text-2xl font-bold mb-4">Data Protection Strategies</h3>
+                <div class="topic-image mb-6">
+                    <img src="/images/explore5.png" alt="Data Protection" class="rounded-lg">
+                </div>
+                <div class="space-y-4 text-neutral-light/80">
+                    <p>Protecting sensitive data throughout its lifecycle is fundamental to any security program. This guide covers comprehensive data protection strategies including classification, encryption, access controls, data loss prevention, and secure disposal practices.</p>
+                    <p>Learn how to implement a defense-in-depth approach to data security that addresses regulatory requirements while enabling business operations and maintaining appropriate access for authorized users.</p>
+                </div>
+                <a href="/knowledge-base/kb-data-protection-strategies" class="inline-block mt-6 text-secondary-green hover:underline font-semibold">
+                    Read Full Guide <i class="fas fa-arrow-right ml-1"></i>
+                </a>`
+            },
+            {
+                title: 'Vulnerability Management',
+                content: `<h3 class="text-2xl font-bold mb-4">Vulnerability Management</h3>
+                <div class="topic-image mb-6">
+                    <img src="/images/explore6.png" alt="Vulnerability Management" class="rounded-lg">
+                </div>
+                <div class="space-y-4 text-neutral-light/80">
+                    <p>Effective vulnerability management goes beyond scanning and patching. This guide explores how to build a mature vulnerability management program that prioritizes remediation efforts based on business risk and threat intelligence.</p>
+                    <p>Discover best practices for vulnerability discovery, risk-based prioritization, remediation workflows, and measuring program effectiveness to continuously improve your security posture and reduce your attack surface.</p>
+                </div>
+                <a href="/knowledge-base/kb-vulnerability-management" class="inline-block mt-6 text-secondary-green hover:underline font-semibold">
+                    Read Full Guide <i class="fas fa-arrow-right ml-1"></i>
+                </a>`
+            }
+        ];
+        
+        // Initialize with first topic active
+        topicItems[0].classList.add('active');
+        
+        topicItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                // Remove active class from all items
+                topicItems.forEach(i => i.classList.remove('active'));
+                
+                // Add active class to clicked item
+                item.classList.add('active');
+                
+                // Update content in the right card
+                topicContent.innerHTML = topicData[index].content;
+            });
+        });
+    });
+</script>
+</body>
+</html>
