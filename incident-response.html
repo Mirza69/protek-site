@@ -1,1430 +1,1000 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProtekCyber - Incident Response Services</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-dark: #0A192F;
-            --primary-medium: #19376D;
-            --secondary-green: #04D939;
-            --accent-purple: #A459D1;
-            --neutral-dark: #0F172A;
-            --neutral-light: #F8FAFC;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--neutral-dark);
-            color: var(--neutral-light);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .cyber-btn {
-            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
-            color: var(--neutral-dark);
-            font-weight: bold;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .cyber-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(4, 217, 57, 0.5);
-        }
-        
-        .cyber-btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: all 0.6s ease;
-        }
-        
-        .cyber-btn:hover:before {
-            left: 100%;
-        }
-        
-        .card {
-            background-color: rgba(25, 55, 109, 0.2);
-            border: 1px solid var(--primary-medium);
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(4, 217, 57, 0.1);
-        }
-        
-        .text-secondary-green {
-            color: var(--secondary-green);
-        }
-        
-        .text-accent-purple {
-            color: var(--accent-purple);
-        }
-        
-        .bg-primary-dark {
-            background-color: var(--primary-dark);
-        }
-        
-        .bg-primary-medium {
-            background-color: var(--primary-medium);
-        }
-        
-        .bg-neutral-dark {
-            background-color: var(--neutral-dark);
-        }
-        
-        .border-secondary-green {
-            border-color: var(--secondary-green);
-        }
-        
-        .compliance-pill {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .metric-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--secondary-green);
-        }
-        
-        .metric-label {
-            color: var(--neutral-light);
-            opacity: 0.8;
-            font-size: 0.9rem;
-        }
-        
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(4, 217, 57, 0.1);
-            border: 1px solid rgba(4, 217, 57, 0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: var(--secondary-green);
-            margin-bottom: 1.5rem;
-        }
-        
-        .capability-icon {
-            width: 60px;
-            height: 60px;
-            background: transparent;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            color: var(--secondary-green);
-            border: none;
-        }
-        
-        .expert-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            overflow: hidden;
-            border: 3px solid rgba(4, 217, 57, 0.3);
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, var(--secondary-green), var(--accent-purple));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--neutral-dark);
-        }
-        
-        .expert-image:hover {
-            border-color: var(--secondary-green);
-            box-shadow: 0 0 20px rgba(4, 217, 57, 0.3);
-        }
-        
-        .timeline-marker {
-            width: 60px;
-            height: 60px;
-            background: transparent;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 2rem;
-            position: relative;
-            z-index: 2;
-            color: var(--secondary-green);
-            font-size: 1.5rem;
-            font-weight: bold;
-            border: 2px solid var(--secondary-green);
-        }
-        
-        .methodology-timeline::before {
-            content: '';
-            position: absolute;
-            left: 30px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--secondary-green);
-        }
-        
-        .skill-bar {
-            flex: 1;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
-            margin-left: 1rem;
-            overflow: hidden;
-        }
-        
-        .skill-fill {
-            height: 100%;
-            background: var(--secondary-green);
-            border-radius: 3px;
-        }
-        
-        /* Status indicators */
-        .status-indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 8px;
-        }
-        
-        .status-indicator.active {
-            background: var(--secondary-green);
-            animation: pulse 2s infinite;
-        }
-        
-        .status-indicator.busy {
-            background: #ef4444;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        
-        /* Incident severity indicators */
-        .incident-severity {
-            width: 4px;
-            height: 30px;
-            border-radius: 2px;
-        }
-        
-        .incident-severity.low {
-            background: var(--secondary-green);
-        }
-        
-        .incident-severity.medium {
-            background: #ffa726;
-        }
-        
-        .incident-severity.high {
-            background: #ef4444;
-        }
-        
-        /* Timeline styling */
-        .timeline-progress {
-            position: absolute;
-            top: 60px;
-            left: 60px;
-            right: 60px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            z-index: 1;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background: var(--secondary-green);
-            border-radius: 2px;
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-        
-        /* Emergency button */
-        .emergency-button {
-            background: linear-gradient(135deg, #ef4444, #ff6b6b);
-            color: #ffffff;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            animation: emergencyPulse 2s infinite;
-        }
-        
-        @keyframes emergencyPulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-            50% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
-        }
-        
-        .emergency-button:hover {
-            transform: translateY(-2px);
-            animation: none;
-        }
-        
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .hero .container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
-            }
-            
-            .response-metrics {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .incident-dashboard {
-                grid-template-columns: 1fr;
-            }
-            
-            .capabilities-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .timeline-stages {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .timeline-progress {
-                display: none;
-            }
-            
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .retainer-benefits {
-                grid-template-columns: 1fr;
-            }
-            
-            .emergency-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-            
-            .hero-actions {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .retainer-cta {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
-</head>
-<body class="bg-neutral-dark">
-    <!-- Header & Navigation -->
-    <header class="bg-neutral-dark text-neutral-light shadow-md fixed w-full top-0 z-50">
-        <div class="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
-            <!-- Logo -->
-            <a href="/index.html" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+    <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ProtekCyber - Incident Response Services</title>
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
-            <!-- Hamburger (Mobile) -->
-            <button id="nav-toggle" class="md:hidden text-2xl focus:outline-none">
-                <i class="fas fa-bars"></i>
-            </button>
 
-            <!-- Navigation -->
-            <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row md:items-center md:gap-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-neutral-dark px-4 md:px-0 py-4 md:py-0">
-                <a href="/index.html" class="hover:text-secondary-green">Home</a>
+	<link rel="stylesheet" crossorigin href="./css/incident-response.css"></link>
 
-                <!-- Services -->
-                <div class="relative group flex items-center justify-between w-full md:w-auto">
-                    <a href="/index.html#services" class="hover:text-secondary-green md:mr-1">Services</a>
-                    <button class="dropdown-toggle text-sm" aria-label="Toggle Services Dropdown">
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
-                        <a href="/soc" class="block px-4 py-2 hover:bg-neutral-light/10">SOC as a Service</a>
-                        <a href="/penetration" class="block px-4 py-2 hover:bg-neutral-light/10">Penetration Testing</a>
-                        <a href="/incident" class="block px-4 py-2 hover:bg-neutral-light/10">Incident Response</a>
-                        <a href="/cloud-sec" class="block px-4 py-2 hover:bg-neutral-light/10">Cloud Security</a>
-                        <a href="/data-protect" class="block px-4 py-2 hover:bg-neutral-light/10">Data Protection</a>
+
+    </head>
+    <body class="bg-neutral-dark">
+	<!-- Header & Navigation -->
+	<header class="bg-neutral-dark text-neutral-light shadow-md fixed w-full top-0 z-50">
+            <div class="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
+		<!-- Logo -->
+		<a href="/index.html" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+
+		<!-- Hamburger (Mobile) -->
+		<button id="nav-toggle" class="md:hidden text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+		</button>
+
+		<!-- Navigation -->
+		<nav id="nav-menu" class="hidden md:flex flex-col md:flex-row md:items-center md:gap-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-neutral-dark px-4 md:px-0 py-4 md:py-0">
+                    <a href="/index.html" class="hover:text-secondary-green">Home</a>
+
+                    <!-- Services -->
+                    <div class="relative group flex items-center justify-between w-full md:w-auto">
+			<a href="/index.html#services" class="hover:text-secondary-green md:mr-1">Services</a>
+			<button class="dropdown-toggle text-sm" aria-label="Toggle Services Dropdown">
+                            <i class="fas fa-chevron-down"></i>
+			</button>
+			<div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+                            <a href="/soc" class="block px-4 py-2 hover:bg-neutral-light/10">SOC as a Service</a>
+                            <a href="/penetration" class="block px-4 py-2 hover:bg-neutral-light/10">Penetration Testing</a>
+                            <a href="/incident" class="block px-4 py-2 hover:bg-neutral-light/10">Incident Response</a>
+                            <a href="/cloud-sec" class="block px-4 py-2 hover:bg-neutral-light/10">Cloud Security</a>
+                            <a href="/data-protect" class="block px-4 py-2 hover:bg-neutral-light/10">Data Protection</a>
+			</div>
                     </div>
-                </div>
 
-                <!-- Insights -->
-                <div class="relative group flex items-center justify-between w-full md:w-auto">
-                    <a href="/index.html#insights" class="hover:text-secondary-green md:mr-1">Insights</a>
-                    <button class="dropdown-toggle text-sm" aria-label="Toggle Insights Dropdown">
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
-                        <a href="/knowledge-base" class="block px-4 py-2 hover:bg-neutral-light/10">Knowledge Base</a>
-                        <a href="/threat-intelligence" class="block px-4 py-2 hover:bg-neutral-light/10">Threat Intelligence</a>
-                        <a href="/security-guides" class="block px-4 py-2 hover:bg-neutral-light/10">Security Guides</a>
-                        <a href="/webinars" class="block px-4 py-2 hover:bg-neutral-light/10">Webinars</a>
-                        <a href="/case-studies" class="block px-4 py-2 hover:bg-neutral-light/10">Case Studies</a>
+                    <!-- Insights -->
+                    <div class="relative group flex items-center justify-between w-full md:w-auto">
+			<a href="/index.html#insights" class="hover:text-secondary-green md:mr-1">Insights</a>
+			<button class="dropdown-toggle text-sm" aria-label="Toggle Insights Dropdown">
+                            <i class="fas fa-chevron-down"></i>
+			</button>
+			<div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+                            <a href="/knowledge-base" class="block px-4 py-2 hover:bg-neutral-light/10">Knowledge Base</a>
+                            <a href="/threat-intelligence" class="block px-4 py-2 hover:bg-neutral-light/10">Threat Intelligence</a>
+                            <a href="/security-guides" class="block px-4 py-2 hover:bg-neutral-light/10">Security Guides</a>
+                            <a href="/webinars" class="block px-4 py-2 hover:bg-neutral-light/10">Webinars</a>
+                            <a href="/case-studies" class="block px-4 py-2 hover:bg-neutral-light/10">Case Studies</a>
+			</div>
                     </div>
-                </div>
 
-                <!-- Company -->
-                <div class="relative group flex items-center justify-between w-full md:w-auto">
-                    <a href="/company" class="hover:text-secondary-green md:mr-1">Company</a>
-                    <button class="dropdown-toggle text-sm" aria-label="Toggle Company Dropdown">
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
-                        <a href="/about-us" class="block px-4 py-2 hover:bg-neutral-light/10">About Us</a>
-                        <a href="/our-team" class="block px-4 py-2 hover:bg-neutral-light/10">Our Team</a>
-                        <a href="/careers" class="block px-4 py-2 hover:bg-neutral-light/10">Careers</a>
-                        <a href="/news" class="block px-4 py-2 hover:bg-neutral-light/10">News</a>
-                        <a href="/termsofservice" class="block px-4 py-2 hover:bg-neutral-light/10">Terms of Service</a>
+                    <!-- Company -->
+                    <div class="relative group flex items-center justify-between w-full md:w-auto">
+			<a href="/company" class="hover:text-secondary-green md:mr-1">Company</a>
+			<button class="dropdown-toggle text-sm" aria-label="Toggle Company Dropdown">
+                            <i class="fas fa-chevron-down"></i>
+			</button>
+			<div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+                            <a href="/about-us" class="block px-4 py-2 hover:bg-neutral-light/10">About Us</a>
+                            <a href="/our-team" class="block px-4 py-2 hover:bg-neutral-light/10">Our Team</a>
+                            <a href="/careers" class="block px-4 py-2 hover:bg-neutral-light/10">Careers</a>
+                            <a href="/news" class="block px-4 py-2 hover:bg-neutral-light/10">News</a>
+                            <a href="/termsofservice" class="block px-4 py-2 hover:bg-neutral-light/10">Terms of Service</a>
+			</div>
                     </div>
-                </div>
 
-                <a href="/#contact" class="hover:text-secondary-green">Contact Us</a>
+                    <a href="/#contact" class="hover:text-secondary-green">Contact Us</a>
 
-                <!-- CTA Button -->
-                <div class="mt-4 md:mt-0 md:ml-4">
-                    <a href="/#contact" class="cyber-btn block text-center">Speak to an Expert</a>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section - Crisis Command Center -->
-    <section class="hero pt-32 pb-20 px-4 md:px-8 lg:px-16">
-        <div class="container mx-auto">
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div>
-                    <div class="hero-badge">
-                        <div class="status-indicator active"></div>
-                        <span>Crisis Command Center - Active</span>
+                    <!-- CTA Button -->
+                    <div class="mt-4 md:mt-0 md:ml-4">
+			<a href="/#contact" class="cyber-btn block text-center">Speak to an Expert</a>
                     </div>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                        Rapid Response. <span class="gradient-text">Resilient Recovery.</span>
-                    </h1>
-                    <p class="text-xl text-neutral-light/80 mb-8">
-                        When cyber incidents strike, every second counts. Our expert-led incident response team provides immediate containment, thorough investigation, and complete recovery to minimize damage and strengthen your defenses.
-                    </p>
-                    
-                    <!-- Response Metrics -->
-                    <div class="grid grid-cols-3 gap-4 mb-8">
-                        <div class="card text-center">
-                            <div class="metric-number" data-target="15">0</div>
-                            <div class="metric-label">Minutes Average Response Time</div>
-                        </div>
-                        <div class="card text-center">
-                            <div class="metric-number" data-target="99">0</div>
-                            <div class="metric-label">% Incident Containment Success</div>
-                        </div>
-                        <div class="card text-center">
-                            <div class="metric-number" data-target="24">0</div>
-                            <div class="metric-label">Hours Average Recovery Time</div>
-                        </div>
+		</nav>
+            </div>
+	</header>
+
+	<!-- Hero Section - Crisis Command Center -->
+	<section class="hero pt-32 pb-20 px-4 md:px-8 lg:px-16">
+            <div class="container mx-auto">
+		<div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+			<div class="hero-badge">
+                            <div class="status-indicator active"></div>
+                            <span>Crisis Command Center - Active</span>
+			</div>
+			<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                            Rapid Response. <span class="gradient-text">Resilient Recovery.</span>
+			</h1>
+			<p class="text-xl text-neutral-light/80 mb-8">
+                            When cyber incidents strike, every second counts. Our expert-led incident response team provides immediate containment, thorough investigation, and complete recovery to minimize damage and strengthen your defenses.
+			</p>
+			
+			<!-- Response Metrics -->
+			<div class="grid grid-cols-3 gap-4 mb-8">
+                            <div class="card text-center">
+				<div class="metric-number" data-target="15">0</div>
+				<div class="metric-label">Minutes Average Response Time</div>
+                            </div>
+                            <div class="card text-center">
+				<div class="metric-number" data-target="99">0</div>
+				<div class="metric-label">% Incident Containment Success</div>
+                            </div>
+                            <div class="card text-center">
+				<div class="metric-number" data-target="24">0</div>
+				<div class="metric-label">Hours Average Recovery Time</div>
+                            </div>
+			</div>
+			
+			<div class="flex gap-4">
+                            <button class="emergency-button">
+				<i class="fas fa-phone"></i>
+				Emergency Hotline
+                            </button>
+                            <button class="cyber-btn secondary">Learn More</button>
+			</div>
                     </div>
                     
-                    <div class="flex gap-4">
-                        <button class="emergency-button">
-                            <i class="fas fa-phone"></i>
-                            Emergency Hotline
-                        </button>
-                        <button class="cyber-btn secondary">Learn More</button>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="expert-status flex items-center mb-4">
-                        <div class="status-indicator active"></div>
-                        <span class="text-sm">Command Center Online</span>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <h4 class="text-lg font-bold mb-3">Active Incidents</h4>
-                            <div class="space-y-3">
-                                <div class="flex items-center gap-3 p-2 bg-primary-dark/50 rounded">
-                                    <div class="incident-severity low"></div>
-                                    <div class="flex-1">
-                                        <div class="font-medium">Phishing Attempt</div>
-                                        <div class="text-sm text-neutral-light/70">Resolved - 2 min ago</div>
+                    <div class="card">
+			<div class="expert-status flex items-center mb-4">
+                            <div class="status-indicator active"></div>
+                            <span class="text-sm">Command Center Online</span>
+			</div>
+			
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+				<h4 class="text-lg font-bold mb-3">Active Incidents</h4>
+				<div class="space-y-3">
+                                    <div class="flex items-center gap-3 p-2 bg-primary-dark/50 rounded">
+					<div class="incident-severity low"></div>
+					<div class="flex-1">
+                                            <div class="font-medium">Phishing Attempt</div>
+                                            <div class="text-sm text-neutral-light/70">Resolved - 2 min ago</div>
+					</div>
+					<div class="text-secondary-green">✓</div>
                                     </div>
-                                    <div class="text-secondary-green">✓</div>
-                                </div>
-                                <div class="flex items-center gap-3 p-2 bg-primary-dark/50 rounded">
-                                    <div class="incident-severity medium"></div>
-                                    <div class="flex-1">
-                                        <div class="font-medium">Malware Detection</div>
-                                        <div class="text-sm text-neutral-light/70">Investigating - 5 min</div>
+                                    <div class="flex items-center gap-3 p-2 bg-primary-dark/50 rounded">
+					<div class="incident-severity medium"></div>
+					<div class="flex-1">
+                                            <div class="font-medium">Malware Detection</div>
+                                            <div class="text-sm text-neutral-light/70">Investigating - 5 min</div>
+					</div>
+					<div class="text-yellow-500">⚡</div>
                                     </div>
-                                    <div class="text-yellow-500">⚡</div>
-                                </div>
-                                <div class="flex items-center gap-3 p-2 bg-primary-dark/50 rounded">
-                                    <div class="incident-severity low"></div>
-                                    <div class="flex-1">
-                                        <div class="font-medium">Unusual Traffic</div>
-                                        <div class="text-sm text-neutral-light/70">Monitoring - 12 min</div>
+                                    <div class="flex items-center gap-3 p-2 bg-primary-dark/50 rounded">
+					<div class="incident-severity low"></div>
+					<div class="flex-1">
+                                            <div class="font-medium">Unusual Traffic</div>
+                                            <div class="text-sm text-neutral-light/70">Monitoring - 12 min</div>
+					</div>
+					<div class="text-accent-purple">👁</div>
                                     </div>
-                                    <div class="text-accent-purple">👁</div>
-                                </div>
+				</div>
                             </div>
-                        </div>
-                        
-                        <div>
-                            <h4 class="text-lg font-bold mb-3">Response Team</h4>
-                            <div class="space-y-3">
-                                <div class="flex items-center gap-3 p-2 bg-primary-dark/50 rounded">
-                                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-secondary-green to-accent-purple flex items-center justify-center text-neutral-dark font-bold">JD</div>
-                                    <div class="flex-1">
-                                        <div class="font-medium">John Doe</div>
-                                        <div class="text-sm text-neutral-light/70">Lead Analyst</div>
+                            
+                            <div>
+				<h4 class="text-lg font-bold mb-3">Response Team</h4>
+				<div class="space-y-3">
+                                    <div class="flex items-center gap-3 p-2 bg-primary-dark/50 rounded">
+					<div class="w-8 h-8 rounded-full bg-gradient-to-r from-secondary-green to-accent-purple flex items-center justify-center text-neutral-dark font-bold">JD</div>
+					<div class="flex-1">
+                                            <div class="font-medium">John Doe</div>
+                                            <div class="text-sm text-neutral-light/70">Lead Analyst</div>
+					</div>
+					<div class="status-indicator active"></div>
                                     </div>
-                                    <div class="status-indicator active"></div>
-                                </div>
-                                <div class="flex items-center gap-3 p-2 bg-primary-dark/50 rounded">
-                                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-secondary-green to-accent-purple flex items-center justify-center text-neutral-dark font-bold">SM</div>
-                                    <div class="flex-1">
-                                        <div class="font-medium">Sarah Miller</div>
-                                        <div class="text-sm text-neutral-light/70">Forensics Expert</div>
+                                    <div class="flex items-center gap-3 p-2 bg-primary-dark/50 rounded">
+					<div class="w-8 h-8 rounded-full bg-gradient-to-r from-secondary-green to-accent-purple flex items-center justify-center text-neutral-dark font-bold">SM</div>
+					<div class="flex-1">
+                                            <div class="font-medium">Sarah Miller</div>
+                                            <div class="text-sm text-neutral-light/70">Forensics Expert</div>
+					</div>
+					<div class="status-indicator busy"></div>
                                     </div>
-                                    <div class="status-indicator busy"></div>
-                                </div>
-                                <div class="flex items-center gap-3 p-2 bg-primary-dark/50 rounded">
-                                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-secondary-green to-accent-purple flex items-center justify-center text-neutral-dark font-bold">RJ</div>
-                                    <div class="flex-1">
-                                        <div class="font-medium">Robert Johnson</div>
-                                        <div class="text-sm text-neutral-light/70">Recovery Specialist</div>
+                                    <div class="flex items-center gap-3 p-2 bg-primary-dark/50 rounded">
+					<div class="w-8 h-8 rounded-full bg-gradient-to-r from-secondary-green to-accent-purple flex items-center justify-center text-neutral-dark font-bold">RJ</div>
+					<div class="flex-1">
+                                            <div class="font-medium">Robert Johnson</div>
+                                            <div class="text-sm text-neutral-light/70">Recovery Specialist</div>
+					</div>
+					<div class="status-indicator active"></div>
                                     </div>
-                                    <div class="status-indicator active"></div>
-                                </div>
+				</div>
                             </div>
-                        </div>
+			</div>
                     </div>
-                </div>
+		</div>
             </div>
-        </div>
-    </section>
+	</section>
 
-    <!-- Incident Response Capabilities -->
-    <section class="py-20 px-4 md:px-8 lg:px-16 bg-primary-dark">
-        <div class="container mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    Comprehensive <span class="gradient-text">Response Capabilities</span>
-                </h2>
-                <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto">
-                    From initial detection to complete recovery, our expert team handles every aspect of incident response with precision and speed.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card">
-                    <div class="capability-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">Rapid Triage & Analysis</h3>
-                    <p class="text-neutral-light/70 mb-4">
-                        Immediate assessment and classification of security incidents with advanced threat intelligence integration and scope determination.
-                    </p>
-                    
-                    <div class="bg-secondary-green/10 p-3 rounded-md mb-4">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="text-center">
-                                <span class="font-bold text-secondary-green">&lt; 15 min</span>
-                                <span class="text-sm text-neutral-light/70 block">Initial Response</span>
-                            </div>
-                            <div class="text-center">
-                                <span class="font-bold text-secondary-green">98%</span>
-                                <span class="text-sm text-neutral-light/70 block">Accurate Classification</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">SIEM Integration</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Threat Intel</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Custom Analytics</span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="capability-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">Containment & Eradication</h3>
-                    <p class="text-neutral-light/70 mb-4">
-                        Swift isolation of threats and complete removal of malicious actors while preserving critical business operations and evidence.
-                    </p>
-                    
-                    <div class="bg-secondary-green/10 p-3 rounded-md mb-4">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="text-center">
-                                <span class="font-bold text-secondary-green">&lt; 30 min</span>
-                                <span class="text-sm text-neutral-light/70 block">Threat Containment</span>
-                            </div>
-                            <div class="text-center">
-                                <span class="font-bold text-secondary-green">100%</span>
-                                <span class="text-sm text-neutral-light/70 block">Eradication Success</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">EDR Platforms</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Network Isolation</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Malware Analysis</span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="capability-icon">
-                        <i class="fas fa-sync-alt"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">Recovery & Restoration</h3>
-                    <p class="text-neutral-light/70 mb-4">
-                        Systematic restoration of affected systems and services with enhanced security measures to prevent reoccurrence.
-                    </p>
-                    
-                    <div class="bg-secondary-green/10 p-3 rounded-md mb-4">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="text-center">
-                                <span class="font-bold text-secondary-green">&lt; 24 hrs</span>
-                                <span class="text-sm text-neutral-light/70 block">Full Recovery</span>
-                            </div>
-                            <div class="text-center">
-                                <span class="font-bold text-secondary-green">99.9%</span>
-                                <span class="text-sm text-neutral-light/70 block">Uptime Restoration</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Backup Systems</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Patch Management</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Security Hardening</span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="capability-icon">
-                        <i class="fas fa-microscope"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">Digital Forensics</h3>
-                    <p class="text-neutral-light/70 mb-4">
-                        Comprehensive evidence collection and analysis to understand attack vectors, preserve legal evidence, and strengthen defenses.
-                    </p>
-                    
-                    <div class="bg-secondary-green/10 p-3 rounded-md mb-4">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="text-center">
-                                <span class="font-bold text-secondary-green">Court-Ready</span>
-                                <span class="text-sm text-neutral-light/70 block">Evidence Quality</span>
-                            </div>
-                            <div class="text-center">
-                                <span class="font-bold text-secondary-green">100%</span>
-                                <span class="text-sm text-neutral-light/70 block">Chain of Custody</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">EnCase</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Volatility</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Custom Tools</span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="capability-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">Post-Incident Analysis</h3>
-                    <p class="text-neutral-light/70 mb-4">
-                        Detailed root cause analysis and strategic recommendations to improve security posture and prevent future incidents.
-                    </p>
-                    
-                    <div class="bg-secondary-green/10 p-3 rounded-md mb-4">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="text-center">
-                                <span class="font-bold text-secondary-green">Actionable</span>
-                                <span class="text-sm text-neutral-light/70 block">Recommendations</span>
-                            </div>
-                            <div class="text-center">
-                                <span class="font-bold text-secondary-green">85%</span>
-                                <span class="text-sm text-neutral-light/70 block">Recurrence Reduction</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Risk Assessment</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Gap Analysis</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Strategic Planning</span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="capability-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">Crisis Communication</h3>
-                    <p class="text-neutral-light/70 mb-4">
-                        Expert guidance on stakeholder communication, regulatory compliance, and reputation management during and after incidents.
-                    </p>
-                    
-                    <div class="bg-secondary-green/10 p-3 rounded-md mb-4">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="text-center">
-                                <span class="font-bold text-secondary-green">24/7</span>
-                                <span class="text-sm text-neutral-light/70 block">Communication Support</span>
-                            </div>
-                            <div class="text-center">
-                                <span class="font-bold text-secondary-green">Compliant</span>
-                                <span class="text-sm text-neutral-light/70 block">Regulatory Reporting</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">GDPR Compliance</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Media Relations</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Legal Support</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Incident Timeline -->
-    <section class="py-20 px-4 md:px-8 lg:px-16 bg-primary-medium/10">
-        <div class="container mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    Incident Response <span class="gradient-text">Journey</span>
-                </h2>
-                <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto">
-                    Follow a typical cyber incident from detection to complete resolution, showcasing our systematic approach and expertise.
-                </p>
-            </div>
-            
-            <div class="max-w-4xl mx-auto relative pl-16">
-                <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-secondary-green"></div>
-                
-                <div class="relative mb-12">
-                    <div class="absolute -left-16 top-0 timeline-marker">
-                        <div class="font-bold">1</div>
-                    </div>
-                    <div class="card">
-                        <h3 class="text-2xl font-bold mb-3">Detection & Alert</h3>
-                        <p class="text-neutral-light/70 mb-4">
-                            Automated systems detect anomalous activity. Security team receives immediate alert with initial threat assessment.
-                        </p>
-                        <div class="text-secondary-green text-sm font-semibold mb-3">T+0 minutes</div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Alert Generated</span>
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Team Notified</span>
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Initial Triage</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="relative mb-12">
-                    <div class="absolute -left-16 top-0 timeline-marker">
-                        <div class="font-bold">2</div>
-                    </div>
-                    <div class="card">
-                        <h3 class="text-2xl font-bold mb-3">Rapid Assessment</h3>
-                        <p class="text-neutral-light/70 mb-4">
-                            Expert analysts perform immediate threat classification and scope assessment to determine response strategy.
-                        </p>
-                        <div class="text-secondary-green text-sm font-semibold mb-3">T+5 minutes</div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Threat Analysis</span>
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Scope Assessment</span>
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Response Planning</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="relative mb-12">
-                    <div class="absolute -left-16 top-0 timeline-marker">
-                        <div class="font-bold">3</div>
-                    </div>
-                    <div class="card">
-                        <h3 class="text-2xl font-bold mb-3">Containment</h3>
-                        <p class="text-neutral-light/70 mb-4">
-                            Swift isolation of affected systems and networks to prevent lateral movement while preserving evidence.
-                        </p>
-                        <div class="text-secondary-green text-sm font-semibold mb-3">T+15 minutes</div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">System Isolation</span>
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Network Segmentation</span>
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Evidence Preservation</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="relative mb-12">
-                    <div class="absolute -left-16 top-0 timeline-marker">
-                        <div class="font-bold">4</div>
-                    </div>
-                    <div class="card">
-                        <h3 class="text-2xl font-bold mb-3">Investigation</h3>
-                        <p class="text-neutral-light/70 mb-4">
-                            Comprehensive forensic analysis to understand attack vectors, identify compromised assets, and gather evidence.
-                        </p>
-                        <div class="text-secondary-green text-sm font-semibold mb-3">T+30 minutes</div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Forensic Analysis</span>
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Attack Vector ID</span>
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Evidence Collection</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="relative mb-12">
-                    <div class="absolute -left-16 top-0 timeline-marker">
-                        <div class="font-bold">5</div>
-                    </div>
-                    <div class="card">
-                        <h3 class="text-2xl font-bold mb-3">Eradication</h3>
-                        <p class="text-neutral-light/70 mb-4">
-                            Complete removal of malicious presence and vulnerabilities that enabled the attack.
-                        </p>
-                        <div class="text-secondary-green text-sm font-semibold mb-3">T+2 hours</div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Malware Removal</span>
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Vulnerability Patching</span>
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Security Hardening</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="relative mb-12">
-                    <div class="absolute -left-16 top-0 timeline-marker">
-                        <div class="font-bold">6</div>
-                    </div>
-                    <div class="card">
-                        <h3 class="text-2xl font-bold mb-3">Recovery</h3>
-                        <p class="text-neutral-light/70 mb-4">
-                            Systematic restoration of services with enhanced monitoring and security measures.
-                        </p>
-                        <div class="text-secondary-green text-sm font-semibold mb-3">T+6 hours</div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Service Restoration</span>
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Enhanced Monitoring</span>
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Validation Testing</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="relative">
-                    <div class="absolute -left-16 top-0 timeline-marker">
-                        <div class="font-bold">7</div>
-                    </div>
-                    <div class="card">
-                        <h3 class="text-2xl font-bold mb-3">Lessons Learned</h3>
-                        <p class="text-neutral-light/70 mb-4">
-                            Comprehensive post-incident review with actionable recommendations for improved security posture.
-                        </p>
-                        <div class="text-secondary-green text-sm font-semibold mb-3">T+24 hours</div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Root Cause Analysis</span>
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Security Improvements</span>
-                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Documentation</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="flex justify-center gap-4 mt-8">
-                <button class="cyber-btn">
-                    <i class="fas fa-play mr-2"></i> Play Scenario
-                </button>
-                <button class="cyber-btn secondary">
-                    <i class="fas fa-undo mr-2"></i> Reset
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Expert Team -->
-    <section class="py-20 px-4 md:px-8 lg:px-16 bg-primary-dark">
-        <div class="container mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    Elite <span class="gradient-text">Response Team</span>
-                </h2>
-                <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto">
-                    Meet our certified incident response experts, ready to deploy at a moment's notice to handle any cyber crisis.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card text-center">
-                    <div class="expert-status flex items-center justify-center mb-4">
-                        <div class="status-indicator active"></div>
-                        <span class="text-sm">Available - On Call</span>
-                    </div>
-                    <div class="expert-image mx-auto">
-                        <i class="fas fa-user-shield"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2">Dr. Sarah Chen</h3>
-                    <div class="text-secondary-green font-semibold mb-3">Lead Incident Response Manager</div>
-                    <p class="text-neutral-light/70 mb-6">
-                        15+ years in cybersecurity with expertise in advanced persistent threats and nation-state attacks.
-                    </p>
-                    
-                    <div class="flex justify-center gap-2 mb-4">
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">GCIH</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">GCFA</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">CISSP</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">CISM</span>
-                    </div>
-                    
-                    <div class="space-y-3">
-                        <div class="flex items-center">
-                            <span class="text-sm w-24 text-left">Malware Analysis</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <span class="text-sm w-24 text-left">Forensics</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <span class="text-sm w-24 text-left">Crisis Management</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 98%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card text-center">
-                    <div class="expert-status flex items-center justify-center mb-4">
-                        <div class="status-indicator busy"></div>
-                        <span class="text-sm">Active Incident - ETA 2 hrs</span>
-                    </div>
-                    <div class="expert-image mx-auto">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2">Marcus Rodriguez</h3>
-                    <div class="text-secondary-green font-semibold mb-3">Senior Digital Forensics Analyst</div>
-                    <p class="text-neutral-light/70 mb-6">
-                        Specialized in memory forensics and advanced evasion techniques with law enforcement background.
-                    </p>
-                    
-                    <div class="flex justify-center gap-2 mb-4">
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">GCFA</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">GNFA</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">EnCE</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">CCE</span>
-                    </div>
-                    
-                    <div class="space-y-3">
-                        <div class="flex items-center">
-                            <span class="text-sm w-24 text-left">Memory Forensics</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 96%"></div>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <span class="text-sm w-24 text-left">Network Analysis</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 88%"></div>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <span class="text-sm w-24 text-left">Legal Procedures</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 92%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card text-center">
-                    <div class="expert-status flex items-center justify-center mb-4">
-                        <div class="status-indicator active"></div>
-                        <span class="text-sm">Available - Standby</span>
-                    </div>
-                    <div class="expert-image mx-auto">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2">Emily Thompson</h3>
-                    <div class="text-secondary-green font-semibold mb-3">Recovery & Remediation Specialist</div>
-                    <p class="text-neutral-light/70 mb-6">
-                        Expert in business continuity and rapid system recovery with cloud infrastructure specialization.
-                    </p>
-                    
-                    <div class="flex justify-center gap-2 mb-4">
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">GCIH</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">AWS-CSA</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">CBCP</span>
-                        <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">CISSP</span>
-                    </div>
-                    
-                    <div class="space-y-3">
-                        <div class="flex items-center">
-                            <span class="text-sm w-24 text-left">System Recovery</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 94%"></div>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <span class="text-sm w-24 text-left">Cloud Security</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 91%"></div>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <span class="text-sm w-24 text-left">Business Continuity</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 89%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Retainer Program -->
-    <section class="py-20 px-4 md:px-8 lg:px-16 bg-primary-medium/10">
-        <div class="container mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    Incident Response <span class="gradient-text">Retainer Program</span>
-                </h2>
-                <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto">
-                    Secure priority access to our expert team with guaranteed response times and proactive security services.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-4 gap-8">
-                <div class="card text-center">
-                    <div class="capability-icon mx-auto">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Guaranteed Response Times</h3>
-                    <p class="text-neutral-light/70 mb-4">
-                        Priority access with guaranteed 15-minute response for critical incidents and 1-hour for high-priority events.
-                    </p>
-                    <span class="px-4 py-2 rounded-full bg-secondary-green/10 text-secondary-green text-sm font-semibold">15 min response guarantee</span>
-                </div>
-
-                <div class="card text-center">
-                    <div class="capability-icon mx-auto">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Pre-Negotiated Rates</h3>
-                    <p class="text-neutral-light/70 mb-4">
-                        Fixed pricing structure eliminates surprise costs during crisis situations when every decision matters.
-                    </p>
-                    <span class="px-4 py-2 rounded-full bg-secondary-green/10 text-secondary-green text-sm font-semibold">No surprise costs</span>
-                </div>
-
-                <div class="card text-center">
-                    <div class="capability-icon mx-auto">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Proactive Services</h3>
-                    <p class="text-neutral-light/70 mb-4">
-                        Regular security assessments, threat hunting, and preparedness exercises to prevent incidents before they occur.
-                    </p>
-                    <span class="px-4 py-2 rounded-full bg-secondary-green/10 text-secondary-green text-sm font-semibold">Prevention focused</span>
-                </div>
-
-                <div class="card text-center">
-                    <div class="capability-icon mx-auto">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Dedicated Relationship</h3>
-                    <p class="text-neutral-light/70 mb-4">
-                        Assigned team members who understand your environment, business, and specific security challenges.
-                    </p>
-                    <span class="px-4 py-2 rounded-full bg-secondary-green/10 text-secondary-green text-sm font-semibold">Personalized service</span>
-                </div>
-            </div>
-            
-            <div class="flex justify-center gap-4 mt-12">
-                <button class="cyber-btn">Explore Retainer Options</button>
-                <button class="cyber-btn secondary">Schedule Consultation</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Emergency Contact -->
-    <section class="py-20 px-4 md:px-8 lg:px-16 bg-primary-dark">
-        <div class="container mx-auto">
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                        Need Immediate <span class="gradient-text">Assistance?</span>
+	<!-- Incident Response Capabilities -->
+	<section class="py-20 px-4 md:px-8 lg:px-16 bg-primary-dark">
+            <div class="container mx-auto">
+		<div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+			Comprehensive <span class="gradient-text">Response Capabilities</span>
                     </h2>
-                    <p class="text-xl text-neutral-light/80 mb-8">
-                        If you're experiencing a security incident right now, don't wait. Our emergency response team is standing by 24/7 to provide immediate assistance.
+                    <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto">
+			From initial detection to complete recovery, our expert team handles every aspect of incident response with precision and speed.
                     </p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4 p-4 bg-primary-dark/50 rounded-lg border border-primary-medium">
-                            <div class="w-12 h-12 rounded-lg bg-gradient-to-r from-secondary-green to-accent-purple flex items-center justify-center text-neutral-dark">
-                                <i class="fas fa-phone"></i>
+		</div>
+		
+		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card">
+			<div class="capability-icon">
+                            <i class="fas fa-search"></i>
+			</div>
+			<h3 class="text-2xl font-bold mb-3">Rapid Triage & Analysis</h3>
+			<p class="text-neutral-light/70 mb-4">
+                            Immediate assessment and classification of security incidents with advanced threat intelligence integration and scope determination.
+			</p>
+			
+			<div class="bg-secondary-green/10 p-3 rounded-md mb-4">
+                            <div class="grid grid-cols-2 gap-4">
+				<div class="text-center">
+                                    <span class="font-bold text-secondary-green">&lt; 15 min</span>
+                                    <span class="text-sm text-neutral-light/70 block">Initial Response</span>
+				</div>
+				<div class="text-center">
+                                    <span class="font-bold text-secondary-green">98%</span>
+                                    <span class="text-sm text-neutral-light/70 block">Accurate Classification</span>
+				</div>
                             </div>
-                            <div>
-                                <h4 class="text-lg font-bold mb-1">Emergency Hotline</h4>
-                                <p class="text-secondary-green font-semibold">+44 (0) 800 123 4567</p>
-                                <span class="text-sm text-neutral-light/70">Available 24/7/365</span>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start gap-4 p-4 bg-primary-dark/50 rounded-lg border border-primary-medium">
-                            <div class="w-12 h-12 rounded-lg bg-gradient-to-r from-secondary-green to-accent-purple flex items-center justify-center text-neutral-dark">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-bold mb-1">Emergency Email</h4>
-                                <p class="text-secondary-green font-semibold">emergency@protekcyber.com</p>
-                                <span class="text-sm text-neutral-light/70">Monitored continuously</span>
-                            </div>
-                        </div>
+			</div>
+			
+			<div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">SIEM Integration</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Threat Intel</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Custom Analytics</span>
+			</div>
                     </div>
-                    
-                    <div class="mt-8">
-                        <h4 class="text-lg font-bold mb-4">Before You Call:</h4>
-                        <ul class="space-y-2">
-                            <li class="flex items-start gap-2">
-                                <span class="text-secondary-green">•</span>
-                                <span class="text-neutral-light/70">Document the incident time and initial observations</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-secondary-green">•</span>
-                                <span class="text-neutral-light/70">Isolate affected systems if safe to do so</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-secondary-green">•</span>
-                                <span class="text-neutral-light/70">Preserve any evidence or logs</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-secondary-green">•</span>
-                                <span class="text-neutral-light/70">Prepare to describe the scope and impact</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="card p-6 bg-primary-dark/70 border border-primary-medium">
-                    <div class="text-center mb-6">
-                        <h3 class="text-2xl font-bold mb-2">Non-Emergency Inquiry</h3>
-                        <p class="text-neutral-light/70">For general questions about our incident response services</p>
-                    </div>
-                    
-                    <form class="space-y-4">
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium mb-1 text-neutral-light">Name *</label>
-                                <input type="text" class="w-full bg-primary-dark border border-primary-medium rounded-md px-4 py-2 text-neutral-light placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-secondary-green" placeholder="Enter your name" required>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium mb-1 text-neutral-light">Email *</label>
-                                <input type="email" class="w-full bg-primary-dark border border-primary-medium rounded-md px-4 py-2 text-neutral-light placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-secondary-green" placeholder="Enter your email" required>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium mb-1 text-neutral-light">Company</label>
-                            <input type="text" class="w-full bg-primary-dark border border-primary-medium rounded-md px-4 py-2 text-neutral-light placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-secondary-green" placeholder="Enter your company name">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium mb-1 text-neutral-light">Service Interest</label>
-                            <select class="w-full bg-primary-dark border border-primary-medium rounded-md px-4 py-2 text-neutral-light focus:outline-none focus:ring-2 focus:ring-secondary-green" required>
-                                <option value="">Select a service</option>
-                                <option value="retainer">Incident Response Retainer</option>
-                                <option value="assessment">Security Assessment</option>
-                                <option value="training">Team Training</option>
-                                <option value="consultation">General Consultation</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium mb-1 text-neutral-light">Message *</label>
-                            <textarea class="w-full bg-primary-dark border border-primary-medium rounded-md px-4 py-2 text-neutral-light placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-secondary-green" rows="4" placeholder="Tell us about your incident response needs..." required></textarea>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <input type="checkbox" id="consent" class="mt-1 mr-2 accent-secondary-green border-primary-medium" required>
-                            <label for="consent" class="text-sm text-neutral-light/80">
-                                I consent to ProtekCyber contacting me about incident response services and agree to the privacy policy.
-                            </label>
-                        </div>
-                        
-                        <button type="submit" class="w-full cyber-btn py-3 px-6 text-lg font-semibold">
-                            Send Inquiry
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="py-12 px-4 md:px-8 lg:px-16 bg-neutral-dark border-t border-primary-medium">
-        <div class="container mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                <div>
-                    <a href="/index.html" style="display: inline-block; padding-bottom: 20px;" class="text-2xl font-bold gradient-text">ProtekCyber</a>
-                    
-                    <p class="text-neutral-light/70 mb-6">
-                        Expert-led cyber security consultancy tailored to your business needs, compliance goals, and growth strategy.
+                    <div class="card">
+			<div class="capability-icon">
+                            <i class="fas fa-shield-alt"></i>
+			</div>
+			<h3 class="text-2xl font-bold mb-3">Containment & Eradication</h3>
+			<p class="text-neutral-light/70 mb-4">
+                            Swift isolation of threats and complete removal of malicious actors while preserving critical business operations and evidence.
+			</p>
+			
+			<div class="bg-secondary-green/10 p-3 rounded-md mb-4">
+                            <div class="grid grid-cols-2 gap-4">
+				<div class="text-center">
+                                    <span class="font-bold text-secondary-green">&lt; 30 min</span>
+                                    <span class="text-sm text-neutral-light/70 block">Threat Containment</span>
+				</div>
+				<div class="text-center">
+                                    <span class="font-bold text-secondary-green">100%</span>
+                                    <span class="text-sm text-neutral-light/70 block">Eradication Success</span>
+				</div>
+                            </div>
+			</div>
+			
+			<div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">EDR Platforms</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Network Isolation</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Malware Analysis</span>
+			</div>
+                    </div>
+
+                    <div class="card">
+			<div class="capability-icon">
+                            <i class="fas fa-sync-alt"></i>
+			</div>
+			<h3 class="text-2xl font-bold mb-3">Recovery & Restoration</h3>
+			<p class="text-neutral-light/70 mb-4">
+                            Systematic restoration of affected systems and services with enhanced security measures to prevent reoccurrence.
+			</p>
+			
+			<div class="bg-secondary-green/10 p-3 rounded-md mb-4">
+                            <div class="grid grid-cols-2 gap-4">
+				<div class="text-center">
+                                    <span class="font-bold text-secondary-green">&lt; 24 hrs</span>
+                                    <span class="text-sm text-neutral-light/70 block">Full Recovery</span>
+				</div>
+				<div class="text-center">
+                                    <span class="font-bold text-secondary-green">99.9%</span>
+                                    <span class="text-sm text-neutral-light/70 block">Uptime Restoration</span>
+				</div>
+                            </div>
+			</div>
+			
+			<div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Backup Systems</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Patch Management</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Security Hardening</span>
+			</div>
+                    </div>
+
+                    <div class="card">
+			<div class="capability-icon">
+                            <i class="fas fa-microscope"></i>
+			</div>
+			<h3 class="text-2xl font-bold mb-3">Digital Forensics</h3>
+			<p class="text-neutral-light/70 mb-4">
+                            Comprehensive evidence collection and analysis to understand attack vectors, preserve legal evidence, and strengthen defenses.
+			</p>
+			
+			<div class="bg-secondary-green/10 p-3 rounded-md mb-4">
+                            <div class="grid grid-cols-2 gap-4">
+				<div class="text-center">
+                                    <span class="font-bold text-secondary-green">Court-Ready</span>
+                                    <span class="text-sm text-neutral-light/70 block">Evidence Quality</span>
+				</div>
+				<div class="text-center">
+                                    <span class="font-bold text-secondary-green">100%</span>
+                                    <span class="text-sm text-neutral-light/70 block">Chain of Custody</span>
+				</div>
+                            </div>
+			</div>
+			
+			<div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">EnCase</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Volatility</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Custom Tools</span>
+			</div>
+                    </div>
+
+                    <div class="card">
+			<div class="capability-icon">
+                            <i class="fas fa-chart-line"></i>
+			</div>
+			<h3 class="text-2xl font-bold mb-3">Post-Incident Analysis</h3>
+			<p class="text-neutral-light/70 mb-4">
+                            Detailed root cause analysis and strategic recommendations to improve security posture and prevent future incidents.
+			</p>
+			
+			<div class="bg-secondary-green/10 p-3 rounded-md mb-4">
+                            <div class="grid grid-cols-2 gap-4">
+				<div class="text-center">
+                                    <span class="font-bold text-secondary-green">Actionable</span>
+                                    <span class="text-sm text-neutral-light/70 block">Recommendations</span>
+				</div>
+				<div class="text-center">
+                                    <span class="font-bold text-secondary-green">85%</span>
+                                    <span class="text-sm text-neutral-light/70 block">Recurrence Reduction</span>
+				</div>
+                            </div>
+			</div>
+			
+			<div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Risk Assessment</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Gap Analysis</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Strategic Planning</span>
+			</div>
+                    </div>
+
+                    <div class="card">
+			<div class="capability-icon">
+                            <i class="fas fa-users"></i>
+			</div>
+			<h3 class="text-2xl font-bold mb-3">Crisis Communication</h3>
+			<p class="text-neutral-light/70 mb-4">
+                            Expert guidance on stakeholder communication, regulatory compliance, and reputation management during and after incidents.
+			</p>
+			
+			<div class="bg-secondary-green/10 p-3 rounded-md mb-4">
+                            <div class="grid grid-cols-2 gap-4">
+				<div class="text-center">
+                                    <span class="font-bold text-secondary-green">24/7</span>
+                                    <span class="text-sm text-neutral-light/70 block">Communication Support</span>
+				</div>
+				<div class="text-center">
+                                    <span class="font-bold text-secondary-green">Compliant</span>
+                                    <span class="text-sm text-neutral-light/70 block">Regulatory Reporting</span>
+				</div>
+                            </div>
+			</div>
+			
+			<div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">GDPR Compliance</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Media Relations</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Legal Support</span>
+			</div>
+                    </div>
+		</div>
+            </div>
+	</section>
+
+	<!-- Interactive Incident Timeline -->
+	<section class="py-20 px-4 md:px-8 lg:px-16 bg-primary-medium/10">
+            <div class="container mx-auto">
+		<div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+			Incident Response <span class="gradient-text">Journey</span>
+                    </h2>
+                    <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto">
+			Follow a typical cyber incident from detection to complete resolution, showcasing our systematic approach and expertise.
                     </p>
+		</div>
+		
+		<div class="max-w-4xl mx-auto relative pl-16">
+                    <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-secondary-green"></div>
                     
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+                    <div class="relative mb-12">
+			<div class="absolute -left-16 top-0 timeline-marker">
+                            <div class="font-bold">1</div>
+			</div>
+			<div class="card">
+                            <h3 class="text-2xl font-bold mb-3">Detection & Alert</h3>
+                            <p class="text-neutral-light/70 mb-4">
+				Automated systems detect anomalous activity. Security team receives immediate alert with initial threat assessment.
+                            </p>
+                            <div class="text-secondary-green text-sm font-semibold mb-3">T+0 minutes</div>
+                            <div class="flex flex-wrap gap-2">
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Alert Generated</span>
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Team Notified</span>
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Initial Triage</span>
+                            </div>
+			</div>
                     </div>
-                </div>
-                
-                <div>
-                    <div class="text-lg font-bold mb-6">Services</div>
-                    <ul class="space-y-4">
-                        <li>
-                            <a href="/soc" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                SOC as a Service
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/penetration" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Penetration Testing
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/incident" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Incident Response
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/cloud-sec" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Cloud Security
-                            </a>
-                        </li>
-                        <li>
-                            <a href="data-protect" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Data Protection
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <div class="text-lg font-bold mb-6">Company</div>
-                    <ul class="space-y-4">
-                        <li>
-                            <a href="/about-us" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/our-team " class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Our Team
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/careers" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Careers
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/news" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                News
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/termsofservice" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Terms of Service
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <div class="text-lg font-bold mb-6">Resources</div>
-                    <ul class="space-y-4">
-                        <li>
-                            <a href="/knowledge-base" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Knowledge Base
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/security-guides" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Security Guides
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/threat-intelligence" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Threat Intelligence
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/webinars" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Webinars
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/case-studies" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Case Studies
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                    
+                    <div class="relative mb-12">
+			<div class="absolute -left-16 top-0 timeline-marker">
+                            <div class="font-bold">2</div>
+			</div>
+			<div class="card">
+                            <h3 class="text-2xl font-bold mb-3">Rapid Assessment</h3>
+                            <p class="text-neutral-light/70 mb-4">
+				Expert analysts perform immediate threat classification and scope assessment to determine response strategy.
+                            </p>
+                            <div class="text-secondary-green text-sm font-semibold mb-3">T+5 minutes</div>
+                            <div class="flex flex-wrap gap-2">
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Threat Analysis</span>
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Scope Assessment</span>
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Response Planning</span>
+                            </div>
+			</div>
+                    </div>
+                    
+                    <div class="relative mb-12">
+			<div class="absolute -left-16 top-0 timeline-marker">
+                            <div class="font-bold">3</div>
+			</div>
+			<div class="card">
+                            <h3 class="text-2xl font-bold mb-3">Containment</h3>
+                            <p class="text-neutral-light/70 mb-4">
+				Swift isolation of affected systems and networks to prevent lateral movement while preserving evidence.
+                            </p>
+                            <div class="text-secondary-green text-sm font-semibold mb-3">T+15 minutes</div>
+                            <div class="flex flex-wrap gap-2">
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">System Isolation</span>
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Network Segmentation</span>
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Evidence Preservation</span>
+                            </div>
+			</div>
+                    </div>
+                    
+                    <div class="relative mb-12">
+			<div class="absolute -left-16 top-0 timeline-marker">
+                            <div class="font-bold">4</div>
+			</div>
+			<div class="card">
+                            <h3 class="text-2xl font-bold mb-3">Investigation</h3>
+                            <p class="text-neutral-light/70 mb-4">
+				Comprehensive forensic analysis to understand attack vectors, identify compromised assets, and gather evidence.
+                            </p>
+                            <div class="text-secondary-green text-sm font-semibold mb-3">T+30 minutes</div>
+                            <div class="flex flex-wrap gap-2">
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Forensic Analysis</span>
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Attack Vector ID</span>
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Evidence Collection</span>
+                            </div>
+			</div>
+                    </div>
+                    
+                    <div class="relative mb-12">
+			<div class="absolute -left-16 top-0 timeline-marker">
+                            <div class="font-bold">5</div>
+			</div>
+			<div class="card">
+                            <h3 class="text-2xl font-bold mb-3">Eradication</h3>
+                            <p class="text-neutral-light/70 mb-4">
+				Complete removal of malicious presence and vulnerabilities that enabled the attack.
+                            </p>
+                            <div class="text-secondary-green text-sm font-semibold mb-3">T+2 hours</div>
+                            <div class="flex flex-wrap gap-2">
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Malware Removal</span>
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Vulnerability Patching</span>
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Security Hardening</span>
+                            </div>
+			</div>
+                    </div>
+                    
+                    <div class="relative mb-12">
+			<div class="absolute -left-16 top-0 timeline-marker">
+                            <div class="font-bold">6</div>
+			</div>
+			<div class="card">
+                            <h3 class="text-2xl font-bold mb-3">Recovery</h3>
+                            <p class="text-neutral-light/70 mb-4">
+				Systematic restoration of services with enhanced monitoring and security measures.
+                            </p>
+                            <div class="text-secondary-green text-sm font-semibold mb-3">T+6 hours</div>
+                            <div class="flex flex-wrap gap-2">
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Service Restoration</span>
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Enhanced Monitoring</span>
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Validation Testing</span>
+                            </div>
+			</div>
+                    </div>
+                    
+                    <div class="relative">
+			<div class="absolute -left-16 top-0 timeline-marker">
+                            <div class="font-bold">7</div>
+			</div>
+			<div class="card">
+                            <h3 class="text-2xl font-bold mb-3">Lessons Learned</h3>
+                            <p class="text-neutral-light/70 mb-4">
+				Comprehensive post-incident review with actionable recommendations for improved security posture.
+                            </p>
+                            <div class="text-secondary-green text-sm font-semibold mb-3">T+24 hours</div>
+                            <div class="flex flex-wrap gap-2">
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Root Cause Analysis</span>
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Security Improvements</span>
+				<span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">Documentation</span>
+                            </div>
+			</div>
+                    </div>
+		</div>
+		
+		<div class="flex justify-center gap-4 mt-8">
+                    <button class="cyber-btn">
+			<i class="fas fa-play mr-2"></i> Play Scenario
+                    </button>
+                    <button class="cyber-btn secondary">
+			<i class="fas fa-undo mr-2"></i> Reset
+                    </button>
+		</div>
             </div>
-            
-            <div class="pt-8 border-t border-primary-medium text-center">
-                <p class="text-neutral-light/70">
-                    &copy; 2025 ProtekCyber Consultants. All rights reserved.
-                </p>
+	</section>
+
+	<!-- Expert Team -->
+	<section class="py-20 px-4 md:px-8 lg:px-16 bg-primary-dark">
+            <div class="container mx-auto">
+		<div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+			Elite <span class="gradient-text">Response Team</span>
+                    </h2>
+                    <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto">
+			Meet our certified incident response experts, ready to deploy at a moment's notice to handle any cyber crisis.
+                    </p>
+		</div>
+		
+		<div class="grid md:grid-cols-3 gap-8">
+                    <div class="card text-center">
+			<div class="expert-status flex items-center justify-center mb-4">
+                            <div class="status-indicator active"></div>
+                            <span class="text-sm">Available - On Call</span>
+			</div>
+			<div class="expert-image mx-auto">
+                            <i class="fas fa-user-shield"></i>
+			</div>
+			<h3 class="text-2xl font-bold mb-2">Dr. Sarah Chen</h3>
+			<div class="text-secondary-green font-semibold mb-3">Lead Incident Response Manager</div>
+			<p class="text-neutral-light/70 mb-6">
+                            15+ years in cybersecurity with expertise in advanced persistent threats and nation-state attacks.
+			</p>
+			
+			<div class="flex justify-center gap-2 mb-4">
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">GCIH</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">GCFA</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">CISSP</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">CISM</span>
+			</div>
+			
+			<div class="space-y-3">
+                            <div class="flex items-center">
+				<span class="text-sm w-24 text-left">Malware Analysis</span>
+				<div class="skill-bar">
+                                    <div class="skill-fill" style="width: 95%"></div>
+				</div>
+                            </div>
+                            <div class="flex items-center">
+				<span class="text-sm w-24 text-left">Forensics</span>
+				<div class="skill-bar">
+                                    <div class="skill-fill" style="width: 90%"></div>
+				</div>
+                            </div>
+                            <div class="flex items-center">
+				<span class="text-sm w-24 text-left">Crisis Management</span>
+				<div class="skill-bar">
+                                    <div class="skill-fill" style="width: 98%"></div>
+				</div>
+                            </div>
+			</div>
+                    </div>
+
+                    <div class="card text-center">
+			<div class="expert-status flex items-center justify-center mb-4">
+                            <div class="status-indicator busy"></div>
+                            <span class="text-sm">Active Incident - ETA 2 hrs</span>
+			</div>
+			<div class="expert-image mx-auto">
+                            <i class="fas fa-search"></i>
+			</div>
+			<h3 class="text-2xl font-bold mb-2">Marcus Rodriguez</h3>
+			<div class="text-secondary-green font-semibold mb-3">Senior Digital Forensics Analyst</div>
+			<p class="text-neutral-light/70 mb-6">
+                            Specialized in memory forensics and advanced evasion techniques with law enforcement background.
+			</p>
+			
+			<div class="flex justify-center gap-2 mb-4">
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">GCFA</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">GNFA</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">EnCE</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">CCE</span>
+			</div>
+			
+			<div class="space-y-3">
+                            <div class="flex items-center">
+				<span class="text-sm w-24 text-left">Memory Forensics</span>
+				<div class="skill-bar">
+                                    <div class="skill-fill" style="width: 96%"></div>
+				</div>
+                            </div>
+                            <div class="flex items-center">
+				<span class="text-sm w-24 text-left">Network Analysis</span>
+				<div class="skill-bar">
+                                    <div class="skill-fill" style="width: 88%"></div>
+				</div>
+                            </div>
+                            <div class="flex items-center">
+				<span class="text-sm w-24 text-left">Legal Procedures</span>
+				<div class="skill-bar">
+                                    <div class="skill-fill" style="width: 92%"></div>
+				</div>
+                            </div>
+			</div>
+                    </div>
+
+                    <div class="card text-center">
+			<div class="expert-status flex items-center justify-center mb-4">
+                            <div class="status-indicator active"></div>
+                            <span class="text-sm">Available - Standby</span>
+			</div>
+			<div class="expert-image mx-auto">
+                            <i class="fas fa-cogs"></i>
+			</div>
+			<h3 class="text-2xl font-bold mb-2">Emily Thompson</h3>
+			<div class="text-secondary-green font-semibold mb-3">Recovery & Remediation Specialist</div>
+			<p class="text-neutral-light/70 mb-6">
+                            Expert in business continuity and rapid system recovery with cloud infrastructure specialization.
+			</p>
+			
+			<div class="flex justify-center gap-2 mb-4">
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">GCIH</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">AWS-CSA</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">CBCP</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-accent-purple/20 text-accent-purple">CISSP</span>
+			</div>
+			
+			<div class="space-y-3">
+                            <div class="flex items-center">
+				<span class="text-sm w-24 text-left">System Recovery</span>
+				<div class="skill-bar">
+                                    <div class="skill-fill" style="width: 94%"></div>
+				</div>
+                            </div>
+                            <div class="flex items-center">
+				<span class="text-sm w-24 text-left">Cloud Security</span>
+				<div class="skill-bar">
+                                    <div class="skill-fill" style="width: 91%"></div>
+				</div>
+                            </div>
+                            <div class="flex items-center">
+				<span class="text-sm w-24 text-left">Business Continuity</span>
+				<div class="skill-bar">
+                                    <div class="skill-fill" style="width: 89%"></div>
+				</div>
+                            </div>
+			</div>
+                    </div>
+		</div>
             </div>
-        </div>
-    </footer>
+	</section>
 
-    <script>
-        // Mobile menu toggle
-        document.getElementById('nav-toggle').addEventListener('click', function () {
-            document.getElementById('nav-menu').classList.toggle('hidden');
-        });
+	<!-- Retainer Program -->
+	<section class="py-20 px-4 md:px-8 lg:px-16 bg-primary-medium/10">
+            <div class="container mx-auto">
+		<div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+			Incident Response <span class="gradient-text">Retainer Program</span>
+                    </h2>
+                    <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto">
+			Secure priority access to our expert team with guaranteed response times and proactive security services.
+                    </p>
+		</div>
+		
+		<div class="grid md:grid-cols-4 gap-8">
+                    <div class="card text-center">
+			<div class="capability-icon mx-auto">
+                            <i class="fas fa-clock"></i>
+			</div>
+			<h3 class="text-xl font-bold mb-3">Guaranteed Response Times</h3>
+			<p class="text-neutral-light/70 mb-4">
+                            Priority access with guaranteed 15-minute response for critical incidents and 1-hour for high-priority events.
+			</p>
+			<span class="px-4 py-2 rounded-full bg-secondary-green/10 text-secondary-green text-sm font-semibold">15 min response guarantee</span>
+                    </div>
 
-        // Toggle dropdowns individually
-        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-            toggle.addEventListener('click', function (e) {
-                e.stopPropagation();
-                const dropdown = this.nextElementSibling;
-                dropdown.classList.toggle('hidden');
+                    <div class="card text-center">
+			<div class="capability-icon mx-auto">
+                            <i class="fas fa-dollar-sign"></i>
+			</div>
+			<h3 class="text-xl font-bold mb-3">Pre-Negotiated Rates</h3>
+			<p class="text-neutral-light/70 mb-4">
+                            Fixed pricing structure eliminates surprise costs during crisis situations when every decision matters.
+			</p>
+			<span class="px-4 py-2 rounded-full bg-secondary-green/10 text-secondary-green text-sm font-semibold">No surprise costs</span>
+                    </div>
 
-                // Close other open dropdowns
-                document.querySelectorAll('.dropdown').forEach(d => {
-                    if (d !== dropdown) d.classList.add('hidden');
-                });
-            });
-        });
+                    <div class="card text-center">
+			<div class="capability-icon mx-auto">
+                            <i class="fas fa-shield-alt"></i>
+			</div>
+			<h3 class="text-xl font-bold mb-3">Proactive Services</h3>
+			<p class="text-neutral-light/70 mb-4">
+                            Regular security assessments, threat hunting, and preparedness exercises to prevent incidents before they occur.
+			</p>
+			<span class="px-4 py-2 rounded-full bg-secondary-green/10 text-secondary-green text-sm font-semibold">Prevention focused</span>
+                    </div>
 
-        // Close all dropdowns when clicking outside
-        document.addEventListener('click', function (e) {
-            if (!e.target.closest('.group')) {
-                document.querySelectorAll('.dropdown').forEach(dropdown => {
-                    dropdown.classList.add('hidden');
-                });
-            }
-        });
+                    <div class="card text-center">
+			<div class="capability-icon mx-auto">
+                            <i class="fas fa-handshake"></i>
+			</div>
+			<h3 class="text-xl font-bold mb-3">Dedicated Relationship</h3>
+			<p class="text-neutral-light/70 mb-4">
+                            Assigned team members who understand your environment, business, and specific security challenges.
+			</p>
+			<span class="px-4 py-2 rounded-full bg-secondary-green/10 text-secondary-green text-sm font-semibold">Personalized service</span>
+                    </div>
+		</div>
+		
+		<div class="flex justify-center gap-4 mt-12">
+                    <button class="cyber-btn">Explore Retainer Options</button>
+                    <button class="cyber-btn secondary">Schedule Consultation</button>
+		</div>
+            </div>
+	</section>
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Animate metric numbers
-        function animateMetrics() {
-            const metrics = document.querySelectorAll('.metric-number');
-            metrics.forEach(metric => {
-                const target = parseInt(metric.getAttribute('data-target'));
-                const duration = 2000;
-                let start = 0;
-                const increment = target / (duration / 16);
-                
-                const timer = setInterval(() => {
-                    start += increment;
-                    metric.textContent = Math.floor(start);
-                    if (start >= target) {
-                        clearInterval(timer);
-                        metric.textContent = target;
-                    }
-                }, 16);
-            });
-        }
-        
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            animateMetrics();
-            
-            // Make sure status indicators are visible
-            document.querySelectorAll('.status-indicator').forEach(indicator => {
-                indicator.style.display = 'inline-block';
-            });
-        });
-    </script>
-</body>
+	<!-- Emergency Contact -->
+	<section class="py-20 px-4 md:px-8 lg:px-16 bg-primary-dark">
+            <div class="container mx-auto">
+		<div class="grid md:grid-cols-2 gap-8">
+                    <div>
+			<h2 class="text-3xl md:text-4xl font-bold mb-6">
+                            Need Immediate <span class="gradient-text">Assistance?</span>
+			</h2>
+			<p class="text-xl text-neutral-light/80 mb-8">
+                            If you're experiencing a security incident right now, don't wait. Our emergency response team is standing by 24/7 to provide immediate assistance.
+			</p>
+			
+			<div class="space-y-6">
+                            <div class="flex items-start gap-4 p-4 bg-primary-dark/50 rounded-lg border border-primary-medium">
+				<div class="w-12 h-12 rounded-lg bg-gradient-to-r from-secondary-green to-accent-purple flex items-center justify-center text-neutral-dark">
+                                    <i class="fas fa-phone"></i>
+				</div>
+				<div>
+                                    <h4 class="text-lg font-bold mb-1">Emergency Hotline</h4>
+                                    <p class="text-secondary-green font-semibold">+44 (0) 800 123 4567</p>
+                                    <span class="text-sm text-neutral-light/70">Available 24/7/365</span>
+				</div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4 p-4 bg-primary-dark/50 rounded-lg border border-primary-medium">
+				<div class="w-12 h-12 rounded-lg bg-gradient-to-r from-secondary-green to-accent-purple flex items-center justify-center text-neutral-dark">
+                                    <i class="fas fa-envelope"></i>
+				</div>
+				<div>
+                                    <h4 class="text-lg font-bold mb-1">Emergency Email</h4>
+                                    <p class="text-secondary-green font-semibold">emergency@protekcyber.com</p>
+                                    <span class="text-sm text-neutral-light/70">Monitored continuously</span>
+				</div>
+                            </div>
+			</div>
+			
+			<div class="mt-8">
+                            <h4 class="text-lg font-bold mb-4">Before You Call:</h4>
+                            <ul class="space-y-2">
+				<li class="flex items-start gap-2">
+                                    <span class="text-secondary-green">•</span>
+                                    <span class="text-neutral-light/70">Document the incident time and initial observations</span>
+				</li>
+				<li class="flex items-start gap-2">
+                                    <span class="text-secondary-green">•</span>
+                                    <span class="text-neutral-light/70">Isolate affected systems if safe to do so</span>
+				</li>
+				<li class="flex items-start gap-2">
+                                    <span class="text-secondary-green">•</span>
+                                    <span class="text-neutral-light/70">Preserve any evidence or logs</span>
+				</li>
+				<li class="flex items-start gap-2">
+                                    <span class="text-secondary-green">•</span>
+                                    <span class="text-neutral-light/70">Prepare to describe the scope and impact</span>
+				</li>
+                            </ul>
+			</div>
+                    </div>
+                    
+                    <div class="card p-6 bg-primary-dark/70 border border-primary-medium">
+			<div class="text-center mb-6">
+                            <h3 class="text-2xl font-bold mb-2">Non-Emergency Inquiry</h3>
+                            <p class="text-neutral-light/70">For general questions about our incident response services</p>
+			</div>
+			
+			<form class="space-y-4">
+                            <div class="grid md:grid-cols-2 gap-4">
+				<div>
+                                    <label class="block text-sm font-medium mb-1 text-neutral-light">Name *</label>
+                                    <input type="text" class="w-full bg-primary-dark border border-primary-medium rounded-md px-4 py-2 text-neutral-light placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-secondary-green" placeholder="Enter your name" required>
+				</div>
+				<div>
+                                    <label class="block text-sm font-medium mb-1 text-neutral-light">Email *</label>
+                                    <input type="email" class="w-full bg-primary-dark border border-primary-medium rounded-md px-4 py-2 text-neutral-light placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-secondary-green" placeholder="Enter your email" required>
+				</div>
+                            </div>
+                            
+                            <div>
+				<label class="block text-sm font-medium mb-1 text-neutral-light">Company</label>
+				<input type="text" class="w-full bg-primary-dark border border-primary-medium rounded-md px-4 py-2 text-neutral-light placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-secondary-green" placeholder="Enter your company name">
+                            </div>
+                            
+                            <div>
+				<label class="block text-sm font-medium mb-1 text-neutral-light">Service Interest</label>
+				<select class="w-full bg-primary-dark border border-primary-medium rounded-md px-4 py-2 text-neutral-light focus:outline-none focus:ring-2 focus:ring-secondary-green" required>
+                                    <option value="">Select a service</option>
+                                    <option value="retainer">Incident Response Retainer</option>
+                                    <option value="assessment">Security Assessment</option>
+                                    <option value="training">Team Training</option>
+                                    <option value="consultation">General Consultation</option>
+				</select>
+                            </div>
+                            
+                            <div>
+				<label class="block text-sm font-medium mb-1 text-neutral-light">Message *</label>
+				<textarea class="w-full bg-primary-dark border border-primary-medium rounded-md px-4 py-2 text-neutral-light placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-secondary-green" rows="4" placeholder="Tell us about your incident response needs..." required></textarea>
+                            </div>
+                            
+                            <div class="flex items-start">
+				<input type="checkbox" id="consent" class="mt-1 mr-2 accent-secondary-green border-primary-medium" required>
+				<label for="consent" class="text-sm text-neutral-light/80">
+                                    I consent to ProtekCyber contacting me about incident response services and agree to the privacy policy.
+				</label>
+                            </div>
+                            
+                            <button type="submit" class="w-full cyber-btn py-3 px-6 text-lg font-semibold">
+				Send Inquiry
+                            </button>
+			</form>
+                    </div>
+		</div>
+            </div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="py-12 px-4 md:px-8 lg:px-16 bg-neutral-dark border-t border-primary-medium">
+            <div class="container mx-auto">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    <div>
+			<a href="/index.html" style="display: inline-block; padding-bottom: 20px;" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+			
+			<p class="text-neutral-light/70 mb-6">
+                            Expert-led cyber security consultancy tailored to your business needs, compliance goals, and growth strategy.
+			</p>
+			
+			<div class="flex space-x-4">
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-instagram"></i>
+                            </a>
+			</div>
+                    </div>
+                    
+                    <div>
+			<div class="text-lg font-bold mb-6">Services</div>
+			<ul class="space-y-4">
+                            <li>
+				<a href="/soc" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    SOC as a Service
+				</a>
+                            </li>
+                            <li>
+				<a href="/penetration" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Penetration Testing
+				</a>
+                            </li>
+                            <li>
+				<a href="/incident" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Incident Response
+				</a>
+                            </li>
+                            <li>
+				<a href="/cloud-sec" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Cloud Security
+				</a>
+                            </li>
+                            <li>
+				<a href="data-protect" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Data Protection
+				</a>
+                            </li>
+			</ul>
+                    </div>
+                    
+                    <div>
+			<div class="text-lg font-bold mb-6">Company</div>
+			<ul class="space-y-4">
+                            <li>
+				<a href="/about-us" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    About Us
+				</a>
+                            </li>
+                            <li>
+				<a href="/our-team " class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Our Team
+				</a>
+                            </li>
+                            <li>
+				<a href="/careers" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Careers
+				</a>
+                            </li>
+                            <li>
+				<a href="/news" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    News
+				</a>
+                            </li>
+                            <li>
+				<a href="/termsofservice" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Terms of Service
+				</a>
+                            </li>
+			</ul>
+                    </div>
+                    
+                    <div>
+			<div class="text-lg font-bold mb-6">Resources</div>
+			<ul class="space-y-4">
+                            <li>
+				<a href="/knowledge-base" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Knowledge Base
+				</a>
+                            </li>
+                            <li>
+				<a href="/security-guides" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Security Guides
+				</a>
+                            </li>
+                            <li>
+				<a href="/threat-intelligence" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Threat Intelligence
+				</a>
+                            </li>
+                            <li>
+				<a href="/webinars" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Webinars
+				</a>
+                            </li>
+                            <li>
+				<a href="/case-studies" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Case Studies
+				</a>
+                            </li>
+			</ul>
+                    </div>
+		</div>
+		
+		<div class="pt-8 border-t border-primary-medium text-center">
+                    <p class="text-neutral-light/70">
+			&copy; 2025 ProtekCyber Consultants. All rights reserved.
+                    </p>
+		</div>
+            </div>
+	</footer>
+	<script crossorigin defer aysnc src="./js/dropdown.js"></script>
+	<script crossorigin defer aysnc src="./js/incident-response.js"></script>
+    </body>
 </html>

@@ -1,2592 +1,1560 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Threat Intelligence | ProtekCyber Consultants</title>
-    <meta name="description" content="Actionable cyber threat intelligence and security insights from ProtekCyber's expert team">
-    
-    <!-- Same CSS as homepage -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Same style block from homepage with additions -->
-    <style>
-        :root {
-            --primary-dark: #0A192F;
-            --primary-medium: #19376D;
-            --secondary-green: #04D939;
-            --accent-purple: #A459D1;
-            --neutral-dark: #0F172A;
-            --neutral-light: #F8FAFC;
-            --threat-critical: #EF4444;
-            --threat-high: #F59E0B;
-            --threat-medium: #3B82F6;
-            --threat-low: #10B981;
-        }
-        
-        /* Include all your homepage styles here */
-        #mobile-menu{
-            background-color: var(--primary-dark)!important;
-            padding-top: 60px;
-        }
-        @media screen and (max-width: 768px) {
-        #desktopmenu {
-        display: none; /* Show the desktop menu for mobile screens */
-            }
-          }  
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--neutral-dark);
-            color: var(--neutral-light);
-        }
-        .space-x-8>:not([hidden])~:not([hidden]) {
-    --tw-space-x-reverse: 0;
-    margin-right: calc(2rem * var(--tw-space-x-reverse));
-    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
-}
-        
-        .bg-primary-dark {
-            background-color: var(--primary-dark);
-        }
-        
-        .bg-primary-medium {
-            background-color: var(--primary-medium);
-        }
-        
-        .bg-neutral-dark {
-            background-color: var(--neutral-dark);
-        }
-        
-        .text-secondary-green {
-            color: var(--secondary-green);
-        }
-        
-        .text-accent-purple {
-            color: var(--accent-purple);
-        }
-        
-        .border-secondary-green {
-            border-color: var(--secondary-green);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .cyber-btn {
-            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
-            color: var(--neutral-dark);
-            font-weight: bold;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .cyber-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(4, 217, 57, 0.5);
-        }
-        
-        .cyber-btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: all 0.6s ease;
-        }
-        
-        .cyber-btn:hover:before {
-            left: 100%;
-        }
-        
-        .card {
-            background-color: rgba(25, 55, 109, 0.2);
-            border: 1px solid var(--primary-medium);
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(4, 217, 57, 0.1);
-        }
-        
-        .matrix-bg {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .matrix-bg:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* background-image: url('images/matrix-bg.svg'); */
-            background-size: cover;
-            opacity: 0.05;
-            z-index: -1;
-        }
-        
-        .circuit-bg {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .circuit-bg:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* background-image: url('images/circuit-pattern.svg'); */
-            background-size: cover;
-            opacity: 0.05;
-            z-index: -1;
-        }
-        
-        .animate-pulse-slow {
-            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 0.1;
-            }
-            50% {
-                opacity: 0.3;
-            }
-        }
-        
-        .text-pulse {
-            animation: textPulse 0.7s ease-in-out;
-        }
-        
-        @keyframes textPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); color: var(--secondary-green); }
-            100% { transform: scale(1); }
-        }
-        
-        .flipping {
-            transform: rotateY(90deg);
-            transition: transform 0.3s ease;
-        }
-        
-        .transformed-card, .service-card {
-            transition: transform 0.3s ease;
-            transform-style: preserve-3d;
-        }
-        
-        .timeline-node {
-            position: relative;
-        }
-        
-        .timeline-marker {
-            position: relative;
-            z-index: 20;
-            margin: 0 auto;
-            width: 12px;
-            height: 12px;
-        }
-        
-        @media (min-width: 768px) {
-            .timeline-node:nth-child(odd) .timeline-marker {
-                transform: translateX(50%);
-            }
-            
-            .timeline-node:nth-child(even) .timeline-marker {
-                transform: translateX(-50%);
-            }
-        }
-        
-        .slide-in-right {
-            animation: slideInRight 0.5s forwards;
-        }
-        
-        @keyframes slideInRight {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        .fade-out {
-            animation: fadeOut 0.5s forwards;
-        }
-        
-        @keyframes fadeOut {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0;
-            }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.5s forwards;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        
-        #vulnerability-results {
-            display: none;
-        }
-        
-        .vulnerability-item {
-            border-left: 3px solid transparent;
-            transition: all 0.3s ease;
-        }
-        
-        .vulnerability-item.high-risk {
-            border-left-color: #ef4444;
-        }
-        
-        .vulnerability-item.medium-risk {
-            border-left-color: #f59e0b;
-        }
-        
-        .vulnerability-item.low-risk {
-            border-left-color: #10b981;
-        }
-        
-        .security-alert {
-            animation: pulse 2s infinite;
-        }
-        
-        .countdown-timer {
-            font-family: 'Courier New', monospace;
-        }
-        
-        .notification-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #ef4444;
-            color: white;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .breach-cost-counter {
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-        }
-        
-        img {
-            /* Ensure all images have descriptive alt text! */
-        }
-        .gradient-text {
-  background: linear-gradient(90deg, #04D939, #A459D1);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.text-neutral-dark {
-  color: var(--neutral-dark);
-}
-.hover\:shadow-glow:hover {
-  box-shadow: 0 0 8px 2px var(--secondary-green);
-  border-color: var(--secondary-green);
-  background-color: var(--secondary-green);
-  color: var(--neutral-dark); /* probably #0F172A */
-}
-.bg-feature-box {
-  background-color: rgba(25, 55, 109, 0.2); /* matches homepage blurbs */
-}
-        /* ... (paste all the styles from your homepage) ... */
-        
-        /* Additional styles for threat intelligence page */
-        .search-container {
-            max-width: 700px;
-            margin: 2rem auto;
-            display: flex;
-        }
-        
-        .search-input {
-            flex-grow: 1;
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--primary-medium);
-            border-radius: 0.375rem 0 0 0.375rem;
-            background-color: var(--primary-dark);
-            color: var(--neutral-light);
-        }
-        
-        .search-button {
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
-            color: var(--neutral-dark);
-            border: none;
-            border-radius: 0 0.375rem 0.375rem 0;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .threat-hotspot {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        
-        .threat-hotspot.high {
-            background-color: var(--threat-critical);
-            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
-        }
-        
-        .threat-hotspot.medium {
-            background-color: var(--threat-high);
-            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
-        }
-        
-        .threat-hotspot.low {
-            background-color: var(--threat-low);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
-        }
-        
-        .threat-severity {
-            display: inline-block;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-weight: bold;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-        }
-        
-        .threat-severity.critical {
-            background-color: var(--threat-critical);
-            color: white;
-        }
-        
-        .threat-severity.high {
-            background-color: var(--threat-high);
-            color: var(--neutral-dark);
-        }
-        
-        .threat-severity.medium {
-            background-color: var(--threat-medium);
-            color: white;
-        }
-        
-        .threat-severity.low {
-            background-color: var(--threat-low);
-            color: white;
-        }
-        
-        .bar-chart {
-            margin-top: 1rem;
-        }
-        
-        .bar-item {
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .bar-label {
-            width: 120px;
-            font-size: 0.875rem;
-        }
-        
-        .bar-value {
-            height: 24px;
-            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
-            border-radius: 0.25rem;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 0.5rem;
-            font-size: 0.75rem;
-            font-weight: bold;
-        }
-        
-        .matrix-row {
-            display: flex;
-            border-bottom: 1px solid var(--primary-medium);
-        }
-        
-        .matrix-cell {
-            padding: 0.75rem;
-            flex: 1;
-            text-align: center;
-        }
-        
-        .matrix-cell.header {
-            font-weight: bold;
-            background-color: var(--primary-medium);
-        }
-        
-        .matrix-cell.actor {
-            font-weight: bold;
-            text-align: left;
-            background-color: var(--primary-medium);
-        }
-        
-        .matrix-cell.active {
-            background-color: rgba(239, 68, 68, 0.2);
-            color: var(--threat-critical);
-            font-weight: bold;
-        }
-        
-        .explorer-tab {
-            padding: 0.75rem 1rem;
-            cursor: pointer;
-            border-radius: 0.25rem;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            display: inline-block;
-            background-color: var(--primary-medium);
-            transition: all 0.3s ease;
-        }
-        
-        .explorer-tab.active {
-            background-color: var(--secondary-green);
-            color: var(--neutral-dark);
-        }
-        
-        .industry-item {
-            padding: 0.75rem 1rem;
-            cursor: pointer;
-            border-radius: 0.25rem;
-            margin-bottom: 0.5rem;
-            background-color: var(--primary-medium);
-            transition: all 0.3s ease;
-        }
-        
-        .industry-item.active {
-            background-color: var(--secondary-green);
-            color: var(--neutral-dark);
-        }
-        
-        .threat-stat {
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--neutral-light/80);
-        }
-        
-        .stat-value {
-            font-weight: bold;
-            font-size: 1.25rem;
-            color: var(--secondary-green);
-        }
-        
-        .hotspot-tooltip {
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--neutral-dark);
-            color: white;
-            padding: 0.5rem;
-            border-radius: 0.25rem;
-            font-size: 0.875rem;
-            white-space: nowrap;
-            z-index: 10;
-            border: 1px solid var(--primary-medium);
-        }
-        
-        .pulse {
-            animation: pulse 1s ease-in-out;
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-        }
-        /* Remove the previous styles and replace with these */
-
-.search-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(4, 217, 57, 0.5);
-    background: linear-gradient(90deg, var(--accent-purple), var(--secondary-green));
-}
-
-.search-button {
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.search-button:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: all 0.6s ease;
-}
-
-.search-button:hover:before {
-    left: 100%;
-}
-/* Replace the existing badge styles with these */
-/* CVSS Badges */
-.cvss-badge {
-    display: inline-block;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.125rem; /* Very slight rounding */
-    font-weight: bold;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    border: none !important; /* Force remove any borders */
-}
-
-.cvss-badge.critical {
-    background-color: #EF4444;
-    color: white;
-}
-
-.cvss-badge.high {
-    background-color: #F59E0B;
-    color: #0F172A;
-}
-
-.cvss-badge.medium {
-    background-color: #3B82F6;
-    color: white;
-}
-
-.cvss-badge.low {
-    background-color: #10B981;
-    color: white;
-}
-
-/* Status Badges */
-.status-badge {
-    display: inline-block;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.125rem;
-    font-weight: bold;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    border: none !important;
-}
-
-.status-badge.exploited {
-    background-color: #EF4444; /* Solid red */
-    color: white;
-}
-
-.status-badge.poc {
-    background-color: #F59E0B; /* Solid orange */
-    color: #0F172A;
-}
-
-.status-badge.none {
-    background-color: #3B82F6; /* Solid blue */
-    color: white;
-}
-.map-wrapper {
-    width: 100%;
-    height: 600px;
-    background-color: #0d0606;
-    background-size: 50px 50px;
-}
-
-#chartdiv {
-    width: 100%;
-    height: 500px;
-}
-
-    </style>
-</head>
-<body>
-
-    <!--NAVBAR-->
-<header class="bg-neutral-dark text-neutral-light shadow-md fixed w-full top-0 z-50">
-  <div class="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
-    
-    <!-- Logo -->
-    <a href="/index.html" class="text-2xl font-bold gradient-text">ProtekCyber</a>
-
-    <!-- Hamburger (Mobile) -->
-    <button id="nav-toggle" class="md:hidden text-2xl focus:outline-none">
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Navigation -->
-    <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row md:items-center md:gap-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-neutral-dark px-4 md:px-0 py-4 md:py-0">
-
-      <a href="/index.html" class="hover:text-secondary-green">Home</a>
-
-      <!-- Services -->
-      <div class="relative group flex items-center justify-between w-full md:w-auto">
-        <a href="/index.html#services" class="hover:text-secondary-green md:mr-1">Services</a>
-        <button class="dropdown-toggle text-sm" aria-label="Toggle Services Dropdown">
-          <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
-          <a href="/soc" class="block px-4 py-2 hover:bg-neutral-light/10">SOC as a Service</a>
-          <a href="/penetration" class="block px-4 py-2 hover:bg-neutral-light/10">Penetration Testing</a>
-          <a href="/incident" class="block px-4 py-2 hover:bg-neutral-light/10">Incident Response</a>
-          <a href="/cloud-sec" class="block px-4 py-2 hover:bg-neutral-light/10">Cloud Security</a>
-          <a href="/data-protect" class="block px-4 py-2 hover:bg-neutral-light/10">Data Protection</a>
-        </div>
-      </div>
-
-      <!-- Insights -->
-      <div class="relative group flex items-center justify-between w-full md:w-auto">
-        <a href="/index.html#insights" class="hover:text-secondary-green md:mr-1">Insights</a>
-        <button class="dropdown-toggle text-sm" aria-label="Toggle Insights Dropdown">
-          <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
-          <a href="/knowledge-base" class="block px-4 py-2 hover:bg-neutral-light/10">Knowledge Base</a>
-          <a href="/threat-intelligence" class="block px-4 py-2 hover:bg-neutral-light/10">Threat Intelligence</a>
-          <a href="/security-guides" class="block px-4 py-2 hover:bg-neutral-light/10">Security Guides</a>
-          <a href="/webinars" class="block px-4 py-2 hover:bg-neutral-light/10">Webinars</a>
-          <a href="/case-studies" class="block px-4 py-2 hover:bg-neutral-light/10">Case Studies</a>
-        </div>
-      </div>
-
-      <!-- Company -->
-      <div class="relative group flex items-center justify-between w-full md:w-auto">
-        <a href="/company" class="hover:text-secondary-green md:mr-1">Company</a>
-        <button class="dropdown-toggle text-sm" aria-label="Toggle Company Dropdown">
-          <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
-          <a href="/about-us" class="block px-4 py-2 hover:bg-neutral-light/10">About Us</a>
-          <a href="/our-team" class="block px-4 py-2 hover:bg-neutral-light/10">Our Team</a>
-          <a href="/careers" class="block px-4 py-2 hover:bg-neutral-light/10">Careers</a>
-          <a href="/news" class="block px-4 py-2 hover:bg-neutral-light/10">News</a>
-          <a href="/termsofservice" class="block px-4 py-2 hover:bg-neutral-light/10">Terms of Service</a>
-        </div>
-      </div>
-
-      <a href="/#contact" class="hover:text-secondary-green">Contact Us</a>
-
-      <!-- CTA Button -->
-      <div class="mt-4 md:mt-0 md:ml-4">
-        <a href="/#contact" class="cyber-btn block text-center">Speak to an Expert</a>
-      </div>
-
-    </nav>
-  </div>
-</header>
+    <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Threat Intelligence | ProtekCyber Consultants</title>
+	<meta name="description" content="Actionable cyber threat intelligence and security insights from ProtekCyber's expert team">
+	
+	<!-- Same CSS as homepage -->
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+	
+	<link rel="stylesheet" crossorigin href="./css/threat-intelligence.css"></link>
 
 
-    <!-- Main Content -->
-    <main class="pt-32 pb-20 px-4 md:px-8 lg:px-16 bg-primary-dark">
-        <!-- Hero Section -->
-        <section class="container mx-auto mb-20">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                    Threat <span class="gradient-text">Intelligence</span>
-                </h1>
-                <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto mb-8">
-                    Stay ahead of evolving cyber threats with actionable intelligence tailored to your business
-                </p>
-                
-                <div class="search-container">
-                    <input type="text" class="search-input" placeholder="Search for specific threats, vulnerabilities, or attack vectors...">
-                    <button class="search-button">Search</button>
-                </div>
-            </div>
-            
-            <div class="card mt-12 p-6">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-xl font-bold">Global Threat Activity - Last 24 Hours</h3>
-                    
-                </div>
-                
-                <div class="relative">
-    <!-- Interactive Map Container -->
-    <div class="map-wrapper">
-        <div id="chartdiv" class="w-full h-[500px]"></div>
-    </div>
-    
-</div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-secondary-green">51s</div>
-                        <div class="text-sm text-neutral-light/70">Fastest eCrime Breakout</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-secondary-green">470</div>
-                        <div class="text-sm text-neutral-light/70">Ransomware Victims (April)</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-secondary-green">79%</div>
-                        <div class="text-sm text-neutral-light/70">Malware-Free Attacks</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    </head>
+    <body>
 
-        <!-- Threat Landscape Section -->
-        <section class="container mx-auto mb-20">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    Current Threat <span class="gradient-text">Landscape</span>
-                </h2>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card p-6">
-                    <div class="text-3xl font-bold mb-2" style="color: var(--threat-critical);">High</div>
-                    <h3 class="text-xl font-bold mb-2">Global Threat Level</h3>
-                    <p class="text-neutral-light/70 mb-4">Qilin ransomware showing 71.4% increase in activity</p>
-                    
-                    <div class="w-full bg-neutral-dark rounded-full h-2.5 mb-2">
-                        <div class="bg-gradient-to-r from-red-500 to-yellow-500 h-2.5 rounded-full" style="width: 85%"></div>
-                    </div>
-                    
-                    <div class="flex justify-between text-xs text-neutral-light/70">
-                        <span>Low</span>
-                        <span>Medium</span>
-                        <span>High</span>
-                        <span>Critical</span>
-                    </div>
-                </div>
-                
-                <div class="card p-6">
-                    <div class="text-3xl font-bold text-secondary-green mb-2">5</div>
-                    <h3 class="text-xl font-bold mb-2">Active Zero-Day Vulnerabilities</h3>
-                    <p class="text-neutral-light/70">Including CVE-2025-32756 affecting Fortinet products</p>
-                </div>
-                
-                <div class="card p-6">
-                    <div class="text-3xl font-bold text-secondary-green mb-2">72</div>
-                    <h3 class="text-xl font-bold mb-2">Manufacturing Sector Incidents</h3>
-                    <p class="text-neutral-light/70">Most targeted industry despite 21% decline from March</p>
-                </div>
-            </div>
-        </section>
+	<!--NAVBAR-->
+	<header class="bg-neutral-dark text-neutral-light shadow-md fixed w-full top-0 z-50">
+	    <div class="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
+		
+		<!-- Logo -->
+		<a href="/index.html" class="text-2xl font-bold gradient-text">ProtekCyber</a>
 
-        <!-- Latest Threat Intelligence -->
-        <section class="container mx-auto mb-20">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    Latest Threat <span class="gradient-text">Intelligence</span>
-                </h2>
-            </div>
-            
-            <div class="flex flex-wrap gap-2 mb-8 justify-center">
-                <button class="px-4 py-2 rounded-full bg-secondary-green text-neutral-dark font-bold">All</button>
-                <button class="px-4 py-2 rounded-full bg-primary-medium hover:bg-primary-medium/80 transition">Financial Services</button>
-                <button class="px-4 py-2 rounded-full bg-primary-medium hover:bg-primary-medium/80 transition">Healthcare</button>
-                <button class="px-4 py-2 rounded-full bg-primary-medium hover:bg-primary-medium/80 transition">Manufacturing</button>
-                <button class="px-4 py-2 rounded-full bg-primary-medium hover:bg-primary-medium/80 transition">Critical Infrastructure</button>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="card p-6 border-l-4 border-red-500">
-                    <div class="flex justify-between items-center mb-4">
-                        <div class="flex items-center">
-                            <i class="fas fa-virus text-red-500 mr-2"></i>
-                            <span class="font-semibold">Ransomware</span>
-                        </div>
-                        <span class="threat-severity critical">Critical</span>
-                    </div>
-                    
-                    <h3 class="text-xl font-bold mb-3">Qilin Ransomware Targeting Manufacturing</h3>
-                    <p class="text-neutral-light/70 mb-4">71.4% increase in activity with focus on exfiltrating intellectual property before encryption</p>
-                    
-                    <div class="flex flex-wrap gap-4 text-sm mb-4">
-                        <div class="flex items-center">
-                            <i class="far fa-calendar text-neutral-light/70 mr-1"></i>
-                            <span>May 7, 2025</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-building text-neutral-light/70 mr-1"></i>
-                            <span>Manufacturing, Industrial</span>
-                        </div>
-                    </div>
-                    
-                    <div class="text-sm mb-4">
-                        <span class="font-semibold">IOC:</span>
-                        <span class="text-neutral-light/70 ml-1">qilin.dll, ransom.exe, 192.168.24[.]45</span>
-                    </div>
-                    
-                    <a href="#" class="text-secondary-green hover:underline font-semibold">
-                        View Full Analysis <i class="fas fa-arrow-right ml-1"></i>
-                    </a>
-                </div>
-                
-                <div class="card p-6 border-l-4 border-yellow-500">
-                    <div class="flex justify-between items-center mb-4">
-                        <div class="flex items-center">
-                            <i class="fas fa-fish text-yellow-500 mr-2"></i>
-                            <span class="font-semibold">Phishing</span>
-                        </div>
-                        <span class="threat-severity high">High</span>
-                    </div>
-                    
-                    <h3 class="text-xl font-bold mb-3">FOG Ransomware Phishing Campaign</h3>
-                    <p class="text-neutral-light/70 mb-4">Distributed via "Pay Adjustment.zip" archives containing malicious LNK files</p>
-                    
-                    <div class="flex flex-wrap gap-4 text-sm mb-4">
-                        <div class="flex items-center">
-                            <i class="far fa-calendar text-neutral-light/70 mr-1"></i>
-                            <span>May 12, 2025</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-building text-neutral-light/70 mr-1"></i>
-                            <span>Technology, Education</span>
-                        </div>
-                    </div>
-                    
-                    <div class="text-sm mb-4">
-                        <span class="font-semibold">IOC:</span>
-                        <span class="text-neutral-light/70 ml-1">stage1.ps1, cwiper.exe, *.flocked</span>
-                    </div>
-                    
-                    <a href="#" class="text-secondary-green hover:underline font-semibold">
-                        View Full Analysis <i class="fas fa-arrow-right ml-1"></i>
-                    </a>
-                </div>
-                
-                <div class="card p-6 border-l-4 border-red-500">
-                    <div class="flex justify-between items-center mb-4">
-                        <div class="flex items-center">
-                            <i class="fas fa-bug text-red-500 mr-2"></i>
-                            <span class="font-semibold">Zero-Day</span>
-                        </div>
-                        <span class="threat-severity critical">Critical</span>
-                    </div>
-                    
-                    <h3 class="text-xl font-bold mb-3">CVE-2025-32756 Fortinet Vulnerability</h3>
-                    <p class="text-neutral-light/70 mb-4">Arbitrary code execution affecting FortiVoice, FortiMail, and FortiNDR products</p>
-                    
-                    <div class="flex flex-wrap gap-4 text-sm mb-4">
-                        <div class="flex items-center">
-                            <i class="far fa-calendar text-neutral-light/70 mr-1"></i>
-                            <span>May 14, 2025</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-building text-neutral-light/70 mr-1"></i>
-                            <span>All Industries</span>
-                        </div>
-                    </div>
-                    
-                    <div class="text-sm mb-4">
-                        <span class="font-semibold">CVSS:</span>
-                        <span class="text-neutral-light/70 ml-1">9.8 (Critical)</span>
-                    </div>
-                    
-                    <a href="#" class="text-secondary-green hover:underline font-semibold">
-                        View Full Analysis <i class="fas fa-arrow-right ml-1"></i>
-                    </a>
-                </div>
-                
-                <div class="card p-6 border-l-4 border-yellow-500">
-                    <div class="flex justify-between items-center mb-4">
-                        <div class="flex items-center">
-                            <i class="fas fa-user-secret text-yellow-500 mr-2"></i>
-                            <span class="font-semibold">APT</span>
-                        </div>
-                        <span class="threat-severity high">High</span>
-                    </div>
-                    
-                    <h3 class="text-xl font-bold mb-3">FAMOUS CHOLLIMA Using GenAI</h3>
-                    <p class="text-neutral-light/70 mb-4">State-sponsored threat actors leveraging AI for sophisticated social engineering</p>
-                    
-                    <div class="flex flex-wrap gap-4 text-sm mb-4">
-                        <div class="flex items-center">
-                            <i class="far fa-calendar text-neutral-light/70 mr-1"></i>
-                            <span>May 10, 2025</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-building text-neutral-light/70 mr-1"></i>
-                            <span>Energy, Government</span>
-                        </div>
-                    </div>
-                    
-                    <div class="text-sm mb-4">
-                        <span class="font-semibold">MITRE:</span>
-                        <span class="text-neutral-light/70 ml-1">T1566, T1204, T1059.001</span>
-                    </div>
-                    
-                    <a href="#" class="text-secondary-green hover:underline font-semibold">
-                        View Full Analysis <i class="fas fa-arrow-right ml-1"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
+		<!-- Hamburger (Mobile) -->
+		<button id="nav-toggle" class="md:hidden text-2xl focus:outline-none">
+		    <i class="fas fa-bars"></i>
+		</button>
 
-        <!-- Threat Category Explorer -->
-        <section class="container mx-auto mb-20">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    Explore Threats by <span class="gradient-text">Category</span>
-                </h2>
-            </div>
-            
-            <div class="card p-6">
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <div class="explorer-tab active">Malware & Ransomware</div>
-                    <div class="explorer-tab">Phishing & Social Engineering</div>
-                    <div class="explorer-tab">Vulnerabilities & Exploits</div>
-                    <div class="explorer-tab">Advanced Persistent Threats</div>
-                    <div class="explorer-tab">Emerging Threats</div>
-                </div>
-                
-                <div class="explorer-content active">
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div>
-                            <h4 class="text-xl font-bold mb-4">Top Ransomware Groups (April 2025)</h4>
-                            <div class="bar-chart">
-                                <div class="bar-item">
-                                    <div class="bar-label">Qilin</div>
-                                    <div class="bar-value" style="width: 72%;">72</div>
-                                </div>
-                                <div class="bar-item">
-                                    <div class="bar-label">Play</div>
-                                    <div class="bar-value" style="width: 58%;">58</div>
-                                </div>
-                                <div class="bar-item">
-                                    <div class="bar-label">Dragonforce</div>
-                                    <div class="bar-value" style="width: 45%;">45</div>
-                                </div>
-                                <div class="bar-item">
-                                    <div class="bar-label">Lynx</div>
-                                    <div class="bar-value" style="width: 38%;">38</div>
-                                </div>
-                                <div class="bar-item">
-                                    <div class="bar-label">Akira</div>
-                                    <div class="bar-value" style="width: 32%;">32</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <h3 class="text-xl font-bold mb-4">Malware & Ransomware Trends</h3>
-                            <p class="text-neutral-light/70 mb-4">Ransomware remains the dominant threat to organizations across all sectors, with a 43% increase in attacks targeting backup systems to prevent recovery. Fileless malware and living-off-the-land techniques are increasingly common, making detection more challenging.</p>
-                            
-                            <div class="grid grid-cols-2 gap-4 mb-6">
-                                <div>
-                                    <div class="text-sm text-neutral-light/70">Average Ransom Demand</div>
-                                    <div class="text-xl font-bold text-secondary-green">$1.2M</div>
-                                </div>
-                                <div>
-                                    <div class="text-sm text-neutral-light/70">Recovery Time (Avg)</div>
-                                    <div class="text-xl font-bold text-secondary-green">23 Days</div>
-                                </div>
-                                <div>
-                                    <div class="text-sm text-neutral-light/70">Most Common Vector</div>
-                                    <div class="text-xl font-bold text-secondary-green">Compromised Credentials</div>
-                                </div>
-                                <div>
-                                    <div class="text-sm text-neutral-light/70">Top Malware Family</div>
-                                    <div class="text-xl font-bold text-secondary-green">Qilin/BlackCat</div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <h4 class="text-lg font-bold mb-2">Emerging Ransomware Groups</h4>
-                                <div class="grid grid-cols-2 gap-2">
-                                    <div class="px-3 py-2 bg-primary-medium rounded">Silent</div>
-                                    <div class="px-3 py-2 bg-primary-medium rounded">Crypto24</div>
-                                    <div class="px-3 py-2 bg-primary-medium rounded">Bert</div>
-                                    <div class="px-3 py-2 bg-primary-medium rounded">Gunra</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="explorer-content hidden">
-    <div class="grid md:grid-cols-2 gap-8">
-        <div>
-            <h4 class="text-xl font-bold mb-4">Top Phishing Techniques (April 2025)</h4>
-            <div class="bar-chart">
-                <div class="bar-item">
-                    <div class="bar-label">Business Email Compromise</div>
-                    <div class="bar-value" style="width: 65%;">65%</div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-label">Credential Harvesting</div>
-                    <div class="bar-value" style="width: 58%;">58%</div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-label">Payment Diversion</div>
-                    <div class="bar-value" style="width: 42%;">42%</div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-label">Invoice Fraud</div>
-                    <div class="bar-value" style="width: 38%;">38%</div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-label">CEO Fraud</div>
-                    <div class="bar-value" style="width: 31%;">31%</div>
-                </div>
-            </div>
-        </div>
-        
-        <div>
-            <h3 class="text-xl font-bold mb-4">Phishing & Social Engineering Trends</h3>
-            <p class="text-neutral-light/70 mb-4">Social engineering attacks have become increasingly sophisticated, with attackers leveraging AI-generated content and deepfake technology. Phishing campaigns now show a 73% success rate when using personalized information gathered from social media and data breaches.</p>
-            
-            <div class="grid grid-cols-2 gap-4 mb-6">
-                <div>
-                    <div class="text-sm text-neutral-light/70">Average Click Rate</div>
-                    <div class="text-xl font-bold text-secondary-green">3.4%</div>
-                </div>
-                <div>
-                    <div class="text-sm text-neutral-light/70">Most Targeted Industry</div>
-                    <div class="text-xl font-bold text-secondary-green">Financial Services</div>
-                </div>
-                <div>
-                    <div class="text-sm text-neutral-light/70">Common Delivery Method</div>
-                    <div class="text-xl font-bold text-secondary-green">Email (82%)</div>
-                </div>
-                <div>
-                    <div class="text-sm text-neutral-light/70">AI-Generated Content</div>
-                    <div class="text-xl font-bold text-secondary-green">47% of attacks</div>
-                </div>
-            </div>
-            
-            <div>
-                <h4 class="text-lg font-bold mb-2">Emerging Techniques</h4>
-                <div class="grid grid-cols-2 gap-2">
-                    <div class="px-3 py-2 bg-primary-medium rounded">Voice Phishing (Vishing)</div>
-                    <div class="px-3 py-2 bg-primary-medium rounded">QR Code Phishing</div>
-                    <div class="px-3 py-2 bg-primary-medium rounded">Conversational AI Attacks</div>
-                    <div class="px-3 py-2 bg-primary-medium rounded">Multi-Channel Attacks</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+		<!-- Navigation -->
+		<nav id="nav-menu" class="hidden md:flex flex-col md:flex-row md:items-center md:gap-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-neutral-dark px-4 md:px-0 py-4 md:py-0">
 
-<div class="explorer-content hidden">
-    <div class="grid md:grid-cols-2 gap-8">
-        <div>
-            <h4 class="text-xl font-bold mb-4">Most Exploited Vulnerabilities (Q2 2025)</h4>
-            <div class="bar-chart">
-                <div class="bar-item">
-                    <div class="bar-label">CVE-2025-32756</div>
-                    <div class="bar-value" style="width: 78%;">78%</div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-label">CVE-2025-31324</div>
-                    <div class="bar-value" style="width: 65%;">65%</div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-label">CVE-2025-30400</div>
-                    <div class="bar-value" style="width: 52%;">52%</div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-label">CVE-2025-32706</div>
-                    <div class="bar-value" style="width: 48%;">48%</div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-label">CVE-2025-4664</div>
-                    <div class="bar-value" style="width: 42%;">42%</div>
-                </div>
-            </div>
-        </div>
-        
-        <div>
-            <h3 class="text-xl font-bold mb-4">Vulnerabilities & Exploits Trends</h3>
-            <p class="text-neutral-light/70 mb-4">The average time between vulnerability disclosure and exploitation has decreased to just 14 days. Attackers are increasingly targeting edge devices and cloud services, with 62% of exploits targeting vulnerabilities in internet-facing systems.</p>
-            
-            <div class="grid grid-cols-2 gap-4 mb-6">
-                <div>
-                    <div class="text-sm text-neutral-light/70">Zero-Days Discovered</div>
-                    <div class="text-xl font-bold text-secondary-green">5</div>
-                </div>
-                <div>
-                    <div class="text-sm text-neutral-light/70">Most Targeted Vendor</div>
-                    <div class="text-xl font-bold text-secondary-green">Fortinet</div>
-                </div>
-                <div>
-                    <div class="text-sm text-neutral-light/70">Average Patch Time</div>
-                    <div class="text-xl font-bold text-secondary-green">42 Days</div>
-                </div>
-                <div>
-                    <div class="text-sm text-neutral-light/70">Cloud Service Exploits</div>
-                    <div class="text-xl font-bold text-secondary-green">+38% YoY</div>
-                </div>
-            </div>
-            
-            <div>
-                <h4 class="text-lg font-bold mb-2">High-Risk Vulnerability Types</h4>
-                <div class="grid grid-cols-2 gap-2">
-                    <div class="px-3 py-2 bg-primary-medium rounded">Remote Code Execution</div>
-                    <div class="px-3 py-2 bg-primary-medium rounded">Privilege Escalation</div>
-                    <div class="px-3 py-2 bg-primary-medium rounded">Authentication Bypass</div>
-                    <div class="px-3 py-2 bg-primary-medium rounded">Memory Corruption</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+		    <a href="/index.html" class="hover:text-secondary-green">Home</a>
 
-<div class="explorer-content hidden">
-    <div class="grid md:grid-cols-2 gap-8">
-        <div>
-            <h4 class="text-xl font-bold mb-4">Most Active APT Groups (2025)</h4>
-            <div class="bar-chart">
-                <div class="bar-item">
-                    <div class="bar-label">FAMOUS CHOLLIMA</div>
-                    <div class="bar-value" style="width: 85%;">85 incidents</div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-label">APT29</div>
-                    <div class="bar-value" style="width: 72%;">72 incidents</div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-label">APT41</div>
-                    <div class="bar-value" style="width: 68%;">68 incidents</div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-label">Lazarus Group</div>
-                    <div class="bar-value" style="width: 64%;">64 incidents</div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-label">APT28</div>
-                    <div class="bar-value" style="width: 58%;">58 incidents</div>
-                </div>
-            </div>
-        </div>
-        
-        <div>
-            <h3 class="text-xl font-bold mb-4">Advanced Persistent Threat Trends</h3>
-            <p class="text-neutral-light/70 mb-4">APT groups are increasingly adopting ransomware tactics for both financial gain and disruption. Supply chain attacks have increased by 47% year-over-year, with attackers targeting software vendors to gain access to multiple victims through a single compromise.</p>
-            
-            <div class="grid grid-cols-2 gap-4 mb-6">
-                <div>
-                    <div class="text-sm text-neutral-light/70">Average Dwell Time</div>
-                    <div class="text-xl font-bold text-secondary-green">56 Days</div>
-                </div>
-                <div>
-                    <div class="text-sm text-neutral-light/70">Most Targeted Sector</div>
-                    <div class="text-xl font-bold text-secondary-green">Government</div>
-                </div>
-                <div>
-                    <div class="text-sm text-neutral-light/70">Common Initial Vector</div>
-                    <div class="text-xl font-bold text-secondary-green">Phishing (78%)</div>
-                </div>
-                <div>
-                    <div class="text-sm text-neutral-light/70">AI-Assisted Attacks</div>
-                    <div class="text-xl font-bold text-secondary-green">39% of APTs</div>
-                </div>
-            </div>
-            
-            <div>
-                <h4 class="text-lg font-bold mb-2">Emerging APT Tactics</h4>
-                <div class="grid grid-cols-2 gap-2">
-                    <div class="px-3 py-2 bg-primary-medium rounded">AI-Powered Recon</div>
-                    <div class="px-3 py-2 bg-primary-medium rounded">Living-off-the-Cloud</div>
-                    <div class="px-3 py-2 bg-primary-medium rounded">IoT Device Compromise</div>
-                    <div class="px-3 py-2 bg-primary-medium rounded">5G Network Exploits</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+		    <!-- Services -->
+		    <div class="relative group flex items-center justify-between w-full md:w-auto">
+			<a href="/index.html#services" class="hover:text-secondary-green md:mr-1">Services</a>
+			<button class="dropdown-toggle text-sm" aria-label="Toggle Services Dropdown">
+			    <i class="fas fa-chevron-down"></i>
+			</button>
+			<div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+			    <a href="/soc" class="block px-4 py-2 hover:bg-neutral-light/10">SOC as a Service</a>
+			    <a href="/penetration" class="block px-4 py-2 hover:bg-neutral-light/10">Penetration Testing</a>
+			    <a href="/incident" class="block px-4 py-2 hover:bg-neutral-light/10">Incident Response</a>
+			    <a href="/cloud-sec" class="block px-4 py-2 hover:bg-neutral-light/10">Cloud Security</a>
+			    <a href="/data-protect" class="block px-4 py-2 hover:bg-neutral-light/10">Data Protection</a>
+			</div>
+		    </div>
 
-<div class="explorer-content hidden">
-    <div class="grid md:grid-cols-2 gap-8">
-        <div>
-            <h4 class="text-xl font-bold mb-4">Emerging Threat Categories</h4>
-            <div class="bar-chart">
-                <div class="bar-item">
-                    <div class="bar-label">AI-Assisted Attacks</div>
-                    <div class="bar-value" style="width: 82%;">82% increase</div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-label">Quantum Computing Risks</div>
-                    <div class="bar-value" style="width: 65%;">65% increase</div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-label">5G Network Exploits</div>
-                    <div class="bar-value" style="width: 58%;">58% increase</div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-label">Deepfake Fraud</div>
-                    <div class="bar-value" style="width: 47%;">47% increase</div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-label">Autonomous System Hacks</div>
-                    <div class="bar-value" style="width: 39%;">39% increase</div>
-                </div>
-            </div>
-        </div>
-        
-        <div>
-            <h3 class="text-xl font-bold mb-4">Emerging Threat Landscape</h3>
-            <p class="text-neutral-light/70 mb-4">The cybersecurity landscape is evolving rapidly with the adoption of new technologies. AI-powered attacks are now capable of mimicking human behavior with 92% accuracy, while quantum computing poses an existential threat to current encryption standards.</p>
-            
-            <div class="grid grid-cols-2 gap-4 mb-6">
-                <div>
-                    <div class="text-sm text-neutral-light/70">AI Attack Surge</div>
-                    <div class="text-xl font-bold text-secondary-green">+210% YoY</div>
-                </div>
-                <div>
-                    <div class="text-sm text-neutral-light/70">Most Vulnerable Tech</div>
-                    <div class="text-xl font-bold text-secondary-green">IoT Devices</div>
-                </div>
-                <div>
-                    <div class="text-sm text-neutral-light/70">Quantum Risk Timeline</div>
-                    <div class="text-xl font-bold text-secondary-green">3-5 Years</div>
-                </div>
-                <div>
-                    <div class="text-sm text-neutral-light/70">Deepfake Detection Rate</div>
-                    <div class="text-xl font-bold text-secondary-green">Only 37%</div>
-                </div>
-            </div>
-            
-            <div>
-                <h4 class="text-lg font-bold mb-2">Future Threat Vectors</h4>
-                <div class="grid grid-cols-2 gap-2">
-                    <div class="px-3 py-2 bg-primary-medium rounded">AI Worm Attacks</div>
-                    <div class="px-3 py-2 bg-primary-medium rounded">Quantum Decryption</div>
-                    <div class="px-3 py-2 bg-primary-medium rounded">Neuromorphic Hacking</div>
-                    <div class="px-3 py-2 bg-primary-medium rounded">Bio-Digital Threats</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-            </div>
-        </section>
+		    <!-- Insights -->
+		    <div class="relative group flex items-center justify-between w-full md:w-auto">
+			<a href="/index.html#insights" class="hover:text-secondary-green md:mr-1">Insights</a>
+			<button class="dropdown-toggle text-sm" aria-label="Toggle Insights Dropdown">
+			    <i class="fas fa-chevron-down"></i>
+			</button>
+			<div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+			    <a href="/knowledge-base" class="block px-4 py-2 hover:bg-neutral-light/10">Knowledge Base</a>
+			    <a href="/threat-intelligence" class="block px-4 py-2 hover:bg-neutral-light/10">Threat Intelligence</a>
+			    <a href="/security-guides" class="block px-4 py-2 hover:bg-neutral-light/10">Security Guides</a>
+			    <a href="/webinars" class="block px-4 py-2 hover:bg-neutral-light/10">Webinars</a>
+			    <a href="/case-studies" class="block px-4 py-2 hover:bg-neutral-light/10">Case Studies</a>
+			</div>
+		    </div>
 
-        <!-- Industry Insights -->
-        <section class="container mx-auto mb-20">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    Industry-Specific <span class="gradient-text">Threat Intelligence</span>
-                </h2>
-            </div>
-            
-            <div class="card p-6">
-                <div class="grid md:grid-cols-4 gap-8">
-                    <div>
-                        <div class="space-y-2">
-                            <div class="industry-item active">Manufacturing</div>
-                            <div class="industry-item">Financial Services</div>
-                            <div class="industry-item">Healthcare</div>
-                            <div class="industry-item">Information Technology</div>
-                            <div class="industry-item">Energy & Utilities</div>
-                            <div class="industry-item">Government</div>
-                            <div class="industry-item">Education</div>
-                        </div>
-                    </div>
-                    
-                    <div class="md:col-span-3">
-                        <div class="industry-content active">
-                            <h3 class="text-2xl font-bold mb-4">Manufacturing Sector Threat Landscape</h3>
-                            
-                            <div class="grid grid-cols-3 gap-4 mb-6">
-                                <div class="text-center">
-                                    <div class="text-3xl font-bold text-secondary-green">72</div>
-                                    <div class="text-sm text-neutral-light/70">Incidents (April 2025)</div>
-                                </div>
-                                <div class="text-center">
-                                    <div class="text-3xl font-bold text-secondary-green">-21%</div>
-                                    <div class="text-sm text-neutral-light/70">Change from March</div>
-                                </div>
-                                <div class="text-center">
-                                    <div class="text-3xl font-bold text-secondary-green">Qilin</div>
-                                    <div class="text-sm text-neutral-light/70">Primary Threat Actor</div>
-                                </div>
-                            </div>
-                            
-                            <div class="space-y-4 mb-6">
-                                <div>
-                                    <h4 class="text-lg font-bold flex items-center mb-2">
-                                        <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                                        Intellectual Property Targeting
-                                    </h4>
-                                    <p class="text-neutral-light/70">Manufacturing firms are experiencing targeted attacks focused on stealing intellectual property and design specifications before deploying ransomware, creating dual extortion scenarios.</p>
-                                </div>
-                                
-                                <div>
-                                    <h4 class="text-lg font-bold flex items-center mb-2">
-                                        <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                                        OT/IT Convergence Risks
-                                    </h4>
-                                    <p class="text-neutral-light/70">Threat actors are exploiting the increasing connectivity between operational technology (OT) and information technology (IT) networks, with a focus on legacy systems with unpatched vulnerabilities.</p>
-                                </div>
-                                
-                                <div>
-                                    <h4 class="text-lg font-bold flex items-center mb-2">
-                                        <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                                        Supply Chain Compromise
-                                    </h4>
-                                    <p class="text-neutral-light/70">Attackers are targeting smaller suppliers and vendors in the manufacturing supply chain as entry points to larger organizations, leveraging trusted relationships to move laterally.</p>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <h4 class="text-lg font-bold mb-2">Recommended Security Controls</h4>
-                                <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
-                                    <li>Implement network segmentation between IT and OT environments</li>
-                                    <li>Deploy enhanced monitoring for intellectual property and design files</li>
-                                    <li>Conduct regular vulnerability assessments of industrial control systems</li>
-                                    <li>Establish vendor security assessment program for supply chain partners</li>
-                                    <li>Develop and test specific incident response playbooks for manufacturing attacks</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Inside the industry-content div (replace the existing content) -->
+		    <!-- Company -->
+		    <div class="relative group flex items-center justify-between w-full md:w-auto">
+			<a href="/company" class="hover:text-secondary-green md:mr-1">Company</a>
+			<button class="dropdown-toggle text-sm" aria-label="Toggle Company Dropdown">
+			    <i class="fas fa-chevron-down"></i>
+			</button>
+			<div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+			    <a href="/about-us" class="block px-4 py-2 hover:bg-neutral-light/10">About Us</a>
+			    <a href="/our-team" class="block px-4 py-2 hover:bg-neutral-light/10">Our Team</a>
+			    <a href="/careers" class="block px-4 py-2 hover:bg-neutral-light/10">Careers</a>
+			    <a href="/news" class="block px-4 py-2 hover:bg-neutral-light/10">News</a>
+			    <a href="/termsofservice" class="block px-4 py-2 hover:bg-neutral-light/10">Terms of Service</a>
+			</div>
+		    </div>
 
-<div class="industry-content hidden">
-    <h3 class="text-2xl font-bold mb-4">Financial Services Threat Landscape</h3>
-    
-    <div class="grid grid-cols-3 gap-4 mb-6">
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">58</div>
-            <div class="text-sm text-neutral-light/70">Incidents (April 2025)</div>
-        </div>
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">+12%</div>
-            <div class="text-sm text-neutral-light/70">Change from March</div>
-        </div>
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">Lazarus</div>
-            <div class="text-sm text-neutral-light/70">Primary Threat Actor</div>
-        </div>
-    </div>
-    
-    <div class="space-y-4 mb-6">
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                SWIFT Network Targeting
-            </h4>
-            <p class="text-neutral-light/70">Financial institutions are experiencing sophisticated attacks targeting SWIFT messaging systems with malware designed to manipulate transaction records and bypass authentication.</p>
-        </div>
-        
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                API-Based Attacks
-            </h4>
-            <p class="text-neutral-light/70">Attackers are exploiting vulnerabilities in banking APIs to initiate unauthorized transactions, with a focus on mobile banking applications and payment gateways.</p>
-        </div>
-        
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                Supply Chain Compromise
-            </h4>
-            <p class="text-neutral-light/70">Third-party financial software providers are being targeted as entry points to multiple banks and financial institutions through supply chain attacks.</p>
-        </div>
-    </div>
-    
-    <div>
-        <h4 class="text-lg font-bold mb-2">Recommended Security Controls</h4>
-        <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
-            <li>Implement transaction verification systems with multi-person approval</li>
-            <li>Deploy API security gateways with strict rate limiting</li>
-            <li>Conduct regular red team exercises focusing on payment systems</li>
-            <li>Enhance monitoring for anomalous SWIFT message patterns</li>
-            <li>Establish vendor security assessment program for fintech partners</li>
-        </ul>
-    </div>
-</div>
+		    <a href="/#contact" class="hover:text-secondary-green">Contact Us</a>
 
-<div class="industry-content hidden">
-    <h3 class="text-2xl font-bold mb-4">Healthcare Sector Threat Landscape</h3>
-    
-    <div class="grid grid-cols-3 gap-4 mb-6">
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">49</div>
-            <div class="text-sm text-neutral-light/70">Incidents (April 2025)</div>
-        </div>
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">+8%</div>
-            <div class="text-sm text-neutral-light/70">Change from March</div>
-        </div>
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">Hive</div>
-            <div class="text-sm text-neutral-light/70">Primary Threat Actor</div>
-        </div>
-    </div>
-    
-    <div class="space-y-4 mb-6">
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                Patient Data Targeting
-            </h4>
-            <p class="text-neutral-light/70">Healthcare organizations are experiencing targeted attacks focused on stealing protected health information (PHI) for medical identity theft and insurance fraud.</p>
-        </div>
-        
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                Medical Device Vulnerabilities
-            </h4>
-            <p class="text-neutral-light/70">Connected medical devices with outdated firmware are being exploited as entry points to hospital networks, particularly infusion pumps and imaging systems.</p>
-        </div>
-        
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                Ransomware Impacting Care Delivery
-            </h4>
-            <p class="text-neutral-light/70">Ransomware attacks are increasingly disrupting patient care, with threat actors specifically targeting systems critical to emergency services and surgical operations.</p>
-        </div>
-    </div>
-    
-    <div>
-        <h4 class="text-lg font-bold mb-2">Recommended Security Controls</h4>
-        <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
-            <li>Implement network segmentation for medical IoT devices</li>
-            <li>Deploy enhanced monitoring for PHI access patterns</li>
-            <li>Conduct regular vulnerability assessments of medical devices</li>
-            <li>Establish incident response playbooks for clinical system outages</li>
-            <li>Develop backup procedures for critical patient care systems</li>
-        </ul>
-    </div>
-</div>
+		    <!-- CTA Button -->
+		    <div class="mt-4 md:mt-0 md:ml-4">
+			<a href="/#contact" class="cyber-btn block text-center">Speak to an Expert</a>
+		    </div>
 
-<div class="industry-content hidden">
-    <h3 class="text-2xl font-bold mb-4">Information Technology Threat Landscape</h3>
-    
-    <div class="grid grid-cols-3 gap-4 mb-6">
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">63</div>
-            <div class="text-sm text-neutral-light/70">Incidents (April 2025)</div>
-        </div>
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">+15%</div>
-            <div class="text-sm text-neutral-light/70">Change from March</div>
-        </div>
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">APT41</div>
-            <div class="text-sm text-neutral-light/70">Primary Threat Actor</div>
-        </div>
-    </div>
-    
-    <div class="space-y-4 mb-6">
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                Software Supply Chain Attacks
-            </h4>
-            <p class="text-neutral-light/70">Technology companies are being targeted through their software development pipelines, with attackers compromising build systems to distribute malware to customers.</p>
-        </div>
-        
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                Cloud Infrastructure Targeting
-            </h4>
-            <p class="text-neutral-light/70">Attackers are exploiting misconfigured cloud services and weak identity management to gain access to sensitive customer data and proprietary source code.</p>
-        </div>
-        
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                Zero-Day Exploitation
-            </h4>
-            <p class="text-neutral-light/70">Technology firms are experiencing a surge in zero-day attacks targeting their products, with vulnerabilities being exploited before patches can be developed.</p>
-        </div>
-    </div>
-    
-    <div>
-        <h4 class="text-lg font-bold mb-2">Recommended Security Controls</h4>
-        <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
-            <li>Implement software bill of materials (SBOM) for all products</li>
-            <li>Enforce multi-factor authentication for all cloud services</li>
-            <li>Conduct regular red team exercises focusing on CI/CD pipelines</li>
-            <li>Deploy runtime application self-protection (RASP) for critical services</li>
-            <li>Establish bug bounty programs to identify vulnerabilities</li>
-        </ul>
-    </div>
-</div>
+		</nav>
+	    </div>
+	</header>
 
-<div class="industry-content hidden">
-    <h3 class="text-2xl font-bold mb-4">Energy & Utilities Threat Landscape</h3>
-    
-    <div class="grid grid-cols-3 gap-4 mb-6">
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">37</div>
-            <div class="text-sm text-neutral-light/70">Incidents (April 2025)</div>
-        </div>
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">+24%</div>
-            <div class="text-sm text-neutral-light/70">Change from March</div>
-        </div>
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">Dragonfly</div>
-            <div class="text-sm text-neutral-light/70">Primary Threat Actor</div>
-        </div>
-    </div>
-    
-    <div class="space-y-4 mb-6">
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                Operational Technology Targeting
-            </h4>
-            <p class="text-neutral-light/70">Energy companies are experiencing targeted attacks against industrial control systems (ICS) with malware designed to manipulate sensor readings and disrupt operations.</p>
-        </div>
-        
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                Ransomware Impacting Critical Infrastructure
-            </h4>
-            <p class="text-neutral-light/70">Ransomware attacks are increasingly targeting energy distribution systems, with threat actors specifically focusing on systems that could cause widespread outages.</p>
-        </div>
-        
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                Geopolitical Motivations
-            </h4>
-            <p class="text-neutral-light/70">State-sponsored actors are targeting energy infrastructure for geopolitical purposes, with attacks designed to test response capabilities and create disruption.</p>
-        </div>
-    </div>
-    
-    <div>
-        <h4 class="text-lg font-bold mb-2">Recommended Security Controls</h4>
-        <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
-            <li>Implement air-gapped backups for critical control systems</li>
-            <li>Deploy network segmentation between IT and OT environments</li>
-            <li>Conduct regular tabletop exercises for grid disruption scenarios</li>
-            <li>Establish partnerships with government cybersecurity agencies</li>
-            <li>Develop manual override procedures for critical systems</li>
-        </ul>
-    </div>
-</div>
 
-<div class="industry-content hidden">
-    <h3 class="text-2xl font-bold mb-4">Government Sector Threat Landscape</h3>
-    
-    <div class="grid grid-cols-3 gap-4 mb-6">
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">41</div>
-            <div class="text-sm text-neutral-light/70">Incidents (April 2025)</div>
-        </div>
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">+18%</div>
-            <div class="text-sm text-neutral-light/70">Change from March</div>
-        </div>
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">APT29</div>
-            <div class="text-sm text-neutral-light/70">Primary Threat Actor</div>
-        </div>
-    </div>
-    
-    <div class="space-y-4 mb-6">
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                Election Infrastructure Targeting
-            </h4>
-            <p class="text-neutral-light/70">Government agencies are experiencing sophisticated attacks targeting voter registration systems and election infrastructure ahead of key electoral events.</p>
-        </div>
-        
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                Data Exfiltration Campaigns
-            </h4>
-            <p class="text-neutral-light/70">Attackers are focusing on exfiltrating sensitive government data, including diplomatic communications and national security information.</p>
-        </div>
-        
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                Legacy System Vulnerabilities
-            </h4>
-            <p class="text-neutral-light/70">Outdated government systems running unsupported software are being actively targeted due to known vulnerabilities with no available patches.</p>
-        </div>
-    </div>
-    
-    <div>
-        <h4 class="text-lg font-bold mb-2">Recommended Security Controls</h4>
-        <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
-            <li>Implement zero trust architecture for sensitive systems</li>
-            <li>Deploy advanced threat detection for nation-state actors</li>
-            <li>Conduct regular security assessments of critical infrastructure</li>
-            <li>Establish information sharing agreements with allied nations</li>
-            <li>Develop contingency plans for system outages during crises</li>
-        </ul>
-    </div>
-</div>
-
-<div class="industry-content hidden">
-    <h3 class="text-2xl font-bold mb-4">Education Sector Threat Landscape</h3>
-    
-    <div class="grid grid-cols-3 gap-4 mb-6">
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">29</div>
-            <div class="text-sm text-neutral-light/70">Incidents (April 2025)</div>
-        </div>
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">+32%</div>
-            <div class="text-sm text-neutral-light/70">Change from March</div>
-        </div>
-        <div class="text-center">
-            <div class="text-3xl font-bold text-secondary-green">Vice Society</div>
-            <div class="text-sm text-neutral-light/70">Primary Threat Actor</div>
-        </div>
-    </div>
-    
-    <div class="space-y-4 mb-6">
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                Research Data Targeting
-            </h4>
-            <p class="text-neutral-light/70">Universities are experiencing targeted attacks against research data, particularly in fields like artificial intelligence, biotechnology, and defense-related studies.</p>
-        </div>
-        
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                Ransomware Disrupting Operations
-            </h4>
-            <p class="text-neutral-light/70">Educational institutions are particularly vulnerable to ransomware attacks that disrupt learning management systems and student information databases.</p>
-        </div>
-        
-        <div>
-            <h4 class="text-lg font-bold flex items-center mb-2">
-                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                Weak Authentication Practices
-            </h4>
-            <p class="text-neutral-light/70">The widespread use of single-factor authentication and shared credentials in educational environments creates significant security vulnerabilities.</p>
-        </div>
-    </div>
-    
-    <div>
-        <h4 class="text-lg font-bold mb-2">Recommended Security Controls</h4>
-        <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
-            <li>Implement multi-factor authentication for all systems</li>
-            <li>Deploy data classification for sensitive research</li>
-            <li>Conduct regular security awareness training for staff and students</li>
-            <li>Establish incident response plans for research data breaches</li>
-            <li>Segment networks to protect critical research systems</li>
-        </ul>
-    </div>
-</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CVE Tracker -->
-        <section class="container mx-auto mb-20">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    Critical <span class="gradient-text">Vulnerability</span> Tracker
-                </h2>
-            </div>
-            
-            <div class="card p-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-    <div>
-        <label class="block text-sm font-medium text-neutral-light/90 mb-1">Severity</label>
-        <select id="severity-filter" class="w-full p-2 rounded bg-primary-dark border border-primary-medium">
-            <option value="all">All Severities</option>
-            <option value="critical">Critical (9.0-10.0)</option>
-            <option value="high">High (7.0-8.9)</option>
-            <option value="medium">Medium (4.0-6.9)</option>
-            <option value="low">Low (0.1-3.9)</option>
-        </select>
-    </div>
-    <div>
-        <label class="block text-sm font-medium text-neutral-light/90 mb-1">Vendor</label>
-        <select id="vendor-filter" class="w-full p-2 rounded bg-primary-dark border border-primary-medium">
-            <option value="all">All Vendors</option>
-            <option value="fortinet">Fortinet</option>
-            <option value="microsoft">Microsoft</option>
-            <option value="google">Google</option>
-            <option value="sap">SAP</option>
-            <option value="cisco">Cisco</option>
-        </select>
-    </div>
-    <div>
-        <label class="block text-sm font-medium text-neutral-light/90 mb-1">Exploitation Status</label>
-        <select id="status-filter" class="w-full p-2 rounded bg-primary-dark border border-primary-medium">
-            <option value="all">All Statuses</option>
-            <option value="exploited">Actively Exploited</option>
-            <option value="poc">PoC Available</option>
-            <option value="none">No Known Exploitation</option>
-        </select>
-    </div>
-</div>
-                
-                <div class="overflow-x-auto">
-                    <table id="cve-table" class="w-full">
-                        <thead>
-                            <tr class="bg-primary-medium text-left">
-                                <th class="p-3">CVE ID</th>
-                                <th class="p-3">Vendor/Product</th>
-                                <th class="p-3">Description</th>
-                                <th class="p-3">Published</th>
-                                <th class="p-3">CVSS</th>
-                                <th class="p-3">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-primary-medium">
-                           <tr class="hover:bg-primary-medium/20" data-severity="critical" data-vendor="fortinet" data-status="exploited">
-    <td class="p-3 font-mono">CVE-2025-32756</td>
-    <td class="p-3">Fortinet Products</td>
-    <td class="p-3">Arbitrary code execution vulnerability affecting FortiVoice, FortiMail, FortiNDR</td>
-    <td class="p-3">May 14, 2025</td>
-    <td class="p-3"><span class="cvss-badge critical">9.8</span></td>
-    <td class="p-3"><span class="status-badge exploited">Exploited</span></td>
-</tr>
-<tr class="hover:bg-primary-medium/20" data-severity="critical" data-vendor="sap" data-status="exploited">
-    <td class="p-3 font-mono">CVE-2025-31324</td>
-    <td class="p-3">SAP</td>
-    <td class="p-3">SAP zero-day vulnerability under active exploitation</td>
-    <td class="p-3">May 10, 2025</td>
-    <td class="p-3"><span class="cvss-badge critical">9.1</span></td>
-    <td class="p-3"><span class="status-badge exploited">Exploited</span></td>
-</tr>
-<tr class="hover:bg-primary-medium/20" data-severity="high" data-vendor="microsoft" data-status="poc">
-    <td class="p-3 font-mono">CVE-2025-30400</td>
-    <td class="p-3">Microsoft Windows</td>
-    <td class="p-3">Use after free (UAF) vulnerability in Windows kernel</td>
-    <td class="p-3">May 13, 2025</td>
-    <td class="p-3"><span class="cvss-badge high">7.8</span></td>
-    <td class="p-3"><span class="status-badge poc">PoC Available</span></td>
-</tr>
-<tr class="hover:bg-primary-medium/20" data-severity="high" data-vendor="microsoft" data-status="poc">
-    <td class="p-3 font-mono">CVE-2025-32706</td>
-    <td class="p-3">Windows Common Log File System</td>
-    <td class="p-3">Elevation of privilege vulnerability</td>
-    <td class="p-3">May 14, 2025</td>
-    <td class="p-3"><span class="cvss-badge high">7.8</span></td>
-    <td class="p-3"><span class="status-badge poc">PoC Available</span></td>
-</tr>
-<tr class="hover:bg-primary-medium/20" data-severity="high" data-vendor="google" data-status="exploited">
-    <td class="p-3 font-mono">CVE-2025-4664</td>
-    <td class="p-3">Google Chromium</td>
-    <td class="p-3">Insufficient policy enforcement vulnerability in Chromium Loader</td>
-    <td class="p-3">May 15, 2025</td>
-    <td class="p-3"><span class="cvss-badge high">8.2</span></td>
-    <td class="p-3"><span class="status-badge exploited">Exploited</span></td>
-</tr>
-<tr class="hover:bg-primary-medium/20" data-severity="medium" data-vendor="google" data-status="none">
-    <td class="p-3 font-mono">CVE-2025-4609</td>
-    <td class="p-3">Google Chrome</td>
-    <td class="p-3">Incorrect handle management vulnerability</td>
-    <td class="p-3">May 15, 2025</td>
-    <td class="p-3"><span class="cvss-badge medium">6.5</span></td>
-    <td class="p-3"><span class="status-badge none">No Exploitation</span></td>
-</tr>
-<tr id="no-results" class="hidden">
-    <td colspan="6" class="p-6 text-center text-neutral-light/70">
-        No CVEs match your selected filters. Try adjusting your criteria.
-    </td>
-</tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-<section class="container mx-auto mb-20">
-    <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">
-            Our Threat Intelligence <span class="gradient-text">Services</span>
-        </h2>
-    </div>
-    
-    <div class="grid md:grid-cols-3 gap-8">
-        <!-- Card 1 -->
-        <div class="card p-6 flex flex-col">
-            <div class="mb-4">
-                <h3 class="text-xl font-bold">Essential Threat Monitoring</h3>
-                <p class="text-neutral-light/70">For small to medium businesses with standard security needs</p>
-            </div>
-            
-            <div class="space-y-3 mb-6 flex-grow">
-                <div class="flex items-start">
-                    <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                    <span>Weekly threat intelligence reports</span>
-                </div>
-                <div class="flex items-start">
-                    <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                    <span>Basic IOC feeds for your security tools</span>
-                </div>
-                <div class="flex items-start">
-                    <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                    <span>Email alerts for critical threats</span>
-                </div>
-                <div class="flex items-start">
-                    <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                    <span>Monthly threat briefing</span>
-                </div>
-                <div class="flex items-start">
-                    <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                    <span>Access to threat intelligence portal</span>
-                </div>
-            </div>
-            
-            <a href="#" class="cyber-btn w-full text-center block mt-auto">
-                Get Started
-            </a>
-        </div>
-        
-        <!-- Card 2 -->
-        <div class="card p-6 flex flex-col">
-            <div class="mb-4">
-                <h3 class="text-xl font-bold">Comprehensive Threat Intelligence</h3>
-                <p class="text-neutral-light/70">For larger organizations with dedicated security teams</p>
-            </div>
-            
-            <div class="space-y-3 mb-6 flex-grow">
-                <div class="flex items-start">
-                    <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                    <span>Daily threat intelligence briefings</span>
-                </div>
-                <div class="flex items-start">
-                    <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                    <span>Industry-specific intelligence reports</span>
-                </div>
-                <div class="flex items-start">
-                    <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                    <span>Custom IOC feeds for your security stack</span>
-                </div>
-                <div class="flex items-start">
-                    <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                    <span>Threat hunting support</span>
-                </div>
-                <div class="flex items-start">
-                    <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                    <span>Quarterly executive threat briefings</span>
-                </div>
-            </div>
-            
-            <a href="#" class="cyber-btn w-full text-center block mt-auto">
-                Learn More
-            </a>
-        </div>
-        
-        <!-- Card 3 -->
-        <div class="card p-6 flex flex-col">
-            <div class="mb-4">
-                <h3 class="text-xl font-bold">Strategic Threat Intelligence</h3>
-                <p class="text-neutral-light/70">For enterprises requiring the highest level of threat awareness</p>
-            </div>
-            
-            <div class="space-y-3 mb-6 flex-grow">
-                <div class="flex items-start">
-                    <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                    <span>Real-time threat monitoring and alerts</span>
-                </div>
-                <div class="flex items-start">
-                    <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                    <span>Dedicated threat intelligence analyst</span>
-                </div>
-                <div class="flex items-start">
-                    <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                    <span>Custom research on threats to your industry</span>
-                </div>
-                <div class="flex items-start">
-                    <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                    <span>Monthly executive briefings</span>
-                </div>
-                <div class="flex items-start">
-                    <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                    <span>Integration with your security operations</span>
-                </div>
-            </div>
-            
-            <a href="#" class="cyber-btn w-full text-center block mt-auto">
-                Contact Us
-            </a>
-        </div>
-    </div>
-</section>
-
-        <!-- MITRE ATT&CK Framework Section -->
-        <section class="hidden container mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    MITRE ATT&CK <span class="gradient-text">Framework</span>
-                </h2>
-                <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
-                    Track threat actor techniques and tactics using the industry-standard MITRE ATT&CK framework. Our threat intelligence is mapped to this framework to provide actionable context for your security team.
-                </p>
-            </div>
-            
-            <div class="card p-6 overflow-x-auto">
-                <div class="matrix-row">
-                    <div class="matrix-cell header">Tactics</div>
-                    <div class="matrix-cell header">Initial Access</div>
-                    <div class="matrix-cell header">Execution</div>
-                    <div class="matrix-cell header">Persistence</div>
-                    <div class="matrix-cell header">Privilege Escalation</div>
-                    <div class="matrix-cell header">Defense Evasion</div>
-                    <div class="matrix-cell header">Credential Access</div>
-                </div>
-                
-                <div class="matrix-row">
-                    <div class="matrix-cell actor">Qilin</div>
-                    <div class="matrix-cell active" data-technique="T1566">Phishing</div>
-                    <div class="matrix-cell active" data-technique="T1059.001">PowerShell</div>
-                    <div class="matrix-cell active" data-technique="T1547.001">Registry Run Keys</div>
-                    <div class="matrix-cell active" data-technique="T1068">Exploitation for Privilege Escalation</div>
-                    <div class="matrix-cell active" data-technique="T1027">Obfuscated Files</div>
-                    <div class="matrix-cell active" data-technique="T1003">OS Credential Dumping</div>
-                </div>
-                
-                <div class="matrix-row">
-                    <div class="matrix-cell actor">FOG</div>
-                    <div class="matrix-cell active" data-technique="T1566.001">Spearphishing Attachment</div>
-                    <div class="matrix-cell active" data-technique="T1204.002">Malicious File</div>
-                    <div class="matrix-cell active" data-technique="T1547.001">Registry Run Keys</div>
-                    <div class="matrix-cell active" data-technique="T1068">Exploitation for Privilege Escalation</div>
-                    <div class="matrix-cell active" data-technique="T1140">Deobfuscate Files</div>
-                    <div class="matrix-cell">-</div>
-                </div>
-                
-                <div class="matrix-row">
-                    <div class="matrix-cell actor">FAMOUS CHOLLIMA</div>
-                    <div class="matrix-cell active" data-technique="T1566.002">Spearphishing Link</div>
-                    <div class="matrix-cell active" data-technique="T1059.003">Windows Command Shell</div>
-                    <div class="matrix-cell active" data-technique="T1136">Create Account</div>
-                    <div class="matrix-cell">-</div>
-                    <div class="matrix-cell active" data-technique="T1036">Masquerading</div>
-                    <div class="matrix-cell active" data-technique="T1110">Brute Force</div>
-                </div>
-                
-                <div class="matrix-row">
-                    <div class="matrix-cell actor">Interlock</div>
-                    <div class="matrix-cell active" data-technique="T1566.003">Spearphishing via Service</div>
-                    <div class="matrix-cell active" data-technique="T1059.006">Python</div>
-                    <div class="matrix-cell active" data-technique="T1547.001">Registry Run Keys</div>
-                    <div class="matrix-cell active" data-technique="T1134">Access Token Manipulation</div>
-                    <div class="matrix-cell active" data-technique="T1027.002">Software Packing</div>
-                    <div class="matrix-cell active" data-technique="T1555">Credentials from Password Stores</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="container mx-auto mt-20">
-            <div class="card p-8 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Stay Ahead of Evolving Threats</h2>
-                <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto mb-8">
-                    Protect your business with proactive threat intelligence that helps you anticipate, prepare for, and respond to emerging cyber threats before they impact your operations.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="/#contact" class="cyber-btn">
-                        Schedule a Threat Briefing
-                    </a>
-                    <a href="#" class="border border-white text-white font-bold px-6 py-3 rounded-md transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-glow">
-                        Subscribe to Threat Alerts
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Use the same footer from your homepage -->
-          <footer class="py-12 px-4 md:px-8 lg:px-16 bg-neutral-dark border-t border-primary-medium">
-        <div class="container mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                <div>
-                    <a href="/index.html" style="display: inline-block; padding-bottom: 20px;" class="text-2xl font-bold gradient-text">ProtekCyber</a>
-                    
-                    <p class="text-neutral-light/70 mb-6">
-                        Expert-led cyber security consultancy tailored to your business needs, compliance goals, and growth strategy.
+	<!-- Main Content -->
+	<main class="pt-32 pb-20 px-4 md:px-8 lg:px-16 bg-primary-dark">
+            <!-- Hero Section -->
+            <section class="container mx-auto mb-20">
+		<div class="text-center">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+			Threat <span class="gradient-text">Intelligence</span>
+                    </h1>
+                    <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto mb-8">
+			Stay ahead of evolving cyber threats with actionable intelligence tailored to your business
                     </p>
                     
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+                    <div class="search-container">
+			<input type="text" class="search-input" placeholder="Search for specific threats, vulnerabilities, or attack vectors...">
+			<button class="search-button">Search</button>
                     </div>
-                </div>
-                
-                <div>
-                    <div class="text-lg font-bold mb-6">Services</div>
-                    <ul class="space-y-4">
-                        <li>
-                            <a href="/soc" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                SOC as a Service
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/penetration" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Penetration Testing
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/incident" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Incident Response
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/cloud-sec" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Cloud Security
-                            </a>
-                        </li>
-                        <li>
-                            <a href="data-protect" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Data Protection
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <div class="text-lg font-bold mb-6">Company</div>
-                    <ul class="space-y-4">
-                        <li>
-                            <a href="/about-us" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/our-team " class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Our Team
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/careers" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Careers
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/news" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                News
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/termsofservice" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Terms of Service
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <div class="text-lg font-bold mb-6">Resources</div>
-                    <ul class="space-y-4">
-                        <li>
-                            <a href="/knowledge-base" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Knowledge Base
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/security-guides" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Security Guides
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/threat-intelligence" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Threat Intelligence
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/webinars" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Webinars
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/case-studies" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Case Studies
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        <div class="pt-8 border-t border-primary-medium text-center">
-            <p class="text-neutral-light/70">
-                &copy; 2025 ProtekCyber Consultants. All rights reserved.
-            </p>
-        </div>
-    </div>
-</footer>
+		</div>
+		
+		<div class="card mt-12 p-6">
+                    <div class="flex justify-between items-center mb-6">
+			<h3 class="text-xl font-bold">Global Threat Activity - Last 24 Hours</h3>
+			
+                    </div>
 
-    <script>
-        // Mobile menu toggle
-  document.getElementById('nav-toggle').addEventListener('click', function () {
-    document.getElementById('nav-menu').classList.toggle('hidden');
-  });
+		    <!-- Interactive Map Container -->
+		    <div class="map-wrapper">
+			<svg id="chartdiv" width="960" height="500"></svg>
+		    </div>
 
-  // Toggle dropdowns individually
-  document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-    toggle.addEventListener('click', function (e) {
-      e.stopPropagation();
-      const dropdown = this.nextElementSibling;
-      dropdown.classList.toggle('hidden');
-
-      // Close other open dropdowns
-      document.querySelectorAll('.dropdown').forEach(d => {
-        if (d !== dropdown) d.classList.add('hidden');
-      });
-    });
-  });
-
-  // Close all dropdowns when clicking outside
-  document.addEventListener('click', function (e) {
-    if (!e.target.closest('.group')) {
-      document.querySelectorAll('.dropdown').forEach(dropdown => {
-        dropdown.classList.add('hidden');
-      });
-    }
-  });
-</script>
-
-<script>
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Update the existing tab functionality code to this:
-document.addEventListener('DOMContentLoaded', function() {
-    const tabs = document.querySelectorAll('.explorer-tab');
-    const contents = document.querySelectorAll('.explorer-content');
-    
-    tabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => {
-            // Remove active class from all tabs and contents
-            tabs.forEach(t => t.classList.remove('active'));
-            contents.forEach(c => {
-                c.classList.remove('active');
-                c.classList.add('hidden');
-            });
-            
-            // Add active class to clicked tab and show corresponding content
-            tab.classList.add('active');
-            if (contents[index]) {
-                contents[index].classList.add('active');
-                contents[index].classList.remove('hidden');
-            }
-        });
-    });
-    
-    // Rest of your existing JavaScript...
-});
-        // Tab functionality for Threat Explorer
-        document.addEventListener('DOMContentLoaded', function() {
-            const tabs = document.querySelectorAll('.explorer-tab');
-            const contents = document.querySelectorAll('.explorer-content');
-            
-            tabs.forEach((tab, index) => {
-                tab.addEventListener('click', () => {
-                    // Remove active class from all tabs and contents
-                    tabs.forEach(t => t.classList.remove('active'));
-                    contents.forEach(c => c.classList.remove('active'));
                     
-                    // Add active class to clicked tab and corresponding content
-                    tab.classList.add('active');
-                    if (contents[index]) {
-                        contents[index].classList.add('active');
-                    }
-                });
-            });
-            
-            // Industry selector functionality
-const industryItems = document.querySelectorAll('.industry-item');
-const industryContents = document.querySelectorAll('.industry-content');
+                    <!-- <div class="relative">
 
-industryItems.forEach((item, index) => {
-    item.addEventListener('click', () => {
-        // Remove active class from all items and contents
-        industryItems.forEach(i => i.classList.remove('active'));
-        industryContents.forEach(c => {
-            c.classList.remove('active');
-            c.classList.add('hidden');
-        });
-        
-        // Add active class to clicked item and show corresponding content
-        item.classList.add('active');
-        if (industryContents[index]) {
-            industryContents[index].classList.add('active');
-            industryContents[index].classList.remove('hidden');
-        }
-    });
-});
-            
-            // Tooltip functionality for threat map hotspots
-            const hotspots = document.querySelectorAll('.threat-hotspot');
-            
-            hotspots.forEach(hotspot => {
-                hotspot.addEventListener('mouseenter', function() {
-                    const tooltip = document.createElement('div');
-                    tooltip.className = 'hotspot-tooltip';
-                    tooltip.textContent = this.getAttribute('data-tooltip');
+
+			 </div> -->
                     
-                    this.appendChild(tooltip);
-                });
-                
-                hotspot.addEventListener('mouseleave', function() {
-                    const tooltip = this.querySelector('.hotspot-tooltip');
-                    if (tooltip) {
-                        tooltip.remove();
-                    }
-                });
-            });
-            
-            // Live threat feed simulation
-            const threatFeed = document.querySelector('.threat-grid');
-            if (threatFeed) {
-                // Simulate new threat detection every 30 seconds
-                setInterval(() => {
-                    const cards = threatFeed.querySelectorAll('.threat-card');
-                    const randomCard = cards[Math.floor(Math.random() * cards.length)];
+
+
+		    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+			<div class="text-center">
+                            <div class="text-3xl font-bold text-secondary-green">51s</div>
+                            <div class="text-sm text-neutral-light/70">Fastest eCrime Breakout</div>
+			</div>
+			<div class="text-center">
+                            <div class="text-3xl font-bold text-secondary-green">470</div>
+                            <div class="text-sm text-neutral-light/70">Ransomware Victims (April)</div>
+			</div>
+			<div class="text-center">
+                            <div class="text-3xl font-bold text-secondary-green">79%</div>
+                            <div class="text-sm text-neutral-light/70">Malware-Free Attacks</div>
+			</div>
+                    </div>
+		</div>
+            </section>
+
+            <!-- Threat Landscape Section -->
+            <section class="container mx-auto mb-20">
+		<div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+			Current Threat <span class="gradient-text">Landscape</span>
+                    </h2>
+		</div>
+		
+		<div class="grid md:grid-cols-3 gap-8">
+                    <div class="card p-6">
+			<div class="text-3xl font-bold mb-2" style="color: var(--threat-critical);">High</div>
+			<h3 class="text-xl font-bold mb-2">Global Threat Level</h3>
+			<p class="text-neutral-light/70 mb-4">Qilin ransomware showing 71.4% increase in activity</p>
+			
+			<div class="w-full bg-neutral-dark rounded-full h-2.5 mb-2">
+                            <div class="bg-gradient-to-r from-red-500 to-yellow-500 h-2.5 rounded-full" style="width: 85%"></div>
+			</div>
+			
+			<div class="flex justify-between text-xs text-neutral-light/70">
+                            <span>Low</span>
+                            <span>Medium</span>
+                            <span>High</span>
+                            <span>Critical</span>
+			</div>
+                    </div>
                     
-                    // Add pulse effect
-                    randomCard.classList.add('pulse');
+                    <div class="card p-6">
+			<div class="text-3xl font-bold text-secondary-green mb-2">5</div>
+			<h3 class="text-xl font-bold mb-2">Active Zero-Day Vulnerabilities</h3>
+			<p class="text-neutral-light/70">Including CVE-2025-32756 affecting Fortinet products</p>
+                    </div>
                     
-                    // Remove pulse effect after animation completes
-                    setTimeout(() => {
-                        randomCard.classList.remove('pulse');
-                    }, 2000);
-                }, 30000);
-            }
-        });
-        // CVE Tracker Filter Functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const severityFilter = document.getElementById('severity-filter');
-    const vendorFilter = document.getElementById('vendor-filter');
-    const statusFilter = document.getElementById('status-filter');
-    const cveRows = document.querySelectorAll('#cve-table tbody tr');
+                    <div class="card p-6">
+			<div class="text-3xl font-bold text-secondary-green mb-2">72</div>
+			<h3 class="text-xl font-bold mb-2">Manufacturing Sector Incidents</h3>
+			<p class="text-neutral-light/70">Most targeted industry despite 21% decline from March</p>
+                    </div>
+		</div>
+            </section>
 
-    // Function to filter CVEs
-    function filterCVEs() {
-        const severityValue = severityFilter.value;
-        const vendorValue = vendorFilter.value;
-        const statusValue = statusFilter.value;
+            <!-- Latest Threat Intelligence -->
+            <section class="container mx-auto mb-20">
+		<div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+			Latest Threat <span class="gradient-text">Intelligence</span>
+                    </h2>
+		</div>
+		
+		<div class="flex flex-wrap gap-2 mb-8 justify-center">
+                    <button class="px-4 py-2 rounded-full bg-secondary-green text-neutral-dark font-bold">All</button>
+                    <button class="px-4 py-2 rounded-full bg-primary-medium hover:bg-primary-medium/80 transition">Financial Services</button>
+                    <button class="px-4 py-2 rounded-full bg-primary-medium hover:bg-primary-medium/80 transition">Healthcare</button>
+                    <button class="px-4 py-2 rounded-full bg-primary-medium hover:bg-primary-medium/80 transition">Manufacturing</button>
+                    <button class="px-4 py-2 rounded-full bg-primary-medium hover:bg-primary-medium/80 transition">Critical Infrastructure</button>
+		</div>
+		
+		<div class="grid md:grid-cols-2 gap-8">
+                    <div class="card p-6 border-l-4 border-red-500">
+			<div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center">
+				<i class="fas fa-virus text-red-500 mr-2"></i>
+				<span class="font-semibold">Ransomware</span>
+                            </div>
+                            <span class="threat-severity critical">Critical</span>
+			</div>
+			
+			<h3 class="text-xl font-bold mb-3">Qilin Ransomware Targeting Manufacturing</h3>
+			<p class="text-neutral-light/70 mb-4">71.4% increase in activity with focus on exfiltrating intellectual property before encryption</p>
+			
+			<div class="flex flex-wrap gap-4 text-sm mb-4">
+                            <div class="flex items-center">
+				<i class="far fa-calendar text-neutral-light/70 mr-1"></i>
+				<span>May 7, 2025</span>
+                            </div>
+                            <div class="flex items-center">
+				<i class="fas fa-building text-neutral-light/70 mr-1"></i>
+				<span>Manufacturing, Industrial</span>
+                            </div>
+			</div>
+			
+			<div class="text-sm mb-4">
+                            <span class="font-semibold">IOC:</span>
+                            <span class="text-neutral-light/70 ml-1">qilin.dll, ransom.exe, 192.168.24[.]45</span>
+			</div>
+			
+			<a href="#" class="text-secondary-green hover:underline font-semibold">
+                            View Full Analysis <i class="fas fa-arrow-right ml-1"></i>
+			</a>
+                    </div>
+                    
+                    <div class="card p-6 border-l-4 border-yellow-500">
+			<div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center">
+				<i class="fas fa-fish text-yellow-500 mr-2"></i>
+				<span class="font-semibold">Phishing</span>
+                            </div>
+                            <span class="threat-severity high">High</span>
+			</div>
+			
+			<h3 class="text-xl font-bold mb-3">FOG Ransomware Phishing Campaign</h3>
+			<p class="text-neutral-light/70 mb-4">Distributed via "Pay Adjustment.zip" archives containing malicious LNK files</p>
+			
+			<div class="flex flex-wrap gap-4 text-sm mb-4">
+                            <div class="flex items-center">
+				<i class="far fa-calendar text-neutral-light/70 mr-1"></i>
+				<span>May 12, 2025</span>
+                            </div>
+                            <div class="flex items-center">
+				<i class="fas fa-building text-neutral-light/70 mr-1"></i>
+				<span>Technology, Education</span>
+                            </div>
+			</div>
+			
+			<div class="text-sm mb-4">
+                            <span class="font-semibold">IOC:</span>
+                            <span class="text-neutral-light/70 ml-1">stage1.ps1, cwiper.exe, *.flocked</span>
+			</div>
+			
+			<a href="#" class="text-secondary-green hover:underline font-semibold">
+                            View Full Analysis <i class="fas fa-arrow-right ml-1"></i>
+			</a>
+                    </div>
+                    
+                    <div class="card p-6 border-l-4 border-red-500">
+			<div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center">
+				<i class="fas fa-bug text-red-500 mr-2"></i>
+				<span class="font-semibold">Zero-Day</span>
+                            </div>
+                            <span class="threat-severity critical">Critical</span>
+			</div>
+			
+			<h3 class="text-xl font-bold mb-3">CVE-2025-32756 Fortinet Vulnerability</h3>
+			<p class="text-neutral-light/70 mb-4">Arbitrary code execution affecting FortiVoice, FortiMail, and FortiNDR products</p>
+			
+			<div class="flex flex-wrap gap-4 text-sm mb-4">
+                            <div class="flex items-center">
+				<i class="far fa-calendar text-neutral-light/70 mr-1"></i>
+				<span>May 14, 2025</span>
+                            </div>
+                            <div class="flex items-center">
+				<i class="fas fa-building text-neutral-light/70 mr-1"></i>
+				<span>All Industries</span>
+                            </div>
+			</div>
+			
+			<div class="text-sm mb-4">
+                            <span class="font-semibold">CVSS:</span>
+                            <span class="text-neutral-light/70 ml-1">9.8 (Critical)</span>
+			</div>
+			
+			<a href="#" class="text-secondary-green hover:underline font-semibold">
+                            View Full Analysis <i class="fas fa-arrow-right ml-1"></i>
+			</a>
+                    </div>
+                    
+                    <div class="card p-6 border-l-4 border-yellow-500">
+			<div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center">
+				<i class="fas fa-user-secret text-yellow-500 mr-2"></i>
+				<span class="font-semibold">APT</span>
+                            </div>
+                            <span class="threat-severity high">High</span>
+			</div>
+			
+			<h3 class="text-xl font-bold mb-3">FAMOUS CHOLLIMA Using GenAI</h3>
+			<p class="text-neutral-light/70 mb-4">State-sponsored threat actors leveraging AI for sophisticated social engineering</p>
+			
+			<div class="flex flex-wrap gap-4 text-sm mb-4">
+                            <div class="flex items-center">
+				<i class="far fa-calendar text-neutral-light/70 mr-1"></i>
+				<span>May 10, 2025</span>
+                            </div>
+                            <div class="flex items-center">
+				<i class="fas fa-building text-neutral-light/70 mr-1"></i>
+				<span>Energy, Government</span>
+                            </div>
+			</div>
+			
+			<div class="text-sm mb-4">
+                            <span class="font-semibold">MITRE:</span>
+                            <span class="text-neutral-light/70 ml-1">T1566, T1204, T1059.001</span>
+			</div>
+			
+			<a href="#" class="text-secondary-green hover:underline font-semibold">
+                            View Full Analysis <i class="fas fa-arrow-right ml-1"></i>
+			</a>
+                    </div>
+		</div>
+            </section>
 
-        cveRows.forEach(row => {
-            const rowSeverity = row.getAttribute('data-severity');
-            const rowVendor = row.getAttribute('data-vendor');
-            const rowStatus = row.getAttribute('data-status');
+            <!-- Threat Category Explorer -->
+            <section class="container mx-auto mb-20">
+		<div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+			Explore Threats by <span class="gradient-text">Category</span>
+                    </h2>
+		</div>
+		
+		<div class="card p-6">
+                    <div class="flex flex-wrap gap-2 mb-6">
+			<div class="explorer-tab active">Malware & Ransomware</div>
+			<div class="explorer-tab">Phishing & Social Engineering</div>
+			<div class="explorer-tab">Vulnerabilities & Exploits</div>
+			<div class="explorer-tab">Advanced Persistent Threats</div>
+			<div class="explorer-tab">Emerging Threats</div>
+                    </div>
+                    
+                    <div class="explorer-content active">
+			<div class="grid md:grid-cols-2 gap-8">
+                            <div>
+				<h4 class="text-xl font-bold mb-4">Top Ransomware Groups (April 2025)</h4>
+				<div class="bar-chart">
+                                    <div class="bar-item">
+					<div class="bar-label">Qilin</div>
+					<div class="bar-value" style="width: 72%;">72</div>
+                                    </div>
+                                    <div class="bar-item">
+					<div class="bar-label">Play</div>
+					<div class="bar-value" style="width: 58%;">58</div>
+                                    </div>
+                                    <div class="bar-item">
+					<div class="bar-label">Dragonforce</div>
+					<div class="bar-value" style="width: 45%;">45</div>
+                                    </div>
+                                    <div class="bar-item">
+					<div class="bar-label">Lynx</div>
+					<div class="bar-value" style="width: 38%;">38</div>
+                                    </div>
+                                    <div class="bar-item">
+					<div class="bar-label">Akira</div>
+					<div class="bar-value" style="width: 32%;">32</div>
+                                    </div>
+				</div>
+                            </div>
+                            
+                            <div>
+				<h3 class="text-xl font-bold mb-4">Malware & Ransomware Trends</h3>
+				<p class="text-neutral-light/70 mb-4">Ransomware remains the dominant threat to organizations across all sectors, with a 43% increase in attacks targeting backup systems to prevent recovery. Fileless malware and living-off-the-land techniques are increasingly common, making detection more challenging.</p>
+				
+				<div class="grid grid-cols-2 gap-4 mb-6">
+                                    <div>
+					<div class="text-sm text-neutral-light/70">Average Ransom Demand</div>
+					<div class="text-xl font-bold text-secondary-green">$1.2M</div>
+                                    </div>
+                                    <div>
+					<div class="text-sm text-neutral-light/70">Recovery Time (Avg)</div>
+					<div class="text-xl font-bold text-secondary-green">23 Days</div>
+                                    </div>
+                                    <div>
+					<div class="text-sm text-neutral-light/70">Most Common Vector</div>
+					<div class="text-xl font-bold text-secondary-green">Compromised Credentials</div>
+                                    </div>
+                                    <div>
+					<div class="text-sm text-neutral-light/70">Top Malware Family</div>
+					<div class="text-xl font-bold text-secondary-green">Qilin/BlackCat</div>
+                                    </div>
+				</div>
+				
+				<div>
+                                    <h4 class="text-lg font-bold mb-2">Emerging Ransomware Groups</h4>
+                                    <div class="grid grid-cols-2 gap-2">
+					<div class="px-3 py-2 bg-primary-medium rounded">Silent</div>
+					<div class="px-3 py-2 bg-primary-medium rounded">Crypto24</div>
+					<div class="px-3 py-2 bg-primary-medium rounded">Bert</div>
+					<div class="px-3 py-2 bg-primary-medium rounded">Gunra</div>
+                                    </div>
+				</div>
+                            </div>
+			</div>
+                    </div>
+                    <div class="explorer-content hidden">
+			<div class="grid md:grid-cols-2 gap-8">
+			    <div>
+				<h4 class="text-xl font-bold mb-4">Top Phishing Techniques (April 2025)</h4>
+				<div class="bar-chart">
+				    <div class="bar-item">
+					<div class="bar-label">Business Email Compromise</div>
+					<div class="bar-value" style="width: 65%;">65%</div>
+				    </div>
+				    <div class="bar-item">
+					<div class="bar-label">Credential Harvesting</div>
+					<div class="bar-value" style="width: 58%;">58%</div>
+				    </div>
+				    <div class="bar-item">
+					<div class="bar-label">Payment Diversion</div>
+					<div class="bar-value" style="width: 42%;">42%</div>
+				    </div>
+				    <div class="bar-item">
+					<div class="bar-label">Invoice Fraud</div>
+					<div class="bar-value" style="width: 38%;">38%</div>
+				    </div>
+				    <div class="bar-item">
+					<div class="bar-label">CEO Fraud</div>
+					<div class="bar-value" style="width: 31%;">31%</div>
+				    </div>
+				</div>
+			    </div>
+			    
+			    <div>
+				<h3 class="text-xl font-bold mb-4">Phishing & Social Engineering Trends</h3>
+				<p class="text-neutral-light/70 mb-4">Social engineering attacks have become increasingly sophisticated, with attackers leveraging AI-generated content and deepfake technology. Phishing campaigns now show a 73% success rate when using personalized information gathered from social media and data breaches.</p>
+				
+				<div class="grid grid-cols-2 gap-4 mb-6">
+				    <div>
+					<div class="text-sm text-neutral-light/70">Average Click Rate</div>
+					<div class="text-xl font-bold text-secondary-green">3.4%</div>
+				    </div>
+				    <div>
+					<div class="text-sm text-neutral-light/70">Most Targeted Industry</div>
+					<div class="text-xl font-bold text-secondary-green">Financial Services</div>
+				    </div>
+				    <div>
+					<div class="text-sm text-neutral-light/70">Common Delivery Method</div>
+					<div class="text-xl font-bold text-secondary-green">Email (82%)</div>
+				    </div>
+				    <div>
+					<div class="text-sm text-neutral-light/70">AI-Generated Content</div>
+					<div class="text-xl font-bold text-secondary-green">47% of attacks</div>
+				    </div>
+				</div>
+				
+				<div>
+				    <h4 class="text-lg font-bold mb-2">Emerging Techniques</h4>
+				    <div class="grid grid-cols-2 gap-2">
+					<div class="px-3 py-2 bg-primary-medium rounded">Voice Phishing (Vishing)</div>
+					<div class="px-3 py-2 bg-primary-medium rounded">QR Code Phishing</div>
+					<div class="px-3 py-2 bg-primary-medium rounded">Conversational AI Attacks</div>
+					<div class="px-3 py-2 bg-primary-medium rounded">Multi-Channel Attacks</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+		    </div>
 
-            // Check if row matches all selected filters
-            const severityMatch = severityValue === 'all' || rowSeverity === severityValue;
-            const vendorMatch = vendorValue === 'all' || rowVendor === vendorValue;
-            const statusMatch = statusValue === 'all' || rowStatus === statusValue;
+		    <div class="explorer-content hidden">
+			<div class="grid md:grid-cols-2 gap-8">
+			    <div>
+				<h4 class="text-xl font-bold mb-4">Most Exploited Vulnerabilities (Q2 2025)</h4>
+				<div class="bar-chart">
+				    <div class="bar-item">
+					<div class="bar-label">CVE-2025-32756</div>
+					<div class="bar-value" style="width: 78%;">78%</div>
+				    </div>
+				    <div class="bar-item">
+					<div class="bar-label">CVE-2025-31324</div>
+					<div class="bar-value" style="width: 65%;">65%</div>
+				    </div>
+				    <div class="bar-item">
+					<div class="bar-label">CVE-2025-30400</div>
+					<div class="bar-value" style="width: 52%;">52%</div>
+				    </div>
+				    <div class="bar-item">
+					<div class="bar-label">CVE-2025-32706</div>
+					<div class="bar-value" style="width: 48%;">48%</div>
+				    </div>
+				    <div class="bar-item">
+					<div class="bar-label">CVE-2025-4664</div>
+					<div class="bar-value" style="width: 42%;">42%</div>
+				    </div>
+				</div>
+			    </div>
+			    
+			    <div>
+				<h3 class="text-xl font-bold mb-4">Vulnerabilities & Exploits Trends</h3>
+				<p class="text-neutral-light/70 mb-4">The average time between vulnerability disclosure and exploitation has decreased to just 14 days. Attackers are increasingly targeting edge devices and cloud services, with 62% of exploits targeting vulnerabilities in internet-facing systems.</p>
+				
+				<div class="grid grid-cols-2 gap-4 mb-6">
+				    <div>
+					<div class="text-sm text-neutral-light/70">Zero-Days Discovered</div>
+					<div class="text-xl font-bold text-secondary-green">5</div>
+				    </div>
+				    <div>
+					<div class="text-sm text-neutral-light/70">Most Targeted Vendor</div>
+					<div class="text-xl font-bold text-secondary-green">Fortinet</div>
+				    </div>
+				    <div>
+					<div class="text-sm text-neutral-light/70">Average Patch Time</div>
+					<div class="text-xl font-bold text-secondary-green">42 Days</div>
+				    </div>
+				    <div>
+					<div class="text-sm text-neutral-light/70">Cloud Service Exploits</div>
+					<div class="text-xl font-bold text-secondary-green">+38% YoY</div>
+				    </div>
+				</div>
+				
+				<div>
+				    <h4 class="text-lg font-bold mb-2">High-Risk Vulnerability Types</h4>
+				    <div class="grid grid-cols-2 gap-2">
+					<div class="px-3 py-2 bg-primary-medium rounded">Remote Code Execution</div>
+					<div class="px-3 py-2 bg-primary-medium rounded">Privilege Escalation</div>
+					<div class="px-3 py-2 bg-primary-medium rounded">Authentication Bypass</div>
+					<div class="px-3 py-2 bg-primary-medium rounded">Memory Corruption</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+		    </div>
 
-            if (severityMatch && vendorMatch && statusMatch) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
-        });
-    }
+		    <div class="explorer-content hidden">
+			<div class="grid md:grid-cols-2 gap-8">
+			    <div>
+				<h4 class="text-xl font-bold mb-4">Most Active APT Groups (2025)</h4>
+				<div class="bar-chart">
+				    <div class="bar-item">
+					<div class="bar-label">FAMOUS CHOLLIMA</div>
+					<div class="bar-value" style="width: 85%;">85 incidents</div>
+				    </div>
+				    <div class="bar-item">
+					<div class="bar-label">APT29</div>
+					<div class="bar-value" style="width: 72%;">72 incidents</div>
+				    </div>
+				    <div class="bar-item">
+					<div class="bar-label">APT41</div>
+					<div class="bar-value" style="width: 68%;">68 incidents</div>
+				    </div>
+				    <div class="bar-item">
+					<div class="bar-label">Lazarus Group</div>
+					<div class="bar-value" style="width: 64%;">64 incidents</div>
+				    </div>
+				    <div class="bar-item">
+					<div class="bar-label">APT28</div>
+					<div class="bar-value" style="width: 58%;">58 incidents</div>
+				    </div>
+				</div>
+			    </div>
+			    
+			    <div>
+				<h3 class="text-xl font-bold mb-4">Advanced Persistent Threat Trends</h3>
+				<p class="text-neutral-light/70 mb-4">APT groups are increasingly adopting ransomware tactics for both financial gain and disruption. Supply chain attacks have increased by 47% year-over-year, with attackers targeting software vendors to gain access to multiple victims through a single compromise.</p>
+				
+				<div class="grid grid-cols-2 gap-4 mb-6">
+				    <div>
+					<div class="text-sm text-neutral-light/70">Average Dwell Time</div>
+					<div class="text-xl font-bold text-secondary-green">56 Days</div>
+				    </div>
+				    <div>
+					<div class="text-sm text-neutral-light/70">Most Targeted Sector</div>
+					<div class="text-xl font-bold text-secondary-green">Government</div>
+				    </div>
+				    <div>
+					<div class="text-sm text-neutral-light/70">Common Initial Vector</div>
+					<div class="text-xl font-bold text-secondary-green">Phishing (78%)</div>
+				    </div>
+				    <div>
+					<div class="text-sm text-neutral-light/70">AI-Assisted Attacks</div>
+					<div class="text-xl font-bold text-secondary-green">39% of APTs</div>
+				    </div>
+				</div>
+				
+				<div>
+				    <h4 class="text-lg font-bold mb-2">Emerging APT Tactics</h4>
+				    <div class="grid grid-cols-2 gap-2">
+					<div class="px-3 py-2 bg-primary-medium rounded">AI-Powered Recon</div>
+					<div class="px-3 py-2 bg-primary-medium rounded">Living-off-the-Cloud</div>
+					<div class="px-3 py-2 bg-primary-medium rounded">IoT Device Compromise</div>
+					<div class="px-3 py-2 bg-primary-medium rounded">5G Network Exploits</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+		    </div>
 
-    // Add event listeners to all filters
-    severityFilter.addEventListener('change', filterCVEs);
-    vendorFilter.addEventListener('change', filterCVEs);
-    statusFilter.addEventListener('change', filterCVEs);
-});
+		    <div class="explorer-content hidden">
+			<div class="grid md:grid-cols-2 gap-8">
+			    <div>
+				<h4 class="text-xl font-bold mb-4">Emerging Threat Categories</h4>
+				<div class="bar-chart">
+				    <div class="bar-item">
+					<div class="bar-label">AI-Assisted Attacks</div>
+					<div class="bar-value" style="width: 82%;">82% increase</div>
+				    </div>
+				    <div class="bar-item">
+					<div class="bar-label">Quantum Computing Risks</div>
+					<div class="bar-value" style="width: 65%;">65% increase</div>
+				    </div>
+				    <div class="bar-item">
+					<div class="bar-label">5G Network Exploits</div>
+					<div class="bar-value" style="width: 58%;">58% increase</div>
+				    </div>
+				    <div class="bar-item">
+					<div class="bar-label">Deepfake Fraud</div>
+					<div class="bar-value" style="width: 47%;">47% increase</div>
+				    </div>
+				    <div class="bar-item">
+					<div class="bar-label">Autonomous System Hacks</div>
+					<div class="bar-value" style="width: 39%;">39% increase</div>
+				    </div>
+				</div>
+			    </div>
+			    
+			    <div>
+				<h3 class="text-xl font-bold mb-4">Emerging Threat Landscape</h3>
+				<p class="text-neutral-light/70 mb-4">The cybersecurity landscape is evolving rapidly with the adoption of new technologies. AI-powered attacks are now capable of mimicking human behavior with 92% accuracy, while quantum computing poses an existential threat to current encryption standards.</p>
+				
+				<div class="grid grid-cols-2 gap-4 mb-6">
+				    <div>
+					<div class="text-sm text-neutral-light/70">AI Attack Surge</div>
+					<div class="text-xl font-bold text-secondary-green">+210% YoY</div>
+				    </div>
+				    <div>
+					<div class="text-sm text-neutral-light/70">Most Vulnerable Tech</div>
+					<div class="text-xl font-bold text-secondary-green">IoT Devices</div>
+				    </div>
+				    <div>
+					<div class="text-sm text-neutral-light/70">Quantum Risk Timeline</div>
+					<div class="text-xl font-bold text-secondary-green">3-5 Years</div>
+				    </div>
+				    <div>
+					<div class="text-sm text-neutral-light/70">Deepfake Detection Rate</div>
+					<div class="text-xl font-bold text-secondary-green">Only 37%</div>
+				    </div>
+				</div>
+				
+				<div>
+				    <h4 class="text-lg font-bold mb-2">Future Threat Vectors</h4>
+				    <div class="grid grid-cols-2 gap-2">
+					<div class="px-3 py-2 bg-primary-medium rounded">AI Worm Attacks</div>
+					<div class="px-3 py-2 bg-primary-medium rounded">Quantum Decryption</div>
+					<div class="px-3 py-2 bg-primary-medium rounded">Neuromorphic Hacking</div>
+					<div class="px-3 py-2 bg-primary-medium rounded">Bio-Digital Threats</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+            </section>
+
+            <!-- Industry Insights -->
+            <section class="container mx-auto mb-20">
+		<div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+			Industry-Specific <span class="gradient-text">Threat Intelligence</span>
+                    </h2>
+		</div>
+		
+		<div class="card p-6">
+                    <div class="grid md:grid-cols-4 gap-8">
+			<div>
+                            <div class="space-y-2">
+				<div class="industry-item active">Manufacturing</div>
+				<div class="industry-item">Financial Services</div>
+				<div class="industry-item">Healthcare</div>
+				<div class="industry-item">Information Technology</div>
+				<div class="industry-item">Energy & Utilities</div>
+				<div class="industry-item">Government</div>
+				<div class="industry-item">Education</div>
+                            </div>
+			</div>
+			
+			<div class="md:col-span-3">
+                            <div class="industry-content active">
+				<h3 class="text-2xl font-bold mb-4">Manufacturing Sector Threat Landscape</h3>
+				
+				<div class="grid grid-cols-3 gap-4 mb-6">
+                                    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">72</div>
+					<div class="text-sm text-neutral-light/70">Incidents (April 2025)</div>
+                                    </div>
+                                    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">-21%</div>
+					<div class="text-sm text-neutral-light/70">Change from March</div>
+                                    </div>
+                                    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">Qilin</div>
+					<div class="text-sm text-neutral-light/70">Primary Threat Actor</div>
+                                    </div>
+				</div>
+				
+				<div class="space-y-4 mb-6">
+                                    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+                                            <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+                                            Intellectual Property Targeting
+					</h4>
+					<p class="text-neutral-light/70">Manufacturing firms are experiencing targeted attacks focused on stealing intellectual property and design specifications before deploying ransomware, creating dual extortion scenarios.</p>
+                                    </div>
+                                    
+                                    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+                                            <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+                                            OT/IT Convergence Risks
+					</h4>
+					<p class="text-neutral-light/70">Threat actors are exploiting the increasing connectivity between operational technology (OT) and information technology (IT) networks, with a focus on legacy systems with unpatched vulnerabilities.</p>
+                                    </div>
+                                    
+                                    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+                                            <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+                                            Supply Chain Compromise
+					</h4>
+					<p class="text-neutral-light/70">Attackers are targeting smaller suppliers and vendors in the manufacturing supply chain as entry points to larger organizations, leveraging trusted relationships to move laterally.</p>
+                                    </div>
+				</div>
+				
+				<div>
+                                    <h4 class="text-lg font-bold mb-2">Recommended Security Controls</h4>
+                                    <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
+					<li>Implement network segmentation between IT and OT environments</li>
+					<li>Deploy enhanced monitoring for intellectual property and design files</li>
+					<li>Conduct regular vulnerability assessments of industrial control systems</li>
+					<li>Establish vendor security assessment program for supply chain partners</li>
+					<li>Develop and test specific incident response playbooks for manufacturing attacks</li>
+                                    </ul>
+				</div>
+                            </div>
+                            <!-- Inside the industry-content div (replace the existing content) -->
+
+			    <div class="industry-content hidden">
+				<h3 class="text-2xl font-bold mb-4">Financial Services Threat Landscape</h3>
+				
+				<div class="grid grid-cols-3 gap-4 mb-6">
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">58</div>
+					<div class="text-sm text-neutral-light/70">Incidents (April 2025)</div>
+				    </div>
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">+12%</div>
+					<div class="text-sm text-neutral-light/70">Change from March</div>
+				    </div>
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">Lazarus</div>
+					<div class="text-sm text-neutral-light/70">Primary Threat Actor</div>
+				    </div>
+				</div>
+				
+				<div class="space-y-4 mb-6">
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    SWIFT Network Targeting
+					</h4>
+					<p class="text-neutral-light/70">Financial institutions are experiencing sophisticated attacks targeting SWIFT messaging systems with malware designed to manipulate transaction records and bypass authentication.</p>
+				    </div>
+				    
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    API-Based Attacks
+					</h4>
+					<p class="text-neutral-light/70">Attackers are exploiting vulnerabilities in banking APIs to initiate unauthorized transactions, with a focus on mobile banking applications and payment gateways.</p>
+				    </div>
+				    
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    Supply Chain Compromise
+					</h4>
+					<p class="text-neutral-light/70">Third-party financial software providers are being targeted as entry points to multiple banks and financial institutions through supply chain attacks.</p>
+				    </div>
+				</div>
+				
+				<div>
+				    <h4 class="text-lg font-bold mb-2">Recommended Security Controls</h4>
+				    <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
+					<li>Implement transaction verification systems with multi-person approval</li>
+					<li>Deploy API security gateways with strict rate limiting</li>
+					<li>Conduct regular red team exercises focusing on payment systems</li>
+					<li>Enhance monitoring for anomalous SWIFT message patterns</li>
+					<li>Establish vendor security assessment program for fintech partners</li>
+				    </ul>
+				</div>
+			    </div>
+
+			    <div class="industry-content hidden">
+				<h3 class="text-2xl font-bold mb-4">Healthcare Sector Threat Landscape</h3>
+				
+				<div class="grid grid-cols-3 gap-4 mb-6">
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">49</div>
+					<div class="text-sm text-neutral-light/70">Incidents (April 2025)</div>
+				    </div>
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">+8%</div>
+					<div class="text-sm text-neutral-light/70">Change from March</div>
+				    </div>
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">Hive</div>
+					<div class="text-sm text-neutral-light/70">Primary Threat Actor</div>
+				    </div>
+				</div>
+				
+				<div class="space-y-4 mb-6">
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    Patient Data Targeting
+					</h4>
+					<p class="text-neutral-light/70">Healthcare organizations are experiencing targeted attacks focused on stealing protected health information (PHI) for medical identity theft and insurance fraud.</p>
+				    </div>
+				    
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    Medical Device Vulnerabilities
+					</h4>
+					<p class="text-neutral-light/70">Connected medical devices with outdated firmware are being exploited as entry points to hospital networks, particularly infusion pumps and imaging systems.</p>
+				    </div>
+				    
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    Ransomware Impacting Care Delivery
+					</h4>
+					<p class="text-neutral-light/70">Ransomware attacks are increasingly disrupting patient care, with threat actors specifically targeting systems critical to emergency services and surgical operations.</p>
+				    </div>
+				</div>
+				
+				<div>
+				    <h4 class="text-lg font-bold mb-2">Recommended Security Controls</h4>
+				    <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
+					<li>Implement network segmentation for medical IoT devices</li>
+					<li>Deploy enhanced monitoring for PHI access patterns</li>
+					<li>Conduct regular vulnerability assessments of medical devices</li>
+					<li>Establish incident response playbooks for clinical system outages</li>
+					<li>Develop backup procedures for critical patient care systems</li>
+				    </ul>
+				</div>
+			    </div>
+
+			    <div class="industry-content hidden">
+				<h3 class="text-2xl font-bold mb-4">Information Technology Threat Landscape</h3>
+				
+				<div class="grid grid-cols-3 gap-4 mb-6">
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">63</div>
+					<div class="text-sm text-neutral-light/70">Incidents (April 2025)</div>
+				    </div>
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">+15%</div>
+					<div class="text-sm text-neutral-light/70">Change from March</div>
+				    </div>
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">APT41</div>
+					<div class="text-sm text-neutral-light/70">Primary Threat Actor</div>
+				    </div>
+				</div>
+				
+				<div class="space-y-4 mb-6">
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    Software Supply Chain Attacks
+					</h4>
+					<p class="text-neutral-light/70">Technology companies are being targeted through their software development pipelines, with attackers compromising build systems to distribute malware to customers.</p>
+				    </div>
+				    
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    Cloud Infrastructure Targeting
+					</h4>
+					<p class="text-neutral-light/70">Attackers are exploiting misconfigured cloud services and weak identity management to gain access to sensitive customer data and proprietary source code.</p>
+				    </div>
+				    
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    Zero-Day Exploitation
+					</h4>
+					<p class="text-neutral-light/70">Technology firms are experiencing a surge in zero-day attacks targeting their products, with vulnerabilities being exploited before patches can be developed.</p>
+				    </div>
+				</div>
+				
+				<div>
+				    <h4 class="text-lg font-bold mb-2">Recommended Security Controls</h4>
+				    <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
+					<li>Implement software bill of materials (SBOM) for all products</li>
+					<li>Enforce multi-factor authentication for all cloud services</li>
+					<li>Conduct regular red team exercises focusing on CI/CD pipelines</li>
+					<li>Deploy runtime application self-protection (RASP) for critical services</li>
+					<li>Establish bug bounty programs to identify vulnerabilities</li>
+				    </ul>
+				</div>
+			    </div>
+
+			    <div class="industry-content hidden">
+				<h3 class="text-2xl font-bold mb-4">Energy & Utilities Threat Landscape</h3>
+				
+				<div class="grid grid-cols-3 gap-4 mb-6">
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">37</div>
+					<div class="text-sm text-neutral-light/70">Incidents (April 2025)</div>
+				    </div>
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">+24%</div>
+					<div class="text-sm text-neutral-light/70">Change from March</div>
+				    </div>
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">Dragonfly</div>
+					<div class="text-sm text-neutral-light/70">Primary Threat Actor</div>
+				    </div>
+				</div>
+				
+				<div class="space-y-4 mb-6">
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    Operational Technology Targeting
+					</h4>
+					<p class="text-neutral-light/70">Energy companies are experiencing targeted attacks against industrial control systems (ICS) with malware designed to manipulate sensor readings and disrupt operations.</p>
+				    </div>
+				    
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    Ransomware Impacting Critical Infrastructure
+					</h4>
+					<p class="text-neutral-light/70">Ransomware attacks are increasingly targeting energy distribution systems, with threat actors specifically focusing on systems that could cause widespread outages.</p>
+				    </div>
+				    
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    Geopolitical Motivations
+					</h4>
+					<p class="text-neutral-light/70">State-sponsored actors are targeting energy infrastructure for geopolitical purposes, with attacks designed to test response capabilities and create disruption.</p>
+				    </div>
+				</div>
+				
+				<div>
+				    <h4 class="text-lg font-bold mb-2">Recommended Security Controls</h4>
+				    <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
+					<li>Implement air-gapped backups for critical control systems</li>
+					<li>Deploy network segmentation between IT and OT environments</li>
+					<li>Conduct regular tabletop exercises for grid disruption scenarios</li>
+					<li>Establish partnerships with government cybersecurity agencies</li>
+					<li>Develop manual override procedures for critical systems</li>
+				    </ul>
+				</div>
+			    </div>
+
+			    <div class="industry-content hidden">
+				<h3 class="text-2xl font-bold mb-4">Government Sector Threat Landscape</h3>
+				
+				<div class="grid grid-cols-3 gap-4 mb-6">
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">41</div>
+					<div class="text-sm text-neutral-light/70">Incidents (April 2025)</div>
+				    </div>
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">+18%</div>
+					<div class="text-sm text-neutral-light/70">Change from March</div>
+				    </div>
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">APT29</div>
+					<div class="text-sm text-neutral-light/70">Primary Threat Actor</div>
+				    </div>
+				</div>
+				
+				<div class="space-y-4 mb-6">
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    Election Infrastructure Targeting
+					</h4>
+					<p class="text-neutral-light/70">Government agencies are experiencing sophisticated attacks targeting voter registration systems and election infrastructure ahead of key electoral events.</p>
+				    </div>
+				    
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    Data Exfiltration Campaigns
+					</h4>
+					<p class="text-neutral-light/70">Attackers are focusing on exfiltrating sensitive government data, including diplomatic communications and national security information.</p>
+				    </div>
+				    
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    Legacy System Vulnerabilities
+					</h4>
+					<p class="text-neutral-light/70">Outdated government systems running unsupported software are being actively targeted due to known vulnerabilities with no available patches.</p>
+				    </div>
+				</div>
+				
+				<div>
+				    <h4 class="text-lg font-bold mb-2">Recommended Security Controls</h4>
+				    <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
+					<li>Implement zero trust architecture for sensitive systems</li>
+					<li>Deploy advanced threat detection for nation-state actors</li>
+					<li>Conduct regular security assessments of critical infrastructure</li>
+					<li>Establish information sharing agreements with allied nations</li>
+					<li>Develop contingency plans for system outages during crises</li>
+				    </ul>
+				</div>
+			    </div>
+
+			    <div class="industry-content hidden">
+				<h3 class="text-2xl font-bold mb-4">Education Sector Threat Landscape</h3>
+				
+				<div class="grid grid-cols-3 gap-4 mb-6">
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">29</div>
+					<div class="text-sm text-neutral-light/70">Incidents (April 2025)</div>
+				    </div>
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">+32%</div>
+					<div class="text-sm text-neutral-light/70">Change from March</div>
+				    </div>
+				    <div class="text-center">
+					<div class="text-3xl font-bold text-secondary-green">Vice Society</div>
+					<div class="text-sm text-neutral-light/70">Primary Threat Actor</div>
+				    </div>
+				</div>
+				
+				<div class="space-y-4 mb-6">
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    Research Data Targeting
+					</h4>
+					<p class="text-neutral-light/70">Universities are experiencing targeted attacks against research data, particularly in fields like artificial intelligence, biotechnology, and defense-related studies.</p>
+				    </div>
+				    
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    Ransomware Disrupting Operations
+					</h4>
+					<p class="text-neutral-light/70">Educational institutions are particularly vulnerable to ransomware attacks that disrupt learning management systems and student information databases.</p>
+				    </div>
+				    
+				    <div>
+					<h4 class="text-lg font-bold flex items-center mb-2">
+					    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+					    Weak Authentication Practices
+					</h4>
+					<p class="text-neutral-light/70">The widespread use of single-factor authentication and shared credentials in educational environments creates significant security vulnerabilities.</p>
+				    </div>
+				</div>
+				
+				<div>
+				    <h4 class="text-lg font-bold mb-2">Recommended Security Controls</h4>
+				    <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
+					<li>Implement multi-factor authentication for all systems</li>
+					<li>Deploy data classification for sensitive research</li>
+					<li>Conduct regular security awareness training for staff and students</li>
+					<li>Establish incident response plans for research data breaches</li>
+					<li>Segment networks to protect critical research systems</li>
+				    </ul>
+				</div>
+			    </div>
+			</div>
+                    </div>
+		</div>
+            </section>
+
+            <!-- CVE Tracker -->
+            <section class="container mx-auto mb-20">
+		<div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+			Critical <span class="gradient-text">Vulnerability</span> Tracker
+                    </h2>
+		</div>
+		
+		<div class="card p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+			<div>
+			    <label class="block text-sm font-medium text-neutral-light/90 mb-1">Severity</label>
+			    <select id="severity-filter" class="w-full p-2 rounded bg-primary-dark border border-primary-medium">
+				<option value="all">All Severities</option>
+				<option value="critical">Critical (9.0-10.0)</option>
+				<option value="high">High (7.0-8.9)</option>
+				<option value="medium">Medium (4.0-6.9)</option>
+				<option value="low">Low (0.1-3.9)</option>
+			    </select>
+			</div>
+			<div>
+			    <label class="block text-sm font-medium text-neutral-light/90 mb-1">Vendor</label>
+			    <select id="vendor-filter" class="w-full p-2 rounded bg-primary-dark border border-primary-medium">
+				<option value="all">All Vendors</option>
+				<option value="fortinet">Fortinet</option>
+				<option value="microsoft">Microsoft</option>
+				<option value="google">Google</option>
+				<option value="sap">SAP</option>
+				<option value="cisco">Cisco</option>
+			    </select>
+			</div>
+			<div>
+			    <label class="block text-sm font-medium text-neutral-light/90 mb-1">Exploitation Status</label>
+			    <select id="status-filter" class="w-full p-2 rounded bg-primary-dark border border-primary-medium">
+				<option value="all">All Statuses</option>
+				<option value="exploited">Actively Exploited</option>
+				<option value="poc">PoC Available</option>
+				<option value="none">No Known Exploitation</option>
+			    </select>
+			</div>
+		    </div>
+                    
+                    <div class="overflow-x-auto">
+			<table id="cve-table" class="w-full">
+                            <thead>
+				<tr class="bg-primary-medium text-left">
+                                    <th class="p-3">CVE ID</th>
+                                    <th class="p-3">Vendor/Product</th>
+                                    <th class="p-3">Description</th>
+                                    <th class="p-3">Published</th>
+                                    <th class="p-3">CVSS</th>
+                                    <th class="p-3">Status</th>
+				</tr>
+                            </thead>
+                            <tbody class="divide-y divide-primary-medium">
+				<tr class="hover:bg-primary-medium/20" data-severity="critical" data-vendor="fortinet" data-status="exploited">
+				    <td class="p-3 font-mono">CVE-2025-32756</td>
+				    <td class="p-3">Fortinet Products</td>
+				    <td class="p-3">Arbitrary code execution vulnerability affecting FortiVoice, FortiMail, FortiNDR</td>
+				    <td class="p-3">May 14, 2025</td>
+				    <td class="p-3"><span class="cvss-badge critical">9.8</span></td>
+				    <td class="p-3"><span class="status-badge exploited">Exploited</span></td>
+				</tr>
+				<tr class="hover:bg-primary-medium/20" data-severity="critical" data-vendor="sap" data-status="exploited">
+				    <td class="p-3 font-mono">CVE-2025-31324</td>
+				    <td class="p-3">SAP</td>
+				    <td class="p-3">SAP zero-day vulnerability under active exploitation</td>
+				    <td class="p-3">May 10, 2025</td>
+				    <td class="p-3"><span class="cvss-badge critical">9.1</span></td>
+				    <td class="p-3"><span class="status-badge exploited">Exploited</span></td>
+				</tr>
+				<tr class="hover:bg-primary-medium/20" data-severity="high" data-vendor="microsoft" data-status="poc">
+				    <td class="p-3 font-mono">CVE-2025-30400</td>
+				    <td class="p-3">Microsoft Windows</td>
+				    <td class="p-3">Use after free (UAF) vulnerability in Windows kernel</td>
+				    <td class="p-3">May 13, 2025</td>
+				    <td class="p-3"><span class="cvss-badge high">7.8</span></td>
+				    <td class="p-3"><span class="status-badge poc">PoC Available</span></td>
+				</tr>
+				<tr class="hover:bg-primary-medium/20" data-severity="high" data-vendor="microsoft" data-status="poc">
+				    <td class="p-3 font-mono">CVE-2025-32706</td>
+				    <td class="p-3">Windows Common Log File System</td>
+				    <td class="p-3">Elevation of privilege vulnerability</td>
+				    <td class="p-3">May 14, 2025</td>
+				    <td class="p-3"><span class="cvss-badge high">7.8</span></td>
+				    <td class="p-3"><span class="status-badge poc">PoC Available</span></td>
+				</tr>
+				<tr class="hover:bg-primary-medium/20" data-severity="high" data-vendor="google" data-status="exploited">
+				    <td class="p-3 font-mono">CVE-2025-4664</td>
+				    <td class="p-3">Google Chromium</td>
+				    <td class="p-3">Insufficient policy enforcement vulnerability in Chromium Loader</td>
+				    <td class="p-3">May 15, 2025</td>
+				    <td class="p-3"><span class="cvss-badge high">8.2</span></td>
+				    <td class="p-3"><span class="status-badge exploited">Exploited</span></td>
+				</tr>
+				<tr class="hover:bg-primary-medium/20" data-severity="medium" data-vendor="google" data-status="none">
+				    <td class="p-3 font-mono">CVE-2025-4609</td>
+				    <td class="p-3">Google Chrome</td>
+				    <td class="p-3">Incorrect handle management vulnerability</td>
+				    <td class="p-3">May 15, 2025</td>
+				    <td class="p-3"><span class="cvss-badge medium">6.5</span></td>
+				    <td class="p-3"><span class="status-badge none">No Exploitation</span></td>
+				</tr>
+				<tr id="no-results" class="hidden">
+				    <td colspan="6" class="p-6 text-center text-neutral-light/70">
+					No CVEs match your selected filters. Try adjusting your criteria.
+				    </td>
+				</tr>
+                            </tbody>
+			</table>
+                    </div>
+		</div>
+            </section>
+
+            <!-- Services Section -->
+	    <section class="container mx-auto mb-20">
+		<div class="text-center mb-12">
+		    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+			Our Threat Intelligence <span class="gradient-text">Services</span>
+		    </h2>
+		</div>
+		
+		<div class="grid md:grid-cols-3 gap-8">
+		    <!-- Card 1 -->
+		    <div class="card p-6 flex flex-col">
+			<div class="mb-4">
+			    <h3 class="text-xl font-bold">Essential Threat Monitoring</h3>
+			    <p class="text-neutral-light/70">For small to medium businesses with standard security needs</p>
+			</div>
+			
+			<div class="space-y-3 mb-6 flex-grow">
+			    <div class="flex items-start">
+				<i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+				<span>Weekly threat intelligence reports</span>
+			    </div>
+			    <div class="flex items-start">
+				<i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+				<span>Basic IOC feeds for your security tools</span>
+			    </div>
+			    <div class="flex items-start">
+				<i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+				<span>Email alerts for critical threats</span>
+			    </div>
+			    <div class="flex items-start">
+				<i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+				<span>Monthly threat briefing</span>
+			    </div>
+			    <div class="flex items-start">
+				<i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+				<span>Access to threat intelligence portal</span>
+			    </div>
+			</div>
+			
+			<a href="#" class="cyber-btn w-full text-center block mt-auto">
+			    Get Started
+			</a>
+		    </div>
+		    
+		    <!-- Card 2 -->
+		    <div class="card p-6 flex flex-col">
+			<div class="mb-4">
+			    <h3 class="text-xl font-bold">Comprehensive Threat Intelligence</h3>
+			    <p class="text-neutral-light/70">For larger organizations with dedicated security teams</p>
+			</div>
+			
+			<div class="space-y-3 mb-6 flex-grow">
+			    <div class="flex items-start">
+				<i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+				<span>Daily threat intelligence briefings</span>
+			    </div>
+			    <div class="flex items-start">
+				<i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+				<span>Industry-specific intelligence reports</span>
+			    </div>
+			    <div class="flex items-start">
+				<i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+				<span>Custom IOC feeds for your security stack</span>
+			    </div>
+			    <div class="flex items-start">
+				<i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+				<span>Threat hunting support</span>
+			    </div>
+			    <div class="flex items-start">
+				<i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+				<span>Quarterly executive threat briefings</span>
+			    </div>
+			</div>
+			
+			<a href="#" class="cyber-btn w-full text-center block mt-auto">
+			    Learn More
+			</a>
+		    </div>
+		    
+		    <!-- Card 3 -->
+		    <div class="card p-6 flex flex-col">
+			<div class="mb-4">
+			    <h3 class="text-xl font-bold">Strategic Threat Intelligence</h3>
+			    <p class="text-neutral-light/70">For enterprises requiring the highest level of threat awareness</p>
+			</div>
+			
+			<div class="space-y-3 mb-6 flex-grow">
+			    <div class="flex items-start">
+				<i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+				<span>Real-time threat monitoring and alerts</span>
+			    </div>
+			    <div class="flex items-start">
+				<i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+				<span>Dedicated threat intelligence analyst</span>
+			    </div>
+			    <div class="flex items-start">
+				<i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+				<span>Custom research on threats to your industry</span>
+			    </div>
+			    <div class="flex items-start">
+				<i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+				<span>Monthly executive briefings</span>
+			    </div>
+			    <div class="flex items-start">
+				<i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+				<span>Integration with your security operations</span>
+			    </div>
+			</div>
+			
+			<a href="#" class="cyber-btn w-full text-center block mt-auto">
+			    Contact Us
+			</a>
+		    </div>
+		</div>
+	    </section>
+
+            <!-- MITRE ATT&CK Framework Section -->
+            <section class="hidden container mx-auto">
+		<div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+			MITRE ATT&CK <span class="gradient-text">Framework</span>
+                    </h2>
+                    <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+			Track threat actor techniques and tactics using the industry-standard MITRE ATT&CK framework. Our threat intelligence is mapped to this framework to provide actionable context for your security team.
+                    </p>
+		</div>
+		
+		<div class="card p-6 overflow-x-auto">
+                    <div class="matrix-row">
+			<div class="matrix-cell header">Tactics</div>
+			<div class="matrix-cell header">Initial Access</div>
+			<div class="matrix-cell header">Execution</div>
+			<div class="matrix-cell header">Persistence</div>
+			<div class="matrix-cell header">Privilege Escalation</div>
+			<div class="matrix-cell header">Defense Evasion</div>
+			<div class="matrix-cell header">Credential Access</div>
+                    </div>
+                    
+                    <div class="matrix-row">
+			<div class="matrix-cell actor">Qilin</div>
+			<div class="matrix-cell active" data-technique="T1566">Phishing</div>
+			<div class="matrix-cell active" data-technique="T1059.001">PowerShell</div>
+			<div class="matrix-cell active" data-technique="T1547.001">Registry Run Keys</div>
+			<div class="matrix-cell active" data-technique="T1068">Exploitation for Privilege Escalation</div>
+			<div class="matrix-cell active" data-technique="T1027">Obfuscated Files</div>
+			<div class="matrix-cell active" data-technique="T1003">OS Credential Dumping</div>
+                    </div>
+                    
+                    <div class="matrix-row">
+			<div class="matrix-cell actor">FOG</div>
+			<div class="matrix-cell active" data-technique="T1566.001">Spearphishing Attachment</div>
+			<div class="matrix-cell active" data-technique="T1204.002">Malicious File</div>
+			<div class="matrix-cell active" data-technique="T1547.001">Registry Run Keys</div>
+			<div class="matrix-cell active" data-technique="T1068">Exploitation for Privilege Escalation</div>
+			<div class="matrix-cell active" data-technique="T1140">Deobfuscate Files</div>
+			<div class="matrix-cell">-</div>
+                    </div>
+                    
+                    <div class="matrix-row">
+			<div class="matrix-cell actor">FAMOUS CHOLLIMA</div>
+			<div class="matrix-cell active" data-technique="T1566.002">Spearphishing Link</div>
+			<div class="matrix-cell active" data-technique="T1059.003">Windows Command Shell</div>
+			<div class="matrix-cell active" data-technique="T1136">Create Account</div>
+			<div class="matrix-cell">-</div>
+			<div class="matrix-cell active" data-technique="T1036">Masquerading</div>
+			<div class="matrix-cell active" data-technique="T1110">Brute Force</div>
+                    </div>
+                    
+                    <div class="matrix-row">
+			<div class="matrix-cell actor">Interlock</div>
+			<div class="matrix-cell active" data-technique="T1566.003">Spearphishing via Service</div>
+			<div class="matrix-cell active" data-technique="T1059.006">Python</div>
+			<div class="matrix-cell active" data-technique="T1547.001">Registry Run Keys</div>
+			<div class="matrix-cell active" data-technique="T1134">Access Token Manipulation</div>
+			<div class="matrix-cell active" data-technique="T1027.002">Software Packing</div>
+			<div class="matrix-cell active" data-technique="T1555">Credentials from Password Stores</div>
+                    </div>
+		</div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="container mx-auto mt-20">
+		<div class="card p-8 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Stay Ahead of Evolving Threats</h2>
+                    <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto mb-8">
+			Protect your business with proactive threat intelligence that helps you anticipate, prepare for, and respond to emerging cyber threats before they impact your operations.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+			<a href="/#contact" class="cyber-btn">
+                            Schedule a Threat Briefing
+			</a>
+			<a href="#" class="border border-white text-white font-bold px-6 py-3 rounded-md transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-glow">
+                            Subscribe to Threat Alerts
+			</a>
+                    </div>
+		</div>
+            </section>
+	</main>
+
+	<!-- Use the same footer from your homepage -->
+        <footer class="py-12 px-4 md:px-8 lg:px-16 bg-neutral-dark border-t border-primary-medium">
+            <div class="container mx-auto">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    <div>
+			<a href="/index.html" style="display: inline-block; padding-bottom: 20px;" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+			
+			<p class="text-neutral-light/70 mb-6">
+                            Expert-led cyber security consultancy tailored to your business needs, compliance goals, and growth strategy.
+			</p>
+			
+			<div class="flex space-x-4">
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-instagram"></i>
+                            </a>
+			</div>
+                    </div>
+                    
+                    <div>
+			<div class="text-lg font-bold mb-6">Services</div>
+			<ul class="space-y-4">
+                            <li>
+				<a href="/soc" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    SOC as a Service
+				</a>
+                            </li>
+                            <li>
+				<a href="/penetration" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Penetration Testing
+				</a>
+                            </li>
+                            <li>
+				<a href="/incident" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Incident Response
+				</a>
+                            </li>
+                            <li>
+				<a href="/cloud-sec" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Cloud Security
+				</a>
+                            </li>
+                            <li>
+				<a href="data-protect" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Data Protection
+				</a>
+                            </li>
+			</ul>
+                    </div>
+                    
+                    <div>
+			<div class="text-lg font-bold mb-6">Company</div>
+			<ul class="space-y-4">
+                            <li>
+				<a href="/about-us" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    About Us
+				</a>
+                            </li>
+                            <li>
+				<a href="/our-team " class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Our Team
+				</a>
+                            </li>
+                            <li>
+				<a href="/careers" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Careers
+				</a>
+                            </li>
+                            <li>
+				<a href="/news" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    News
+				</a>
+                            </li>
+                            <li>
+				<a href="/termsofservice" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Terms of Service
+				</a>
+                            </li>
+			</ul>
+                    </div>
+                    
+                    <div>
+			<div class="text-lg font-bold mb-6">Resources</div>
+			<ul class="space-y-4">
+                            <li>
+				<a href="/knowledge-base" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Knowledge Base
+				</a>
+                            </li>
+                            <li>
+				<a href="/security-guides" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Security Guides
+				</a>
+                            </li>
+                            <li>
+				<a href="/threat-intelligence" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Threat Intelligence
+				</a>
+                            </li>
+                            <li>
+				<a href="/webinars" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Webinars
+				</a>
+                            </li>
+                            <li>
+				<a href="/case-studies" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Case Studies
+				</a>
+                            </li>
+			</ul>
+                    </div>
+		</div>
+		<div class="pt-8 border-t border-primary-medium text-center">
+		    <p class="text-neutral-light/70">
+			&copy; 2025 ProtekCyber Consultants. All rights reserved.
+		    </p>
+		</div>
+	    </div>
+	</footer>
+
+	<script crossorigin src="./js/dropdown.js"></script>
+	<script>
+         // Update the existing tab functionality code to this:
 
 
-    </script>
-    <!-- Resources for the interactive map -->
-<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+	</script>
+	<!-- Resources for the interactive map -->
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+	<script src="https://d3js.org/topojson.v3.min.js"></script>
+	<!-- Chart code -->
+	<script crossorigin defer async src="./js/threat-map.js"></script>
 
-
-<!-- Chart code -->
-<script>
-am5.ready(function() {
-
-// Create root element
-var root = am5.Root.new("chartdiv");
-
-// Set themes
-root.setThemes([
-  am5themes_Animated.new(root)
-]);
-
-// Create the map chart
-var chart = root.container.children.push(am5map.MapChart.new(root, {
-  panX: "translateX",
-  panY: "translateY",
-  projection: am5map.geoMercator()
-}));
-
-// Create main polygon series for countries
-var polygonSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {
-  geoJSON: am5geodata_worldLow
-}));
-polygonSeries.mapPolygons.template.setAll({
-  fill: am5.color("#FFFFFF"),
-  stroke: am5.color("#10cf44"),
-  strokeWidth: 1
-});
-
-var graticuleSeries = chart.series.push(am5map.GraticuleSeries.new(root, {}));
-graticuleSeries.mapLines.template.setAll({
-  stroke: root.interfaceColors.get("#FFFFFF"),
-  strokeOpacity: 0.08
-});
-
-// Create line series for trajectory lines
-var lineSeries = chart.series.push(am5map.MapLineSeries.new(root, {}));
-lineSeries.mapLines.template.setAll({
-  stroke: am5.color("#10cf44"),
-  strokeOpacity: 0.6,
-  strokeWidth: 3.5  
-});
-
-// Invisible line series (for the animation path)
-var invisibleLineSeries = chart.series.push(am5map.MapLineSeries.new(root, {}));
-invisibleLineSeries.mapLines.template.setAll({
-  stroke: am5.color("#10cf44"),
-  strokeOpacity: 0
-});
-
-// Animated visible line series (connecting moving points)
-var animatedLineSeries = chart.series.push(am5map.MapLineSeries.new(root, {}));
-animatedLineSeries.mapLines.template.setAll({
-  stroke: am5.color("#10cf44"),
-  strokeOpacity: 0.6,
-  strokeWidth: 3.5
-});
-
-// Animated points that will move along the invisible lines
-var animatedBulletSeries = chart.series.push(am5map.MapPointSeries.new(root, {}));
-animatedBulletSeries.bullets.push(function() {
-  var circle = am5.Circle.new(root, {
-    radius: 6,
-    fill: am5.color("#10cf44"),
-    stroke: root.interfaceColors.get("background"),
-    strokeWidth: 2
-  });
-  return am5.Bullet.new(root, {
-    sprite: circle
-  });
-});
-
-// destination series
-var citySeries = chart.series.push(
-  am5map.MapPointSeries.new(root, {})
-);
-
-citySeries.bullets.push(function() {
-  var circle = am5.Circle.new(root, {
-    radius: 8,
-    tooltipText: "{title}",
-    tooltipY: 0,
-    fill: am5.color("#10cf44"),
-    stroke: root.interfaceColors.get("background"),
-    strokeWidth: 2
-  });
-
-  return am5.Bullet.new(root, {
-    sprite: circle
-  });
-});
-
-var cities = [
-  { id: "london", title: "London", geometry: { type: "Point", coordinates: [-0.1262, 51.5002] } },
-  { id: "tokyo", title: "Tokyo", geometry: { type: "Point", coordinates: [139.6917, 35.6895] } },
-  { id: "sydney", title: "Sydney", geometry: { type: "Point", coordinates: [151.2093, -33.8688] } },
-  { id: "cape_town", title: "Cape Town", geometry: { type: "Point", coordinates: [18.4241, -33.9249] } },
-  { id: "buenos_aires", title: "Buenos Aires", geometry: { type: "Point", coordinates: [-58.3816, -34.6037] } },
-  { id: "los_angeles", title: "Los Angeles", geometry: { type: "Point", coordinates: [-118.2437, 34.0522] } },
-  { id: "toronto", title: "Toronto", geometry: { type: "Point", coordinates: [-79.3832, 43.6532] } },
-  { id: "rio", title: "Rio de Janeiro", geometry: { type: "Point", coordinates: [-43.1729, -22.9068] } },
-  { id: "singapore", title: "Singapore", geometry: { type: "Point", coordinates: [103.8198, 1.3521] } },
-  { id: "seoul", title: "Seoul", geometry: { type: "Point", coordinates: [126.9780, 37.5665] } },
-  { id: "auckland", title: "Auckland", geometry: { type: "Point", coordinates: [174.7633, -36.8485] } }
-];
-
-citySeries.data.setAll(cities);
-
-// prepare line series data
-var destinations = ["tokyo", "sydney", "cape_town", "buenos_aires", "los_angeles", "toronto", "rio", "singapore", "seoul", "auckland"];
-// London coordinates
-var originLongitude = -0.1262;
-var originLatitude = 51.5002;
-
-var londonDataItem = citySeries.getDataItemById("london");
-
-am5.array.each(destinations, function(did) {
-  var destinationDataItem = citySeries.getDataItemById(did);
-
-  // Create the invisible path (needed for animation)
-  var invisibleLineDataItem = invisibleLineSeries.pushDataItem({
-    geometry: {
-      type: "LineString",
-      coordinates: [
-        [originLongitude, originLatitude],
-        [destinationDataItem.get("longitude"), destinationDataItem.get("latitude")]
-      ]
-    }
-  });
-
-// Create both start and end points for the animated line
-var startDataItem = animatedBulletSeries.pushDataItem({});
-startDataItem.setAll({
-  lineDataItem: invisibleLineDataItem,
-  positionOnLine: 0
-});
-
-var endDataItem = animatedBulletSeries.pushDataItem({});
-endDataItem.setAll({
-  lineDataItem: invisibleLineDataItem,
-  positionOnLine: 1
-});
-
-// Draw the line between start and end points
-var animatedLineDataItem = animatedLineSeries.pushDataItem({});
-animatedLineDataItem.set("pointsToConnect", [startDataItem, endDataItem]);
-
-  // Animate bullet along the invisible line
-  var lon0 = originLongitude;
-  var lat0 = originLatitude;
-  var lon1 = destinationDataItem.get("longitude");
-  var lat1 = destinationDataItem.get("latitude");
-
-  var distance = Math.hypot(lon1 - lon0, lat1 - lat0);
-  var duration = distance * 60;
-
-animateLine(startDataItem, endDataItem, duration);
-
-});
-
-// Animation functions
-function animateLine(startDataItem, endDataItem, duration) {
-  startDataItem.set("positionOnLine", 0);
-  endDataItem.set("positionOnLine", 0);
-
-  // Animate both start and end (important for looping)
-  startDataItem.animate({
-    key: "positionOnLine",
-    from: 0,
-    to: 1,
-    duration: duration,
-    easing: am5.ease.linear
-  });
-
-  var animation = endDataItem.animate({
-    key: "positionOnLine",
-    from: 0,
-    to: 1,
-    duration: duration,
-    easing: am5.ease.linear
-  });
-
-  animation.events.on("stopped", function () {
-    // Restart animation
-    animateLine(startDataItem, endDataItem, duration);
-  });
-}
-
-polygonSeries.events.on("datavalidated", function () {
-chart.zoomToGeoPoint({ longitude: -0.1262, latitude: 30 }, 0.8);
-})
-
-// Make stuff animate on load
-chart.appear(1000, 100);
-
-}); // end am5.ready()
-</script>
-
-<!-- CVE Feed Script -->
-<script>
-    fetch("https://corsproxy.io/?https://vulnerability.circl.lu/api/last")
-        .then(res => res.json())
-        .then(data => {
-            const container = document.getElementById("cveList");
-            if (!Array.isArray(data)) {
-                container.innerHTML = "No threat data available.";
-                return;
-            }
-
-            // Only use entries that have both an ID and a description
-            const validEntries = data.filter(cve =>
-                cve?.cveMetadata?.cveId &&
-                cve?.containers?.cna?.descriptions?.[0]?.value
-            );
-
-            const truncate = (str, max = 80) =>
-                str.length > max ? str.slice(0, max) + " ..." : str;
-
-            const limited = validEntries.slice(0, 5);
-
-            if (limited.length === 0) {
-                container.innerHTML = "No valid CVE threats found.";
-                return;
-            }
-
-            container.innerHTML = limited.map(cve => {
-                const id = cve.cveMetadata.cveId;
-                const desc = truncate(cve.containers.cna.descriptions[0].value);
-                return `
-      <div style="margin-bottom: 15px;">
-        <strong style="color: #10cf44;">${id}</strong><br>
-        <span>${desc}</span>
-      </div>
-    `;
-            }).join('');
-        })
-        .catch(err => {
-            console.error(err);
-            document.getElementById("cveList").innerText = "Error loading threat data.";
-        });
-</script>
+	<!-- CVE Feed Script -->
+	<script crossorigin defer async src="./js/CVE-feed.js"></script>
 
 
 
 
 
-</body>
+    </body>
 </html>
