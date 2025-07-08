@@ -1,74 +1,370 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page Title</title>
+    <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ProtekCyber - Case Studies</title>
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS & Fonts -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" crossorigin href="./css/case-studies.css"></link>
+    </head>
 
-  <style>
-    :root {
-      --primary-dark: #0A192F;
-      --primary-medium: #19376D;
-      --secondary-green: #04D939;
-      --accent-purple: #A459D1;
-      --neutral-dark: #0F172A;
-      --neutral-light: #F8FAFC;
-    }
+    <body class="bg-neutral-dark text-neutral-light">
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--neutral-dark);
-      color: var(--neutral-light);
-    }
+	<!-- Header  -->
+	<header class="bg-neutral-dark text-neutral-light shadow-md fixed w-full top-0 z-50">
+	    <div class="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
+		
+		<!-- Logo -->
+		<a href="/index.html" class="text-2xl font-bold gradient-text">ProtekCyber</a>
 
-    .gradient-text {
-      background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+		<!-- Hamburger (Mobile) -->
+		<button id="nav-toggle" class="md:hidden text-2xl focus:outline-none">
+		    <i class="fas fa-bars"></i>
+		</button>
 
-    .cyber-btn {
-      background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
-      color: var(--neutral-dark);
-      font-weight: bold;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.375rem;
-      display: inline-block;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
+		<!-- Navigation -->
+		<nav id="nav-menu" class="hidden md:flex flex-col md:flex-row md:items-center md:gap-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-neutral-dark/95 md:bg-transparent backdrop-blur-sm px-4 md:px-0 py-4 md:py-0">
 
-    .cyber-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 15px rgba(4, 217, 57, 0.5);
-    }
-  </style>
-</head>
+		    <a href="/index.html" class="hover:text-secondary-green">Home</a>
 
-<body class="bg-neutral-dark text-neutral-light">
+		    <!-- Services -->
+		    <div class="relative group flex items-center justify-between w-full md:w-auto">
+			<a href="/index.html#services" class="hover:text-secondary-green md:mr-1">Services</a>
+			<button class="dropdown-toggle text-sm" aria-label="Toggle Services Dropdown">
+			    <i class="fas fa-chevron-down"></i>
+			</button>
+			<div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+			    <a href="/soc" class="block px-4 py-2 hover:bg-neutral-light/10">SOC as a Service</a>
+			    <a href="/penetration" class="block px-4 py-2 hover:bg-neutral-light/10">Penetration Testing</a>
+			    <a href="/incident" class="block px-4 py-2 hover:bg-neutral-light/10">Incident Response</a>
+			    <a href="/cloud-sec" class="block px-4 py-2 hover:bg-neutral-light/10">Cloud Security</a>
+			    <a href="/data-protect" class="block px-4 py-2 hover:bg-neutral-light/10">Data Protection</a>
+			</div>
+		    </div>
 
-  <!-- Optional: Navbar -->
-  <!-- Add your navbar here if needed -->
+		    <!-- Insights -->
+		    <div class="relative group flex items-center justify-between w-full md:w-auto">
+			<a href="/index.html#insights" class="hover:text-secondary-green md:mr-1">Insights</a>
+			<button class="dropdown-toggle text-sm" aria-label="Toggle Insights Dropdown">
+			    <i class="fas fa-chevron-down"></i>
+			</button>
+			<div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+			    <a href="/knowledge-base" class="block px-4 py-2 hover:bg-neutral-light/10">Knowledge Base</a>
+			    <a href="/threat-intelligence" class="block px-4 py-2 hover:bg-neutral-light/10">Threat Intelligence</a>
+			    <a href="/security-guides" class="block px-4 py-2 hover:bg-neutral-light/10">Security Guides</a>
+			    <a href="/webinars" class="block px-4 py-2 hover:bg-neutral-light/10">Webinars</a>
+			    <a href="/case-studies" class="block px-4 py-2 hover:bg-neutral-light/10">Case Studies</a>
+			</div>
+		    </div>
 
-  <!-- Main Placeholder Section -->
-  <section class="pt-40 pb-20 px-4 md:px-8 lg:px-16 bg-neutral-dark">
-    <div class="container mx-auto text-center max-w-4xl">
-      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-        This <span class="gradient-text">Page</span> is Under Construction
-      </h1>
-      <p class="text-neutral-light/70 text-lg mb-10">
-        We're working on this section. Please check back soon.
-      </p>
-      <a href="/index.html" class="cyber-btn">Return to Homepage</a>
+		    <!-- Company -->
+		    <div class="relative group flex items-center justify-between w-full md:w-auto">
+			<a href="/company" class="hover:text-secondary-green md:mr-1">Company</a>
+			<button class="dropdown-toggle text-sm" aria-label="Toggle Company Dropdown">
+			    <i class="fas fa-chevron-down"></i>
+			</button>
+			<div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+			    <a href="/about-us" class="block px-4 py-2 hover:bg-neutral-light/10">About Us</a>
+			    <a href="/our-team" class="block px-4 py-2 hover:bg-neutral-light/10">Our Team</a>
+			    <a href="/careers" class="block px-4 py-2 hover:bg-neutral-light/10">Careers</a>
+			    <a href="/news" class="block px-4 py-2 hover:bg-neutral-light/10">News</a>
+			    <a href="/termsofservice" class="block px-4 py-2 hover:bg-neutral-light/10">Terms of Service</a>
+			</div>
+		    </div>
+
+		    <a href="/#contact" class="hover:text-secondary-green">Contact Us</a>
+
+		    <!-- CTA Button -->
+		    <div class="mt-4 md:mt-0 md:ml-4">
+			<a href="/#contact" class="cyber-btn block text-center">Speak to an Expert</a>
+		    </div>
+
+		</nav>
+	    </div>
+	</header>
+
+	
+	<!-- Add this between the header and footer sections of your HTML -->
+
+<!-- Add this between the header and footer sections -->
+
+<!-- Hero Section -->
+<section class="pt-32 pb-20 px-4 md:px-8 lg:px-16 bg-primary-dark matrix-bg">
+    <div class="container mx-auto text-center">
+        <div class="inline-block bg-secondary-green/10 text-secondary-green px-4 py-2 rounded-full text-sm font-semibold mb-6 animate-pulse-slow">
+            Enterprise Security Success Stories
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            Proven Cybersecurity <span class="gradient-text">Case Studies</span>
+        </h1>
+        <p class="text-xl text-neutral-light/80 mb-8 max-w-3xl mx-auto">
+            Discover how leading organizations across industries have transformed their security posture with our tailored solutions.
+        </p>
     </div>
-  </section>
+</section>
 
-</body>
+<!-- Case Studies Grid -->
+<section class="py-20 px-4 md:px-8 lg:px-16 bg-neutral-dark">
+    <div class="container mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">Security Transformation <span class="gradient-text">Case Studies</span></h2>
+            <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                Each engagement represents our commitment to delivering measurable security improvements and business value.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Case Study 1 -->
+            <div class="case-study-card">
+                <div class="card-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3>Financial Services Cloud Security</h3>
+                <div class="card-content">
+                    <p>Secured a multi-cloud environment for a global investment bank, achieving 100% compliance with financial regulations while enabling digital transformation.</p>
+                    <ul class="case-study-features">
+                        <li><i class="fas fa-check-circle"></i> 92% reduction in cloud vulnerabilities</li>
+                        <li><i class="fas fa-check-circle"></i> ISO 27001 certification achieved</li>
+                        <li><i class="fas fa-check-circle"></i> 24/7 threat monitoring implemented</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <span class="industry-tag">Financial Services</span>
+                    <a href="#" class="read-more">View Details <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Case Study 2 -->
+            <div class="case-study-card">
+                <div class="card-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Healthcare Data Protection</h3>
+                <div class="card-content">
+                    <p>Implemented zero-trust architecture for a hospital network, protecting 2M+ patient records from ransomware and insider threats.</p>
+                    <ul class="case-study-features">
+                        <li><i class="fas fa-check-circle"></i> 100% HIPAA compliance</li>
+                        <li><i class="fas fa-check-circle"></i> 85% faster incident response</li>
+                        <li><i class="fas fa-check-circle"></i> Prevented 3 major breaches</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <span class="industry-tag">Healthcare</span>
+                    <a href="#" class="read-more">View Details <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Case Study 3 -->
+            <div class="case-study-card">
+                <div class="card-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h3>E-Commerce Platform Security</h3>
+                <div class="card-content">
+                    <p>Protected a high-traffic retail platform from DDoS and payment fraud during peak seasons, ensuring 99.99% uptime.</p>
+                    <ul class="case-study-features">
+                        <li><i class="fas fa-check-circle"></i> $4M fraud prevented</li>
+                        <li><i class="fas fa-check-circle"></i> 70% fewer false positives</li>
+                        <li><i class="fas fa-check-circle"></i> PCI DSS Level 1 certified</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <span class="industry-tag">Retail</span>
+                    <a href="#" class="read-more">View Details <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Case Study 4 -->
+            <div class="case-study-card">
+                <div class="card-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3>Government Infrastructure</h3>
+                <div class="card-content">
+                    <p>Secured critical national infrastructure with air-gapped solutions and advanced threat intelligence capabilities.</p>
+                    <ul class="case-study-features">
+                        <li><i class="fas fa-check-circle"></i> National standards compliance</li>
+                        <li><i class="fas fa-check-circle"></i> Real-time threat detection</li>
+                        <li><i class="fas fa-check-circle"></i> SOC established</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <span class="industry-tag">Government</span>
+                    <a href="#" class="read-more">View Details <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Case Study 5 -->
+            <div class="case-study-card">
+                <div class="card-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>SaaS Application Security</h3>
+                <div class="card-content">
+                    <p>Implemented DevSecOps pipeline for a fast-growing SaaS provider, reducing vulnerabilities by 95% in production.</p>
+                    <ul class="case-study-features">
+                        <li><i class="fas fa-check-circle"></i> Shift-left security</li>
+                        <li><i class="fas fa-check-circle"></i> Automated testing</li>
+                        <li><i class="fas fa-check-circle"></i> Critical bugs prevented</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <span class="industry-tag">Technology</span>
+                    <a href="#" class="read-more">View Details <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Case Study 6 -->
+            <div class="case-study-card">
+                <div class="card-icon">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h3>Manufacturing OT Security</h3>
+                <div class="card-content">
+                    <p>Protected industrial control systems for a global manufacturer, preventing operational disruption from cyber threats.</p>
+                    <ul class="case-study-features">
+                        <li><i class="fas fa-check-circle"></i> ICS/SCADA framework</li>
+                        <li><i class="fas fa-check-circle"></i> Network segmentation</li>
+                        <li><i class="fas fa-check-circle"></i> Zero downtime</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <span class="industry-tag">Manufacturing</span>
+                    <a href="#" class="read-more">View Details <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Results Section -->
+<section class="py-20 px-4 md:px-8 lg:px-16 bg-primary-dark">
+    <div class="container mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">Demonstrated <span class="gradient-text">Security Outcomes</span></h2>
+            <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                Our methodology delivers measurable improvements across all security domains
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="metric-card">
+                <div class="metric-value">98%</div>
+                <div class="metric-title">Reduction in Critical Vulnerabilities</div>
+                <div class="metric-description">Across all client engagements</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">100%</div>
+                <div class="metric-title">Compliance Success Rate</div>
+                <div class="metric-description">For required regulations</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">24/7</div>
+                <div class="metric-title">Threat Monitoring</div>
+                <div class="metric-description">Average detection time &lt;5 minutes</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">0</div>
+                <div class="metric-title">Major Breaches</div>
+                <div class="metric-description">For clients maintaining our recommendations</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 px-4 md:px-8 lg:px-16 bg-neutral-dark circuit-bg">
+    <div class="container mx-auto text-center">
+        <div class="max-w-3xl mx-auto bg-neutral-dark/90 backdrop-blur-sm border border-primary-medium/50 rounded-xl p-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Security Posture?</h2>
+            <p class="text-xl text-neutral-light/80 mb-8">
+                Our security experts are standing by to discuss your unique challenges and design a customized solution.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="/#contact" class="cyber-btn">
+                    Speak to an Expert
+                    <i class="fas fa-phone ml-2"></i>
+                </a>
+                <a href="/#contact" class="border border-secondary-green text-secondary-green hover:bg-secondary-green/10 font-bold px-6 py-3 rounded-md transition-all duration-300">
+                    Request Assessment
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+	<!-- Footer -->
+	<footer class="py-12 px-4 md:px-8 lg:px-16 bg-neutral-dark/90 border-t border-primary-medium">
+            <div class="container mx-auto">
+		<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                    <div>
+			<div class="text-2xl font-bold gradient-text mb-4">ProtekCyber</div>
+			<p class="text-neutral-light/70 mb-6">
+                            Expert cybersecurity consultancy providing comprehensive cloud security, incident response, and security advisory services to protect your business.
+			</p>
+			<div class="flex space-x-4">
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-github"></i>
+                            </a>
+			</div>
+                    </div>
+                    
+                    <div>
+			<h3 class="text-lg font-bold mb-4">Services</h3>
+			<ul class="space-y-2">
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Cloud Security</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Incident Response</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Penetration Testing</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Security Consulting</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Compliance Services</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Security Training</a></li>
+			</ul>
+                    </div>
+                    
+                    <div>
+			<h3 class="text-lg font-bold mb-4">Company</h3>
+			<ul class="space-y-2">
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">About Us</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Our Team</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Careers</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">News & Insights</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Case Studies</a></li>
+			</ul>
+                    </div>
+                    
+                    <div>
+			<h3 class="text-lg font-bold mb-4">Contact</h3>
+			<p class="text-neutral-light/70 mb-2"><i class="fas fa-phone mr-2 text-secondary-green"></i> +44 (0) 800 123 4567</p>
+			<p class="text-neutral-light/70 mb-2"><i class="fas fa-envelope mr-2 text-secondary-green"></i> info@protekcyber.com</p>
+			<p class="text-neutral-light/70 mb-2"><i class="fas fa-map-marker-alt mr-2 text-secondary-green"></i> London, United Kingdom</p>
+			<p class="text-neutral-light/70"><i class="fas fa-clock mr-2 text-secondary-green"></i> 24/7 Emergency Response</p>
+                    </div>
+		</div>
+		
+		<div class="pt-8 border-t border-primary-medium flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-neutral-light/70 mb-4 md:mb-0">&copy; 2025 ProtekCyber. All rights reserved.</p>
+                    <div class="flex space-x-6">
+			<a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Privacy Policy</a>
+			<a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Terms of Service</a>
+			<a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Cookie Policy</a>
+                    </div>
+		</div>
+            </div>
+	</footer>
+	<script crossorigin src="./js/dropdown.js"></script>
+    </body>
 </html>

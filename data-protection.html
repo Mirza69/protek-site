@@ -1,74 +1,650 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page Title</title>
+<html lang="en">
+    <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Data Protection Services | ProtekCyber Consultants</title>
+	<meta name="description" content="ProtekCyber Consultants delivers expert cyber security consultancy and services across the UK. Partner with us for penetration testing, managed security (MSSP), cloud security strategy, and vulnerability management, all tailored to your business needs.">
+	
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-  <!-- Tailwind CSS & Fonts -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --primary-dark: #0A192F;
-      --primary-medium: #19376D;
-      --secondary-green: #04D939;
-      --accent-purple: #A459D1;
-      --neutral-dark: #0F172A;
-      --neutral-light: #F8FAFC;
-    }
+        <!-- Custom CSS for this page -->
+        <link rel="stylesheet" href="./css/data-protection.css">
+    </head>
+    <body class="bg-neutral-dark data-protection-section">
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--neutral-dark);
-      color: var(--neutral-light);
-    }
+        <!--NAVBAR-->
+        <header class="bg-neutral-dark text-neutral-light shadow-md fixed w-full top-0 z-50">
+            <div class="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
+                
+                <!-- Logo -->
+                <a href="/index.html" class="text-2xl font-bold gradient-text">ProtekCyber</a>
 
-    .gradient-text {
-      background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+                <!-- Hamburger (Mobile) -->
+                <button id="nav-toggle" class="md:hidden text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
 
-    .cyber-btn {
-      background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
-      color: var(--neutral-dark);
-      font-weight: bold;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.375rem;
-      display: inline-block;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
+                <!-- Navigation -->
+                <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row md:items-center md:gap-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-neutral-dark px-4 md:px-0 py-4 md:py-0">
 
-    .cyber-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 15px rgba(4, 217, 57, 0.5);
-    }
-  </style>
-</head>
+                    <a href="/index.html" class="hover:text-secondary-green">Home</a>
 
-<body class="bg-neutral-dark text-neutral-light">
+                    <!-- Services -->
+                    <div class="relative group flex items-center justify-between w-full md:w-auto">
+                        <a href="/index.html#services" class="hover:text-secondary-green md:mr-1">Services</a>
+                        <button class="dropdown-toggle text-sm" aria-label="Toggle Services Dropdown">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+                            <a href="/soc" class="block px-4 py-2 hover:bg-neutral-light/10">SOC as a Service</a>
+                            <a href="/penetration" class="block px-4 py-2 hover:bg-neutral-light/10">Penetration Testing</a>
+                            <a href="/incident" class="block px-4 py-2 hover:bg-neutral-light/10">Incident Response</a>
+                            <a href="/cloud-sec" class="block px-4 py-2 hover:bg-neutral-light/10">Cloud Security</a>
+                            <a href="/data-protect" class="block px-4 py-2 hover:bg-neutral-light/10">Data Protection</a>
+                        </div>
+                    </div>
 
-  <!-- Optional: Navbar -->
-  <!-- Add your navbar here if needed -->
+                    <!-- Insights -->
+                    <div class="relative group flex items-center justify-between w-full md:w-auto">
+                        <a href="/index.html#insights" class="hover:text-secondary-green md:mr-1">Insights</a>
+                        <button class="dropdown-toggle text-sm" aria-label="Toggle Insights Dropdown">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+                            <a href="/knowledge-base" class="block px-4 py-2 hover:bg-neutral-light/10">Knowledge Base</a>
+                            <a href="/threat-intelligence" class="block px-4 py-2 hover:bg-neutral-light/10">Threat Intelligence</a>
+                            <a href="/security-guides" class="block px-4 py-2 hover:bg-neutral-light/10">Security Guides</a>
+                            <a href="/webinars" class="block px-4 py-2 hover:bg-neutral-light/10">Webinars</a>
+                            <a href="/case-studies" class="block px-4 py-2 hover:bg-neutral-light/10">Case Studies</a>
+                        </div>
+                    </div>
 
-  <!-- Main Placeholder Section -->
-  <section class="pt-40 pb-20 px-4 md:px-8 lg:px-16 bg-neutral-dark">
-    <div class="container mx-auto text-center max-w-4xl">
-      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-        This <span class="gradient-text">Page</span> is Under Construction
-      </h1>
-      <p class="text-neutral-light/70 text-lg mb-10">
-        We're working on this section. Please check back soon.
-      </p>
-      <a href="/index.html" class="cyber-btn">Return to Homepage</a>
-    </div>
-  </section>
+                    <!-- Company -->
+                    <div class="relative group flex items-center justify-between w-full md:w-auto">
+                        <a href="/company" class="hover:text-secondary-green md:mr-1">Company</a>
+                        <button class="dropdown-toggle text-sm" aria-label="Toggle Company Dropdown">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+                            <a href="/about-us" class="block px-4 py-2 hover:bg-neutral-light/10">About Us</a>
+                            <a href="/our-team" class="block px-4 py-2 hover:bg-neutral-light/10">Our Team</a>
+                            <a href="/careers" class="block px-4 py-2 hover:bg-neutral-light/10">Careers</a>
+                            <a href="/news" class="block px-4 py-2 hover:bg-neutral-light/10">News</a>
+                            <a href="/termsofservice" class="block px-4 py-2 hover:bg-neutral-light/10">Terms of Service</a>
+                        </div>
+                    </div>
 
-</body>
+                    <a href="/#contact" class="hover:text-secondary-green">Contact Us</a>
+
+                    <!-- CTA Button -->
+                    <div class="mt-4 md:mt-0 md:ml-4">
+                        <a href="/#contact" class="cyber-btn block text-center">Speak to an Expert</a>
+                    </div>
+
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="pt-32 pb-20 px-4 md:px-8 lg:px-16 bg-primary-dark matrix-bg">
+            <div class="container mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="relative z-10">
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                            <span class="gradient-text">Data Protection</span> & Privacy Compliance Services
+                        </h1>
+                        <p class="text-xl text-neutral-light/80 mb-8">
+                            Protect your most valuable asset - your data. Our UK-based experts provide comprehensive data protection solutions including GDPR compliance, data security strategies, and breach prevention tailored to your business needs.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a href="#contact" class="cyber-btn text-center">
+                                Request Data Protection Audit
+                            </a>
+                            <a href="#solutions"
+                               class="border border-white text-white font-bold px-6 py-3 rounded-md transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-glow">
+                                Explore Solutions
+                            </a> 
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <div class="relative z-10 bg-primary-medium/20 border border-primary-medium rounded-lg overflow-hidden">
+                            <div class="p-6">
+                                <div class="flex justify-between items-center mb-6">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-secondary-green/20 flex items-center justify-center mr-3">
+                                            <i class="fas fa-database text-secondary-green" aria-hidden="true"></i>
+                                        </div>
+                                        <h3 class="text-xl font-bold">Data Protection Quick Check</h3>
+                                    </div>
+                                    <span class="text-xs text-secondary-green font-bold uppercase">Self-Assessment</span>
+                                </div>
+                                
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-neutral-light/80">Data Inventory Completed</span>
+                                        <span class="text-xs text-neutral-light/60">Check if done</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-neutral-light/80">GDPR Compliance Review</span>
+                                        <span class="text-xs text-neutral-light/60">Check if done</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-neutral-light/80">Data Breach Response Plan</span>
+                                        <span class="text-xs text-neutral-light/60">Check if done</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6 pt-4 border-t border-primary-medium">
+                                    <h4 class="text-sm font-semibold mb-2">Data Protection Facts:</h4>
+                                    <div class="text-xs text-neutral-light/70 space-y-1">
+                                        <p><i class="fas fa-check-circle text-secondary-green mr-1"></i> UK GDPR fines can reach £17.5 million or 4% of global turnover</p>
+                                        <p><i class="fas fa-check-circle text-secondary-green mr-1"></i> Average cost of a data breach in UK: £3.1 million</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Data Protection Matters -->
+        <section class="py-20 px-4 md:px-8 lg:px-16 bg-neutral-dark">
+            <div class="container mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Why <span class="gradient-text">Data Protection</span> Matters</h2>
+                    <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                        In today's digital landscape, protecting sensitive data isn't just good practice—it's a legal requirement and critical for maintaining customer trust and business continuity.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="card text-center p-6 hover:border-secondary-green transition-all duration-300">
+                        <div class="w-16 h-16 rounded-full bg-secondary-green/10 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-gavel text-2xl text-secondary-green"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Regulatory Compliance</h3>
+                        <p class="text-neutral-light/70">
+                            Meet UK GDPR, Data Protection Act 2018, and other regulatory requirements with expert guidance and documentation.
+                        </p>
+                    </div>
+                    
+                    <div class="card text-center p-6 hover:border-secondary-green transition-all duration-300">
+                        <div class="w-16 h-16 rounded-full bg-secondary-green/10 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-shield-alt text-2xl text-secondary-green"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Risk Mitigation</h3>
+                        <p class="text-neutral-light/70">
+                            Reduce the risk of costly data breaches and associated reputational damage with robust protection measures.
+                        </p>
+                    </div>
+                    
+                    <div class="card text-center p-6 hover:border-secondary-green transition-all duration-300">
+                        <div class="w-16 h-16 rounded-full bg-secondary-green/10 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-handshake text-2xl text-secondary-green"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Customer Trust</h3>
+                        <p class="text-neutral-light/70">
+                            Demonstrate your commitment to data privacy and build stronger relationships with customers and partners.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Protection Solutions -->
+        <section id="solutions" class="py-20 px-4 md:px-8 lg:px-16 bg-primary-dark matrix-bg">
+            <div class="container mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Our <span class="gradient-text">Data Protection</span> Solutions</h2>
+                    <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                        Comprehensive data protection services tailored to your organization's specific needs and regulatory requirements.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Solution 1 -->
+                    <div class="card service-card">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-file-contract text-3xl text-secondary-green mr-4"></i>
+                            <h3 class="text-2xl font-bold">GDPR Compliance</h3>
+                        </div>
+                        <p class="text-neutral-light/70 mb-4">
+                            Full UK GDPR compliance assessment and implementation support, including data mapping, lawful basis documentation, and privacy notices.
+                        </p>
+                        <ul class="list-disc list-inside text-neutral-light/70 space-y-2 mb-4">
+                            <li>Data Protection Impact Assessments (DPIAs)</li>
+                            <li>Records of Processing Activities (ROPAs)</li>
+                            <li>Data Subject Rights Management</li>
+                        </ul>
+                        <a href="#contact" class="text-secondary-green hover:underline font-semibold">Get GDPR Compliant <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+
+                    <!-- Solution 2 -->
+                    <div class="card service-card">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-lock text-3xl text-secondary-green mr-4"></i>
+                            <h3 class="text-2xl font-bold">Data Security Strategy</h3>
+                        </div>
+                        <p class="text-neutral-light/70 mb-4">
+                            Protect sensitive data with encryption, access controls, and monitoring solutions tailored to your infrastructure.
+                        </p>
+                        <ul class="list-disc list-inside text-neutral-light/70 space-y-2 mb-4">
+                            <li>Data Classification & Protection</li>
+                            <li>Encryption Strategy Implementation</li>
+                            <li>Access Control & Monitoring</li>
+                        </ul>
+                        <a href="#contact" class="text-secondary-green hover:underline font-semibold">Secure Your Data <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+
+                    <!-- Solution 3 -->
+                    <div class="card service-card">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-bug text-3xl text-secondary-green mr-4"></i>
+                            <h3 class="text-2xl font-bold">Breach Prevention</h3>
+                        </div>
+                        <p class="text-neutral-light/70 mb-4">
+                            Proactive measures to prevent data breaches including vulnerability assessments and staff training.
+                        </p>
+                        <ul class="list-disc list-inside text-neutral-light/70 space-y-2 mb-4">
+                            <li>Data Leak Prevention (DLP)</li>
+                            <li>Phishing Simulation & Training</li>
+                            <li>Vulnerability Assessments</li>
+                        </ul>
+                        <a href="#contact" class="text-secondary-green hover:underline font-semibold">Prevent Breaches <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+
+                    <!-- Solution 4 -->
+                    <div class="card service-card">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-fire-extinguisher text-3xl text-secondary-green mr-4"></i>
+                            <h3 class="text-2xl font-bold">Incident Response</h3>
+                        </div>
+                        <p class="text-neutral-light/70 mb-4">
+                            Prepare for and respond to data breaches with our expert incident response services.
+                        </p>
+                        <ul class="list-disc list-inside text-neutral-light/70 space-y-2 mb-4">
+                            <li>Breach Response Planning</li>
+                            <li>24/7 Incident Response</li>
+                            <li>Regulatory Reporting Support</li>
+                        </ul>
+                        <a href="#contact" class="text-secondary-green hover:underline font-semibold">Prepare Your Response <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+
+                    <!-- Solution 5 -->
+                    <div class="card service-card">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-cloud text-3xl text-secondary-green mr-4"></i>
+                            <h3 class="text-2xl font-bold">Cloud Data Protection</h3>
+                        </div>
+                        <p class="text-neutral-light/70 mb-4">
+                            Secure your cloud data across AWS, Azure, and GCP with our specialized cloud protection services.
+                        </p>
+                        <ul class="list-disc list-inside text-neutral-light/70 space-y-2 mb-4">
+                            <li>Cloud Data Classification</li>
+                            <li>Cloud Access Security Broker (CASB)</li>
+                            <li>Cloud Encryption Management</li>
+                        </ul>
+                        <a href="#contact" class="text-secondary-green hover:underline font-semibold">Protect Cloud Data <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+
+                    <!-- Solution 6 -->
+                    <div class="card service-card">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-user-shield text-3xl text-secondary-green mr-4"></i>
+                            <h3 class="text-2xl font-bold">Staff Training</h3>
+                        </div>
+                        <p class="text-neutral-light/70 mb-4">
+                            Educate your team on data protection best practices and regulatory requirements.
+                        </p>
+                        <ul class="list-disc list-inside text-neutral-light/70 space-y-2 mb-4">
+                            <li>GDPR Awareness Training</li>
+                            <li>Data Handling Best Practices</li>
+                            <li>Role-Specific Training</li>
+                        </ul>
+                        <a href="#contact" class="text-secondary-green hover:underline font-semibold">Train Your Team <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<!-- Compliance Roadmap -->
+	<section class="py-20 px-4 md:px-8 lg:px-16 bg-neutral-dark circuit-bg compliance-roadmap">
+	    <div class="container mx-auto">
+		<div class="text-center mb-12">
+		    <h2 class="text-3xl md:text-4xl font-bold mb-4">Data Protection <span class="gradient-text">Compliance Roadmap</span></h2>
+		    <p class="text-lg text-neutral-light-70 max-w-3xl mx-auto">
+			Our structured approach ensures you achieve and maintain compliance with UK data protection regulations.
+		    </p>
+		</div>
+
+		<div class="roadmap-container">
+		    <div class="timeline-line hidden md:block"></div>
+		    
+		    <div class="roadmap-steps">
+			<!-- Step 1 -->
+			<div class="roadmap-step">
+			    <div class="step-content-left">
+				<h3 class="text-xl font-bold mb-2">Assessment & Scoping</h3>
+				<p class="text-neutral-light-70">
+				    Comprehensive review of your current data protection practices and identification of compliance gaps.
+				</p>
+			    </div>
+			    <div class="step-number hidden md:flex">1</div>
+			    <div class="step-content-right">
+				<ul class="text-neutral-light-70 list-disc list-inside space-y-1">
+				    <li>Data inventory & mapping</li>
+				    <li>Privacy impact assessments</li>
+				    <li>Gap analysis report</li>
+				</ul>
+			    </div>
+			    <div class="step-number md:hidden">1</div>
+			</div>
+
+			<!-- Step 2 -->
+			<div class="roadmap-step">
+			    <div class="step-content-left">
+				<h3 class="text-xl font-bold mb-2">Policy Development</h3>
+				<p class="text-neutral-light-70">
+				    Creation of tailored data protection policies and documentation to meet regulatory requirements.
+				</p>
+			    </div>
+			    <div class="step-number hidden md:flex">2</div>
+			    <div class="step-content-right">
+				<ul class="text-neutral-light-70 list-disc list-inside space-y-1">
+				    <li>Data protection policies</li>
+				    <li>Privacy notices</li>
+				    <li>Consent mechanisms</li>
+				</ul>
+			    </div>
+			    <div class="step-number md:hidden">2</div>
+			</div>
+
+			<!-- Step 3 -->
+			<div class="roadmap-step">
+			    <div class="step-content-left">
+				<h3 class="text-xl font-bold mb-2">Implementation</h3>
+				<p class="text-neutral-light-70">
+				    Practical implementation of technical and organizational measures to protect personal data.
+				</p>
+			    </div>
+			    <div class="step-number hidden md:flex">3</div>
+			    <div class="step-content-right">
+				<ul class="text-neutral-light-70 list-disc list-inside space-y-1">
+				    <li>Security controls deployment</li>
+				    <li>Staff training programs</li>
+				    <li>Process integration</li>
+				</ul>
+			    </div>
+			    <div class="step-number md:hidden">3</div>
+			</div>
+
+			<!-- Step 4 -->
+			<div class="roadmap-step">
+			    <div class="step-content-left">
+				<h3 class="text-xl font-bold mb-2">Ongoing Compliance</h3>
+				<p class="text-neutral-light-70">
+				    Continuous monitoring and improvement to maintain compliance as regulations and your business evolve.
+				</p>
+			    </div>
+			    <div class="step-number hidden md:flex">4</div>
+			    <div class="step-content-right">
+				<ul class="text-neutral-light-70 list-disc list-inside space-y-1">
+				    <li>Regular audits & assessments</li>
+				    <li>Policy updates</li>
+				    <li>Breach monitoring</li>
+				</ul>
+			    </div>
+			    <div class="step-number md:hidden">4</div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</section>
+<!-- Case Studies -->
+        <section class="py-20 px-4 md:px-8 lg:px-16 bg-primary-dark matrix-bg">
+            <div class="container mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Data Protection <span class="gradient-text">Success Stories</span></h2>
+                    <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                        See how we've helped UK businesses achieve data protection compliance and secure their sensitive information.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-full bg-primary-medium flex items-center justify-center mr-4">
+                                <i class="fas fa-university text-2xl text-secondary-green"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold">Financial Services Firm</h3>
+                                <p class="text-sm text-neutral-light/60">GDPR Compliance & Data Security</p>
+                            </div>
+                        </div>
+                        <p class="text-neutral-light/70 mb-3">
+                            "ProtekCyber transformed our approach to data protection. Their consultants not only ensured our GDPR compliance but implemented practical security measures that reduced our breach risk by 78%."
+                        </p>
+                        <p class="font-semibold mb-2">– Compliance Director, London Investment Bank</p>
+                        <div class="flex items-center">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-neutral-light/60 ml-2">5.0 / 5</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-full bg-primary-medium flex items-center justify-center mr-4">
+                                <i class="fas fa-heartbeat text-2xl text-secondary-green"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold">Healthcare Provider</h3>
+                                <p class="text-sm text-neutral-light/60">Data Protection & Patient Privacy</p>
+                            </div>
+                        </div>
+                        <p class="text-neutral-light/70 mb-3">
+                            "Their expertise in healthcare data protection was invaluable. We achieved full compliance with NHS data security standards while improving our patient data handling processes."
+                        </p>
+                        <p class="font-semibold mb-2">– Data Protection Officer, NHS Trust</p>
+                        <div class="flex items-center">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-sm text-neutral-light/60 ml-2">4.5 / 5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-4 md:px-8 lg:px-16 bg-neutral-dark">
+            <div class="container mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Start Your <span class="gradient-text">Data Protection</span> Journey</h2>
+                    <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+                        Contact our UK data protection experts today for a confidential consultation about your specific requirements.
+                    </p>
+                </div>
+                <div class="max-w-2xl mx-auto card">
+                    <form action="#" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-neutral-light/90 mb-1">Full Name</label>
+                            <input type="text" name="name" id="name" autocomplete="name" class="w-full p-3 rounded-md bg-primary-dark border border-primary-medium focus:ring-secondary-green focus:border-secondary-green" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-neutral-light/90 mb-1">Email Address</label>
+                            <input type="email" name="email" id="email" autocomplete="email" class="w-full p-3 rounded-md bg-primary-dark border border-primary-medium focus:ring-secondary-green focus:border-secondary-green" required>
+                        </div>
+                        <div>
+                            <label for="company" class="block text-sm font-medium text-neutral-light/90 mb-1">Company Name</label>
+                            <input type="text" name="company" id="company" autocomplete="organization" class="w-full p-3 rounded-md bg-primary-dark border border-primary-medium focus:ring-secondary-green focus:border-secondary-green">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-neutral-light/90 mb-1">How can we help with your data protection needs?</label>
+                            <textarea id="message" name="message" rows="4" class="w-full p-3 rounded-md bg-primary-dark border border-primary-medium focus:ring-secondary-green focus:border-secondary-green" required></textarea>
+                        </div>
+                        <div class="g-recaptcha" data-sitekey="6LcQGTcrAAAAALezlMcgqD3gD6W9Xn_88cRUpSH9"></div>
+                        <div class="text-center">
+                            <button type="submit" class="cyber-btn w-full sm:w-auto">
+                                Speak to a Data Protection Expert
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-12 px-4 md:px-8 lg:px-16 bg-neutral-dark border-t border-primary-medium">
+            <div class="container mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    <div>
+                        <a href="/index.html" style="display: inline-block; padding-bottom: 20px;" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+                        
+                        <p class="text-neutral-light/70 mb-6">
+                            Expert-led cyber security consultancy tailored to your business needs, compliance goals, and growth strategy.
+                        </p>
+                        
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="text-lg font-bold mb-6">Services</div>
+                        <ul class="space-y-4">
+                            <li>
+                                <a href="/soc" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    SOC as a Service
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/penetration" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Penetration Testing
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/incident" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Incident Response
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/cloud-sec" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Cloud Security
+                                </a>
+                            </li>
+                            <li>
+                                <a href="data-protect" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Data Protection
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <div class="text-lg font-bold mb-6">Company</div>
+                        <ul class="space-y-4">
+                            <li>
+                                <a href="/about-us" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    About Us
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/our-team " class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Our Team
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/careers" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Careers
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/news" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    News
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/termsofservice" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Terms of Service
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <div class="text-lg font-bold mb-6">Resources</div>
+                        <ul class="space-y-4">
+                            <li>
+                                <a href="/knowledge-base" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Knowledge Base
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/security-guides" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Security Guides
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/threat-intelligence" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Threat Intelligence
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/webinars" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Webinars
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/case-studies" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Case Studies
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="pt-8 border-t border-primary-medium text-center">
+                    <p class="text-neutral-light/70">
+                        &copy; 2025 ProtekCyber Consultants. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        
+        <!-- code for dropdown menu -->
+        <script crossorigin defer async src="./js/dropdown.js"></script>
+    </body>
 </html>

@@ -1,74 +1,1069 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page Title</title>
+<html lang="en">
+    <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ProtekCyber - Cloud Security Services</title>
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" crossorigin href="./css/cloud-security.css">
+    </head>
+    <body class="bg-neutral-dark text-neutral-light">
 
-  <!-- Tailwind CSS & Fonts -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+	<header class="bg-neutral-dark text-neutral-light shadow-md fixed w-full top-0 z-50">
+	    <div class="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
+		
+		<!-- Logo -->
+		<a href="/index.html" class="text-2xl font-bold gradient-text">ProtekCyber</a>
 
-  <style>
-    :root {
-      --primary-dark: #0A192F;
-      --primary-medium: #19376D;
-      --secondary-green: #04D939;
-      --accent-purple: #A459D1;
-      --neutral-dark: #0F172A;
-      --neutral-light: #F8FAFC;
-    }
+		<!-- Hamburger (Mobile) -->
+		<button id="nav-toggle" class="md:hidden text-2xl focus:outline-none">
+		    <i class="fas fa-bars"></i>
+		</button>
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--neutral-dark);
-      color: var(--neutral-light);
-    }
+		<!-- Navigation -->
+		<nav id="nav-menu" class="hidden md:flex flex-col md:flex-row md:items-center md:gap-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-neutral-dark/95 md:bg-transparent backdrop-blur-sm px-4 md:px-0 py-4 md:py-0">
 
-    .gradient-text {
-      background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+		    <a href="/index.html" class="hover:text-secondary-green">Home</a>
 
-    .cyber-btn {
-      background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
-      color: var(--neutral-dark);
-      font-weight: bold;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.375rem;
-      display: inline-block;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
+		    <!-- Services -->
+		    <div class="relative group flex items-center justify-between w-full md:w-auto">
+			<a href="/index.html#services" class="hover:text-secondary-green md:mr-1">Services</a>
+			<button class="dropdown-toggle text-sm" aria-label="Toggle Services Dropdown">
+			    <i class="fas fa-chevron-down"></i>
+			</button>
+			<div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+			    <a href="/soc" class="block px-4 py-2 hover:bg-neutral-light/10">SOC as a Service</a>
+			    <a href="/penetration" class="block px-4 py-2 hover:bg-neutral-light/10">Penetration Testing</a>
+			    <a href="/incident" class="block px-4 py-2 hover:bg-neutral-light/10">Incident Response</a>
+			    <a href="/cloud-sec" class="block px-4 py-2 hover:bg-neutral-light/10">Cloud Security</a>
+			    <a href="/data-protect" class="block px-4 py-2 hover:bg-neutral-light/10">Data Protection</a>
+			</div>
+		    </div>
 
-    .cyber-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 15px rgba(4, 217, 57, 0.5);
-    }
-  </style>
-</head>
+		    <!-- Insights -->
+		    <div class="relative group flex items-center justify-between w-full md:w-auto">
+			<a href="/index.html#insights" class="hover:text-secondary-green md:mr-1">Insights</a>
+			<button class="dropdown-toggle text-sm" aria-label="Toggle Insights Dropdown">
+			    <i class="fas fa-chevron-down"></i>
+			</button>
+			<div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+			    <a href="/knowledge-base" class="block px-4 py-2 hover:bg-neutral-light/10">Knowledge Base</a>
+			    <a href="/threat-intelligence" class="block px-4 py-2 hover:bg-neutral-light/10">Threat Intelligence</a>
+			    <a href="/security-guides" class="block px-4 py-2 hover:bg-neutral-light/10">Security Guides</a>
+			    <a href="/webinars" class="block px-4 py-2 hover:bg-neutral-light/10">Webinars</a>
+			    <a href="/case-studies" class="block px-4 py-2 hover:bg-neutral-light/10">Case Studies</a>
+			</div>
+		    </div>
 
-<body class="bg-neutral-dark text-neutral-light">
+		    <!-- Company -->
+		    <div class="relative group flex items-center justify-between w-full md:w-auto">
+			<a href="/company" class="hover:text-secondary-green md:mr-1">Company</a>
+			<button class="dropdown-toggle text-sm" aria-label="Toggle Company Dropdown">
+			    <i class="fas fa-chevron-down"></i>
+			</button>
+			<div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+			    <a href="/about-us" class="block px-4 py-2 hover:bg-neutral-light/10">About Us</a>
+			    <a href="/our-team" class="block px-4 py-2 hover:bg-neutral-light/10">Our Team</a>
+			    <a href="/careers" class="block px-4 py-2 hover:bg-neutral-light/10">Careers</a>
+			    <a href="/news" class="block px-4 py-2 hover:bg-neutral-light/10">News</a>
+			    <a href="/termsofservice" class="block px-4 py-2 hover:bg-neutral-light/10">Terms of Service</a>
+			</div>
+		    </div>
 
-  <!-- Optional: Navbar -->
-  <!-- Add your navbar here if needed -->
+		    <a href="/#contact" class="hover:text-secondary-green">Contact Us</a>
 
-  <!-- Main Placeholder Section -->
-  <section class="pt-40 pb-20 px-4 md:px-8 lg:px-16 bg-neutral-dark">
-    <div class="container mx-auto text-center max-w-4xl">
-      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-        This <span class="gradient-text">Page</span> is Under Construction
-      </h1>
-      <p class="text-neutral-light/70 text-lg mb-10">
-        We're working on this section. Please check back soon.
-      </p>
-      <a href="/index.html" class="cyber-btn">Return to Homepage</a>
+		    <!-- CTA Button -->
+		    <div class="mt-4 md:mt-0 md:ml-4">
+			<a href="/#contact" class="cyber-btn block text-center">Speak to an Expert</a>
+		    </div>
+
+		</nav>
+	    </div>
+	</header>
+	<!-- Hero Section - Cloud Security Command Center -->
+	<section class="pt-32 pb-20 px-4 md:px-8 lg:px-16 bg-primary-dark matrix-bg min-h-screen flex items-center">
+            <div class="container mx-auto">
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="relative z-10">
+			<div class="inline-block bg-secondary-green/10 text-secondary-green px-4 py-2 rounded-full text-sm font-semibold mb-6 animate-pulse-slow">
+                            Cloud Security Command Center
+			</div>
+			<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                            Secure Your Cloud. <span class="gradient-text">Unleash Your Innovation.</span>
+			</h1>
+			<p class="text-xl text-neutral-light/80 mb-8 max-w-2xl">
+                            ProtekCyber delivers comprehensive, adaptive cloud security solutions that protect your digital assets without compromising agility or performance. Transform your cloud infrastructure into an impenetrable fortress.
+			</p>
+			
+			<div class="grid grid-cols-3 gap-6 mb-8">
+                            <div class="bg-primary-medium/20 border border-primary-medium rounded-lg p-4 text-center hover:shadow-glow transition-all duration-300">
+				<div class="text-3xl font-bold text-secondary-green mb-1 counter" data-target="99.9">0</div>
+				<div class="text-sm text-neutral-light/70">Cloud Uptime Security</div>
+                            </div>
+                            <div class="bg-primary-medium/20 border border-primary-medium rounded-lg p-4 text-center hover:shadow-glow transition-all duration-300">
+				<div class="text-3xl font-bold text-secondary-green mb-1 counter" data-target="30">0</div>
+				<div class="text-sm text-neutral-light/70">Reduced Cloud Spend</div>
+                            </div>
+                            <div class="bg-primary-medium/20 border border-primary-medium rounded-lg p-4 text-center hover:shadow-glow transition-all duration-300">
+				<div class="text-3xl font-bold text-secondary-green mb-1 counter" data-target="100">0</div>
+				<div class="text-sm text-neutral-light/70">Cloud Compliance</div>
+                            </div>
+			</div>
+			
+			<div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a href="#contact" class="cyber-btn text-center">
+				Explore Cloud Solutions
+                            </a>
+                            <a href="#assessment"
+                               class="border border-white text-white font-bold px-6 py-3 rounded-md transition-all duration-300 hover:-translate-y-1 hover:shadow-glow flex items-center justify-center">
+				Get Cloud Assessment <i class="fas fa-arrow-right ml-2"></i>
+                            </a> 
+			</div>
+                    </div>
+                    
+                    <div class="relative">
+			<div class="relative z-10 bg-neutral-dark/90 border border-primary-medium rounded-xl overflow-hidden service-card">
+                            <div class="p-6">
+				<div class="flex justify-between items-center mb-6">
+                                    <div class="flex items-center">
+					<div class="w-10 h-10 rounded-full bg-secondary-green/20 flex items-center justify-center mr-3">
+                                            <i class="fas fa-shield-alt text-secondary-green" aria-hidden="true"></i>
+					</div>
+					<h3 class="text-xl font-bold">Your Cloud Security Posture</h3>
+                                    </div>
+                                    <span class="text-xs text-secondary-green font-bold uppercase bg-secondary-green/10 px-2 py-1 rounded">Live Update</span>
+				</div>
+				
+				<div class="space-y-3 mb-6">
+				    <!-- AWS Card -->
+				    <div class="relative overflow-hidden flex items-center p-4 bg-primary-dark/70 rounded-lg border border-primary-medium/30 hover:border-secondary-green/50 transition-all duration-300 group hover:shadow-[0_10px_25px_-5px_rgba(4,217,57,0.1)]">
+					<!-- Hover effect background -->
+					<div class="absolute inset-0 bg-gradient-to-r from-primary-dark/70 to-primary-dark/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+					
+					<!-- Icon with glow effect -->
+					<div class="relative z-10 mr-4">
+					    <div class="absolute inset-0 bg-secondary-green/10 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+					    <div class="relative w-10 h-10 rounded-lg bg-primary-dark/90 flex items-center justify-center text-xl text-secondary-green border border-secondary-green/30 group-hover:border-secondary-green/50 transition-all duration-300">
+						<i class="fab fa-aws"></i>
+					    </div>
+					</div>
+					
+					<!-- Content -->
+					<div class="relative z-10 flex-grow">
+					    <h4 class="font-semibold text-neutral-light group-hover:text-white transition-colors duration-200">AWS</h4>
+					    <div class="flex items-center space-x-3 mt-1">
+						<span class="text-sm font-medium text-secondary-green flex items-center">
+						    <span class="w-2 h-2 rounded-full bg-secondary-green mr-2 animate-pulse group-hover:animate-none group-hover:bg-white transition-colors duration-300"></span>
+						    <span class="group-hover:text-white transition-colors duration-200">Secured</span>
+						</span>
+						<span class="text-xs text-neutral-light/60 group-hover:text-neutral-light/80 transition-colors duration-200">0 Active Threats</span>
+					    </div>
+					</div>
+					
+					<!-- Shield icon -->
+					<div class="relative z-10 ml-4 text-secondary-green/60 group-hover:text-white transition-colors duration-300">
+					    <i class="fas fa-shield-alt text-xl transform group-hover:scale-110 transition-transform duration-300"></i>
+					</div>
+					
+					<!-- Animated hover border effect -->
+					<div class="absolute inset-0 rounded-lg border-2 border-transparent group-hover:border-secondary-green/20 pointer-events-none transition-all duration-500"></div>
+				    </div>
+				    
+				    <!-- Azure Card -->
+				    <div class="relative overflow-hidden flex items-center p-4 bg-primary-dark/70 rounded-lg border border-primary-medium/30 hover:border-secondary-green/50 transition-all duration-300 group hover:shadow-[0_10px_25px_-5px_rgba(4,217,57,0.1)]">
+					<!-- Hover effect background -->
+					<div class="absolute inset-0 bg-gradient-to-r from-primary-dark/70 to-primary-dark/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+					
+					<!-- Icon with glow effect -->
+					<div class="relative z-10 mr-4">
+					    <div class="absolute inset-0 bg-secondary-green/10 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+					    <div class="relative w-10 h-10 rounded-lg bg-primary-dark/90 flex items-center justify-center text-xl text-secondary-green border border-secondary-green/30 group-hover:border-secondary-green/50 transition-all duration-300">
+						<i class="fab fa-microsoft"></i>
+					    </div>
+					</div>
+					
+					<!-- Content -->
+					<div class="relative z-10 flex-grow">
+					    <h4 class="font-semibold text-neutral-light group-hover:text-white transition-colors duration-200">Azure</h4>
+					    <div class="flex items-center space-x-3 mt-1">
+						<span class="text-sm font-medium text-secondary-green flex items-center">
+						    <span class="w-2 h-2 rounded-full bg-secondary-green mr-2 animate-pulse group-hover:animate-none group-hover:bg-white transition-colors duration-300"></span>
+						    <span class="group-hover:text-white transition-colors duration-200">Secured</span>
+						</span>
+						<span class="text-xs text-neutral-light/60 group-hover:text-neutral-light/80 transition-colors duration-200">0 Active Threats</span>
+					    </div>
+					</div>
+					
+					<!-- Shield icon -->
+					<div class="relative z-10 ml-4 text-secondary-green/60 group-hover:text-white transition-colors duration-300">
+					    <i class="fas fa-shield-alt text-xl transform group-hover:scale-110 transition-transform duration-300"></i>
+					</div>
+					
+					<!-- Animated hover border effect -->
+					<div class="absolute inset-0 rounded-lg border-2 border-transparent group-hover:border-secondary-green/20 pointer-events-none transition-all duration-500"></div>
+				    </div>
+				    
+				    <!-- GCP Card -->
+				    <div class="relative overflow-hidden flex items-center p-4 bg-primary-dark/70 rounded-lg border border-primary-medium/30 hover:border-secondary-green/50 transition-all duration-300 group hover:shadow-[0_10px_25px_-5px_rgba(4,217,57,0.1)]">
+					<!-- Hover effect background -->
+					<div class="absolute inset-0 bg-gradient-to-r from-primary-dark/70 to-primary-dark/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+					
+					<!-- Icon with glow effect -->
+					<div class="relative z-10 mr-4">
+					    <div class="absolute inset-0 bg-secondary-green/10 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+					    <div class="relative w-10 h-10 rounded-lg bg-primary-dark/90 flex items-center justify-center text-xl text-secondary-green border border-secondary-green/30 group-hover:border-secondary-green/50 transition-all duration-300">
+						<i class="fab fa-google"></i>
+					    </div>
+					</div>
+					
+					<!-- Content -->
+					<div class="relative z-10 flex-grow">
+					    <h4 class="font-semibold text-neutral-light group-hover:text-white transition-colors duration-200">GCP</h4>
+					    <div class="flex items-center space-x-3 mt-1">
+						<span class="text-sm font-medium text-secondary-green flex items-center">
+						    <span class="w-2 h-2 rounded-full bg-secondary-green mr-2 animate-pulse group-hover:animate-none group-hover:bg-white transition-colors duration-300"></span>
+						    <span class="group-hover:text-white transition-colors duration-200">Secured</span>
+						</span>
+						<span class="text-xs text-neutral-light/60 group-hover:text-neutral-light/80 transition-colors duration-200">0 Active Threats</span>
+					    </div>
+					</div>
+					
+					<!-- Shield icon -->
+					<div class="relative z-10 ml-4 text-secondary-green/60 group-hover:text-white transition-colors duration-300">
+					    <i class="fas fa-shield-alt text-xl transform group-hover:scale-110 transition-transform duration-300"></i>
+					</div>
+					
+					<!-- Animated hover border effect -->
+					<div class="absolute inset-0 rounded-lg border-2 border-transparent group-hover:border-secondary-green/20 pointer-events-none transition-all duration-500"></div>
+				    </div>
+				</div>
+				<div class="space-y-3">
+                                    <div>
+					<div class="flex justify-between text-sm text-neutral-light/80 mb-1">
+                                            <span>Compliance Score</span>
+                                            <span>98%</span>
+					</div>
+					<div class="w-full bg-primary-medium rounded-full h-2">
+                                            <div class="progress-bar h-2 rounded-full" style="--progress-width: 98%"></div>
+					</div>
+                                    </div>
+                                    <div>
+					<div class="flex justify-between text-sm text-neutral-light/80 mb-1">
+                                            <span>Security Posture</span>
+                                            <span>95%</span>
+					</div>
+					<div class="w-full bg-primary-medium rounded-full h-2">
+                                            <div class="progress-bar h-2 rounded-full" style="--progress-width: 95%"></div>
+					</div>
+                                    </div>
+                                    <div>
+					<div class="flex justify-between text-sm text-neutral-light/80 mb-1">
+                                            <span>Threat Detection</span>
+                                            <span>100%</span>
+					</div>
+					<div class="w-full bg-primary-medium rounded-full h-2">
+                                            <div class="progress-bar h-2 rounded-full" style="--progress-width: 100%"></div>
+					</div>
+                                    </div>
+				</div>
+                            </div>
+			</div>
+                    </div>
+		</div>
+            </div>
+	</section>
+
+	<!-- Cloud Security Imperative -->
+	<section id="imperative" class="py-20 px-4 md:px-8 lg:px-16 bg-neutral-dark circuit-bg">
+            <div class="container mx-auto">
+		<div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">The Cloud Security <span class="gradient-text">Imperative</span></h2>
+                    <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+			As organizations accelerate cloud adoption, the attack surface expands exponentially. Traditional security approaches fall short in dynamic, distributed cloud environments.
+                    </p>
+		</div>
+		
+		<div class="grid md:grid-cols-3 gap-8">
+                    <div class="card service-card animate-fadeIn bg-primary-dark" style="animation-delay: 0.1s">
+			<div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green text-xl mr-4">
+				<i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold">95% of Cloud Breaches</h3>
+			</div>
+			<p class="text-neutral-light/70">
+                            Are caused by customer misconfigurations, not cloud provider vulnerabilities. Proper cloud security governance is critical.
+			</p>
+                    </div>
+                    
+                    <div class="card service-card animate-fadeIn bg-primary-dark" style="animation-delay: 0.2s">
+			<div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green text-xl mr-4">
+				<i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold">$4.45M Average Cost</h3>
+			</div>
+			<p class="text-neutral-light/70">
+                            Of a cloud data breach in 2023. Proactive cloud security investment delivers 10x ROI compared to reactive measures.
+			</p>
+                    </div>
+                    
+                    <div class="card service-card animate-fadeIn bg-primary-dark" style="animation-delay: 0.3s">
+			<div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green text-xl mr-4">
+				<i class="fas fa-clock"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold">200+ Days Average</h3>
+			</div>
+			<p class="text-neutral-light/70">
+                            To identify and contain a cloud security breach. Real-time monitoring and automated response are essential.
+			</p>
+                    </div>
+		</div>
+            </div>
+	</section>
+
+	<!-- Adaptive Cloud Security Framework -->
+	<section id="framework" class="py-20 px-4 md:px-8 lg:px-16 bg-primary-dark matrix-bg">
+            <div class="container mx-auto">
+		<div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">Our Adaptive Cloud Security <span class="gradient-text">Framework</span></h2>
+                    <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+			ProtekCyber's holistic approach to cloud protection covers every layer of your cloud infrastructure with intelligent, automated security controls.
+                    </p>
+		</div>
+		
+		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- CSPM Card -->
+                    <div class="card service-card relative overflow-hidden border-l-4 border-secondary-green animate-fadeIn" style="animation-delay: 0.1s">
+			<div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green text-xl mr-4">
+				<i class="fas fa-eye"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold">Cloud Security Posture Management</h3>
+			</div>
+			<p class="text-neutral-light/70 mb-4">
+                            Continuous monitoring and automated remediation of cloud misconfigurations across all environments.
+			</p>
+			<div class="mb-4">
+                            <h4 class="font-semibold mb-2">Key Features:</h4>
+                            <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
+				<li>Real-time configuration monitoring</li>
+				<li>Automated compliance enforcement</li>
+				<li>Risk prioritization & remediation</li>
+                            </ul>
+			</div>
+			<div class="flex justify-between border-t border-primary-medium pt-4">
+                            <div>
+				<div class="text-xl font-bold text-secondary-green">99.8%</div>
+				<div class="text-xs text-neutral-light/70">Configuration Accuracy</div>
+                            </div>
+                            <div>
+				<div class="text-xl font-bold text-secondary-green">&lt; 5min</div>
+				<div class="text-xs text-neutral-light/70">Detection Time</div>
+                            </div>
+			</div>
+                    </div>
+                    
+                    <!-- CWPP Card -->
+                    <div class="card service-card relative overflow-hidden border-l-4 border-accent-purple animate-fadeIn" style="animation-delay: 0.2s">
+			<div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-accent-purple/10 flex items-center justify-center text-accent-purple text-xl mr-4">
+				<i class="fas fa-server"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold">Cloud Workload Protection</h3>
+			</div>
+			<p class="text-neutral-light/70 mb-4">
+                            Runtime protection for cloud-native workloads, containers, and serverless functions across all major platforms.
+			</p>
+			<div class="mb-4">
+                            <h4 class="font-semibold mb-2">Key Features:</h4>
+                            <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
+				<li>Container security scanning</li>
+				<li>Serverless function protection</li>
+				<li>Runtime threat detection</li>
+                            </ul>
+			</div>
+			<div class="flex justify-between border-t border-primary-medium pt-4">
+                            <div>
+				<div class="text-xl font-bold text-accent-purple">100%</div>
+				<div class="text-xs text-neutral-light/70">Workload Coverage</div>
+                            </div>
+                            <div>
+				<div class="text-xl font-bold text-accent-purple">0-day</div>
+				<div class="text-xs text-neutral-light/70">Vulnerability Detection</div>
+                            </div>
+			</div>
+                    </div>
+                    
+                    <!-- CASB Card -->
+                    <div class="card service-card relative overflow-hidden border-l-4 border-secondary-green animate-fadeIn" style="animation-delay: 0.3s">
+			<div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green text-xl mr-4">
+				<i class="fas fa-cloud"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold">Cloud Access Security Broker</h3>
+			</div>
+			<p class="text-neutral-light/70 mb-4">
+                            Enforce security policies and protect data across SaaS applications with granular visibility and control.
+			</p>
+			<div class="mb-4">
+                            <h4 class="font-semibold mb-2">Key Features:</h4>
+                            <ul class="list-disc list-inside text-neutral-light/70 space-y-1">
+				<li>SaaS security monitoring</li>
+				<li>Data loss prevention</li>
+				<li>Shadow IT discovery</li>
+                            </ul>
+			</div>
+			<div class="flex justify-between border-t border-primary-medium pt-4">
+                            <div>
+				<div class="text-xl font-bold text-secondary-green">150+</div>
+				<div class="text-xs text-neutral-light/70">SaaS Apps Supported</div>
+                            </div>
+                            <div>
+				<div class="text-xl font-bold text-secondary-green">95%</div>
+				<div class="text-xs text-neutral-light/70">Policy Enforcement</div>
+                            </div>
+			</div>
+                    </div>
+		</div>
+            </div>
+	</section>
+
+	<!-- Differentiated Approach -->
+	<section id="approach" class="py-20 px-4 md:px-8 lg:px-16 bg-neutral-dark circuit-bg">
+	    <div class="container mx-auto">
+		<div class="text-center mb-12">
+		    <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">Strategic Cloud Security. <span class="gradient-text">Unrivaled Expertise.</span></h2>
+		    <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+			ProtekCyber's unique approach goes beyond standard cloud security to deliver business-aligned, vendor-agnostic protection that scales with your innovation.
+		    </p>
+		</div>
+		
+		<div class="flex flex-col lg:flex-row items-center justify-between gap-8 max-w-6xl mx-auto">
+		    <!-- Cloud Visualization Mesh (Left Side) -->
+		    <div class="relative h-96 w-full lg:w-1/2 flex items-center justify-center">
+			<!-- Connection lines -->
+			<div class="connection-line" style="top: 25%; left: 15%; width: 25%; transform: rotate(45deg);"></div>
+			<div class="connection-line" style="top: 25%; right: 15%; width: 25%; transform: rotate(-45deg);"></div>
+			<div class="connection-line" style="bottom: 25%; left: 15%; width: 25%; transform: rotate(-45deg);"></div>
+			<div class="connection-line" style="bottom: 25%; right: 15%; width: 25%; transform: rotate(45deg);"></div>
+			
+			<!-- AWS Cloud -->
+			<div class="absolute top-0 left-0 cloud-card w-20 h-20 md:w-24 md:h-24 rounded-xl flex flex-col items-center justify-center floating" style="animation-delay: 0.1s">
+			    <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center text-white text-lg mb-1">
+				<i class="fab fa-aws"></i>
+			    </div>
+			    <span class="text-xs font-medium text-neutral-light">AWS</span>
+			</div>
+			
+			<!-- Azure Cloud -->
+			<div class="absolute top-0 right-0 cloud-card w-20 h-20 md:w-24 md:h-24 rounded-xl flex flex-col items-center justify-center floating" style="animation-delay: 0.2s">
+			    <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white text-lg mb-1">
+				<i class="fab fa-microsoft"></i>
+			    </div>
+			    <span class="text-xs font-medium text-neutral-light">Azure</span>
+			</div>
+			
+			<!-- GCP Cloud -->
+			<div class="absolute bottom-0 left-0 cloud-card w-20 h-20 md:w-24 md:h-24 rounded-xl flex flex-col items-center justify-center floating" style="animation-delay: 0.3s">
+			    <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-red-500 via-yellow-500 to-blue-500 flex items-center justify-center text-white text-lg mb-1">
+				<i class="fab fa-google"></i>
+			    </div>
+			    <span class="text-xs font-medium text-neutral-light">GCP</span>
+			</div>
+			
+			<!-- Hybrid Cloud -->
+			<div class="absolute bottom-0 right-0 cloud-card w-20 h-20 md:w-24 md:h-24 rounded-xl flex flex-col items-center justify-center floating" style="animation-delay: 0.4s">
+			    <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-lg mb-1">
+				<i class="fas fa-cloud"></i>
+			    </div>
+			    <span class="text-xs font-medium text-neutral-light">Hybrid</span>
+			</div>
+			
+			<!-- Center Hub - ProtekCyber Security Mesh -->
+			<div class="center-hub w-24 h-24 md:w-32 md:h-32 rounded-2xl flex flex-col items-center justify-center pulse-glow">
+			    <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-green-400 to-green-500 flex items-center justify-center text-neutral-dark font-bold text-lg mb-2 shadow-lg">
+				<i class="fas fa-shield-alt"></i>
+			    </div>
+			    <div class="text-center">
+				<div class="text-xs md:text-sm font-bold text-neutral-light">ProtekCyber</div>
+				<div class="text-xxs md:text-xs text-neutral-light/70">Security Mesh</div>
+			    </div>
+			</div>
+		    </div>
+		    
+		    <!-- Feature Cards (Right Side) -->
+		    <div class="w-full lg:w-1/2 grid md:grid-cols-2 gap-6">
+			<div class="card service-card animate-fadeIn" style="animation-delay: 0.1s">
+			    <div class="flex items-center mb-3">
+				<div class="w-10 h-10 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green text-xl mr-3">
+				    <i class="fas fa-globe"></i>
+				</div>
+				<h3 class="text-xl font-bold">Vendor-Agnostic Expertise</h3>
+			    </div>
+			    <p class="text-neutral-light/70 mb-3">Deep expertise across AWS, Azure, GCP, and hybrid environments. No vendor lock-in, maximum flexibility.</p>
+			    <div class="flex justify-between text-sm">
+				<div>
+				    <div class="font-bold text-secondary-green">3</div>
+				    <div class="text-neutral-light/70">Major Cloud Platforms</div>
+				</div>
+				<div>
+				    <div class="font-bold text-secondary-green">500+</div>
+				    <div class="text-neutral-light/70">Cloud Services Secured</div>
+				</div>
+			    </div>
+			</div>
+			
+			<div class="card service-card animate-fadeIn" style="animation-delay: 0.2s">
+			    <div class="flex items-center mb-3">
+				<div class="w-10 h-10 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green text-xl mr-3">
+				    <i class="fas fa-robot"></i>
+				</div>
+				<h3 class="text-xl font-bold">AI-Powered Protection</h3>
+			    </div>
+			    <p class="text-neutral-light/70 mb-3">Machine learning models trained on petabytes of cloud telemetry detect emerging threats in real-time.</p>
+			    <div class="flex justify-between text-sm">
+				<div>
+				    <div class="font-bold text-secondary-green">99.7%</div>
+				    <div class="text-neutral-light/70">Detection Accuracy</div>
+				</div>
+				<div>
+				    <div class="font-bold text-secondary-green">&lt; 1s</div>
+				    <div class="text-neutral-light/70">Threat Response</div>
+				</div>
+			    </div>
+			</div>
+			
+			<div class="card service-card animate-fadeIn" style="animation-delay: 0.3s">
+			    <div class="flex items-center mb-3">
+				<div class="w-10 h-10 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green text-xl mr-3">
+				    <i class="fas fa-shield-alt"></i>
+				</div>
+				<h3 class="text-xl font-bold">Zero Trust Architecture</h3>
+			    </div>
+			    <p class="text-neutral-light/70 mb-3">Implement least-privilege access controls and continuous verification for all cloud resources.</p>
+			    <div class="flex justify-between text-sm">
+				<div>
+				    <div class="font-bold text-secondary-green">100%</div>
+				    <div class="text-neutral-light/70">Access Verified</div>
+				</div>
+				<div>
+				    <div class="font-bold text-secondary-green">0</div>
+				    <div class="text-neutral-light/70">Trust Assumptions</div>
+				</div>
+			    </div>
+			</div>
+			
+			<div class="card service-card animate-fadeIn" style="animation-delay: 0.4s">
+			    <div class="flex items-center mb-3">
+				<div class="w-10 h-10 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green text-xl mr-3">
+				    <i class="fas fa-project-diagram"></i>
+				</div>
+				<h3 class="text-xl font-bold">Security-as-Code</h3>
+			    </div>
+			    <p class="text-neutral-light/70 mb-3">Define and enforce security policies as code for consistent protection across all environments.</p>
+			    <div class="flex justify-between text-sm">
+				<div>
+				    <div class="font-bold text-secondary-green">IaC</div>
+				    <div class="text-neutral-light/70">Infrastructure as Code</div>
+				</div>
+				<div>
+				    <div class="font-bold text-secondary-green">GitOps</div>
+				    <div class="text-neutral-light/70">Policy Management</div>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</section>
+	<!-- Cloud Security Assessment -->
+
+	<section id="assessment" class="py-20 px-4 md:px-8 lg:px-16 bg-primary-dark">
+	    <div class="container mx-auto">
+		<div class="text-center mb-16">
+		    <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">Your Journey to Secure Cloud <span class="gradient-text">Starts Here</span></h2>
+		    <p class="text-lg text-neutral-light/80 max-w-3xl mx-auto">
+			Our comprehensive cloud security assessment provides a clear roadmap to strengthen your cloud security posture and achieve compliance.
+		    </p>
+		</div>
+		
+		<div class="flex flex-col lg:flex-row gap-16">
+		    <!-- Left Side - Process Steps (unchanged) -->
+
+<!-- Left Side - Process Steps -->
+<div class="lg:w-1/2">
+    <div class="space-y-8">
+        <!-- Step 1 - Blue -->
+        <div class="group relative">
+            <div class="flex items-center gap-6">
+                <div class="relative w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0 transition-all duration-300
+                        bg-gradient-to-br from-blue-400 to-blue-600 shadow-lg group-hover:shadow-blue-500/30
+                        hover:scale-110 hover:from-blue-300 hover:to-blue-500">
+                    <span class="text-white">1</span>
+                    <div class="absolute inset-0 rounded-full border-2 border-blue-300/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold mb-2 text-neutral-light group-hover:text-white transition-colors duration-200">Initial Consultation</h3>
+                    <p class="text-neutral-light/70 leading-relaxed group-hover:text-neutral-light/80 transition-colors duration-200">Understanding your cloud environment, business objectives, and security requirements through stakeholder interviews.</p>
+                </div>
+            </div>
+            <div class="absolute left-6 top-12 w-0.5 h-8 bg-gradient-to-b from-blue-400/50 to-transparent"></div>
+        </div>
+        
+        <!-- Step 2 - Purple -->
+        <div class="group relative">
+            <div class="flex items-center gap-6">
+                <div class="relative w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0 transition-all duration-300
+                        bg-gradient-to-br from-purple-400 to-purple-600 shadow-lg group-hover:shadow-purple-500/30
+                        hover:scale-110 hover:from-purple-300 hover:to-purple-500">
+                    <span class="text-white">2</span>
+                    <div class="absolute inset-0 rounded-full border-2 border-purple-300/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold mb-2 text-neutral-light group-hover:text-white transition-colors duration-200">Cloud Discovery & Mapping</h3>
+                    <p class="text-neutral-light/70 leading-relaxed group-hover:text-neutral-light/80 transition-colors duration-200">Comprehensive inventory of your cloud assets, services, and data flows across all environments.</p>
+                </div>
+            </div>
+            <div class="absolute left-6 top-12 w-0.5 h-8 bg-gradient-to-b from-purple-400/50 to-transparent"></div>
+        </div>
+        
+        <!-- Step 3 - Teal -->
+        <div class="group relative">
+            <div class="flex items-center gap-6">
+                <div class="relative w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0 transition-all duration-300
+                        bg-gradient-to-br from-teal-400 to-teal-600 shadow-lg group-hover:shadow-teal-500/30
+                        hover:scale-110 hover:from-teal-300 hover:to-teal-500">
+                    <span class="text-white">3</span>
+                    <div class="absolute inset-0 rounded-full border-2 border-teal-300/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold mb-2 text-neutral-light group-hover:text-white transition-colors duration-200">Security Assessment</h3>
+                    <p class="text-neutral-light/70 leading-relaxed group-hover:text-neutral-light/80 transition-colors duration-200">In-depth evaluation of your cloud security controls against industry standards and best practices.</p>
+                </div>
+            </div>
+            <div class="absolute left-6 top-12 w-0.5 h-8 bg-gradient-to-b from-teal-400/50 to-transparent"></div>
+        </div>
+        
+        <!-- Step 4 - Amber -->
+        <div class="group relative">
+            <div class="flex items-center gap-6">
+                <div class="relative w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0 transition-all duration-300
+                        bg-gradient-to-br from-amber-400 to-amber-600 shadow-lg group-hover:shadow-amber-500/30
+                        hover:scale-110 hover:from-amber-300 hover:to-amber-500">
+                    <span class="text-white">4</span>
+                    <div class="absolute inset-0 rounded-full border-2 border-amber-300/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold mb-2 text-neutral-light group-hover:text-white transition-colors duration-200">Risk Prioritization</h3>
+                    <p class="text-neutral-light/70 leading-relaxed group-hover:text-neutral-light/80 transition-colors duration-200">Identification and ranking of security risks based on business impact and likelihood of occurrence.</p>
+                </div>
+            </div>
+            <div class="absolute left-6 top-12 w-0.5 h-8 bg-gradient-to-b from-amber-400/50 to-transparent"></div>
+        </div>
+        
+        <!-- Step 5 - Emerald -->
+        <div class="group relative">
+            <div class="flex items-center gap-6">
+                <div class="relative w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0 transition-all duration-300
+                        bg-gradient-to-br from-emerald-400 to-emerald-600 shadow-lg group-hover:shadow-emerald-500/30
+                        hover:scale-110 hover:from-emerald-300 hover:to-emerald-500">
+                    <span class="text-white">5</span>
+                    <div class="absolute inset-0 rounded-full border-2 border-emerald-300/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold mb-2 text-neutral-light group-hover:text-white transition-colors duration-200">Remediation Roadmap</h3>
+                    <p class="text-neutral-light/70 leading-relaxed group-hover:text-neutral-light/80 transition-colors duration-200">Actionable recommendations prioritized by risk level and business value for immediate implementation.</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
+</div>
 
-</body>
+		    <!-- Right Side - Enhanced Detailed Card -->
+		    <div class="lg:w-1/2">
+			<div class="card service-card bg-gradient-to-br from-primary-medium/30 to-neutral-dark/30 backdrop-blur-sm border border-primary-medium/50 hover:border-secondary-green/50 transition-all duration-500 relative overflow-hidden">
+			    <!-- Subtle grid pattern background -->
+			    <div class="absolute inset-0 opacity-5 [background-image:linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[length:40px_40px]"></div>
+			    
+			    <div class="relative z-10 mb-6">
+				<div class="flex items-center gap-3 mb-4">
+				    <div class="w-10 h-10 rounded-full bg-secondary-green/20 flex items-center justify-center text-secondary-green group-hover:bg-secondary-green/30 transition-colors duration-300">
+					<i class="fas fa-comments text-lg group-hover:scale-110 transition-transform duration-300"></i>
+				    </div>
+				    <h3 class="text-2xl font-bold text-neutral-light group-hover:text-white transition-colors duration-300">Initial Consultation</h3>
+				</div>
+				<p class="text-neutral-light/70 mb-8 group-hover:text-neutral-light/80 transition-colors duration-300">Deep dive into your cloud environment to understand your unique security challenges and business requirements.</p>
+			    </div>
+			    
+			    <div class="relative z-10 grid gap-4">
+				<!-- Enhanced Card 1 -->
+				<div class="flex items-start gap-4 p-4 rounded-lg bg-primary-dark/50 border border-primary-medium/30 hover:border-secondary-green/50 transition-all duration-300 group hover:bg-primary-dark/70">
+				    <div class="w-10 h-10 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green flex-shrink-0 group-hover:bg-secondary-green/20 transition-colors duration-300">
+					<i class="fas fa-users group-hover:scale-110 transition-transform duration-300"></i>
+				    </div>
+				    <div>
+					<h4 class="font-semibold text-neutral-light mb-1 group-hover:text-white transition-colors duration-300">Stakeholder Interviews</h4>
+					<p class="text-sm text-neutral-light/70 group-hover:text-neutral-light/80 transition-colors duration-300">Understanding business objectives and security requirements</p>
+				    </div>
+				    <div class="ml-auto text-secondary-green/30 group-hover:text-secondary-green/70 transition-colors duration-300">
+					<i class="fas fa-chevron-right"></i>
+				    </div>
+				</div>
+				
+				<!-- Enhanced Card 2 -->
+				<div class="flex items-start gap-4 p-4 rounded-lg bg-primary-dark/50 border border-primary-medium/30 hover:border-secondary-green/50 transition-all duration-300 group hover:bg-primary-dark/70">
+				    <div class="w-10 h-10 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green flex-shrink-0 group-hover:bg-secondary-green/20 transition-colors duration-300">
+					<i class="fas fa-cloud group-hover:scale-110 transition-transform duration-300"></i>
+				    </div>
+				    <div>
+					<h4 class="font-semibold text-neutral-light mb-1 group-hover:text-white transition-colors duration-300">Cloud Environment Review</h4>
+					<p class="text-sm text-neutral-light/70 group-hover:text-neutral-light/80 transition-colors duration-300">High-level architecture and service usage analysis</p>
+				    </div>
+				    <div class="ml-auto text-secondary-green/30 group-hover:text-secondary-green/70 transition-colors duration-300">
+					<i class="fas fa-chevron-right"></i>
+				    </div>
+				</div>
+				
+				<!-- Enhanced Card 3 -->
+				<div class="flex items-start gap-4 p-4 rounded-lg bg-primary-dark/50 border border-primary-medium/30 hover:border-secondary-green/50 transition-all duration-300 group hover:bg-primary-dark/70">
+				    <div class="w-10 h-10 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green flex-shrink-0 group-hover:bg-secondary-green/20 transition-colors duration-300">
+					<i class="fas fa-shield-alt group-hover:scale-110 transition-transform duration-300"></i>
+				    </div>
+				    <div>
+					<h4 class="font-semibold text-neutral-light mb-1 group-hover:text-white transition-colors duration-300">Current Controls Assessment</h4>
+					<p class="text-sm text-neutral-light/70 group-hover:text-neutral-light/80 transition-colors duration-300">Existing security measures and gap identification</p>
+				    </div>
+				    <div class="ml-auto text-secondary-green/30 group-hover:text-secondary-green/70 transition-colors duration-300">
+					<i class="fas fa-chevron-right"></i>
+				    </div>
+				</div>
+				
+				<!-- Enhanced Card 4 -->
+				<div class="flex items-start gap-4 p-4 rounded-lg bg-primary-dark/50 border border-primary-medium/30 hover:border-secondary-green/50 transition-all duration-300 group hover:bg-primary-dark/70">
+				    <div class="w-10 h-10 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green flex-shrink-0 group-hover:bg-secondary-green/20 transition-colors duration-300">
+					<i class="fas fa-balance-scale group-hover:scale-110 transition-transform duration-300"></i>
+				    </div>
+				    <div>
+					<h4 class="font-semibold text-neutral-light mb-1 group-hover:text-white transition-colors duration-300">Compliance Requirements</h4>
+					<p class="text-sm text-neutral-light/70 group-hover:text-neutral-light/80 transition-colors duration-300">Regulatory and industry standards mapping</p>
+				    </div>
+				    <div class="ml-auto text-secondary-green/30 group-hover:text-secondary-green/70 transition-colors duration-300">
+					<i class="fas fa-chevron-right"></i>
+				    </div>
+				</div>
+			    </div>
+			    
+			    <!-- Subtle corner accent -->
+			    <div class="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-secondary-green/20 rounded-tr-lg transition-all duration-500 group-hover:border-secondary-green/50"></div>
+			</div>
+		    </div>
+		</div>
+		
+		<div class="text-center mt-16">
+		    <button class="cyber-btn hover:shadow-lg mb-4">Request Cloud Security Assessment</button>
+		    <p class="text-neutral-light/70">Get a comprehensive analysis of your cloud security posture in 2-3 weeks</p>
+		</div>
+	    </div>
+	</section>
+
+
+	<!-- Contact Section -->
+	<section id="contact" class="py-20 px-4 md:px-8 lg:px-16 bg-neutral-dark circuit-bg">
+            <div class="container mx-auto">
+		<div class="flex flex-col lg:flex-row gap-12">
+                    <div class="lg:w-1/2">
+			<h2 class="text-3xl md:text-4xl font-bold mb-6">Partner with ProtekCyber for <span class="gradient-text">Unbreakable Cloud Security</span></h2>
+			<p class="text-lg text-neutral-light/80 mb-8">
+                            Ready to transform your cloud security posture? Our experts are standing by to discuss your specific requirements and design a tailored solution.
+			</p>
+			
+			<div class="space-y-6 mb-8">
+                            <div class="flex items-start gap-4">
+				<div class="w-12 h-12 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green text-xl flex-shrink-0">
+                                    <i class="fas fa-phone"></i>
+				</div>
+				<div>
+                                    <h3 class="text-lg font-bold mb-1">Speak to Our Experts</h3>
+                                    <div class="text-xl font-semibold text-secondary-green">+44 (0) 800 123 4567</div>
+                                    <div class="text-sm text-neutral-light/70">Available 24/7 for urgent cloud security matters</div>
+				</div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+				<div class="w-12 h-12 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green text-xl flex-shrink-0">
+                                    <i class="fas fa-envelope"></i>
+				</div>
+				<div>
+                                    <h3 class="text-lg font-bold mb-1">Email Our Team</h3>
+                                    <div class="text-xl font-semibold text-secondary-green">cloudsecurity@protekcyber.com</div>
+                                    <div class="text-sm text-neutral-light/70">Response within 2 hours during business hours</div>
+				</div>
+                            </div>
+			</div>
+			
+			<div>
+                            <h3 class="text-lg font-bold mb-3">What You Get:</h3>
+                            <div class="space-y-2">
+				<div class="flex items-center">
+                                    <div class="w-5 h-5 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green mr-2">
+					<i class="fas fa-check text-xs"></i>
+                                    </div>
+                                    <span>Free initial cloud security consultation</span>
+				</div>
+				<div class="flex items-center">
+                                    <div class="w-5 h-5 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green mr-2">
+					<i class="fas fa-check text-xs"></i>
+                                    </div>
+                                    <span>Customized security roadmap</span>
+				</div>
+				<div class="flex items-center">
+                                    <div class="w-5 h-5 rounded-full bg-secondary-green/10 flex items-center justify-center text-secondary-green mr-2">
+					<i class="fas fa-check text-xs"></i>
+                                    </div>
+                                    <span>No-obligation assessment proposal</span>
+				</div>
+                            </div>
+			</div>
+                    </div>
+                    
+		    <div class="lg:w-1/2">
+			<div class="card service-card bg-neutral-dark/90 backdrop-blur-sm border border-primary-medium/50">
+			    <h3 class="text-2xl font-bold mb-3 text-neutral-light">Schedule Your Cloud Security Consultation</h3>
+			    <p class="text-neutral-light/70 mb-6">Tell us about your cloud environment and security challenges</p>
+			    
+			    <form class="space-y-6">
+				<!-- Name and Email Row -->
+				<div class="grid md:grid-cols-2 gap-6">
+				    <!-- Name Field -->
+				    <div>
+					<label for="name" class="block text-sm font-medium text-neutral-light/90 mb-1">Full Name</label>
+					<input 
+					    type="text" 
+						  id="name" 
+						  name="name"
+						  autocomplete="name"
+						  class="w-full p-3 rounded-md bg-primary-dark border border-primary-medium focus:ring-secondary-green focus:border-secondary-green text-neutral-light"
+						  required
+					>
+				    </div>
+				    
+				    <!-- Email Field -->
+				    <div>
+					<label for="email" class="block text-sm font-medium text-neutral-light/90 mb-1">Email Address</label>
+					<input 
+					    type="email" 
+						  id="email" 
+						  name="email"
+						  autocomplete="email"
+						  class="w-full p-3 rounded-md bg-primary-dark border border-primary-medium focus:ring-secondary-green focus:border-secondary-green text-neutral-light"
+						  required
+					>
+				    </div>
+				</div>
+				
+				<!-- Company Field -->
+				<div>
+				    <label for="company" class="block text-sm font-medium text-neutral-light/90 mb-1">Company Name</label>
+				    <input 
+					type="text" 
+					id="company" 
+					name="company"
+					autocomplete="organization"
+					class="w-full p-3 rounded-md bg-primary-dark border border-primary-medium focus:ring-secondary-green focus:border-secondary-green text-neutral-light"
+				    >
+				</div>
+				
+				<!-- Dropdown Row -->
+				<div class="grid md:grid-cols-2 gap-6">
+				    <!-- Cloud Provider Dropdown -->
+				    <div>
+					<label for="cloud-provider" class="block text-sm font-medium text-neutral-light/90 mb-1">Primary Cloud Provider</label>
+					<select 
+					    id="cloud-provider" 
+						name="cloud-provider"
+						class="w-full p-3 rounded-md bg-primary-dark border border-primary-medium focus:ring-secondary-green focus:border-secondary-green text-neutral-light"
+					>
+					    <option value="" disabled selected>Select provider</option>
+					    <option value="aws">Amazon Web Services (AWS)</option>
+					    <option value="azure">Microsoft Azure</option>
+					    <option value="gcp">Google Cloud Platform (GCP)</option>
+					    <option value="multi-cloud">Multi-Cloud</option>
+					    <option value="hybrid">Hybrid Cloud</option>
+					    <option value="other">Other</option>
+					</select>
+				    </div>
+				    
+				    <!-- Urgency Dropdown -->
+				    <div>
+					<label for="urgency" class="block text-sm font-medium text-neutral-light/90 mb-1">Urgency Level</label>
+					<select 
+					    id="urgency" 
+						name="urgency"
+						class="w-full p-3 rounded-md bg-primary-dark border border-primary-medium focus:ring-secondary-green focus:border-secondary-green text-neutral-light"
+					>
+					    <option value="" disabled selected>Select urgency</option>
+					    <option value="immediate">Immediate (Security Incident)</option>
+					    <option value="urgent">Urgent (Within 1 week)</option>
+					    <option value="normal">Normal (Within 1 month)</option>
+					    <option value="planning">Planning (Future project)</option>
+					</select>
+				    </div>
+				</div>
+				
+				<!-- Message Textarea -->
+				<div>
+				    <label for="message" class="block text-sm font-medium text-neutral-light/90 mb-1">Cloud Security Challenges</label>
+				    <textarea 
+					id="message" 
+					name="message"
+					rows="4" 
+					class="w-full p-3 rounded-md bg-primary-dark border border-primary-medium focus:ring-secondary-green focus:border-secondary-green text-neutral-light"
+					required
+				    ></textarea>
+				</div>
+				
+				<!-- Checkbox -->
+				<div class="flex items-start">
+				    <div class="flex items-center h-5">
+					<input 
+					    id="consent" 
+						name="consent"
+						type="checkbox" 
+						class="w-4 h-4 bg-primary-dark border-primary-medium rounded focus:ring-secondary-green text-secondary-green"
+						required
+					>
+				    </div>
+				    <label for="consent" class="ml-3 text-sm text-neutral-light/80">
+					I consent to ProtekCyber contacting me about cloud security services and agree to the privacy policy.
+				    </label>
+				</div>
+				
+				<!-- Submit Button -->
+				<div class="text-center">
+				    <button 
+					type="submit" 
+					class="cyber-btn w-full sm:w-auto"
+				    >
+					Schedule Consultation
+					<i class="fas fa-arrow-right ml-2"></i>
+				    </button>
+				</div>
+			    </form>
+			</div>
+		    </div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="py-12 px-4 md:px-8 lg:px-16 bg-neutral-dark/90 border-t border-primary-medium">
+            <div class="container mx-auto">
+		<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                    <div>
+			<div class="text-2xl font-bold gradient-text mb-4">ProtekCyber</div>
+			<p class="text-neutral-light/70 mb-6">
+                            Expert cybersecurity consultancy providing comprehensive cloud security, incident response, and security advisory services to protect your business.
+			</p>
+			<div class="flex space-x-4">
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-github"></i>
+                            </a>
+			</div>
+                    </div>
+                    
+                    <div>
+			<h3 class="text-lg font-bold mb-4">Services</h3>
+			<ul class="space-y-2">
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Cloud Security</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Incident Response</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Penetration Testing</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Security Consulting</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Compliance Services</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Security Training</a></li>
+			</ul>
+                    </div>
+                    
+                    <div>
+			<h3 class="text-lg font-bold mb-4">Company</h3>
+			<ul class="space-y-2">
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">About Us</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Our Team</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Careers</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">News & Insights</a></li>
+                            <li><a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Case Studies</a></li>
+			</ul>
+                    </div>
+                    
+                    <div>
+			<h3 class="text-lg font-bold mb-4">Contact</h3>
+			<p class="text-neutral-light/70 mb-2"><i class="fas fa-phone mr-2 text-secondary-green"></i> +44 (0) 800 123 4567</p>
+			<p class="text-neutral-light/70 mb-2"><i class="fas fa-envelope mr-2 text-secondary-green"></i> info@protekcyber.com</p>
+			<p class="text-neutral-light/70 mb-2"><i class="fas fa-map-marker-alt mr-2 text-secondary-green"></i> London, United Kingdom</p>
+			<p class="text-neutral-light/70"><i class="fas fa-clock mr-2 text-secondary-green"></i> 24/7 Emergency Response</p>
+                    </div>
+		</div>
+		
+		<div class="pt-8 border-t border-primary-medium flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-neutral-light/70 mb-4 md:mb-0">&copy; 2025 ProtekCyber. All rights reserved.</p>
+                    <div class="flex space-x-6">
+			<a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Privacy Policy</a>
+			<a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Terms of Service</a>
+			<a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">Cookie Policy</a>
+                    </div>
+		</div>
+            </div>
+	</footer>
+	<script crossorigin src="./js/dropdown.js"></script>
+
+
+	<script>
+
+	 // Counter animation
+	 function animateCounters() {
+             const counters = document.querySelectorAll('.counter');
+             const speed = 200;
+             
+             counters.forEach(counter => {
+		 const target = +counter.getAttribute('data-target');
+		 const count = +counter.innerText;
+		 const increment = target / speed;
+		 
+		 if (count < target) {
+                     counter.innerText = Math.ceil(count + increment);
+                     setTimeout(animateCounters, 1);
+		 } else {
+                     counter.innerText = target;
+		 }
+             });
+	 }
+
+	 // Initialize animations when page loads
+	 window.addEventListener('load', function() {
+             animateCounters();
+             
+             // Animate elements when they come into view
+             const observer = new IntersectionObserver((entries) => {
+		 entries.forEach(entry => {
+                     if (entry.isIntersecting) {
+			 entry.target.classList.add('animate-fadeIn');
+                     }
+		 });
+             }, { threshold: 0.1 });
+             
+             document.querySelectorAll('.service-card, .section-title').forEach(element => {
+		 observer.observe(element);
+             });
+	 });
+	</script>
+    </body>
 </html>

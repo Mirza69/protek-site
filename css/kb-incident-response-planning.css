@@ -1,0 +1,236 @@
+:root {
+    --primary-dark: #0A192F;
+    --primary-medium: #19376D;
+    --secondary-green: #04D939;
+    --accent-purple: #A459D1;
+    --neutral-dark: #0F172A;
+    --neutral-light: #F8FAFC;
+}
+#mobile-menu{
+    background-color: var(--primary-dark)!important;
+    padding-top: 60px;
+}
+@media screen and (max-width: 768px) {
+    #desktopmenu {
+        display: none; /* Show the desktop menu for mobile screens */
+    }
+}  
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--neutral-dark);
+    color: var(--neutral-light);
+}
+.space-x-8>:not([hidden])~:not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(2rem * var(--tw-space-x-reverse));
+    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.bg-primary-dark {
+    background-color: var(--primary-dark);
+}
+
+.bg-primary-medium {
+    background-color: var(--primary-medium);
+}
+
+.bg-neutral-dark {
+    background-color: var(--neutral-dark);
+}
+
+.text-secondary-green {
+    color: var(--secondary-green);
+}
+
+.text-accent-purple {
+    color: var(--accent-purple);
+}
+
+.border-secondary-green {
+    border-color: var(--secondary-green);
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.cyber-btn {
+    background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
+    color: var(--neutral-dark);
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.cyber-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(4, 217, 57, 0.5);
+}
+
+.cyber-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.6s ease;
+}
+
+.cyber-btn:hover:before {
+    left: 100%;
+}
+
+.card {
+    background-color: rgba(25, 55, 109, 0.2);
+    border: 1px solid var(--primary-medium);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(4, 217, 57, 0.1);
+}
+
+/* Add this to your CSS */
+.hover\:shadow-glow:hover {
+    box-shadow: 0 0 15px rgba(4, 217, 57, 0.7); /* Green glow */
+    background-color: var(--secondary-green); /* Solid green bg */
+    color: var(--neutral-dark); /* Dark text */
+    border-color: var(--secondary-green); /* Green border */
+}
+
+/* Additional styles for incident response page */
+.phase-item {
+    margin-bottom: 3rem;
+}
+
+.phase-header {
+    border-left: 4px solid var(--accent-purple);
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.checklist-icon {
+    flex-shrink: 0;
+    margin-right: 1rem;
+    color: var(--secondary-green);
+}
+
+.step-tag {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--primary-medium);
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 2rem;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--secondary-green);
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1.5rem;
+    width: 2px;
+    height: calc(100% - 1rem);
+    background-color: var(--primary-medium);
+}
+
+.process-step {
+    display: flex;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background-color: rgba(25, 55, 109, 0.3);
+    border-radius: 0.5rem;
+}
+
+.step-number {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: var(--secondary-green);
+    color: var(--neutral-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 1.5rem;
+}
+
+.step-content {
+    flex-grow: 1;
+}
+
+.team-role {
+    margin-bottom: 1.5rem;
+}
+
+.role-title {
+    font-weight: bold;
+    color: var(--secondary-green);
+    margin-bottom: 0.5rem;
+}
+.process-step {
+    display: flex;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background-color: rgba(25, 55, 109, 0.3);
+    border-radius: 0.5rem;
+    height: 160px; /* Fixed height for all steps */
+    overflow: hidden; /* Ensure content doesn't overflow */
+}
+
+.step-number {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: var(--secondary-green);
+    color: var(--neutral-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 1.5rem;
+}
+
+.step-content {
+    flex-grow: 1;
+    overflow: auto; /* Add scroll if content exceeds fixed height */
+}

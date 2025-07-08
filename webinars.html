@@ -1,1225 +1,705 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cybersecurity Webinars | ProtekCyber Consultants</title>
-    <meta name="description" content="Join ProtekCyber's expert-led cybersecurity webinars. Gain actionable insights on threat detection, compliance, and security strategy.">
-    
-    <!-- Same CSS as bid-writer.html -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Same style block from bid-writer.html -->
-    <style>
-        :root {
-            --primary-dark: #0A192F;
-            --primary-medium: #19376D;
-            --secondary-green: #04D939;
-            --accent-purple: #A459D1;
-            --neutral-dark: #0F172A;
-            --neutral-light: #F8FAFC;
-            --threat-critical: #EF4444;
-            --threat-high: #F59E0B;
-            --threat-medium: #3B82F6;
-            --threat-low: #10B981;
-        }
-        
-        /* Include all your bid-writer.html styles here */
-        #mobile-menu{
-            background-color: var(--primary-dark)!important;
-            padding-top: 60px;
-        }
-        @media screen and (max-width: 768px) {
-        #desktopmenu {
-        display: none; /* Show the desktop menu for mobile screens */
-            }
-          }  
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--neutral-dark);
-            color: var(--neutral-light);
-        }
-        .space-x-8>:not([hidden])~:not([hidden]) {
-    --tw-space-x-reverse: 0;
-    margin-right: calc(2rem * var(--tw-space-x-reverse));
-    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
-}
-        
-        .bg-primary-dark {
-            background-color: var(--primary-dark);
-        }
-        
-        .bg-primary-medium {
-            background-color: var(--primary-medium);
-        }
-        
-        .bg-neutral-dark {
-            background-color: var(--neutral-dark);
-        }
-        
-        .text-secondary-green {
-            color: var(--secondary-green);
-        }
-        
-        .text-accent-purple {
-            color: var(--accent-purple);
-        }
-        
-        .border-secondary-green {
-            border-color: var(--secondary-green);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .cyber-btn {
-            background: linear-gradient(90deg, var(--secondary-green), var(--accent-purple));
-            color: var(--neutral-dark);
-            font-weight: bold;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .cyber-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(4, 217, 57, 0.5);
-        }
-        
-        .cyber-btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: all 0.6s ease;
-        }
-        
-        .cyber-btn:hover:before {
-            left: 100%;
-        }
-        
-        .card {
-            background-color: rgba(25, 55, 109, 0.2);
-            border: 1px solid var(--primary-medium);
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(4, 217, 57, 0.1);
-        }
-        
-        .matrix-bg {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .matrix-bg:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* background-image: url('images/matrix-bg.svg'); */
-            background-size: cover;
-            opacity: 0.05;
-            z-index: -1;
-        }
-        
-        .circuit-bg {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .circuit-bg:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* background-image: url('images/circuit-pattern.svg'); */
-            background-size: cover;
-            opacity: 0.05;
-            z-index: -1;
-        }
-        
-        .animate-pulse-slow {
-            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 0.1;
-            }
-            50% {
-                opacity: 0.3;
-            }
-        }
-        
-        .text-pulse {
-            animation: textPulse 0.7s ease-in-out;
-        }
-        
-        @keyframes textPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); color: var(--secondary-green); }
-            100% { transform: scale(1); }
-        }
-        
-        .flipping {
-            transform: rotateY(90deg);
-            transition: transform 0.3s ease;
-        }
-        
-        .transformed-card, .service-card {
-            transition: transform 0.3s ease;
-            transform-style: preserve-3d;
-        }
-        
-        .timeline-node {
-            position: relative;
-        }
-        
-        .timeline-marker {
-            position: relative;
-            z-index: 20;
-            margin: 0 auto;
-            width: 12px;
-            height: 12px;
-        }
-        
-        @media (min-width: 768px) {
-            .timeline-node:nth-child(odd) .timeline-marker {
-                transform: translateX(50%);
-            }
-            
-            .timeline-node:nth-child(even) .timeline-marker {
-                transform: translateX(-50%);
-            }
-        }
-        
-        .slide-in-right {
-            animation: slideInRight 0.5s forwards;
-        }
-        
-        @keyframes slideInRight {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        .fade-out {
-            animation: fadeOut 0.5s forwards;
-        }
-        
-        @keyframes fadeOut {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0;
-            }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.5s forwards;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        
-        #vulnerability-results {
-            display: none;
-        }
-        
-        .vulnerability-item {
-            border-left: 3px solid transparent;
-            transition: all 0.3s ease;
-        }
-        
-        .vulnerability-item.high-risk {
-            border-left-color: #ef4444;
-        }
-        
-        .vulnerability-item.medium-risk {
-            border-left-color: #f59e0b;
-        }
-        
-        .vulnerability-item.low-risk {
-            border-left-color: #10b981;
-        }
-        
-        .security-alert {
-            animation: pulse 2s infinite;
-        }
-        
-        .countdown-timer {
-            font-family: 'Courier New', monospace;
-        }
-        
-        .notification-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #ef4444;
-            color: white;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .breach-cost-counter {
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-        }
-        
-        img {
-            /* Ensure all images have descriptive alt text! */
-        }
-        .gradient-text {
-  background: linear-gradient(90deg, #04D939, #A459D1);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.text-neutral-dark {
-  color: var(--neutral-dark);
-}
-.hover\:shadow-glow:hover {
-  box-shadow: 0 0 8px 2px var(--secondary-green);
-  border-color: var(--secondary-green);
-  background-color: var(--secondary-green);
-  color: var(--neutral-dark); /* probably #0F172A */
-}
-.bg-feature-box {
-  background-color: rgba(25, 55, 109, 0.2); /* matches homepage blurbs */
-}
-        
-        /* Additional styles for webinars page */
-        .webinar-hero {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
-            padding-top: 8rem;
-            padding-bottom: 6rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .webinar-hero:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(circle at 20% 50%, rgba(4, 217, 57, 0.1) 0%, transparent 50%);
-            z-index: 0;
-        }
-        
-        .webinar-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            color: var(--neutral-light/80);
-        }
-        
-        .webinar-meta span {
-            display: flex;
-            align-items: center;
-            font-size: 0.875rem;
-        }
-        
-        .webinar-meta i {
-            margin-right: 0.5rem;
-            color: var(--secondary-green);
-        }
-        
-        .countdown {
-            display: flex;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .countdown-item {
-            text-align: center;
-        }
-        
-        .countdown-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--secondary-green);
-        }
-        
-        .countdown-label {
-            font-size: 0.75rem;
-            color: var(--neutral-light/70);
-        }
-        
-        .speaker {
-            display: flex;
-            align-items: center;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--primary-medium);
-        }
-        
-        .speaker-image {
-            width: 4rem;
-            height: 4rem;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 1rem;
-            border: 2px solid var(--secondary-green);
-        }
-        
-        .webinar-tag {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-        
-        .tag-live {
-            background-color: var(--secondary-green);
-            color: var(--neutral-dark);
-        }
-        
-        .tag-upcoming {
-            background-color: var(--threat-high);
-            color: var(--neutral-dark);
-        }
-        
-        .expert-image {
-            width: 5rem;
-            height: 5rem;
-            border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto 1rem;
-            border: 2px solid var(--secondary-green);
-        }
-        
-        .thumbnail {
-            position: relative;
-            height: 12rem;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            margin-bottom: 1rem;
-        }
-        
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 3rem;
-            height: 3rem;
-            background-color: rgba(4, 217, 57, 0.8);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--neutral-dark);
-            font-size: 1.25rem;
-        }
-        
-        .video-duration {
-            position: absolute;
-            bottom: 0.75rem;
-            right: 0.75rem;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-size: 0.75rem;
-        }
-        
-        .metric-value {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--secondary-green);
-            margin-bottom: 0.5rem;
-        }
-        
-        .testimonial:before {
-            content: """;
-            position: absolute;
-            top: 1.25rem;
-            left: 1.25rem;
-            font-size: 4rem;
-            color: var(--secondary-green);
-            opacity: 0.3;
-            line-height: 1;
-        }
-        
-        .author-image {
-            width: 3rem;
-            height: 3rem;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 1rem;
-        }
-    </style>
-</head>
-<body>
+    <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cybersecurity Webinars | ProtekCyber Consultants</title>
+	<meta name="description" content="Join ProtekCyber's expert-led cybersecurity webinars. Gain actionable insights on threat detection, compliance, and security strategy.">
+	
+	<!-- Same CSS as bid-writer.html -->
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+	
+	<link rel="stylesheet" crossorigin href="./css/webinars.css"></link>
+    </head>
+    <body>
 
-    <!--NAVBAR-->
-<header class="bg-neutral-dark text-neutral-light shadow-md fixed w-full top-0 z-50">
-  <div class="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
-    
-    <!-- Logo -->
-    <a href="/index.html" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+	<!--NAVBAR-->
+	<header class="bg-neutral-dark text-neutral-light shadow-md fixed w-full top-0 z-50">
+	    <div class="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
+		
+		<!-- Logo -->
+		<a href="/index.html" class="text-2xl font-bold gradient-text">ProtekCyber</a>
 
-    <!-- Hamburger (Mobile) -->
-    <button id="nav-toggle" class="md:hidden text-2xl focus:outline-none">
-      <i class="fas fa-bars"></i>
-    </button>
+		<!-- Hamburger (Mobile) -->
+		<button id="nav-toggle" class="md:hidden text-2xl focus:outline-none">
+		    <i class="fas fa-bars"></i>
+		</button>
 
-    <!-- Navigation -->
-    <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row md:items-center md:gap-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-neutral-dark px-4 md:px-0 py-4 md:py-0">
+		<!-- Navigation -->
+		<nav id="nav-menu" class="hidden md:flex flex-col md:flex-row md:items-center md:gap-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-neutral-dark px-4 md:px-0 py-4 md:py-0">
 
-      <a href="/index.html" class="hover:text-secondary-green">Home</a>
+		    <a href="/index.html" class="hover:text-secondary-green">Home</a>
 
-      <!-- Services -->
-      <div class="relative group flex items-center justify-between w-full md:w-auto">
-        <a href="/index.html#services" class="hover:text-secondary-green md:mr-1">Services</a>
-        <button class="dropdown-toggle text-sm" aria-label="Toggle Services Dropdown">
-          <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
-          <a href="/soc" class="block px-4 py-2 hover:bg-neutral-light/10">SOC as a Service</a>
-          <a href="/penetration" class="block px-4 py-2 hover:bg-neutral-light/10">Penetration Testing</a>
-          <a href="/incident" class="block px-4 py-2 hover:bg-neutral-light/10">Incident Response</a>
-          <a href="/cloud-sec" class="block px-4 py-2 hover:bg-neutral-light/10">Cloud Security</a>
-          <a href="/data-protect" class="block px-4 py-2 hover:bg-neutral-light/10">Data Protection</a>
-        </div>
-      </div>
+		    <!-- Services -->
+		    <div class="relative group flex items-center justify-between w-full md:w-auto">
+			<a href="/index.html#services" class="hover:text-secondary-green md:mr-1">Services</a>
+			<button class="dropdown-toggle text-sm" aria-label="Toggle Services Dropdown">
+			    <i class="fas fa-chevron-down"></i>
+			</button>
+			<div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+			    <a href="/soc" class="block px-4 py-2 hover:bg-neutral-light/10">SOC as a Service</a>
+			    <a href="/penetration" class="block px-4 py-2 hover:bg-neutral-light/10">Penetration Testing</a>
+			    <a href="/incident" class="block px-4 py-2 hover:bg-neutral-light/10">Incident Response</a>
+			    <a href="/cloud-sec" class="block px-4 py-2 hover:bg-neutral-light/10">Cloud Security</a>
+			    <a href="/data-protect" class="block px-4 py-2 hover:bg-neutral-light/10">Data Protection</a>
+			</div>
+		    </div>
 
-      <!-- Insights -->
-      <div class="relative group flex items-center justify-between w-full md:w-auto">
-        <a href="/index.html#insights" class="hover:text-secondary-green md:mr-1">Insights</a>
-        <button class="dropdown-toggle text-sm" aria-label="Toggle Insights Dropdown">
-          <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
-          <a href="/knowledge-base" class="block px-4 py-2 hover:bg-neutral-light/10">Knowledge Base</a>
-          <a href="/threat-intelligence" class="block px-4 py-2 hover:bg-neutral-light/10">Threat Intelligence</a>
-          <a href="/security-guides" class="block px-4 py-2 hover:bg-neutral-light/10">Security Guides</a>
-          <a href="/webinars" class="block px-4 py-2 hover:bg-neutral-light/10">Webinars</a>
-          <a href="/case-studies" class="block px-4 py-2 hover:bg-neutral-light/10">Case Studies</a>
-        </div>
-      </div>
+		    <!-- Insights -->
+		    <div class="relative group flex items-center justify-between w-full md:w-auto">
+			<a href="/index.html#insights" class="hover:text-secondary-green md:mr-1">Insights</a>
+			<button class="dropdown-toggle text-sm" aria-label="Toggle Insights Dropdown">
+			    <i class="fas fa-chevron-down"></i>
+			</button>
+			<div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+			    <a href="/knowledge-base" class="block px-4 py-2 hover:bg-neutral-light/10">Knowledge Base</a>
+			    <a href="/threat-intelligence" class="block px-4 py-2 hover:bg-neutral-light/10">Threat Intelligence</a>
+			    <a href="/security-guides" class="block px-4 py-2 hover:bg-neutral-light/10">Security Guides</a>
+			    <a href="/webinars" class="block px-4 py-2 hover:bg-neutral-light/10">Webinars</a>
+			    <a href="/case-studies" class="block px-4 py-2 hover:bg-neutral-light/10">Case Studies</a>
+			</div>
+		    </div>
 
-      <!-- Company -->
-      <div class="relative group flex items-center justify-between w-full md:w-auto">
-        <a href="/company" class="hover:text-secondary-green md:mr-1">Company</a>
-        <button class="dropdown-toggle text-sm" aria-label="Toggle Company Dropdown">
-          <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
-          <a href="/about-us" class="block px-4 py-2 hover:bg-neutral-light/10">About Us</a>
-          <a href="/our-team" class="block px-4 py-2 hover:bg-neutral-light/10">Our Team</a>
-          <a href="/careers" class="block px-4 py-2 hover:bg-neutral-light/10">Careers</a>
-          <a href="/news" class="block px-4 py-2 hover:bg-neutral-light/10">News</a>
-          <a href="/termsofservice" class="block px-4 py-2 hover:bg-neutral-light/10">Terms of Service</a>
-        </div>
-      </div>
+		    <!-- Company -->
+		    <div class="relative group flex items-center justify-between w-full md:w-auto">
+			<a href="/company" class="hover:text-secondary-green md:mr-1">Company</a>
+			<button class="dropdown-toggle text-sm" aria-label="Toggle Company Dropdown">
+			    <i class="fas fa-chevron-down"></i>
+			</button>
+			<div class="dropdown hidden absolute bg-neutral-dark shadow-md mt-2 rounded-md w-56 z-10 md:left-0 top-full">
+			    <a href="/about-us" class="block px-4 py-2 hover:bg-neutral-light/10">About Us</a>
+			    <a href="/our-team" class="block px-4 py-2 hover:bg-neutral-light/10">Our Team</a>
+			    <a href="/careers" class="block px-4 py-2 hover:bg-neutral-light/10">Careers</a>
+			    <a href="/news" class="block px-4 py-2 hover:bg-neutral-light/10">News</a>
+			    <a href="/termsofservice" class="block px-4 py-2 hover:bg-neutral-light/10">Terms of Service</a>
+			</div>
+		    </div>
 
-      <a href="/#contact" class="hover:text-secondary-green">Contact Us</a>
+		    <a href="/#contact" class="hover:text-secondary-green">Contact Us</a>
 
-      <!-- CTA Button -->
-      <div class="mt-4 md:mt-0 md:ml-4">
-        <a href="/#contact" class="cyber-btn block text-center">Speak to an Expert</a>
-      </div>
+		    <!-- CTA Button -->
+		    <div class="mt-4 md:mt-0 md:ml-4">
+			<a href="/#contact" class="cyber-btn block text-center">Speak to an Expert</a>
+		    </div>
 
-    </nav>
-  </div>
-</header>
+		</nav>
+	    </div>
+	</header>
 
-    <!-- Hero Section -->
-    <section class="webinar-hero text-center relative z-10">
-        <div class="container mx-auto px-4 md:px-8 lg:px-16">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                Cybersecurity <span class="gradient-text">Webinars</span>
-            </h1>
-            <p class="text-xl text-neutral-light/80 max-w-3xl mx-auto mb-8">
-                Gain actionable insights from industry-leading experts to strengthen your security posture and protect business value.
-            </p>
-            <a href="#upcoming" class="cyber-btn inline-block">
-                View Upcoming Webinars <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="py-16 px-4 md:px-8 lg:px-16 bg-primary-dark">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
-                Why Attend Our <span class="gradient-text">Webinars</span>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="card p-8">
-                    <div class="text-3xl text-secondary-green mb-4">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Expert-Led Knowledge</h3>
-                    <p class="text-neutral-light/80">Access strategic guidance from certified security professionals with extensive experience protecting enterprise environments.</p>
-                </div>
-                <div class="card p-8">
-                    <div class="text-3xl text-secondary-green mb-4">
-                        <i class="fas fa-tasks"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Actionable Strategies</h3>
-                    <p class="text-neutral-light/80">Our webinars focus on implementable solutions to real-world security challenges with high implementation rates.</p>
-                </div>
-                <div class="card p-8">
-                    <div class="text-3xl text-secondary-green mb-4">
-                        <i class="fas fa-industry"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Sector-Specific Focus</h3>
-                    <p class="text-neutral-light/80">Tailored content addressing the unique security challenges of your industry.</p>
-                </div>
+	<!-- Hero Section -->
+	<section class="webinar-hero text-center relative z-10">
+            <div class="container mx-auto px-4 md:px-8 lg:px-16">
+		<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                    Cybersecurity <span class="gradient-text">Webinars</span>
+		</h1>
+		<p class="text-xl text-neutral-light/80 max-w-3xl mx-auto mb-8">
+                    Gain actionable insights from industry-leading experts to strengthen your security posture and protect business value.
+		</p>
+		<a href="#upcoming" class="cyber-btn inline-block">
+                    View Upcoming Webinars <i class="fas fa-arrow-right ml-2"></i>
+		</a>
             </div>
-        </div>
-    </section>
+	</section>
 
-    <!-- Featured Webinar -->
-    <section class="py-16 px-4 md:px-8 lg:px-16 bg-neutral-dark">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12">
-                Featured <span class="gradient-text">Webinar</span>
-            </h2>
-            <div class="card p-8">
-                <div class="webinar-meta">
-                    <span><i class="far fa-calendar"></i> June 22, 2025</span>
-                    <span><i class="far fa-clock"></i> 1:00 PM EST</span>
-                    <span><i class="fas fa-stopwatch"></i> 60 Minutes</span>
-                    <span><i class="fas fa-comments"></i> Interactive with Q&A</span>
-                </div>
-                <h3 class="text-2xl md:text-3xl font-bold mb-4">Securing the Modern Enterprise: Zero Trust Implementation Strategies</h3>
-                <p class="text-neutral-light/80 mb-6">As perimeter-based security becomes increasingly obsolete, organizations must implement robust Zero Trust architectures to protect critical assets.</p>
-                
-                <ul class="space-y-3 mb-6">
-                    <li class="flex items-start">
-                        <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                        <span>Develop a practical roadmap for Zero Trust implementation</span>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                        <span>Implement proven methodologies for reducing security incidents</span>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                        <span>Create a framework for optimizing security investments</span>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
-                        <span>Establish metrics that communicate security posture</span>
-                    </li>
-                </ul>
-                
-                <div class="countdown">
-                    <div class="countdown-item">
-                        <div class="countdown-number">11</div>
-                        <div class="countdown-label">Days</div>
+	<!-- Benefits Section -->
+	<section class="py-16 px-4 md:px-8 lg:px-16 bg-primary-dark">
+            <div class="container mx-auto">
+		<h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
+                    Why Attend Our <span class="gradient-text">Webinars</span>
+		</h2>
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card p-8">
+			<div class="text-3xl text-secondary-green mb-4">
+                            <i class="fas fa-brain"></i>
+			</div>
+			<h3 class="text-xl font-bold mb-4">Expert-Led Knowledge</h3>
+			<p class="text-neutral-light/80">Access strategic guidance from certified security professionals with extensive experience protecting enterprise environments.</p>
                     </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number">08</div>
-                        <div class="countdown-label">Hours</div>
+                    <div class="card p-8">
+			<div class="text-3xl text-secondary-green mb-4">
+                            <i class="fas fa-tasks"></i>
+			</div>
+			<h3 class="text-xl font-bold mb-4">Actionable Strategies</h3>
+			<p class="text-neutral-light/80">Our webinars focus on implementable solutions to real-world security challenges with high implementation rates.</p>
                     </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number">45</div>
-                        <div class="countdown-label">Minutes</div>
+                    <div class="card p-8">
+			<div class="text-3xl text-secondary-green mb-4">
+                            <i class="fas fa-industry"></i>
+			</div>
+			<h3 class="text-xl font-bold mb-4">Sector-Specific Focus</h3>
+			<p class="text-neutral-light/80">Tailored content addressing the unique security challenges of your industry.</p>
                     </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number">30</div>
-                        <div class="countdown-label">Seconds</div>
-                    </div>
-                </div>
-                
-                <div class="speaker">
-                    <div class="speaker-image">
-                        <img src="images/speaker-1.jpg" alt="Robert Johnson">
-                    </div>
-                    <div class="speaker-info">
-                        <h4 class="text-lg font-bold">Robert Johnson</h4>
-                        <p class="text-neutral-light/80">Chief Security Strategist</p>
-                        <p class="text-neutral-light/80 mt-2">With over 20 years leading enterprise security programs, Robert has directed security strategy for multiple Fortune 500 organizations.</p>
-                    </div>
-                </div>
-                
-                <div class="mt-6">
-                    <a href="#register" class="cyber-btn inline-block">
-                        Reserve Your Spot
-                    </a>
-                </div>
+		</div>
             </div>
-        </div>
-    </section>
+	</section>
 
-    <!-- Upcoming Webinars -->
-    <section id="upcoming" class="py-16 px-4 md:px-8 lg:px-16 bg-primary-dark">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12">
-                Upcoming <span class="gradient-text">Webinars</span>
-            </h2>
-            
-            <div class="flex overflow-x-auto pb-4 mb-8">
-                <button class="px-6 py-2 mr-2 rounded-full border border-primary-medium hover:border-secondary-green hover:text-secondary-green transition-colors whitespace-nowrap">All Topics</button>
-                <button class="px-6 py-2 mr-2 rounded-full border border-primary-medium hover:border-secondary-green hover:text-secondary-green transition-colors whitespace-nowrap">Compliance</button>
-                <button class="px-6 py-2 mr-2 rounded-full border border-primary-medium hover:border-secondary-green hover:text-secondary-green transition-colors whitespace-nowrap">Threat Intelligence</button>
-                <button class="px-6 py-2 mr-2 rounded-full border border-primary-medium hover:border-secondary-green hover:text-secondary-green transition-colors whitespace-nowrap">Security Ops</button>
-                <button class="px-6 py-2 mr-2 rounded-full border border-primary-medium hover:border-secondary-green hover:text-secondary-green transition-colors whitespace-nowrap">Risk Management</button>
-                <button class="px-6 py-2 mr-2 rounded-full border border-primary-medium hover:border-secondary-green hover:text-secondary-green transition-colors whitespace-nowrap">Executive Strategy</button>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card group relative flex flex-col h-full">
-                <div class="flex flex-col h-full">
-                    <div class="flex-grow">
-                        <span class="webinar-tag tag-upcoming">Executive Strategy</span>
-                        <h4 class="text-xl font-bold mb-3">Board-Level Security Reporting: Metrics That Matter</h4>
-                        <p class="text-neutral-light/80">This session provides security leaders with frameworks for communicating security posture, risk, and program effectiveness to boards and executive leadership.</p>
+	<!-- Featured Webinar -->
+	<section class="py-16 px-4 md:px-8 lg:px-16 bg-neutral-dark">
+            <div class="container mx-auto">
+		<h2 class="text-3xl md:text-4xl font-bold mb-12">
+                    Featured <span class="gradient-text">Webinar</span>
+		</h2>
+		<div class="card p-8">
+                    <div class="webinar-meta">
+			<span><i class="far fa-calendar"></i> June 22, 2025</span>
+			<span><i class="far fa-clock"></i> 1:00 PM EST</span>
+			<span><i class="fas fa-stopwatch"></i> 60 Minutes</span>
+			<span><i class="fas fa-comments"></i> Interactive with Q&A</span>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4">Securing the Modern Enterprise: Zero Trust Implementation Strategies</h3>
+                    <p class="text-neutral-light/80 mb-6">As perimeter-based security becomes increasingly obsolete, organizations must implement robust Zero Trust architectures to protect critical assets.</p>
+                    
+                    <ul class="space-y-3 mb-6">
+			<li class="flex items-start">
+                            <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+                            <span>Develop a practical roadmap for Zero Trust implementation</span>
+			</li>
+			<li class="flex items-start">
+                            <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+                            <span>Implement proven methodologies for reducing security incidents</span>
+			</li>
+			<li class="flex items-start">
+                            <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+                            <span>Create a framework for optimizing security investments</span>
+			</li>
+			<li class="flex items-start">
+                            <i class="fas fa-check text-secondary-green mt-1 mr-2"></i>
+                            <span>Establish metrics that communicate security posture</span>
+			</li>
+                    </ul>
+                    
+                    <div class="countdown">
+			<div class="countdown-item">
+                            <div class="countdown-number">11</div>
+                            <div class="countdown-label">Days</div>
+			</div>
+			<div class="countdown-item">
+                            <div class="countdown-number">08</div>
+                            <div class="countdown-label">Hours</div>
+			</div>
+			<div class="countdown-item">
+                            <div class="countdown-number">45</div>
+                            <div class="countdown-label">Minutes</div>
+			</div>
+			<div class="countdown-item">
+                            <div class="countdown-number">30</div>
+                            <div class="countdown-label">Seconds</div>
+			</div>
                     </div>
                     
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-neutral-light/70">
-                                <i class="far fa-calendar mr-1"></i> June 15, 2025
+                    <div class="speaker">
+			<div class="speaker-image">
+                            <img src="images/speaker-1.jpg" alt="Robert Johnson">
+			</div>
+			<div class="speaker-info">
+                            <h4 class="text-lg font-bold">Robert Johnson</h4>
+                            <p class="text-neutral-light/80">Chief Security Strategist</p>
+                            <p class="text-neutral-light/80 mt-2">With over 20 years leading enterprise security programs, Robert has directed security strategy for multiple Fortune 500 organizations.</p>
+			</div>
+                    </div>
+                    
+                    <div class="mt-6">
+			<a href="#register" class="cyber-btn inline-block">
+                            Reserve Your Spot
+			</a>
+                    </div>
+		</div>
+            </div>
+	</section>
+
+	<!-- Upcoming Webinars -->
+	<section id="upcoming" class="py-16 px-4 md:px-8 lg:px-16 bg-primary-dark">
+            <div class="container mx-auto">
+		<h2 class="text-3xl md:text-4xl font-bold mb-12">
+                    Upcoming <span class="gradient-text">Webinars</span>
+		</h2>
+		
+		<div class="flex overflow-x-auto pb-4 mb-8">
+                    <button class="px-6 py-2 mr-2 rounded-full border border-primary-medium hover:border-secondary-green hover:text-secondary-green transition-colors whitespace-nowrap">All Topics</button>
+                    <button class="px-6 py-2 mr-2 rounded-full border border-primary-medium hover:border-secondary-green hover:text-secondary-green transition-colors whitespace-nowrap">Compliance</button>
+                    <button class="px-6 py-2 mr-2 rounded-full border border-primary-medium hover:border-secondary-green hover:text-secondary-green transition-colors whitespace-nowrap">Threat Intelligence</button>
+                    <button class="px-6 py-2 mr-2 rounded-full border border-primary-medium hover:border-secondary-green hover:text-secondary-green transition-colors whitespace-nowrap">Security Ops</button>
+                    <button class="px-6 py-2 mr-2 rounded-full border border-primary-medium hover:border-secondary-green hover:text-secondary-green transition-colors whitespace-nowrap">Risk Management</button>
+                    <button class="px-6 py-2 mr-2 rounded-full border border-primary-medium hover:border-secondary-green hover:text-secondary-green transition-colors whitespace-nowrap">Executive Strategy</button>
+		</div>
+		
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card group relative flex flex-col h-full">
+			<div class="flex flex-col h-full">
+			    <div class="flex-grow">
+				<span class="webinar-tag tag-upcoming">Executive Strategy</span>
+				<h4 class="text-xl font-bold mb-3">Board-Level Security Reporting: Metrics That Matter</h4>
+				<p class="text-neutral-light/80">This session provides security leaders with frameworks for communicating security posture, risk, and program effectiveness to boards and executive leadership.</p>
+			    </div>
+			    
+                            <div class="flex items-center justify-between">
+				<div class="text-sm text-neutral-light/70">
+                                    <i class="far fa-calendar mr-1"></i> June 15, 2025
+				</div>
+				<a href="#register" class="text-sm cyber-btn px-4 py-2">Register</a>
                             </div>
-                            <a href="#register" class="text-sm cyber-btn px-4 py-2">Register</a>
-                        </div>
+			    
+			</div>
+		    </div>
                     
-                </div>
-            </div>
-                
-                <div class="card group relative flex flex-col h-full">
-                <div class="flex flex-col h-full">
-                    <div class="flex-grow">
-                        <span class="webinar-tag tag-upcoming">Security Operations</span>
-                    <h4 class="text-xl font-bold mb-3">Zero-Day Threat Detection: Beyond Traditional Signatures</h4>
-                    <p class="text-neutral-light/80 mb-4">This technical session explores advanced methodologies for identifying and mitigating zero-day threats before they impact critical business operations.</p>
-                    </div>
-                    
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-neutral-light/70">
-                                <i class="far fa-calendar mr-1"></i> June 15, 2025
+                    <div class="card group relative flex flex-col h-full">
+			<div class="flex flex-col h-full">
+			    <div class="flex-grow">
+				<span class="webinar-tag tag-upcoming">Security Operations</span>
+				<h4 class="text-xl font-bold mb-3">Zero-Day Threat Detection: Beyond Traditional Signatures</h4>
+				<p class="text-neutral-light/80 mb-4">This technical session explores advanced methodologies for identifying and mitigating zero-day threats before they impact critical business operations.</p>
+			    </div>
+			    
+                            <div class="flex items-center justify-between">
+				<div class="text-sm text-neutral-light/70">
+                                    <i class="far fa-calendar mr-1"></i> June 15, 2025
+				</div>
+				<a href="#register" class="text-sm cyber-btn px-4 py-2">Register</a>
                             </div>
-                            <a href="#register" class="text-sm cyber-btn px-4 py-2">Register</a>
-                        </div>
+			    
+			</div>
+		    </div>
                     
-                </div>
-            </div>
-                
-                <div class="card group relative flex flex-col h-full">
-                <div class="flex flex-col h-full">
-                    <div class="flex-grow">
-                        <span class="webinar-tag tag-upcoming">Compliance</span>
-                    <h4 class="text-xl font-bold mb-3">Compliance as a Competitive Advantage: GDPR, CCPA, and Beyond</h4>
-                    <p class="text-neutral-light/80 mb-4">Learn how to transform regulatory compliance from a cost center to a business enabler that builds customer trust and opens new market opportunities.</p>
-                    </div>
-                    
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-neutral-light/70">
-                                <i class="far fa-calendar mr-1"></i> June 15, 2025
+                    <div class="card group relative flex flex-col h-full">
+			<div class="flex flex-col h-full">
+			    <div class="flex-grow">
+				<span class="webinar-tag tag-upcoming">Compliance</span>
+				<h4 class="text-xl font-bold mb-3">Compliance as a Competitive Advantage: GDPR, CCPA, and Beyond</h4>
+				<p class="text-neutral-light/80 mb-4">Learn how to transform regulatory compliance from a cost center to a business enabler that builds customer trust and opens new market opportunities.</p>
+			    </div>
+			    
+                            <div class="flex items-center justify-between">
+				<div class="text-sm text-neutral-light/70">
+                                    <i class="far fa-calendar mr-1"></i> June 15, 2025
+				</div>
+				<a href="#register" class="text-sm cyber-btn px-4 py-2">Register</a>
                             </div>
-                            <a href="#register" class="text-sm cyber-btn px-4 py-2">Register</a>
-                        </div>
+			    
+			</div>
+		    </div>
+		</div>
+            </div>
+	</section>
+
+	<!-- Expert Speakers -->
+	<section class="py-16 px-4 md:px-8 lg:px-16 bg-neutral-dark">
+            <div class="container mx-auto">
+		<h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
+                    Expert <span class="gradient-text">Speakers</span>
+		</h2>
+		
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="card text-center">
+			<div class="expert-image mx-auto">
+                            <img src="images/speaker-1.jpg" alt="Robert Johnson">
+			</div>
+			<h4 class="text-lg font-bold mt-4">Robert Johnson</h4>
+			<p class="text-secondary-green text-sm mb-3">Chief Security Strategist</p>
+			<p class="text-neutral-light/80 text-sm">Enterprise security leadership expert with 20+ years guiding Fortune 500 organizations.</p>
+                    </div>
                     
-                </div>
+                    <div class="card text-center">
+			<div class="expert-image mx-auto">
+                            <img src="images/speaker-2.jpg" alt="Dr. Sarah Williams">
+			</div>
+			<h4 class="text-lg font-bold mt-4">Dr. Sarah Williams</h4>
+			<p class="text-secondary-green text-sm mb-3">Executive Security Advisor</p>
+			<p class="text-neutral-light/80 text-sm">Former CISO with extensive experience in financial services security.</p>
+                    </div>
+                    
+                    <div class="card text-center">
+			<div class="expert-image mx-auto">
+                            <img src="images/speaker-3.jpg" alt="James Chen">
+			</div>
+			<h4 class="text-lg font-bold mt-4">James Chen, Ph.D.</h4>
+			<p class="text-secondary-green text-sm mb-3">Principal Security Strategist</p>
+			<p class="text-neutral-light/80 text-sm">Technical security expert specializing in advanced threat detection.</p>
+                    </div>
+                    
+                    <div class="card text-center">
+			<div class="expert-image mx-auto">
+                            <img src="images/speaker-4.jpg" alt="Elizabeth Martinez">
+			</div>
+			<h4 class="text-lg font-bold mt-4">Elizabeth Martinez</h4>
+			<p class="text-secondary-green text-sm mb-3">Compliance Strategy Director</p>
+			<p class="text-neutral-light/80 text-sm">Regulatory compliance expert with global privacy knowledge.</p>
+                    </div>
+		</div>
             </div>
-            </div>
-        </div>
-    </section>
+	</section>
 
-    <!-- Expert Speakers -->
-    <section class="py-16 px-4 md:px-8 lg:px-16 bg-neutral-dark">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
-                Expert <span class="gradient-text">Speakers</span>
-            </h2>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="card text-center">
-                    <div class="expert-image mx-auto">
-                        <img src="images/speaker-1.jpg" alt="Robert Johnson">
-                    </div>
-                    <h4 class="text-lg font-bold mt-4">Robert Johnson</h4>
-                    <p class="text-secondary-green text-sm mb-3">Chief Security Strategist</p>
-                    <p class="text-neutral-light/80 text-sm">Enterprise security leadership expert with 20+ years guiding Fortune 500 organizations.</p>
-                </div>
-                
-                <div class="card text-center">
-                    <div class="expert-image mx-auto">
-                        <img src="images/speaker-2.jpg" alt="Dr. Sarah Williams">
-                    </div>
-                    <h4 class="text-lg font-bold mt-4">Dr. Sarah Williams</h4>
-                    <p class="text-secondary-green text-sm mb-3">Executive Security Advisor</p>
-                    <p class="text-neutral-light/80 text-sm">Former CISO with extensive experience in financial services security.</p>
-                </div>
-                
-                <div class="card text-center">
-                    <div class="expert-image mx-auto">
-                        <img src="images/speaker-3.jpg" alt="James Chen">
-                    </div>
-                    <h4 class="text-lg font-bold mt-4">James Chen, Ph.D.</h4>
-                    <p class="text-secondary-green text-sm mb-3">Principal Security Strategist</p>
-                    <p class="text-neutral-light/80 text-sm">Technical security expert specializing in advanced threat detection.</p>
-                </div>
-                
-                <div class="card text-center">
-                    <div class="expert-image mx-auto">
-                        <img src="images/speaker-4.jpg" alt="Elizabeth Martinez">
-                    </div>
-                    <h4 class="text-lg font-bold mt-4">Elizabeth Martinez</h4>
-                    <p class="text-secondary-green text-sm mb-3">Compliance Strategy Director</p>
-                    <p class="text-neutral-light/80 text-sm">Regulatory compliance expert with global privacy knowledge.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+	<!-- On-Demand Library Section -->
+	<section class="py-16 px-4 md:px-8 lg:px-16 bg-primary-dark">
+	    <div class="container mx-auto">
+		<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+		    <h2 class="text-3xl md:text-4xl font-bold">
+			On-Demand <span class="gradient-text">Library</span>
+		    </h2>
+		    <div class="mt-4 md:mt-0 flex space-x-2">
+			<select class="bg-primary-dark border border-primary-medium rounded-md px-3 py-2 text-sm">
+			    <option>All Topics</option>
+			    <option>Executive Strategy</option>
+			    <option>Security Operations</option>
+			</select>
+			<select class="bg-primary-dark border border-primary-medium rounded-md px-3 py-2 text-sm">
+			    <option>All Industries</option>
+			    <option>Financial Services</option>
+			    <option>Healthcare</option>
+			</select>
+		    </div>
+		</div>
+		
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+		    <!-- Video Card 1 -->
+		    <div class="card group relative flex flex-col h-full">
+			<div class="flex flex-col h-full">
+			    <div class="thumbnail">
+				<img src="images/webinar-1.jpg" alt="Ransomware Resilience">
+				<div class="play-button">
+				    <i class="fas fa-play"></i>
+				</div>
+				<div class="video-duration">45 min</div>
+			    </div>
+			    <div class="flex-grow p-4">
+				<span class="webinar-tag tag-upcoming">Risk Management</span>
+				<h4 class="text-lg font-bold mb-2">Ransomware Resilience Strategies</h4>
+				<p class="text-neutral-light/80 text-sm">Learn methodologies for developing ransomware recovery strategies.</p>
+			    </div>
+			    <div class="mt-auto p-4 pt-0">
+				<a href="#" class="text-sm text-secondary-green hover:underline flex items-center">
+				    Watch Now <i class="fas fa-arrow-right ml-2"></i>
+				</a>
+			    </div>
+			</div>
+		    </div>
 
-    <!-- On-Demand Library Section -->
-<section class="py-16 px-4 md:px-8 lg:px-16 bg-primary-dark">
-    <div class="container mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
-            <h2 class="text-3xl md:text-4xl font-bold">
-                On-Demand <span class="gradient-text">Library</span>
-            </h2>
-            <div class="mt-4 md:mt-0 flex space-x-2">
-                <select class="bg-primary-dark border border-primary-medium rounded-md px-3 py-2 text-sm">
-                    <option>All Topics</option>
-                    <option>Executive Strategy</option>
-                    <option>Security Operations</option>
-                </select>
-                <select class="bg-primary-dark border border-primary-medium rounded-md px-3 py-2 text-sm">
-                    <option>All Industries</option>
-                    <option>Financial Services</option>
-                    <option>Healthcare</option>
-                </select>
-            </div>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Video Card 1 -->
-            <div class="card group relative flex flex-col h-full">
-                <div class="flex flex-col h-full">
-                    <div class="thumbnail">
-                        <img src="images/webinar-1.jpg" alt="Ransomware Resilience">
-                        <div class="play-button">
-                            <i class="fas fa-play"></i>
-                        </div>
-                        <div class="video-duration">45 min</div>
-                    </div>
-                    <div class="flex-grow p-4">
-                        <span class="webinar-tag tag-upcoming">Risk Management</span>
-                        <h4 class="text-lg font-bold mb-2">Ransomware Resilience Strategies</h4>
-                        <p class="text-neutral-light/80 text-sm">Learn methodologies for developing ransomware recovery strategies.</p>
-                    </div>
-                    <div class="mt-auto p-4 pt-0">
-                        <a href="#" class="text-sm text-secondary-green hover:underline flex items-center">
-                            Watch Now <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+		    <!-- Video Card 2 -->
+		    <div class="card group relative flex flex-col h-full">
+			<div class="flex flex-col h-full">
+			    <div class="thumbnail">
+				<img src="images/webinar-2.jpg" alt="Cloud Security">
+				<div class="play-button">
+				    <i class="fas fa-play"></i>
+				</div>
+				<div class="video-duration">60 min</div>
+			    </div>
+			    <div class="flex-grow p-4">
+				<span class="webinar-tag tag-upcoming">Cloud Security</span>
+				<h4 class="text-lg font-bold mb-2">Multi-Cloud Security Architecture</h4>
+				<p class="text-neutral-light/80 text-sm">Framework for securing assets across multiple cloud providers.</p>
+			    </div>
+			    <div class="mt-auto p-4 pt-0">
+				<a href="#" class="text-sm text-secondary-green hover:underline flex items-center">
+				    Watch Now <i class="fas fa-arrow-right ml-2"></i>
+				</a>
+			    </div>
+			</div>
+		    </div>
 
-            <!-- Video Card 2 -->
-            <div class="card group relative flex flex-col h-full">
-                <div class="flex flex-col h-full">
-                    <div class="thumbnail">
-                        <img src="images/webinar-2.jpg" alt="Cloud Security">
-                        <div class="play-button">
-                            <i class="fas fa-play"></i>
-                        </div>
-                        <div class="video-duration">60 min</div>
-                    </div>
-                    <div class="flex-grow p-4">
-                        <span class="webinar-tag tag-upcoming">Cloud Security</span>
-                        <h4 class="text-lg font-bold mb-2">Multi-Cloud Security Architecture</h4>
-                        <p class="text-neutral-light/80 text-sm">Framework for securing assets across multiple cloud providers.</p>
-                    </div>
-                    <div class="mt-auto p-4 pt-0">
-                        <a href="#" class="text-sm text-secondary-green hover:underline flex items-center">
-                            Watch Now <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+		    <!-- Video Card 3 -->
+		    <div class="card group relative flex flex-col h-full">
+			<div class="flex flex-col h-full">
+			    <div class="thumbnail">
+				<img src="images/webinar-3.jpg" alt="Security Budget">
+				<div class="play-button">
+				    <i class="fas fa-play"></i>
+				</div>
+				<div class="video-duration">45 min</div>
+			    </div>
+			    <div class="flex-grow p-4">
+				<span class="webinar-tag tag-upcoming">Executive Strategy</span>
+				<h4 class="text-lg font-bold mb-2">Security Budget Optimization</h4>
+				<p class="text-neutral-light/80 text-sm">Prioritize security investments for maximum risk reduction.</p>
+			    </div>
+			    <div class="mt-auto p-4 pt-0">
+				<a href="#" class="text-sm text-secondary-green hover:underline flex items-center">
+				    Watch Now <i class="fas fa-arrow-right ml-2"></i>
+				</a>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</section>
 
-            <!-- Video Card 3 -->
-            <div class="card group relative flex flex-col h-full">
-                <div class="flex flex-col h-full">
-                    <div class="thumbnail">
-                        <img src="images/webinar-3.jpg" alt="Security Budget">
-                        <div class="play-button">
-                            <i class="fas fa-play"></i>
-                        </div>
-                        <div class="video-duration">45 min</div>
+	<!-- Business Impact -->
+	<section class="py-16 px-4 md:px-8 lg:px-16 bg-neutral-dark">
+            <div class="container mx-auto">
+		<h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
+                    Business <span class="gradient-text">Impact</span>
+		</h2>
+		
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    <div class="card text-center">
+			<div class="metric-value">92%</div>
+			<p class="text-neutral-light/80">Attendees implement at least one strategic recommendation</p>
                     </div>
-                    <div class="flex-grow p-4">
-                        <span class="webinar-tag tag-upcoming">Executive Strategy</span>
-                        <h4 class="text-lg font-bold mb-2">Security Budget Optimization</h4>
-                        <p class="text-neutral-light/80 text-sm">Prioritize security investments for maximum risk reduction.</p>
+                    
+                    <div class="card text-center">
+			<div class="metric-value">65%</div>
+			<p class="text-neutral-light/80">Average reduction in security incidents</p>
                     </div>
-                    <div class="mt-auto p-4 pt-0">
-                        <a href="#" class="text-sm text-secondary-green hover:underline flex items-center">
-                            Watch Now <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
+                    
+                    <div class="card text-center">
+			<div class="metric-value">4.8/5</div>
+			<p class="text-neutral-light/80">Average satisfaction rating</p>
                     </div>
-                </div>
+                    
+                    <div class="card text-center">
+			<div class="metric-value">87%</div>
+			<p class="text-neutral-light/80">Attendees share content with executives</p>
+                    </div>
+		</div>
+		
+		<div class="card p-8 relative">
+                    <div class="testimonial-content italic text-lg mb-6">
+			"ProtekCyber's webinar series on regulatory compliance provided our executive team with a clear roadmap for addressing our GDPR gaps. The strategic framework their consultants shared saved us months of planning."
+                    </div>
+                    <div class="flex items-center">
+			<div class="author-image">
+                            <img src="images/testimonial-1.jpg" alt="Jennifer Martins">
+			</div>
+			<div>
+                            <h5 class="font-bold">Jennifer Martins</h5>
+                            <p class="text-neutral-light/80">CIO, Global Financial Services Corporation</p>
+			</div>
+                    </div>
+		</div>
             </div>
-        </div>
-    </div>
-</section>
+	</section>
 
-    <!-- Business Impact -->
-    <section class="py-16 px-4 md:px-8 lg:px-16 bg-neutral-dark">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
-                Business <span class="gradient-text">Impact</span>
-            </h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                <div class="card text-center">
-                    <div class="metric-value">92%</div>
-                    <p class="text-neutral-light/80">Attendees implement at least one strategic recommendation</p>
-                </div>
-                
-                <div class="card text-center">
-                    <div class="metric-value">65%</div>
-                    <p class="text-neutral-light/80">Average reduction in security incidents</p>
-                </div>
-                
-                <div class="card text-center">
-                    <div class="metric-value">4.8/5</div>
-                    <p class="text-neutral-light/80">Average satisfaction rating</p>
-                </div>
-                
-                <div class="card text-center">
-                    <div class="metric-value">87%</div>
-                    <p class="text-neutral-light/80">Attendees share content with executives</p>
-                </div>
-            </div>
-            
-            <div class="card p-8 relative">
-                <div class="testimonial-content italic text-lg mb-6">
-                    "ProtekCyber's webinar series on regulatory compliance provided our executive team with a clear roadmap for addressing our GDPR gaps. The strategic framework their consultants shared saved us months of planning."
-                </div>
-                <div class="flex items-center">
-                    <div class="author-image">
-                        <img src="images/testimonial-1.jpg" alt="Jennifer Martins">
-                    </div>
-                    <div>
-                        <h5 class="font-bold">Jennifer Martins</h5>
-                        <p class="text-neutral-light/80">CIO, Global Financial Services Corporation</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Registration Form -->
-    <section id="register" class="py-16 px-4 md:px-8 lg:px-16 bg-primary-dark">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
-                Register for <span class="gradient-text">Upcoming Webinars</span>
-            </h2>
-            
-            <div class="card max-w-3xl mx-auto p-8">
-                <form>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label class="block text-sm font-medium mb-2">First Name*</label>
-                            <input type="text" class="w-full px-4 py-3 rounded-md bg-primary-dark border border-primary-medium">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Last Name*</label>
-                            <input type="text" class="w-full px-4 py-3 rounded-md bg-primary-dark border border-primary-medium">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Business Email*</label>
-                            <input type="email" class="w-full px-4 py-3 rounded-md bg-primary-dark border border-primary-medium">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Company*</label>
-                            <input type="text" class="w-full px-4 py-3 rounded-md bg-primary-dark border border-primary-medium">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Job Title</label>
-                            <input type="text" class="w-full px-4 py-3 rounded-md bg-primary-dark border border-primary-medium">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Industry</label>
+	<!-- Registration Form -->
+	<section id="register" class="py-16 px-4 md:px-8 lg:px-16 bg-primary-dark">
+            <div class="container mx-auto">
+		<h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
+                    Register for <span class="gradient-text">Upcoming Webinars</span>
+		</h2>
+		
+		<div class="card max-w-3xl mx-auto p-8">
+                    <form>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+				<label class="block text-sm font-medium mb-2">First Name*</label>
+				<input type="text" class="w-full px-4 py-3 rounded-md bg-primary-dark border border-primary-medium">
+                            </div>
+                            <div>
+				<label class="block text-sm font-medium mb-2">Last Name*</label>
+				<input type="text" class="w-full px-4 py-3 rounded-md bg-primary-dark border border-primary-medium">
+                            </div>
+                            <div>
+				<label class="block text-sm font-medium mb-2">Business Email*</label>
+				<input type="email" class="w-full px-4 py-3 rounded-md bg-primary-dark border border-primary-medium">
+                            </div>
+                            <div>
+				<label class="block text-sm font-medium mb-2">Company*</label>
+				<input type="text" class="w-full px-4 py-3 rounded-md bg-primary-dark border border-primary-medium">
+                            </div>
+                            <div>
+				<label class="block text-sm font-medium mb-2">Job Title</label>
+				<input type="text" class="w-full px-4 py-3 rounded-md bg-primary-dark border border-primary-medium">
+                            </div>
+                            <div>
+				<label class="block text-sm font-medium mb-2">Industry</label>
+				<select class="w-full px-4 py-3 rounded-md bg-primary-dark border border-primary-medium">
+                                    <option>Select Industry</option>
+                                    <option>Financial Services</option>
+                                    <option>Healthcare</option>
+                                    <option>Manufacturing</option>
+				</select>
+                            </div>
+			</div>
+			
+			<div class="mb-6">
+                            <label class="block text-sm font-medium mb-2">Webinar Selection*</label>
                             <select class="w-full px-4 py-3 rounded-md bg-primary-dark border border-primary-medium">
-                                <option>Select Industry</option>
-                                <option>Financial Services</option>
-                                <option>Healthcare</option>
-                                <option>Manufacturing</option>
+				<option>Select Webinar</option>
+				<option>Zero Trust Implementation - June 22</option>
+				<option>Board-Level Reporting - June 15</option>
+				<option>Zero-Day Detection - June 29</option>
+				<option>Compliance Advantage - July 8</option>
                             </select>
-                        </div>
+			</div>
+			
+			<div class="mb-6">
+                            <label class="block text-sm font-medium mb-2">How did you hear about us?</label>
+                            <select class="w-full px-4 py-3 rounded-md bg-primary-dark border border-primary-medium">
+				<option>Select Source</option>
+				<option>Search Engine</option>
+				<option>Social Media</option>
+				<option>Email Newsletter</option>
+				<option>Colleague Referral</option>
+                            </select>
+			</div>
+			
+			<button type="submit" class="cyber-btn w-full">
+                            Secure Your Spot
+			</button>
+			
+			<p class="text-xs text-neutral-light/70 mt-4">
+                            By submitting this form, you agree to receive communications from ProtekCyber. We respect your privacy and will never share your information with third parties.
+			</p>
+                    </form>
+		</div>
+            </div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="py-12 px-4 md:px-8 lg:px-16 bg-neutral-dark border-t border-primary-medium">
+            <div class="container mx-auto">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    <div>
+			<a href="/index.html" style="display: inline-block; padding-bottom: 20px;" class="text-2xl font-bold gradient-text">ProtekCyber</a>
+			
+			<p class="text-neutral-light/70 mb-6">
+                            Expert-led cyber security consultancy tailored to your business needs, compliance goals, and growth strategy.
+			</p>
+			
+			<div class="flex space-x-4">
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+				<i class="fab fa-instagram"></i>
+                            </a>
+			</div>
                     </div>
                     
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium mb-2">Webinar Selection*</label>
-                        <select class="w-full px-4 py-3 rounded-md bg-primary-dark border border-primary-medium">
-                            <option>Select Webinar</option>
-                            <option>Zero Trust Implementation - June 22</option>
-                            <option>Board-Level Reporting - June 15</option>
-                            <option>Zero-Day Detection - June 29</option>
-                            <option>Compliance Advantage - July 8</option>
-                        </select>
+                    <div>
+			<div class="text-lg font-bold mb-6">Services</div>
+			<ul class="space-y-4">
+                            <li>
+				<a href="/soc" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    SOC as a Service
+				</a>
+                            </li>
+                            <li>
+				<a href="/penetration" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Penetration Testing
+				</a>
+                            </li>
+                            <li>
+				<a href="/incident" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Incident Response
+				</a>
+                            </li>
+                            <li>
+				<a href="/cloud-sec" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Cloud Security
+				</a>
+                            </li>
+                            <li>
+				<a href="data-protect" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Data Protection
+				</a>
+                            </li>
+			</ul>
                     </div>
                     
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium mb-2">How did you hear about us?</label>
-                        <select class="w-full px-4 py-3 rounded-md bg-primary-dark border border-primary-medium">
-                            <option>Select Source</option>
-                            <option>Search Engine</option>
-                            <option>Social Media</option>
-                            <option>Email Newsletter</option>
-                            <option>Colleague Referral</option>
-                        </select>
+                    <div>
+			<div class="text-lg font-bold mb-6">Company</div>
+			<ul class="space-y-4">
+                            <li>
+				<a href="/about-us" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    About Us
+				</a>
+                            </li>
+                            <li>
+				<a href="/our-team " class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Our Team
+				</a>
+                            </li>
+                            <li>
+				<a href="/careers" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Careers
+				</a>
+                            </li>
+                            <li>
+				<a href="/news" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    News
+				</a>
+                            </li>
+                            <li>
+				<a href="/termsofservice" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Terms of Service
+				</a>
+                            </li>
+			</ul>
                     </div>
                     
-                    <button type="submit" class="cyber-btn w-full">
-                        Secure Your Spot
-                    </button>
-                    
-                    <p class="text-xs text-neutral-light/70 mt-4">
-                        By submitting this form, you agree to receive communications from ProtekCyber. We respect your privacy and will never share your information with third parties.
+                    <div>
+			<div class="text-lg font-bold mb-6">Resources</div>
+			<ul class="space-y-4">
+                            <li>
+				<a href="/knowledge-base" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Knowledge Base
+				</a>
+                            </li>
+                            <li>
+				<a href="/security-guides" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Security Guides
+				</a>
+                            </li>
+                            <li>
+				<a href="/threat-intelligence" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Threat Intelligence
+				</a>
+                            </li>
+                            <li>
+				<a href="/webinars" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Webinars
+				</a>
+                            </li>
+                            <li>
+				<a href="/case-studies" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
+                                    Case Studies
+				</a>
+                            </li>
+			</ul>
+                    </div>
+		</div>
+		<div class="pt-8 border-t border-primary-medium text-center">
+                    <p class="text-neutral-light/70">
+			&copy; 2025 ProtekCyber Consultants. All rights reserved.
                     </p>
-                </form>
+		</div>
             </div>
-        </div>
-    </section>
+	</footer>
 
-    <!-- Footer -->
-    <footer class="py-12 px-4 md:px-8 lg:px-16 bg-neutral-dark border-t border-primary-medium">
-        <div class="container mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                <div>
-                    <a href="/index.html" style="display: inline-block; padding-bottom: 20px;" class="text-2xl font-bold gradient-text">ProtekCyber</a>
-                    
-                    <p class="text-neutral-light/70 mb-6">
-                        Expert-led cyber security consultancy tailored to your business needs, compliance goals, and growth strategy.
-                    </p>
-                    
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <div class="text-lg font-bold mb-6">Services</div>
-                    <ul class="space-y-4">
-                        <li>
-                            <a href="/soc" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                SOC as a Service
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/penetration" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Penetration Testing
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/incident" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Incident Response
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/cloud-sec" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Cloud Security
-                            </a>
-                        </li>
-                        <li>
-                            <a href="data-protect" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Data Protection
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <div class="text-lg font-bold mb-6">Company</div>
-                    <ul class="space-y-4">
-                        <li>
-                            <a href="/about-us" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/our-team " class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Our Team
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/careers" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Careers
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/news" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                News
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/termsofservice" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Terms of Service
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <div class="text-lg font-bold mb-6">Resources</div>
-                    <ul class="space-y-4">
-                        <li>
-                            <a href="/knowledge-base" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Knowledge Base
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/security-guides" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Security Guides
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/threat-intelligence" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Threat Intelligence
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/webinars" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Webinars
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/case-studies" class="text-neutral-light/70 hover:text-secondary-green transition-colors duration-300">
-                                Case Studies
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="pt-8 border-t border-primary-medium text-center">
-                <p class="text-neutral-light/70">
-                    &copy; 2025 ProtekCyber Consultants. All rights reserved.
-                </p>
-            </div>
-        </div>
-    </footer>
 
-    <script>
-        // Mobile menu toggle
-        document.getElementById('nav-toggle').addEventListener('click', function () {
-            document.getElementById('nav-menu').classList.toggle('hidden');
-        });
+	<script crossorigin src="./js/dropdown.js"></script>
+	<script>
+	 // Countdown timer
+	 function updateCountdown() {
+             const targetDate = new Date('June 22, 2025 13:00:00 EST').getTime();
+             const now = new Date().getTime();
+             const difference = targetDate - now;
+             
+             const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+             const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+             const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+             
+             document.querySelectorAll('.countdown-item:nth-child(1) .countdown-number').forEach(el => el.textContent = days);
+             document.querySelectorAll('.countdown-item:nth-child(2) .countdown-number').forEach(el => el.textContent = hours);
+             document.querySelectorAll('.countdown-item:nth-child(3) .countdown-number').forEach(el => el.textContent = minutes);
+             document.querySelectorAll('.countdown-item:nth-child(4) .countdown-number').forEach(el => el.textContent = seconds);
+	 }
+	 
+	 // Update countdown every second
+	 setInterval(updateCountdown, 1000);
+	 updateCountdown(); // Initial call
 
-        // Toggle dropdowns individually
-        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-            toggle.addEventListener('click', function (e) {
-                e.stopPropagation();
-                const dropdown = this.nextElementSibling;
-                dropdown.classList.toggle('hidden');
-
-                // Close other open dropdowns
-                document.querySelectorAll('.dropdown').forEach(d => {
-                    if (d !== dropdown) d.classList.add('hidden');
-                });
-            });
-        });
-
-        // Close all dropdowns when clicking outside
-        document.addEventListener('click', function (e) {
-            if (!e.target.closest('.group')) {
-                document.querySelectorAll('.dropdown').forEach(dropdown => {
-                    dropdown.classList.add('hidden');
-                });
-            }
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if(targetElement){
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Countdown timer
-        function updateCountdown() {
-            const targetDate = new Date('June 22, 2025 13:00:00 EST').getTime();
-            const now = new Date().getTime();
-            const difference = targetDate - now;
-            
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-            
-            document.querySelectorAll('.countdown-item:nth-child(1) .countdown-number').forEach(el => el.textContent = days);
-            document.querySelectorAll('.countdown-item:nth-child(2) .countdown-number').forEach(el => el.textContent = hours);
-            document.querySelectorAll('.countdown-item:nth-child(3) .countdown-number').forEach(el => el.textContent = minutes);
-            document.querySelectorAll('.countdown-item:nth-child(4) .countdown-number').forEach(el => el.textContent = seconds);
-        }
-        
-        // Update countdown every second
-        setInterval(updateCountdown, 1000);
-        updateCountdown(); // Initial call
-
-        
-    </script>
-</body>
+	 
+	</script>
+    </body>
 </html>
